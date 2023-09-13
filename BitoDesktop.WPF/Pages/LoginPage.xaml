@@ -6,74 +6,24 @@
     xmlns:local="clr-namespace:BitoDesktop.WPF.Pages"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:stage="clr-namespace:BitoDesktop.WPF.Controllers.Login"
     Title="LoginPage"
     MinWidth="800"
     MinHeight="450"
     Loaded="Page_Loaded"
     mc:Ignorable="d">
-    <Page.Resources>
-        <Style BasedOn="{StaticResource MaterialDesignOutlinedTextBox}" TargetType="TextBox">
-            <Setter Property="Background" Value="#F5F5F5" />
-            <Setter Property="Margin" Value="12" />
-            <Setter Property="Height" Value="56" />
-            <Setter Property="Width" Value="312" />
-            <Setter Property="Padding" Value="10" />
-            <Setter Property="FontSize" Value="16" />
-            <Setter Property="FontWeight" Value="DemiBold" />
-            <Setter Property="VerticalContentAlignment" Value="Center" />
-
-        </Style>
-        <Style BasedOn="{StaticResource MaterialDesignOutlinedRevealPasswordBox}" TargetType="PasswordBox">
-            <Setter Property="Background" Value="#F5F5F5" />
-            <Setter Property="Margin" Value="12" />
-            <Setter Property="Height" Value="56" />
-            <Setter Property="Width" Value="312" />
-            <Setter Property="Padding" Value="10" />
-            <Setter Property="FontSize" Value="16" />
-            <Setter Property="FontWeight" Value="DemiBold" />
-            <Setter Property="VerticalContentAlignment" Value="Center" />
-        </Style>
-    </Page.Resources>
     <Grid>
-        <Border
-            Width="360"
-            Height="398"
-            Background="#FFFFFF"
-            CornerRadius="20">
-            <StackPanel>
-                <TextBlock
-                    Margin="15"
-                    HorizontalAlignment="Center"
-                    FontSize="20"
-                    FontWeight="DemiBold"
-                    Text="Kirish" />
-                <TextBox
-                    x:Name="ServerNameTxt"
-                    md:HintAssist.Hint="Server Nomi"
-                    BorderThickness="0" />
-                <TextBox
-                    x:Name="PhoneNumberTxt"
-                    md:HintAssist.Hint="Telefon Raqam"
-                    BorderThickness="0" />
-                <PasswordBox
-                    x:Name="PasswordTxt"
-                    md:HintAssist.Hint="Parol"
-                    BorderThickness="0" />
-                <Button
-                    Width="312"
-                    Height="56"
-                    Margin="12"
-                    md:ButtonAssist.CornerRadius="10"
-                    Content="Kirish" />
-            </StackPanel>
-        </Border>
-        <StackPanel>
-            <TextBlock
-                x:Name="DateTimeTxt"
-                Margin="15"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Top"
-                FontSize="25" />
-        </StackPanel>
+        <ItemsControl
+            x:Name="LoginStageControl"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center">
+            <stage:LoginController />
+        </ItemsControl>
+        <TextBlock
+            x:Name="DateTimeTxt"
+            Margin="15"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            FontSize="25" />
     </Grid>
 </Page>
