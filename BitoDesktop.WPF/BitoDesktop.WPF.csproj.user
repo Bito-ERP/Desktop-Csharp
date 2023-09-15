@@ -22,13 +22,13 @@
     <Compile Update="Controllers\Login\PinCodeController.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Controllers\PosControllers\SideBarController.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="Pages\LoginPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Pages\PosPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\SideBarPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -48,9 +48,6 @@
     <Page Update="Controllers\Login\PinCodeController.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Controllers\PosControllers\SideBarController.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -58,6 +55,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\PosPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\SideBarPage.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

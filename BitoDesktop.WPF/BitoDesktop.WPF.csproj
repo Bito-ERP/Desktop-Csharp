@@ -20,4 +20,8 @@
     <Resource Include="Icons\settings.png" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\PosControllers\" />
+  </ItemGroup>
+
 </Project>

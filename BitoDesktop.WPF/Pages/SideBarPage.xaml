@@ -1,15 +1,14 @@
-﻿<UserControl
-    x:Class="BitoDesktop.WPF.Controllers.PosControllers.SideBarController"
+﻿<Page
+    x:Class="BitoDesktop.WPF.Pages.SideBarPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="clr-namespace:BitoDesktop.WPF.Controllers.PosControllers"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
     Width="64"
     MinHeight="450"
     mc:Ignorable="d">
-    <UserControl.Resources>
+    <Page.Resources>
         <Style BasedOn="{StaticResource MaterialDesignRaisedButton}" TargetType="Button">
             <Setter Property="Height" Value="42" />
             <Setter Property="Width" Value="42" />
@@ -26,7 +25,7 @@
             <Setter Property="Width" Value="24" />
             <Setter Property="Foreground" Value="#006AFF" />
         </Style>
-    </UserControl.Resources>
+    </Page.Resources>
     <Border Background="White">
         <Grid>
             <WrapPanel Margin="0,10" HorizontalAlignment="Center">
@@ -52,4 +51,4 @@
             </Button>
         </Grid>
     </Border>
-</UserControl>
+</Page>

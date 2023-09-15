@@ -23,8 +23,10 @@ namespace BitoDesktop.WPF
     {
         public MainWindow()
         {
+            var height = SystemParameters.ResizeFrameVerticalBorderWidth * 2;
             InitializeComponent();
-            MainFrame.Content = new LoginPage();
+            var posPage = new PosPage();
+            MainFrame.Content = posPage;
         }
     }
 }

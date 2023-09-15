@@ -6,22 +6,26 @@
     xmlns:local="clr-namespace:BitoDesktop.WPF.Pages"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
-    xmlns:pos="clr-namespace:BitoDesktop.WPF.Controllers.PosControllers"
     Title="PosPage"
     MinWidth="800"
     MinHeight="450"
     mc:Ignorable="d">
-
+    <Page.Resources>
+        <Style x:Key="CustomBorder" TargetType="Border">
+            <Setter Property="Background" Value="White" />
+            <Setter Property="Margin" Value="10" />
+            <Setter Property="CornerRadius" Value="10" />
+        </Style>
+    </Page.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="64" />
             <ColumnDefinition Width="1.5*" />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <ItemsControl>
-            <pos:SideBarController />
-        </ItemsControl>
-        <Grid Grid.Column="1" />
+        <Frame NavigationUIVisibility="Hidden" Source="SideBarPage.xaml" />
+        <Border Grid.Column="1" Style="{StaticResource CustomBorder}" />
+        <Border Grid.Column="2" Style="{StaticResource CustomBorder}" />
 
     </Grid>
 </Page>

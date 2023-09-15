@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace BitoDesktop.WPF.Controllers.PosControllers
+namespace BitoDesktop.WPF.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для SideBarController.xaml
+    /// Логика взаимодействия для SideBarPage.xaml
     /// </summary>
-    public partial class SideBarController : UserControl
+    public partial class SideBarPage : Page
     {
-        public SideBarController()
+        public SideBarPage()
         {
             InitializeComponent();
         }
