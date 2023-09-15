@@ -25,5 +25,13 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             FontSize="25" />
+        <Border
+            Height="15"
+            VerticalAlignment="Bottom"
+            Background="#DCE1E4" />
+        <TextBlock
+            HorizontalAlignment="Center"
+            VerticalAlignment="Bottom"
+            Text="OOO UNICAL, 129b Amir Temur shoh ko'chasi, www.unical.uz, +998971234567" />
     </Grid>
 </Page>

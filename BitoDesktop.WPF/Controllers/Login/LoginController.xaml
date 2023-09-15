@@ -45,6 +45,7 @@
                 Text="Kirish" />
             <TextBox
                 x:Name="ServerNameTxt"
+                md:ElevationAssist.Elevation="Dp16"
                 md:HintAssist.Hint="Server Nomi"
                 BorderThickness="0" />
             <TextBox

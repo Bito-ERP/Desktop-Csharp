@@ -19,7 +19,13 @@
     <Compile Update="Controllers\Login\OrganizatinController.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Controllers\Login\PinCodeController.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Pages\LoginPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\PosPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -36,10 +42,16 @@
     <Page Update="Controllers\Login\OrganizatinController.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Controllers\Login\PinCodeController.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\LoginPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\PosPage.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
