@@ -24,5 +24,6 @@ namespace BitoDesktop.WPF.Pages
         {
             InitializeComponent();
         }
+
     }
 }

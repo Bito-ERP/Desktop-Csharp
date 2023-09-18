@@ -13,6 +13,21 @@
     WindowState="Maximized"
     mc:Ignorable="d">
     <Grid>
-        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" />
+        <Frame x:Name="LoginFrame" NavigationUIVisibility="Hidden" />
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="64" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Frame
+                x:Name="SideBarFrame"
+                NavigationUIVisibility="Hidden"
+                Source="/Pages/SideBarPage.xaml" />
+
+            <Frame
+                x:Name="MainFrame"
+                Grid.Column="1"
+                NavigationUIVisibility="Hidden" />
+        </Grid>
     </Grid>
 </Window>

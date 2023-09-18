@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Icons\emptybasket.png" />
     <None Remove="Icons\homeactive.png" />
   </ItemGroup>
 
@@ -15,9 +16,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Icons\emptybasket.png" />
     <Resource Include="Icons\homeactive.png" />
     <Resource Include="Icons\reload.png" />
     <Resource Include="Icons\settings.png" />
+    <Resource Include="Icons\box.png" />
+    <Resource Include="Icons\frame.png" />
   </ItemGroup>
 
   <ItemGroup>
