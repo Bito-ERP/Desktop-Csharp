@@ -225,7 +225,5 @@
             </StackPanel>
         </Border>
         <Border Grid.Column="2" Style="{StaticResource CustomBorder}" />
-
-
     </Grid>
 </Page>
