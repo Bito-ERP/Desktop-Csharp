@@ -24,8 +24,8 @@ namespace BitoDesktop.WPF
         public MainWindow()
         {
             InitializeComponent();
-            var posPage = new PosPage();
-            MainFrame.Content = posPage;
+            var settingsPaga = new SettingsPage();
+            MainFrame.Content = settingsPaga;
         }
     }
 }

@@ -20,18 +20,20 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="64" />
             <ColumnDefinition Width="1*" />
             <ColumnDefinition Width="2*" />
         </Grid.ColumnDefinitions>
-        <Border Grid.Column="1" Style="{StaticResource CustomBorder}">
-            <StackPanel Grid.Column="1" Margin="0,10">
-                <Border>
+        <Border
+            Height="368"
+            VerticalAlignment="Top"
+            Style="{StaticResource CustomBorder}">
+            <StackPanel Grid.Column="1" Margin="0,20">
+                <Border Height="48">
                     <Grid>
                         <StackPanel
-                            Margin="5,0"
+                            Margin="10,0"
                             HorizontalAlignment="Left"
-                            VerticalAlignment="Top"
+                            VerticalAlignment="Center"
                             Orientation="Horizontal">
                             <Image
                                 Width="24"
@@ -54,12 +56,12 @@
                             Text="&gt;" />
                     </Grid>
                 </Border>
-                <Border>
+                <Border Height="48">
                     <Grid>
                         <StackPanel
-                            Margin="5,0"
+                            Margin="10,0"
                             HorizontalAlignment="Left"
-                            VerticalAlignment="Top"
+                            VerticalAlignment="Center"
                             Orientation="Horizontal">
                             <Image
                                 Width="24"
@@ -82,17 +84,17 @@
                             Text="&gt;" />
                     </Grid>
                 </Border>
-                <Border>
+                <Border Height="48">
                     <Grid>
                         <StackPanel
-                            Margin="5,0"
+                            Margin="10,0"
                             HorizontalAlignment="Left"
-                            VerticalAlignment="Top"
+                            VerticalAlignment="Center"
                             Orientation="Horizontal">
                             <Image
                                 Width="24"
                                 Height="24"
-                                Source="/Icons/Settings/tarozi.png" />
+                                Source="/Icons/Settings/scales.png" />
                             <TextBlock
                                 Margin="10"
                                 VerticalAlignment="Center"
@@ -110,17 +112,17 @@
                             Text="&gt;" />
                     </Grid>
                 </Border>
-                <Border>
+                <Border Height="48">
                     <Grid>
                         <StackPanel
-                            Margin="5,0"
+                            Margin="10,0"
                             HorizontalAlignment="Left"
-                            VerticalAlignment="Top"
+                            VerticalAlignment="Center"
                             Orientation="Horizontal">
                             <Image
                                 Width="24"
                                 Height="24"
-                                Source="/Icons/Settings/qurilmalar.png" />
+                                Source="/Icons/Settings/devices.png" />
                             <TextBlock
                                 Margin="10"
                                 VerticalAlignment="Center"
@@ -138,17 +140,17 @@
                             Text="&gt;" />
                     </Grid>
                 </Border>
-                <Border>
+                <Border Height="48">
                     <Grid>
                         <StackPanel
-                            Margin="5,0"
+                            Margin="10,0"
                             HorizontalAlignment="Left"
-                            VerticalAlignment="Top"
+                            VerticalAlignment="Center"
                             Orientation="Horizontal">
                             <Image
                                 Width="24"
                                 Height="24"
-                                Source="/Icons/Settings/tashkilotlar.png" />
+                                Source="/Icons/Settings/companies.png" />
                             <TextBlock
                                 Margin="10"
                                 VerticalAlignment="Center"
@@ -166,17 +168,17 @@
                             Text="&gt;" />
                     </Grid>
                 </Border>
-                <Border>
+                <Border Height="48">
                     <Grid>
                         <StackPanel
-                            Margin="5,0"
+                            Margin="10,0"
                             HorizontalAlignment="Left"
-                            VerticalAlignment="Top"
+                            VerticalAlignment="Center"
                             Orientation="Horizontal">
                             <Image
                                 Width="24"
                                 Height="24"
-                                Source="/Icons/Settings/pinkod.png" />
+                                Source="/Icons/Settings/pincode.png" />
                             <TextBlock
                                 Margin="10"
                                 VerticalAlignment="Center"
@@ -194,17 +196,17 @@
                             Text="&gt;" />
                     </Grid>
                 </Border>
-                <Border>
+                <Border Height="48">
                     <Grid>
                         <StackPanel
-                            Margin="5,0"
+                            Margin="10,0"
                             HorizontalAlignment="Left"
-                            VerticalAlignment="Top"
+                            VerticalAlignment="Center"
                             Orientation="Horizontal">
                             <Image
                                 Width="24"
                                 Height="24"
-                                Source="/Icons/Settings/til.png" />
+                                Source="/Icons/Settings/language.png" />
                             <TextBlock
                                 Margin="10"
                                 VerticalAlignment="Center"
@@ -223,8 +225,51 @@
                     </Grid>
                 </Border>
             </StackPanel>
+
         </Border>
-        <Border Grid.Column="2" Style="{StaticResource CustomBorder}" />
+
+        <Border
+            Height="48"
+            Margin="10"
+            VerticalAlignment="Bottom"
+            Background="White"
+            CornerRadius="10">
+            <Grid>
+                <StackPanel
+                    Margin="10,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Orientation="Horizontal">
+                    <Image
+                        Width="24"
+                        Height="24"
+                        Source="/Icons/Settings/leave.png" />
+                    <StackPanel>
+                        <TextBlock
+                            Margin="10,0"
+                            VerticalAlignment="Center"
+                            FontSize="15"
+                            FontWeight="DemiBold"
+                            Text="Tizimdan chiqish" />
+                        <TextBlock
+                            Margin="10,0"
+                            VerticalAlignment="Center"
+                            FontSize="15"
+                            FontWeight="DemiBold"
+                            Text="+998974481512" />
+                    </StackPanel>
+                </StackPanel>
+                <TextBlock
+                    Margin="10"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    FontSize="15"
+                    FontWeight="Bold"
+                    Opacity="0.5"
+                    Text="&gt;" />
+            </Grid>
+        </Border>
+        <Border Grid.Column="1" Style="{StaticResource CustomBorder}" />
 
 
     </Grid>

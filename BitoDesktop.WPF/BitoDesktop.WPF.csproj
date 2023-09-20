@@ -9,6 +9,13 @@
   <ItemGroup>
     <None Remove="Icons\emptybasket.png" />
     <None Remove="Icons\homeactive.png" />
+    <None Remove="Icons\Settings\companies.png" />
+    <None Remove="Icons\Settings\devices.png" />
+    <None Remove="Icons\Settings\language.png" />
+    <None Remove="Icons\Settings\leave.png" />
+    <None Remove="Icons\Settings\pincode.png" />
+    <None Remove="Icons\Settings\printer.png" />
+    <None Remove="Icons\Settings\scales.png" />
     <None Remove="Icons\Settings\watch.png" />
   </ItemGroup>
 
@@ -23,6 +30,13 @@
     <Resource Include="Icons\settings.png" />
     <Resource Include="Icons\box.png" />
     <Resource Include="Icons\frame.png" />
+    <Resource Include="Icons\Settings\leave.png" />
+    <Resource Include="Icons\Settings\pincode.png" />
+    <Resource Include="Icons\Settings\printer.png" />
+    <Resource Include="Icons\Settings\devices.png" />
+    <Resource Include="Icons\Settings\scales.png" />
+    <Resource Include="Icons\Settings\companies.png" />
+    <Resource Include="Icons\Settings\language.png" />
     <Resource Include="Icons\Settings\watch.png" />
   </ItemGroup>
 
