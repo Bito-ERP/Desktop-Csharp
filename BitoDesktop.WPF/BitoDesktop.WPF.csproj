@@ -9,6 +9,7 @@
   <ItemGroup>
     <None Remove="Icons\emptybasket.png" />
     <None Remove="Icons\homeactive.png" />
+    <None Remove="Icons\Settings\watch.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -22,6 +23,7 @@
     <Resource Include="Icons\settings.png" />
     <Resource Include="Icons\box.png" />
     <Resource Include="Icons\frame.png" />
+    <Resource Include="Icons\Settings\watch.png" />
   </ItemGroup>
 
   <ItemGroup>

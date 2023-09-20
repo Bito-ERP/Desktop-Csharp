@@ -28,6 +28,9 @@
     <Compile Update="Pages\PosPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Pages\Settings\PrinterSettings.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Pages\SideBarPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -55,6 +58,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\PosPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\Settings\PrinterSettings.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\SideBarPage.xaml">
