@@ -9,6 +9,8 @@
   <ItemGroup>
     <None Remove="Icons\emptybasket.png" />
     <None Remove="Icons\homeactive.png" />
+    <None Remove="Icons\Pos\minus.png" />
+    <None Remove="Icons\Pos\Plus.png" />
     <None Remove="Icons\Settings\companies.png" />
     <None Remove="Icons\Settings\devices.png" />
     <None Remove="Icons\Settings\language.png" />
@@ -24,8 +26,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\BitoDesktop.Service\BitoDesktop.Service.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="Icons\emptybasket.png" />
     <Resource Include="Icons\homeactive.png" />
+    <Resource Include="Icons\Pos\minus.png" />
+    <Resource Include="Icons\Pos\plus.png" />
     <Resource Include="Icons\reload.png" />
     <Resource Include="Icons\settings.png" />
     <Resource Include="Icons\box.png" />
@@ -38,10 +46,6 @@
     <Resource Include="Icons\Settings\companies.png" />
     <Resource Include="Icons\Settings\language.png" />
     <Resource Include="Icons\Settings\watch.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Controllers\PosControllers\" />
   </ItemGroup>
 
 </Project>

@@ -1,5 +1,4 @@
-﻿using BitoDesktop.WPF.Pages;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,18 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace BitoDesktop.WPF
+namespace BitoDesktop.WPF.Controllers.PosControllers
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Логика взаимодействия для ProductController.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class ProductController : UserControl
     {
-        public MainWindow()
+        public ProductController()
         {
             InitializeComponent();
-            var posPage = new PosPage();
-            MainFrame.Content = posPage;
         }
     }
 }
