@@ -19,7 +19,7 @@
     </Page.Resources>
 
     <Border Style="{StaticResource CustomBorder}">
-        <StackPanel Orientation="Vertical">
+        <StackPanel>
             <Border
                 Height="48"
                 Margin="10"

@@ -1,0 +1,38 @@
+﻿<Page
+    x:Class="BitoDesktop.WPF.Pages.Settings.PrinterCreateSettings"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:BitoDesktop.WPF.Pages.Settings"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+    Title="PrinterCreateSettings"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <Style x:Key="CustomBorder" TargetType="Border">
+            <Setter Property="Background" Value="White" />
+            <Setter Property="Margin" Value="10" />
+            <Setter Property="CornerRadius" Value="10" />
+        </Style>
+    </Page.Resources>
+    <Border Style="{StaticResource CustomBorder}">
+        <StackPanel>
+            <Grid>
+                <Button
+                    Width="108"
+                    Height="48"
+                    Margin="10"
+                    HorizontalAlignment="Left"
+                    md:ButtonAssist.CornerRadius="10"
+                    Content="Ortga">
+                </Button>
+                <TextBlock Text="Yangi printer" >
+                    
+                </TextBlock>
+            </Grid>
+        </StackPanel>
+    </Border>
+</Page>

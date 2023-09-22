@@ -27,7 +27,7 @@
                 CornerRadius="10">
                 <RadioButton
                     Background="#006AFF"
-                    Content="O'zbek"
+                    Content="Organization 1"
                     FontSize="15" />
             </Border>
             <Border
@@ -37,7 +37,7 @@
                 CornerRadius="10">
                 <RadioButton
                     Background="#006AFF"
-                    Content="Русский"
+                    Content="Organization 2"
                     FontSize="15" />
             </Border>
             <Border
@@ -47,7 +47,7 @@
                 CornerRadius="10">
                 <RadioButton
                     Background="#006AFF"
-                    Content="English"
+                    Content="Organization 3"
                     FontSize="15" />
             </Border>
         </StackPanel>

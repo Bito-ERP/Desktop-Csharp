@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BitoDesktop.WPF.Pages.Settings;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,11 @@ namespace BitoDesktop.WPF.Pages
         public SettingsPage()
         {
             InitializeComponent();
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Content = new PINkodSettings();
         }
     }
 }

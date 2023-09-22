@@ -45,7 +45,9 @@
                         BorderThickness="10"
                         Content="Yakunlash" />
                 </Grid>
-                <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                <ScrollViewer 
+                    HorizontalScrollBarVisibility="Disabled" 
+                    VerticalScrollBarVisibility="Auto">
                     <ItemsControl />
                 </ScrollViewer>
             </StackPanel>

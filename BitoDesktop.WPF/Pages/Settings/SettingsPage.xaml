@@ -9,6 +9,7 @@
     Title="SettingsPage"
     MinWidth="800"
     MinHeight="450"
+    Loaded="Page_Loaded"
     mc:Ignorable="d">
     <Page.Resources>
         <Style x:Key="CustomBorder" TargetType="Border">
@@ -227,7 +228,7 @@
             </StackPanel>
 
         </Border>
-        <Border Grid.Column="2" Style="{StaticResource CustomBorder}" />
+        <Frame x:Name="MainFrame" Grid.Column="2" />
 
         <Border
             Height="48"
