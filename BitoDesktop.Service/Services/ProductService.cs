@@ -2,14 +2,18 @@ using AutoMapper;
 using BitoDesktop.Data.IRepositories;
 using BitoDesktop.Domain.Configurations;
 using BitoDesktop.Domain.Entities.Products;
+using BitoDesktop.Domain.Settings;
 using BitoDesktop.Service.DTOs;
 using BitoDesktop.Service.Exceptions;
 using BitoDesktop.Service.Extensions;
 using BitoDesktop.Service.Helpers;
 using BitoDesktop.Service.Interfaces;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Json;
 using System.Threading.Tasks;
 
 namespace BitoDesktop.Service.Services;
@@ -41,11 +45,24 @@ public partial class ProductService : IProductService
     }
 
     public async Task<int> AddAsync(ProductForCreationDto dto)
-    {
+    {    
         var mappedProduct = _mapper.Map<Product>(dto);
         var result = await _unitOfWork.Products.AddAsync(mappedProduct);
 
         return result;
+    }
+    public async Task<bool> AddApiAsync(ProductForCreationDto dto)
+    {
+        using (HttpClient httpClient = new HttpClient())
+        {
+            var content = new StringContent(JsonConvert.SerializeObject(dto));
+            var responce = await httpClient.PostAsync(Constants.PRODUCT_ROUTE, content);
+
+            if (!responce.IsSuccessStatusCode)
+                throw new MarketException((int)responce.StatusCode,await responce.Content.ReadAsStringAsync());
+        }
+
+        return true;
     }
 
     public async Task<int> UpdateAsync(int id, ProductForCreationDto dto)
