@@ -8,6 +8,8 @@ using System;
 using BitoDesktop.Domain.Entities;
 using System.Diagnostics.Contracts;
 using System.Text;
+using BitoDesktop.Data.Converters;
+using Dapper;
 
 namespace BitoDesktop.Data.Repositories;
 
@@ -37,10 +39,10 @@ public class ProductRepository : IProductRepository
     }
 
     public async void Insert(
-       List<Product> products,
-       List<ProductOrganization> organization,
-       List<ProductWarehouse> warehouses,
-       List<ProductPrice> prices
+       IEnumerable<ProductTable> products,
+       IEnumerable<ProductOrganization> organization,
+       IEnumerable<ProductWarehouse> warehouses,
+       IEnumerable<ProductPrice> prices
         )
     {
         using (var scope = new TransactionScope())
@@ -74,7 +76,7 @@ public class ProductRepository : IProductRepository
         }
     }
 
-    public async Task<int> Insert(Product entity)
+    public async Task<int> Insert(ProductTable entity)
     {
         return await dbe.ExecuteAsync(
             "INSERT INTO product(" + productColumns + ") VALUES(" + productValues + ") " +
@@ -82,15 +84,18 @@ public class ProductRepository : IProductRepository
             "DO UPDATE SET " + productUpdate, entity);
     }
 
-    public async Task<int> Insert(List<Product> entities)
+    public async Task<int> Insert(IEnumerable<ProductTable> entities)
     {
+        SqlMapper.AddTypeHandler(typeof(StringList), new StringListConverter());
+        SqlMapper.AddTypeHandler(typeof(ProductTable.Barcode), new BarcodeConverters());
+        SqlMapper.AddTypeHandler(typeof(ProductTable.Supplier), new SupplierConverter());
         return await dbe.ExecuteAsync(
             "INSERT INTO product(" + productColumns + ") VALUES(" + productValues + ") " +
             "ON CONFLICT (id) " +
             "DO UPDATE SET " + productUpdate, entities);
     }
 
-    public async Task<int> InsertOrganizations(List<ProductOrganization> entities)
+    public async Task<int> InsertOrganizations(IEnumerable<ProductOrganization> entities)
     {
         return await dbe.ExecuteAsync(
             "INSERT INTO product_organization(" + productOrganizationColumns + ") VALUES(" + productOrganizationValues + ") " +
@@ -98,7 +103,7 @@ public class ProductRepository : IProductRepository
             "DO UPDATE SET " + productOrganizationUpdate, entities);
     }
 
-    public async Task<int> InsertWarehouses(List<ProductWarehouse> entities)
+    public async Task<int> InsertWarehouses(IEnumerable<ProductWarehouse> entities)
     {
         return await dbe.ExecuteAsync(
             "INSERT INTO product_warehouse(" + productWarehouseColumns + ") VALUES(" + productWarehouseValues + ") " +
@@ -106,7 +111,7 @@ public class ProductRepository : IProductRepository
             "DO UPDATE SET " + productWarehouseUpdate, entities);
     }
 
-    public async Task<int> InsertPrices(List<ProductPrice> entities)
+    public async Task<int> InsertPrices(IEnumerable<ProductPrice> entities)
     {
         return await dbe.ExecuteAsync(
             "INSERT INTO product_price(" + productPriceColumns + ") VALUES(" + productPriceValues + ") " +

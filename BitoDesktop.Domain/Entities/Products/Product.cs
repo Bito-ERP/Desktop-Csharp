@@ -1,5 +1,6 @@
 using BitoDesktop.Domain.Commons;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace BitoDesktop.Domain.Entities.Products;
 

@@ -5,7 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BitoDesktop.Service.DTOs.Common;
-
+using BitoDesktop.Domain.Entities.Products;
+using System.Xml.Linq;
+using static BitoDesktop.Service.DTOs.ProductResponse;
+using System.Diagnostics;
 
 namespace BitoDesktop.Service.DTOs;
 
@@ -87,6 +90,12 @@ internal class ProductResponse
 
         [JsonProperty("is_active")]
         public bool IsActive { get; set; }
+
+        public ProductTable.Barcode Get() => new ProductTable.Barcode
+        {
+            barcode = Barcode,
+            isActive = IsActive
+        };
     }
 
     public class Organization
@@ -120,6 +129,21 @@ internal class ProductResponse
 
         [JsonProperty("is_available_for_sale")]
         public bool IsAvailableForSale { get; set; }
+
+        public ProductOrganization Get(string ProductId) => new()
+        {
+            organizationId = OrganizationId,
+            productId = ProductId,
+            amount = Amount,
+            inTransit = InTransit,
+            trash = Trash,
+            booked = Booked,
+            _yellowLine = YellowLine,
+            _redLine = RedLine,
+            _maxStock = MaxStock,
+            isAvailable = IsAvailable,
+            _isAvailableForSale = IsAvailableForSale
+        };
     }
 
     public class Price
@@ -147,6 +171,18 @@ internal class ProductResponse
 
         [JsonProperty("min_sale_amount")]
         public double? MinSaleAmount { get; set; }
+
+        public ProductPrice Get() => new()
+        {
+            _id = Id,
+            priceId = PriceId,
+            organizationId = OrganizationId,
+            productId = ProductId,
+            priceAmount = Amount,
+            minPrice = MinPrice,
+            maxPrice = MaxPrice,
+            minSaleAmount = MinSaleAmount
+        };
     }
 
     public class Warehouse
@@ -174,6 +210,19 @@ internal class ProductResponse
 
         [JsonProperty("amount")]
         public double Amount { get; set; }
+
+
+        public ProductWarehouse Get() => new()
+        {
+            _id = Id,
+            warehouseId = WarehouseId,
+            organizationId = OrganizationId,
+            productId = ProductId,
+            booked = Booked,
+            inTrash = InTrash,
+            inTransit = InTransit,
+            amount = Amount
+        };
     }
 
     public class DimensionResponse
@@ -182,25 +231,56 @@ internal class ProductResponse
         public string Shape { get; set; }
 
         [JsonProperty("netto_weight")]
-        public float NetWeight { get; set; }
+        public double NetWeight { get; set; }
 
         [JsonProperty("gross_weight")]
-        public float GrossWeight { get; set; }
+        public double GrossWeight { get; set; }
 
         [JsonProperty("height")]
-        public float Height { get; set; }
+        public double Height { get; set; }
 
         [JsonProperty("width")]
-        public float Width { get; set; }
+        public double Width { get; set; }
 
         [JsonProperty("volume")]
-        public float Volume { get; set; }
+        public double Volume { get; set; }
 
         [JsonProperty("diameter")]
-        public float Diameter { get; set; }
+        public double Diameter { get; set; }
 
         [JsonProperty("length")]
-        public float Length { get; set; }
+        public double Length { get; set; }
     }
+
+    public ProductTable Get() => new()
+    {
+            id = Id,
+            name = Name,
+            categoryId = Category?.Id,
+            categoryName = Category?.Name,
+            boxTypeId = BoxTypeId,
+            boxItem = BoxItem,
+            boxItemBarcode = BoxItemBarcode,
+            unitMeasurementId = UnitMeasurementId,
+            sku = Sku,
+            barcode = Barcode,
+            barcodes = Barcodes.Select(it => it.Get()).ToList(),
+            image = Image,
+            isMarked = IsMarked,
+            isProduct = IsProduct,
+            isMaterial = IsMaterial,
+            isSemiProduct = IsSemiProduct,
+            taxIds = new Domain.Entities.StringList { value = TaxIds },
+            shape = Dimension?.Shape,
+            netWeight = Dimension?.NetWeight ?? 0.0,
+            grossWeight = Dimension?.GrossWeight ?? 0.0,
+            height = Dimension?.Height ?? 0.0,
+            width = Dimension?.Width ?? 0.0,
+            volume = Dimension?.Volume ?? 0.0,
+            diameter = Dimension?.Diameter ?? 0.0,
+            length = Dimension?.Length ?? 0.0,
+            suppliers = Suppliers.Select(it => new ProductTable.Supplier { id = it.Id, name = it.Name }).ToList()
+        };
+
 }
 

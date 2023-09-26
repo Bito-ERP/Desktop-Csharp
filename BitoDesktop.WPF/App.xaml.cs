@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using BitoDesktop.Data.Utils;
 
 namespace BitoDesktop.WPF
@@ -10,7 +11,7 @@ namespace BitoDesktop.WPF
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            DataLoader.init();
+            DataLoader.Init();
 
             base.OnStartup(e);
         }

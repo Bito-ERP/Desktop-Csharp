@@ -1,14 +1,19 @@
 using AutoMapper;
 using BitoDesktop.Data.IRepositories;
+using BitoDesktop.Data.Repositories;
 using BitoDesktop.Domain.Configurations;
 using BitoDesktop.Domain.Entities.Products;
 using BitoDesktop.Service.DTOs;
+using BitoDesktop.Service.DTOs.common;
 using BitoDesktop.Service.Exceptions;
 using BitoDesktop.Service.Extensions;
 using BitoDesktop.Service.Helpers;
+using BitoDesktop.Service.http;
 using BitoDesktop.Service.Interfaces;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -18,6 +23,9 @@ public partial class ProductService : IProductService
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;
+
+    private readonly ProductApi api = new();
+    private readonly ProductRepository repository = new();
     public ProductService(IUnitOfWork unitOfWork, IMapper mapper)
     {
         _unitOfWork = unitOfWork;
@@ -26,7 +34,30 @@ public partial class ProductService : IProductService
 
     public async Task<IEnumerable<Product>> GetAllAsync(PaginationParams @params)
     {
-        throw new MarketException(404, "Product not found");
+
+        var response = (await api.GetPage(new RequestPage { Limit = 100})).Data.PageData;
+        var organizations = new List<ProductOrganization>();
+        var warehouses = new List<ProductWarehouse>();
+        var prices = new List<ProductPrice>();
+
+        Debug.WriteLine(JsonConvert.SerializeObject(response));
+        var products = response.Select<ProductResponse, ProductTable>(product =>
+        {
+            Debug.WriteLine(JsonConvert.SerializeObject(product));
+            product.Organizations.ForEach(it => organizations.Add(it.Get(product.Id)));
+            product.Warehouses.ForEach(it => warehouses.Add(it.Get()));
+            product.Prices.ForEach(it => prices.Add(it.Get()));
+            return product.Get();
+        });
+
+        repository.Insert(
+            products,
+            organizations,
+            warehouses,
+            prices
+        );
+
+        return await repository.GetProducts(0, 100, organizations[0].organizationId, null, null, null, null, null, null, null, null, null, true, false, false, false);
     }
 
     public async Task<Product> GetAsync(Func<Product, bool> expression = null)
