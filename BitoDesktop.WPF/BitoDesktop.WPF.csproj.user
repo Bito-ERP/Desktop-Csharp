@@ -43,6 +43,9 @@
     <Compile Update="Pages\Settings\PrinterCreateSettings.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Pages\Settings\PrinterInfo.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Pages\Settings\PrinterSettings.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -88,6 +91,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\Settings\PrinterCreateSettings.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\Settings\PrinterInfo.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\Settings\PrinterSettings.xaml">
