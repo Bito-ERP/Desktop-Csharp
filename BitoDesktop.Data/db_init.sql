@@ -5,11 +5,11 @@ CREATE TABLE IF NOT EXISTS product_organization(
 	inTransit REAL NOT NULL,
 	trash REAL NOT NULL,
 	booked REAL NOT NULL,
-	_yellowLine REAL,
-	_redLine REAL,
-	_maxStock REAL,
-	isAvailable BIT,
-	_isAvailableForSale BIT,
+	yellowLine REAL,
+	redLine REAL,
+	maxStock REAL,
+	isAvailable BOOLEAN,
+	isAvailableForSale BOOLEAN,
 	PRIMARY KEY(
 		organizationId,
 		productId
@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS product_organization(
 );
 
 CREATE TABLE IF NOT EXISTS product_warehouse(
-    _id TEXT NOT NULL PRIMARY KEY,
+    id TEXT NOT NULL PRIMARY KEY,
 	warehouseId TEXT NOT NULL,
 	organizationId TEXT NOT NULL,
 	productId TEXT NOT NULL,
@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS product_warehouse(
 );
 
 CREATE TABLE IF NOT EXISTS product_price(
-    _id TEXT NOT NULL PRIMARY KEY,
+    id TEXT NOT NULL PRIMARY KEY,
 	priceId TEXT NOT NULL,
 	organizationId TEXT NOT NULL,
 	productId TEXT NOT NULL,
@@ -51,10 +51,10 @@ CREATE TABLE IF NOT EXISTS product(
      barcode TEXT,
      barcodes TEXT NOT NULL,
      image TEXT,
-     isMarked BIT NOT NULL,
-     isProduct BIT NOT NULL,
-     isMaterial BIT NOT NULL,
-     isSemiProduct BIT NOT NULL,
+     isMarked BOOLEAN NOT NULL,
+     isProduct BOOLEAN NOT NULL,
+     isMaterial BOOLEAN NOT NULL,
+     isSemiProduct BOOLEAN NOT NULL,
      taxIds TEXT,
      shape TEXT,
      netWeight REAL NOT NULL,
@@ -72,10 +72,10 @@ CREATE TABLE IF NOT EXISTS finance_tax(
 	name TEXT NOT NULL,
 	rate REAL NOT NULL,
 	type TEXT NOT NULL,
-	toPrice BIT NOT NULL,
-	isAll BIT NOT NULL,
-	isAllCategories BIT NOT NULL,
-	isAllSuppliers BIT NOT NULL,
+	toPrice BOOLEAN NOT NULL,
+	isAll BOOLEAN NOT NULL,
+	isAllCategories BOOLEAN NOT NULL,
+	isAllSuppliers BOOLEAN NOT NULL,
 	itemCount INTEGER,
 	categoryIds TEXT,
 	supplierIds TEXT,
@@ -117,5 +117,42 @@ CREATE TABLE IF NOT EXISTS pos_ticket(
 	comment TEXT,
 	customerId TEXT,
 	discounts TEXT
+);
+
+CREATE TABLE IF NOT EXISTS employee(
+    id TEXT NOT NULL PRIMARY KEY,
+    fullName TEXT NOT NULL,
+    personId TEXT,
+    personName TEXT,
+    isBoss BOOLEAN NOT NULL,
+    employmentType TEXT NOT NULL,
+    workRate REAL NOT NULL,
+    holidays INT NOT NULL,
+    salary REAL NOT NULL,
+    phoneNumber TEXT NOT NULL,
+    pincode TEXT NOT NULL,
+    bossId TEXT NOT NULL,
+    address TEXT,
+    birthDate TIMESTAMP WITH TIME ZONE,
+    acceptanceDate TIMESTAMP WITH TIME ZONE NOT NULL,
+    image TEXT,
+    comment TEXT
+);
+
+CREATE TABLE IF NOT EXISTS employee_position(
+    employeeId TEXT NOT NULL,
+    organizationId TEXT NOT NULL,
+    roleId TEXT NOT NULL,
+    roleName TEXT NOT NULL,
+    sectionId TEXT NOT NULL,
+    sectionName TEXT,
+    positionId TEXT NOT NULL,
+    positionName TEXT,
+	PRIMARY KEY(
+		employeeId,
+		organizationId,
+		sectionId,
+		positionId
+	)
 );
 
