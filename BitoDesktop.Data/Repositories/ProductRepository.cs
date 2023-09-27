@@ -46,23 +46,13 @@ public class ProductRepository : IProductRepository
        IEnumerable<ProductPrice> prices
         )
     {
-
-        using (var connection = dbe.CreateConnnection())
+        await dbe.InTransaction(async connection =>
         {
-            connection.Open();
-            var transaction = connection.BeginTransaction();
-            try
-            {
-                await Insert(products, connection);
-                await InsertOrganizations(organization, connection);
-                await InsertWarehouses(warehouses, connection);
-                await InsertPrices(prices, connection);
-                transaction.Commit();
-            } catch (Exception)
-            { 
-                transaction.Rollback();
-            }
-        }
+            await Insert(products, connection);
+            await InsertOrganizations(organization, connection);
+            await InsertWarehouses(warehouses, connection);
+            return await InsertPrices(prices, connection);
+        });
     }
 
     public async void UpdateWarehouseAmount(

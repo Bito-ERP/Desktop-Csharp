@@ -24,7 +24,6 @@ public partial class ProductService : IProductService
     private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;
 
-    private readonly ProductApi api = new();
     private readonly ProductRepository repository = new();
     public ProductService(IUnitOfWork unitOfWork, IMapper mapper)
     {
@@ -34,8 +33,7 @@ public partial class ProductService : IProductService
 
     public async Task<IEnumerable<Product>> GetAllAsync(PaginationParams @params)
     {
-
-        var response = (await api.GetPage(new RequestPage { Limit = 100})).Data.PageData;
+        var response = (await ProductApi.GetPage(new RequestPage { Limit = 100})).Data.PageData;
         var organizations = new List<ProductOrganization>();
         var warehouses = new List<ProductWarehouse>();
         var prices = new List<ProductPrice>();

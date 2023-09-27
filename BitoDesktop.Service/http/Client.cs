@@ -15,7 +15,7 @@ internal class Client
 
     const string BASE_URL = "https://api.systematicdev.uz/pos-api/";
 
-    public static async Task<BaseResponse<T>> Post<T>(string route, object request)
+    public static async Task<BaseResponse<T>> Post<T>(string route, object? request)
     {
         using (HttpClient httpClient = new HttpClient())
         {
@@ -26,9 +26,10 @@ internal class Client
             httpClient.DefaultRequestHeaders.Add("organization_id", "63d23495f1cf6851fcaf832b");
             httpClient.DefaultRequestHeaders.Add("time", "2023-09-26T12:42:39.287Z");
 
+
             var responce = await httpClient.PostAsync(
                 BASE_URL + route,
-                JsonContent.Create(request)
+                request == null ? null : JsonContent.Create(request)
            );
 
             if (!responce.IsSuccessStatusCode)
@@ -38,13 +39,13 @@ internal class Client
         }
     }
 
-    public static async Task Post(string route, object request)
+    public static async Task Post(string route, object? request)
     {
         using (HttpClient httpClient = new HttpClient())
         {
             var responce = await httpClient.PostAsync(
                 BASE_URL + route,
-                JsonContent.Create(request)
+                request == null ? null : JsonContent.Create(request)
            );
 
             if (!responce.IsSuccessStatusCode)

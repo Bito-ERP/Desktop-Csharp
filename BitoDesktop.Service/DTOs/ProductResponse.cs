@@ -1,14 +1,9 @@
 ﻿using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using BitoDesktop.Service.DTOs.Common;
 using BitoDesktop.Domain.Entities.Products;
-using System.Xml.Linq;
-using static BitoDesktop.Service.DTOs.ProductResponse;
-using System.Diagnostics;
+
 
 namespace BitoDesktop.Service.DTOs;
 

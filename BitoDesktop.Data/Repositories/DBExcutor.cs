@@ -2,7 +2,6 @@ using Npgsql;
 using Dapper;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using System.Transactions;
 using System;
 using System.Diagnostics;
 
@@ -19,7 +18,23 @@ public class DBExcutor
         _connectionString = "Host=localhost;Port=5432;Database=maindb;Username=postgres;Password=password;";
     }
 
-    public NpgsqlConnection CreateConnnection() => new(_connectionString);
+    public async Task<T> InTransaction<T>(Func<NpgsqlConnection, Task<T>> func)
+    {
+        using var connection = new NpgsqlConnection(_connectionString);
+        connection.Open();
+        using var transaction = connection.BeginTransaction();
+        try
+        {
+            var result = await func(connection);
+            transaction.Commit();
+            return result;
+        }
+        catch (Exception ex)
+        {
+            transaction.Rollback();
+            return await Task.FromException<T>(ex);
+        }
+    }
 
     public async Task<int> ExecuteAsync(string sql, object parameters = null, NpgsqlConnection connection = null)
     {
@@ -33,31 +48,26 @@ public class DBExcutor
             return await connection.ExecuteAsync(sql, parameters);
     }
 
-    public async Task<int> ExecuteAsync(NpgsqlConnection connection, string sql, object parameters = null)
-    {
-        return await connection.ExecuteAsync(sql, parameters);
-
-    }
-
     public async Task<IEnumerable<T>> QueryAsync<T>(string sql, object parameters = null)
     {
-        using (var connection = new NpgsqlConnection(_connectionString))
-        {
-            connection.Open();
-            Debug.WriteLine(sql);
-            Debug.WriteLine(parameters);
-            return await connection.QueryAsync<T>(sql, parameters);
-        }
+        using var connection = new NpgsqlConnection(_connectionString);
+        connection.Open();
+        Debug.WriteLine(sql);
+        Debug.WriteLine(parameters);
+        return await connection.QueryAsync<T>(sql, parameters);
     }
 
 
-    public async Task<T> QuerySingleOrDefaultAsync<T>(string sql, object parameters = null)
+    public async Task<T> QuerySingleOrDefaultAsync<T>(string sql, object parameters = null, NpgsqlConnection connection = null)
     {
-        using (var connection = new NpgsqlConnection(_connectionString))
-        {
-            connection.Open();
+        if (connection == null)
+            using (connection = new NpgsqlConnection(_connectionString))
+            {
+                connection.Open();
+                return await connection.QuerySingleOrDefaultAsync<T>(sql, parameters);
+            }
+        else
             return await connection.QuerySingleOrDefaultAsync<T>(sql, parameters);
-        }
     }
 
 }
