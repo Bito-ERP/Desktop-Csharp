@@ -1,138 +1,135 @@
 using BitoDesktop.Domain.Commons;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
-namespace BitoDesktop.Domain.Entities.Products;
-
-public class ProductOrganization
+namespace BitoDesktop.Domain.Entities.Products
 {
-    public string organizationId { get; set; }
-    public string productId { get; set; }
-    public double amount { get; set; }
-    public double inTransit { get; set; }
-    public double trash { get; set; }
-    public double booked { get; set; } 
-    public double? _yellowLine { get; set; }
-    public double? _redLine { get; set; }
-    public double? _maxStock { get; set; }
-    public bool isAvailable { get; set; }
-    public bool _isAvailableForSale { get; set; }
-}
-
-public class ProductPrice
-{
-    public string _id { get; set; }
-    public string priceId { get; set; }
-    public string organizationId { get; set; }
-    public string productId { get; set; }
-    public double priceAmount { get; set; }
-    public double? minPrice { get; set; }
-    public double? maxPrice { get; set; }
-    public double? minSaleAmount { get; set; }
-}
-
-public class ProductWarehouse
-{
-    public string _id { get; set; }
-    public string warehouseId { get; set; }
-    public string organizationId { get; set; }
-    public string productId { get; set; }
-    public double booked { get; set; }
-    public double inTrash { get; set; }
-    public double inTransit { get; set; }
-    public double amount { get; set; }
-}
-
-public class Product
-{
-    public string id { get; set; }
-    public string name { get; set; }
-    public string? categoryId { get; set; }
-    public string? categoryName { get; set; }
-    public string? boxTypeId { get; set; }
-    public double boxItem { get; set; }
-    public string? boxItemBarcode { get; set; }
-    public string unitMeasurementId { get; set; }
-    public string sku { get; set; }
-    public string? barcode { get; set; }
-    public List<ProductTable.Barcode> barcodes { get; set; }
-    public string? image { get; set; }
-    public bool isMarked { get; set; }
-    public bool isProduct { get; set; }
-    public bool isMaterial { get; set; }
-    public bool isSemiProduct { get; set; }
-    public StringList taxIds { get; set; }
-    public string? shape { get; set; }
-    public double netWeight { get; set; }
-    public double grossWeight { get; set; }
-    public double height { get; set; }
-    public double width { get; set; }
-    public double volume { get; set; }
-    public double diameter { get; set; }
-    public double length { get; set; }
-    public List<ProductTable.Supplier> suppliers { get; set; }
-    public double warehouseAmount { get; set; }
-    public double organizationAmount { get; set; }
-    public double maxStock { get; set; }
-    public double yellowLine { get; set; }
-    public double redLine { get; set; }
-    public bool isAvailableForSale { get; set; }
-    public string? selectedPriceId { get; set; }
-    public double selectedPriceAmount { get; set; }
-    public string? selectedPriceCurrencyId { get; set; }
-    public double booked { get; set; }
-    public double inTrash { get; set; }
-    public double inTransit { get; set; }
-    public List<ProductTable.Price> prices { get; set; } = null;
-}
-
-public class ProductTable
-{
-    public string id { get; set; }
-    public string name { get; set; }
-    public string? categoryId { get; set; }
-    public string? categoryName { get; set; }
-    public string? boxTypeId { get; set; }
-    public double boxItem { get; set; }
-    public string? boxItemBarcode { get; set; }
-    public string unitMeasurementId { get; set; }
-    public string sku { get; set; }
-    public string? barcode { get; set; }
-    public List<Barcode> barcodes { get; set; }
-    public string? image { get; set; }
-    public bool isMarked { get; set; }
-    public bool isProduct { get; set; }
-    public bool isMaterial { get; set; }
-    public bool isSemiProduct { get; set; }
-    public StringList taxIds { get; set; }
-    public string? shape { get; set; }
-    public double netWeight { get; set; }
-    public double grossWeight { get; set; }
-    public double height { get; set; }
-    public double width { get; set; }
-    public double volume { get; set; }
-    public double diameter { get; set; }
-    public double length { get; set; }
-    public List<Supplier> suppliers { get; set; }
-
-    public class Price
+    public class ProductOrganization
     {
-        public string priceId { get; set; }
-        public double? selectedPriceAmount { get; set; }
-
+        public string OrganizationId { get; set; }
+        public string ProductId { get; set; }
+        public double Amount { get; set; }
+        public double InTransit { get; set; }
+        public double Trash { get; set; }
+        public double Booked { get; set; }
+        public double? YellowLine { get; set; }
+        public double? RedLine { get; set; }
+        public double? MaxStock { get; set; }
+        public bool IsAvailable { get; set; }
+        public bool IsAvailableForSale { get; set; }
     }
 
-    public class Barcode
+    public class ProductPrice
     {
-        public string barcode { get; set; }
-        public bool isActive { get; set; }
-
+        public string Id { get; set; }
+        public string PriceId { get; set; }
+        public string OrganizationId { get; set; }
+        public string ProductId { get; set; }
+        public double PriceAmount { get; set; }
+        public double? MinPrice { get; set; }
+        public double? MaxPrice { get; set; }
+        public double? MinSaleAmount { get; set; }
     }
 
-    public class Supplier
+    public class ProductWarehouse
     {
-        public string id { get; set; }
-        public string name { get; set; }
+        public string Id { get; set; }
+        public string WarehouseId { get; set; }
+        public string OrganizationId { get; set; }
+        public string ProductId { get; set; }
+        public double Booked { get; set; }
+        public double InTrash { get; set; }
+        public double InTransit { get; set; }
+        public double Amount { get; set; }
+    }
 
+    public class Product
+    {
+        public string Id { get; set; }
+        public string Name { get; set; }
+        public string? CategoryId { get; set; }
+        public string? CategoryName { get; set; }
+        public string? BoxTypeId { get; set; }
+        public double BoxItem { get; set; }
+        public string? BoxItemBarcode { get; set; }
+        public string UnitMeasurementId { get; set; }
+        public string Sku { get; set; }
+        public string? Barcode { get; set; }
+        public List<ProductTable.BarcodeItem> Barcodes { get; set; }
+        public string? Image { get; set; }
+        public bool IsMarked { get; set; }
+        public bool IsProduct { get; set; }
+        public bool IsMaterial { get; set; }
+        public bool IsSemiProduct { get; set; }
+        public StringList TaxIds { get; set; }
+        public string? Shape { get; set; }
+        public double NetWeight { get; set; }
+        public double GrossWeight { get; set; }
+        public double Height { get; set; }
+        public double Width { get; set; }
+        public double Volume { get; set; }
+        public double Diameter { get; set; }
+        public double Length { get; set; }
+        public List<ProductTable.Supplier> Suppliers { get; set; }
+        public double WarehouseAmount { get; set; }
+        public double OrganizationAmount { get; set; }
+        public double MaxStock { get; set; }
+        public double YellowLine { get; set; }
+        public double RedLine { get; set; }
+        public bool IsAvailableForSale { get; set; }
+        public string? SelectedPriceId { get; set; }
+        public double SelectedPriceAmount { get; set; }
+        public string? SelectedPriceCurrencyId { get; set; }
+        public double Booked { get; set; }
+        public double InTrash { get; set; }
+        public double InTransit { get; set; }
+        public List<ProductTable.Price> Prices { get; set; } = null;
+    }
+
+    public class ProductTable
+    {
+        public string Id { get; set; }
+        public string Name { get; set; }
+        public string? CategoryId { get; set; }
+        public string? CategoryName { get; set; }
+        public string? BoxTypeId { get; set; }
+        public double BoxItem { get; set; }
+        public string? BoxItemBarcode { get; set; }
+        public string UnitMeasurementId { get; set; }
+        public string Sku { get; set; }
+        public string? Barcode { get; set; }
+        public List<BarcodeItem> Barcodes { get; set; }
+        public string? Image { get; set; }
+        public bool IsMarked { get; set; }
+        public bool IsProduct { get; set; }
+        public bool IsMaterial { get; set; }
+        public bool IsSemiProduct { get; set; }
+        public StringList TaxIds { get; set; }
+        public string? Shape { get; set; }
+        public double NetWeight { get; set; }
+        public double GrossWeight { get; set; }
+        public double Height { get; set; }
+        public double Width { get; set; }
+        public double Volume { get; set; }
+        public double Diameter { get; set; }
+        public double Length { get; set; }
+        public List<Supplier> Suppliers { get; set; }
+
+        public class Price
+        {
+            public string PriceId { get; set; }
+            public double? SelectedPriceAmount { get; set; }
+        }
+
+        public class BarcodeItem
+        {
+            public string Barcode { get; set; }
+            public bool IsActive { get; set; }
+        }
+
+        public class Supplier
+        {
+            public string Id { get; set; }
+            public string Name { get; set; }
+        }
     }
 }

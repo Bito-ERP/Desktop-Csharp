@@ -10,27 +10,28 @@ using System.Diagnostics.Contracts;
 using System.Text;
 using BitoDesktop.Data.Converters;
 using Dapper;
+using Npgsql;
 
 namespace BitoDesktop.Data.Repositories;
 
 public class ProductRepository : IProductRepository
 {
 
-    private const string productColumns = "id, name, categoryId, categoryName, boxTypeId, boxItem, boxItemBarcode, unitMeasurementId, sku, barcode, barcodes, image, isMarked, isProduct, isMaterial, isSemiProduct, taxIds, shape, netWeight, grossWeight, height, width, volume, diameter, length, suppliers";
-    private const string productValues = "@id, @name, @categoryId, @categoryName, @boxTypeId, @boxItem, @boxItemBarcode, @unitMeasurementId, @sku, @barcode, @barcodes, @image, @isMarked, @isProduct, @isMaterial, @isSemiProduct, @taxIds, @shape, @netWeight, @grossWeight, @height, @width, @volume, @diameter, @length, @suppliers";
-    private const string productUpdate = "name = @name, categoryId = @categoryId, categoryName = @categoryName, boxTypeId = @boxTypeId, boxItem = @boxItem, boxItemBarcode = @boxItemBarcode, unitMeasurementId = @unitMeasurementId, sku = @sku, barcode = @barcode, barcodes = @barcodes, image = @image, isMarked = @isMarked, isProduct = @isProduct, isMaterial = @isMaterial, isSemiProduct = @isSemiProduct, taxIds = @taxIds, shape = @shape, netWeight = @netWeight, grossWeight = @grossWeight, height = @height, width = @width, volume = @volume, diameter = @diameter, length = @length, suppliers = @suppliers";
+    private const string ProductColumns = "Id, Name, CategoryId, CategoryName, BoxTypeId, BoxItem, BoxItemBarcode, UnitMeasurementId, Sku, Barcode, Barcodes, Image, IsMarked, IsProduct, IsMaterial, IsSemiProduct, TaxIds, Shape, NetWeight, GrossWeight, Height, Width, Volume, Diameter, Length, Suppliers";
+    private const string ProductValues = "@Id, @Name, @CategoryId, @CategoryName, @BoxTypeId, @BoxItem, @BoxItemBarcode, @UnitMeasurementId, @Sku, @Barcode, @Barcodes, @Image, @IsMarked, @IsProduct, @IsMaterial, @IsSemiProduct, @TaxIds, @Shape, @NetWeight, @GrossWeight, @Height, @Width, @Volume, @Diameter, @Length, @Suppliers";
+    private const string ProductUpdate = "Name = @Name, CategoryId = @CategoryId, CategoryName = @CategoryName, BoxTypeId = @BoxTypeId, BoxItem = @BoxItem, BoxItemBarcode = @BoxItemBarcode, UnitMeasurementId = @UnitMeasurementId, Sku = @Sku, Barcode = @Barcode, Barcodes = @Barcodes, Image = @Image, IsMarked = @IsMarked, IsProduct = @IsProduct, IsMaterial = @IsMaterial, IsSemiProduct = @IsSemiProduct, TaxIds = @TaxIds, Shape = @Shape, NetWeight = @NetWeight, GrossWeight = @GrossWeight, Height = @Height, Width = @Width, Volume = @Volume, Diameter = @Diameter, Length = @Length, Suppliers = @Suppliers";
 
-    private const string productOrganizationColumns = "organizationId, productId, amount, inTransit, trash, booked, _yellowLine, _redLine, _maxStock, isAvailable, _isAvailableForSale";
-    private const string productOrganizationValues = "@organizationId, @productId, @amount, @inTransit, @trash, @booked, @_yellowLine, @_redLine, @_maxStock, @isAvailable, @_isAvailableForSale";
-    private const string productOrganizationUpdate = "amount = @amount, inTransit = @inTransit, trash = @trash, booked = @booked, _yellowLine = @_yellowLine, _redLine = @_redLine, _maxStock = @_maxStock, isAvailable = @isAvailable, _isAvailableForSale = @_isAvailableForSale";
+    private const string ProductOrganizationColumns = "OrganizationId, ProductId, Amount, InTransit, Trash, Booked, YellowLine, RedLine, MaxStock, IsAvailable, IsAvailableForSale";
+    private const string ProductOrganizationValues = "@OrganizationId, @ProductId, @Amount, @InTransit, @Trash, @Booked, @YellowLine, @RedLine, @MaxStock, @IsAvailable, @IsAvailableForSale";
+    private const string ProductOrganizationUpdate = "Amount = @Amount, InTransit = @InTransit, Trash = @Trash, Booked = @Booked, YellowLine = @YellowLine, RedLine = @RedLine, MaxStock = @MaxStock, IsAvailable = @IsAvailable, IsAvailableForSale = @IsAvailableForSale";
 
-    private const string productWarehouseColumns = "_id, warehouseId, organizationId, productId, booked, inTrash, inTransit, amount";
-    private const string productWarehouseValues = "@_id, @warehouseId, @organizationId, @productId, @booked, @inTrash, @inTransit, @amount";
-    private const string productWarehouseUpdate = "warehouseId = @warehouseId, organizationId = @organizationId, productId = @productId, booked = @booked, inTrash = @inTrash, inTransit = @inTransit, amount = @amount";
+    private const string ProductWarehouseColumns = "Id, WarehouseId, OrganizationId, ProductId, Booked, InTrash, InTransit, Amount";
+    private const string ProductWarehouseValues = "@Id, @WarehouseId, @OrganizationId, @ProductId, @Booked, @InTrash, @InTransit, @Amount";
+    private const string ProductWarehouseUpdate = "WarehouseId = @WarehouseId, OrganizationId = @OrganizationId, ProductId = @ProductId, Booked = @Booked, InTrash = @InTrash, InTransit = @InTransit, Amount = @Amount";
 
-    private const string productPriceColumns = "_id, priceId, organizationId, productId, priceAmount, minPrice, maxPrice, minSaleAmount";
-    private const string productPriceValues = "@_id, @priceId, @organizationId, @productId, @priceAmount, @minPrice, @maxPrice, @minSaleAmount";
-    private const string productPriceUpdate = "priceId = @priceId, organizationId = @organizationId, productId = @productId, priceAmount = @priceAmount, minPrice = @minPrice, maxPrice = @maxPrice, minSaleAmount = @minSaleAmount";
+    private const string ProductPriceColumns = "Id, PriceId, OrganizationId, ProductId, PriceAmount, MinPrice, MaxPrice, MinSaleAmount";
+    private const string ProductPriceValues = "@Id, @PriceId, @OrganizationId, @ProductId, @PriceAmount, @MinPrice, @MaxPrice, @MinSaleAmount";
+    private const string ProductPriceUpdate = "PriceId = @PriceId, OrganizationId = @OrganizationId, ProductId = @ProductId, PriceAmount = @PriceAmount, MinPrice = @MinPrice, MaxPrice = @MaxPrice, MinSaleAmount = @MinSaleAmount";
 
     private readonly DBExcutor dbe = new();
 
@@ -45,13 +46,22 @@ public class ProductRepository : IProductRepository
        IEnumerable<ProductPrice> prices
         )
     {
-        using (var scope = new TransactionScope())
+
+        using (var connection = dbe.CreateConnnection())
         {
-            await Insert(products);
-            await InsertOrganizations(organization);
-            await InsertWarehouses(warehouses);
-            await InsertPrices(prices);
-            scope.Complete();
+            connection.Open();
+            var transaction = connection.BeginTransaction();
+            try
+            {
+                await Insert(products, connection);
+                await InsertOrganizations(organization, connection);
+                await InsertWarehouses(warehouses, connection);
+                await InsertPrices(prices, connection);
+                transaction.Commit();
+            } catch (Exception)
+            { 
+                transaction.Rollback();
+            }
         }
     }
 
@@ -79,44 +89,41 @@ public class ProductRepository : IProductRepository
     public async Task<int> Insert(ProductTable entity)
     {
         return await dbe.ExecuteAsync(
-            "INSERT INTO product(" + productColumns + ") VALUES(" + productValues + ") " +
-            "ON CONFLICT (id) " +
-            "DO UPDATE SET " + productUpdate, entity);
+            "INSERT INTO product(" + ProductColumns + ") VALUES(" + ProductValues + ") " +
+            "ON CONFLICT (Id) " +
+            "DO UPDATE SET " + ProductUpdate, entity);
     }
 
-    public async Task<int> Insert(IEnumerable<ProductTable> entities)
+    public async Task<int> Insert(IEnumerable<ProductTable> entities, NpgsqlConnection connection = null)
     {
-        SqlMapper.AddTypeHandler(typeof(StringList), new StringListConverter());
-        SqlMapper.AddTypeHandler(typeof(ProductTable.Barcode), new BarcodeConverters());
-        SqlMapper.AddTypeHandler(typeof(ProductTable.Supplier), new SupplierConverter());
         return await dbe.ExecuteAsync(
-            "INSERT INTO product(" + productColumns + ") VALUES(" + productValues + ") " +
-            "ON CONFLICT (id) " +
-            "DO UPDATE SET " + productUpdate, entities);
+            "INSERT INTO product(" + ProductColumns + ") VALUES(" + ProductValues + ") " +
+            "ON CONFLICT (Id) " +
+            "DO UPDATE SET " + ProductUpdate, entities);
     }
 
-    public async Task<int> InsertOrganizations(IEnumerable<ProductOrganization> entities)
+    public async Task<int> InsertOrganizations(IEnumerable<ProductOrganization> entities, NpgsqlConnection connection = null)
     {
         return await dbe.ExecuteAsync(
-            "INSERT INTO product_organization(" + productOrganizationColumns + ") VALUES(" + productOrganizationValues + ") " +
-            "ON CONFLICT (id) " +
-            "DO UPDATE SET " + productOrganizationUpdate, entities);
+            "INSERT INTO product_organization(" + ProductOrganizationColumns + ") VALUES(" + ProductOrganizationValues + ") " +
+            "ON CONFLICT (OrganizationId, ProductId) " +
+            "DO UPDATE SET " + ProductOrganizationUpdate, entities, connection);
     }
 
-    public async Task<int> InsertWarehouses(IEnumerable<ProductWarehouse> entities)
+    public async Task<int> InsertWarehouses(IEnumerable<ProductWarehouse> entities, NpgsqlConnection connection = null)
     {
         return await dbe.ExecuteAsync(
-            "INSERT INTO product_warehouse(" + productWarehouseColumns + ") VALUES(" + productWarehouseValues + ") " +
-            "ON CONFLICT (id) " +
-            "DO UPDATE SET " + productWarehouseUpdate, entities);
+            "INSERT INTO product_warehouse(" + ProductWarehouseColumns + ") VALUES(" + ProductWarehouseValues + ") " +
+            "ON CONFLICT (Id) " +
+            "DO UPDATE SET " + ProductWarehouseUpdate, entities, connection);
     }
 
-    public async Task<int> InsertPrices(IEnumerable<ProductPrice> entities)
+    public async Task<int> InsertPrices(IEnumerable<ProductPrice> entities, NpgsqlConnection connection = null)
     {
         return await dbe.ExecuteAsync(
-            "INSERT INTO product_price(" + productPriceColumns + ") VALUES(" + productPriceValues + ") " +
-            "ON CONFLICT (id) " +
-            "DO UPDATE SET " + productPriceUpdate, entities);
+            "INSERT INTO product_price(" + ProductPriceColumns + ") VALUES(" + ProductPriceValues + ") " +
+            "ON CONFLICT (Id) " +
+            "DO UPDATE SET " + ProductPriceUpdate, entities, connection);
     }
 
     public async Task<int> UpdateAvailability(
@@ -126,7 +133,7 @@ public class ProductRepository : IProductRepository
     )
     {
         return await dbe.ExecuteAsync(
-             "UPDATE product_organization SET isAvailable = @isAvailable WHERE productId = @productId AND organizationId = @organizationId",
+             "UPDATE product_organization SET IsAvailable = @isAvailable WHERE ProductId = @productId AND OrganizationId = @organizationId",
              new { isAvailable, productId, organizationId }
            );
     }
@@ -138,7 +145,7 @@ public class ProductRepository : IProductRepository
     )
     {
         return dbe.ExecuteAsync(
-             "UPDATE product_warehouse SET amount = amount + @amount WHERE productId = @productId AND warehouseId = @warehouseId",
+             "UPDATE product_warehouse SET Amount = Amount + @amount WHERE ProductId = @productId AND WarehouseId = @warehouseId",
              new { amount, productId, warehouseId }
            );
     }
@@ -146,7 +153,7 @@ public class ProductRepository : IProductRepository
     public async Task<int> Delete(List<string> productIds)
     {
         return await dbe.ExecuteAsync(
-            "DELETE FROM product WHERE id IN @productIds",
+            "DELETE FROM product WHERE Id IN @productIds",
             new { productIds }
           );
     }
@@ -154,7 +161,7 @@ public class ProductRepository : IProductRepository
     public async Task<int> DeleteWarehouses(List<string> warehouseIds)
     {
         return await dbe.ExecuteAsync(
-            "DELETE FROM product_warehouse WHERE _id IN @warehouseIds",
+            "DELETE FROM product_warehouse WHERE Id IN @warehouseIds",
             new { warehouseIds }
           );
     }
@@ -162,7 +169,7 @@ public class ProductRepository : IProductRepository
     public async Task<int> DeletePrices(List<string> priceIds)
     {
         return await dbe.ExecuteAsync(
-            "DELETE FROM product_price WHERE _id IN @priceIds",
+            "DELETE FROM product_price WHERE Id IN @priceIds",
             new { priceIds }
           );
     }
@@ -172,7 +179,7 @@ public class ProductRepository : IProductRepository
     {
         Contract.Requires(productId != null);
         return await dbe.QuerySingleOrDefaultAsync<StringList>(
-            "SELECT taxIds FROM product WHERE id = @productId",
+            "SELECT taxIds FROM product WHERE Id = @productId",
             new { productId }
             );
     }
@@ -182,7 +189,7 @@ public class ProductRepository : IProductRepository
     {
         Contract.Requires(barcode != null);
         return await dbe.QuerySingleOrDefaultAsync<bool>(
-            "SELECT EXISTS(SELECT id FROM product WHERE barcode = @barcode)",
+            "SELECT EXISTS(SELECT Id FROM product WHERE B Barcode = @barcode)",
             new { barcode }
             );
     }
@@ -347,11 +354,11 @@ public class ProductRepository : IProductRepository
             );
 
         query.Append(
-           "ORDER BY p.name"
+           "ORDER BY p.Name "
        ).Append(
             "LIMIT @limit "
         ).Append(
-            "OFFSET @offset"
+            "OFFSET @offset "
         );
 
         args.Add("@limit", limit);
@@ -371,16 +378,16 @@ public class ProductRepository : IProductRepository
         Contract.Requires(organizationId != null);
         Contract.Requires(priceId != null);
 
-        var query = new StringBuilder("SELECT IFNULL(price.priceAmount, 0) as selectedPriceAmount ");
+        var query = new StringBuilder("SELECT COALESCE(price.PriceAmount, 0) as SelectedPriceAmount ");
         var args = new Dictionary<string, object>();
 
         query.Append("FROM product as p ");
 
-        query.Append("LEFT JOIN product_price price ON price.priceId = @priceId AND price.organizationId = @organizationId AND price.productId = p.id ");
+        query.Append("LEFT JOIN product_price price ON price.PriceId = @priceId AND price.OrganizationId = @organizationId AND price.ProductId = p.Id ");
         args.Add("@priceId", priceId);
         args.Add("@organizationId", organizationId);
 
-        query.Append("WHERE p.id IN @products");
+        query.Append("WHERE p.Id IN @products");
         args.Add("@products", products);
 
         return await dbe.QueryAsync<double>(query.ToString(), args);
@@ -398,7 +405,7 @@ public class ProductRepository : IProductRepository
         Contract.Requires(productId != null);
 
         return await dbe.QuerySingleOrDefaultAsync<ProductPrice>(
-            "SELECT * FROM product_price WHERE priceId = @priceId AND organizationId = @organizationId AND productId = @productId",
+            "SELECT * FROM product_price WHERE PriceId = @priceId AND OrganizationId = @organizationId AND ProductId = @productId",
             new { priceId, organizationId, productId }
             );
     }
@@ -414,7 +421,7 @@ public class ProductRepository : IProductRepository
         args.Add("@productId", productId);
 
         return await dbe.QueryAsync<ProductTable.Price>(
-            "SELECT priceId as priceId, priceAmount as selectedPriceAmount FROM product_price WHERE organizationId = @organizationId AND productId = @productId",
+            "SELECT PriceId as PriceId, PriceAmount as SelectedPriceAmount FROM product_price WHERE OrganizationId = @organizationId AND ProductId = @productId",
             args
            );
     }
@@ -439,12 +446,12 @@ public class ProductRepository : IProductRepository
 
         query.Append(
             type == 0 ?
-             "p.id = @byvalue " :
+             "p.Id = @byvalue " :
              type == 1 ?
-             "p.sku = @byvalue " :
+             "p.Sku = @byvalue " :
 
-             "p.barcode = @byValue OR " +
-                    "p.barcodes LIKE @byValue2 "
+             "p.Barcode = @byValue OR " +
+                    "p.Barcodes LIKE @byValue2 "
         );
         args.Add("@byValue", byValue);
 
@@ -457,7 +464,7 @@ public class ProductRepository : IProductRepository
             );
 
         if (withPrices && entity != null)
-            entity.prices = (await GetPrices(args, organizationId!, entity.id)).ToList();
+            entity.Prices = (await GetPrices(args, organizationId!, entity.Id)).ToList();
 
         return entity;
     }
@@ -483,7 +490,7 @@ public class ProductRepository : IProductRepository
 
         if (type == 0)
         {
-            query.Append("(p.sku = @byValue OR p.barcode = @byValue OR p.barcodes LIKE @byValue2 ) ");
+            query.Append("(p.Sku = @byValue OR p.Barcode = @byValue OR p.Barcodes LIKE @byValue2 ) ");
             args.Add("@byValue", byValue);
             args.Add("@byValue", byValue);
             args.Add("@byValue2"," % " + byValue + "%");
@@ -492,13 +499,13 @@ public class ProductRepository : IProductRepository
         {
             var itemIds = (string[])byValue;
             if (isAll && itemIds.Length == 0)
-                query.Append("p.categoryId IS NOT NULL");
+                query.Append("p.CategoryId IS NOT NULL");
             else
             {
                 if (isAll)
-                    query.Append("p.categoryId NOT IN @itemIds");
+                    query.Append("p.CategoryId NOT IN @itemIds");
                 else
-                    query.Append("p.categoryId IN @itemIds");
+                    query.Append("p.CategoryId IN @itemIds");
                 args.Add("@itemIds", itemIds);
             }
         }
@@ -511,7 +518,7 @@ public class ProductRepository : IProductRepository
         if (withPrices && entities != null)
             entities.ForEach(async p =>
             {
-                p.prices = (await GetPrices(args, organizationId!, p.id)).ToList();
+                p.Prices = (await GetPrices(args, organizationId!, p.Id)).ToList();
             });
 
 
@@ -542,32 +549,32 @@ public class ProductRepository : IProductRepository
 
         bool filtered = false;
 
-        StringBuilder query = new StringBuilder("SELECT p.*, org.amount as organizationAmount ");
+        StringBuilder query = new StringBuilder("SELECT p.*, org.Amount as OrganizationAmount ");
 
         if (withOrganizationAmount)
-            query.Append(", org._yellowLine as yellowLine, ")
-               .Append("org._redLine as redLine, ")
-               .Append("org._maxStock as maxStock, ")
-               .Append("org._isAvailableForSale as isAvailableForSale");
+            query.Append(", org.YellowLine as YellowLine, ")
+               .Append("org.RedLine as RedLine, ")
+               .Append("org.MaxStock as MaxStock, ")
+               .Append("org.IsAvailableForSale as IsAvailableForSale");
 
         if (warehouseId == null)
-            query.Append(", IFNULL(org.amount, 0) as warehouseAmount ");
+            query.Append(", COALESCE(org.Amount, 0) as WarehouseAmount ");
         else
-            query.Append(", IFNULL(warehouse.amount, 0) as warehouseAmount ");
+            query.Append(", COALESCE(warehouse.Amount, 0) as WarehouseAmount ");
 
         if (priceId != null)
-            query.Append(", IFNULL(price.priceAmount, 0) as selectedPriceAmount ");
+            query.Append(", COALESCE(price.PriceAmount, 0) as SelectedPriceAmount ");
 
         query.Append("FROM product as p ");
 
-        query.Append("JOIN product_organization org ON org.isAvailable = 1 AND org.organizationId = @organizationId AND org.productId = p.id ");
+        query.Append("JOIN product_organization org ON org.IsAvailable = TRUE AND org.OrganizationId = @organizationId AND org.ProductId = p.Id ");
         args.Add("@organizationId", organizationId);
 
         if (warehouseId != null)
         {
             query.Append(filterByWarehouse == true ? "JOIN " : "LEFT JOIN ");
 
-            query.Append("product_warehouse warehouse ON warehouse.warehouseId = @warehouseId AND warehouse.productId = p.id ");
+            query.Append("product_warehouse warehouse ON warehouse.WarehouseId = @warehouseId AND warehouse.ProductId = p.Id ");
             args.Add("@warehouseId", warehouseId);
         }
 
@@ -575,7 +582,7 @@ public class ProductRepository : IProductRepository
         {
             query.Append(filterByPrice == true ? "JOIN " : "LEFT JOIN ");
 
-            query.Append("product_price price ON price.priceId = @priceId AND price.organizationId = @organizationId AND price.productId = p.id ");
+            query.Append("product_price price ON price.PriceId = @priceId AND price.OrganizationId = @organizationId AND price.ProductId = p.Id ");
             args.Add("@priceId", priceId);
         }
 
@@ -584,25 +591,25 @@ public class ProductRepository : IProductRepository
         if (isProduct != null)
         {
             filtered = true;
-            query.Append("p.isProduct = @isProduct AND ");
+            query.Append("p.IsProduct = @isProduct AND ");
             args.Add("@isProduct", isProduct);
         }
         if (isMaterial != null)
         {
             filtered = true;
-            query.Append("p.isMaterial = @isMaterial AND ");
+            query.Append("p.IsMaterial = @isMaterial AND ");
             args.Add("@isMaterial", isMaterial);
         }
         if (isSemiProduct != null)
         {
             filtered = true;
-            query.Append("p.isSemiProduct = @isSemiProduct AND ");
+            query.Append("p.IsSemiProduct = @isSemiProduct AND ");
             args.Add("@isSemiProduct", isSemiProduct);
         }
         if (isAvailableForSale != null)
         {
             filtered = true;
-            query.Append("org._isAvailableForSale = @isAvailableForSale AND ");
+            query.Append("org.IsAvailableForSale = @isAvailableForSale AND ");
             args.Add("@isAvailableForSale", isAvailableForSale);
         }
 
@@ -610,31 +617,31 @@ public class ProductRepository : IProductRepository
         if (categoryId != null)
         {
             filtered = true;
-            query.Append("p.categoryId = @categoryId AND ");
+            query.Append("p.CategoryId = @categoryId AND ");
             args.Add("@categoryId", categoryId);
         }
 
         if (inStockState != null)
         {
             filtered = true;
-            if (inStockState == "yellow_line")
+            if (inStockState == "YellowLine")
                 query.Append(
-                    "org.amount>org._redLine AND " +
-                            "org.amount<=org._yellowLine AND "
+                    "org.Amount>org.RedLine AND " +
+                            "org.Amount<=org.YellowLine AND "
                 );
-            else if (inStockState == "red_line")
+            else if (inStockState == "RedLine")
                 query.Append(
-                    "org.amount<=org._redLine AND " +
-                            "org.amount>=0 AND "
+                    "org.Amount<=org.RedLine AND " +
+                            "org.Amount>=0 AND "
                 );
             else
                 query.Append(
-                    "org.amount<=0 AND "
+                    "org.Amount<=0 AND "
                 );
         }
 
         if (excludeOutOfStockProducts)
-            query.Append("warehouseAmount > 0 AND ");
+            query.Append("WarehouseAmount > 0 AND ");
 
         if (searchQuery != null && searchQuery.Length != 0)
         {
@@ -643,11 +650,11 @@ public class ProductRepository : IProductRepository
             var transliterated = "%" + transliterator.Transliterated() + "%";
 
             query.Append(
-                "(p.name LIKE @native OR " +
-                        "p.name LIKE @transliterated OR " +
-                        "p.barcode LIKE @native OR " +
-                        "p.sku LIKE @native OR " +
-                        "p.barcodes LIKE @native) "
+                "(p.Name LIKE @native OR " +
+                        "p.Name LIKE @transliterated OR " +
+                        "p.Barcode LIKE @native OR " +
+                        "p.Sku LIKE @native OR " +
+                        "p.Barcodes LIKE @native) "
             );
             args.Add("@native", native);
             args.Add("@transliterated", transliterated);
@@ -679,53 +686,53 @@ public class ProductRepository : IProductRepository
         {
             if (warehouseId == null)
             {
-                query.Append(", org.amount as warehouseAmount ");
+                query.Append(", org.Amount as WarehouseAmount ");
             }
-            query.Append(", org.amount as organizationAmount, ")
-                .Append("org._yellowLine as yellowLine, ")
-                .Append("org._redLine as redLine, ")
-                .Append("org._maxStock as maxStock, ")
-                .Append("org._isAvailableForSale as isAvailableForSale ");
+            query.Append(", org.Amount as OrganizationAmount, ")
+                .Append("org.YellowLine as YellowLine, ")
+                .Append("org.RedLine as RedLine, ")
+                .Append("org.MaxStock as MaxStock, ")
+                .Append("org.IsAvailableForSale as IsAvailableForSale ");
         }
 
         if (warehouseId != null)
         {
-            query.Append(", warehouse.amount as warehouseAmount, ")
-                .Append("warehouse.booked as booked, ")
-                .Append("warehouse.inTrash as inTrash, ")
-                .Append("warehouse.inTransit as inTransit ");
+            query.Append(", warehouse.Amount as WarehouseAmount, ")
+                .Append("warehouse.Booked as Booked, ")
+                .Append("warehouse.InTrash as InTrash, ")
+                .Append("warehouse.InTransit as InTransit ");
         }
 
         if (priceId != null)
-            query.Append(", IFNULL(price.priceAmount, 0) as selectedPriceAmount ");
+            query.Append(", COALESCE(price.PriceAmount, 0) as SelectedPriceAmount ");
 
-        query.Append("FROM ${EntityNames.PRODUCT} AS p ");
+        query.Append("FROM product AS p ");
 
         var filterByOrganization = false;
 
         if (withAmount)
         {
-            query.Append("JOIN ${EntityNames.PRODUCT_ORGANIZATION} AS org ON org.isAvailable = 1 AND org.organizationId = @organizationId AND org.productId = p.id ");
+            query.Append("JOIN product_organization AS org ON org.IsAvailable = TRUE AND org.OrganizationId = @organizationId AND org.ProductId = p.Id ");
             args.Add("@organizationId", organizationId);
             filterByOrganization = true;
         }
 
         if (warehouseId != null)
         {
-            query.Append("LEFT JOIN ${EntityNames.PRODUCT_WAREHOUSE} AS warehouse ON warehouse.warehouseId = @warehouseId AND warehouse.productId = p.id ");
+            query.Append("LEFT JOIN product_warehouse AS warehouse ON warehouse.WarehouseId = @warehouseId AND warehouse.ProductId = p.Id ");
             args.Add("@warehouseId", warehouseId);
         }
 
         if (priceId != null)
         {
-            query.Append("LEFT JOIN ${EntityNames.PRODUCT_PRICE} AS price ON price.priceId = @priceId AND price.organizationId = @organizationId AND price.productId = p.id ");
+            query.Append("LEFT JOIN product_price AS price ON price.PriceId = @priceId AND price.OrganizationId = @organizationId AND price.ProductId = p.Id ");
             args.Add("@priceId", priceId);
             args.Add("@organizationId", organizationId);
         }
 
         if (!filterByOrganization)
         {
-            query.Append("JOIN ${EntityNames.PRODUCT_ORGANIZATION} AS org ON org.isAvailable = 1 AND org.organizationId = @organizationId AND org.productId = p.id ");
+            query.Append("JOIN product_organization AS org ON org.IsAvailable = TRUE AND org.OrganizationId = @organizationId AND org.ProductId = p.Id ");
             args.Add("@organizationId", organizationId);
         }
 

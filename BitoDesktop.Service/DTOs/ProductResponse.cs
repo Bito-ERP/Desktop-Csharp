@@ -91,10 +91,10 @@ internal class ProductResponse
         [JsonProperty("is_active")]
         public bool IsActive { get; set; }
 
-        public ProductTable.Barcode Get() => new ProductTable.Barcode
+        public ProductTable.BarcodeItem Get() => new ProductTable.BarcodeItem
         {
-            barcode = Barcode,
-            isActive = IsActive
+            Barcode = Barcode,
+            IsActive = IsActive
         };
     }
 
@@ -132,17 +132,17 @@ internal class ProductResponse
 
         public ProductOrganization Get(string ProductId) => new()
         {
-            organizationId = OrganizationId,
-            productId = ProductId,
-            amount = Amount,
-            inTransit = InTransit,
-            trash = Trash,
-            booked = Booked,
-            _yellowLine = YellowLine,
-            _redLine = RedLine,
-            _maxStock = MaxStock,
-            isAvailable = IsAvailable,
-            _isAvailableForSale = IsAvailableForSale
+            OrganizationId = OrganizationId,
+            ProductId = ProductId,
+            Amount = Amount,
+            InTransit = InTransit,
+            Trash = Trash,
+            Booked = Booked,
+            YellowLine = YellowLine,
+            RedLine = RedLine,
+            MaxStock = MaxStock,
+            IsAvailable = IsAvailable,
+            IsAvailableForSale = IsAvailableForSale
         };
     }
 
@@ -174,14 +174,14 @@ internal class ProductResponse
 
         public ProductPrice Get() => new()
         {
-            _id = Id,
-            priceId = PriceId,
-            organizationId = OrganizationId,
-            productId = ProductId,
-            priceAmount = Amount,
-            minPrice = MinPrice,
-            maxPrice = MaxPrice,
-            minSaleAmount = MinSaleAmount
+            Id = Id,
+            PriceId = PriceId,
+            OrganizationId = OrganizationId,
+            ProductId = ProductId,
+            PriceAmount = Amount,
+            MinPrice = MinPrice,
+            MaxPrice = MaxPrice,
+            MinSaleAmount = MinSaleAmount
         };
     }
 
@@ -214,14 +214,14 @@ internal class ProductResponse
 
         public ProductWarehouse Get() => new()
         {
-            _id = Id,
-            warehouseId = WarehouseId,
-            organizationId = OrganizationId,
-            productId = ProductId,
-            booked = Booked,
-            inTrash = InTrash,
-            inTransit = InTransit,
-            amount = Amount
+            Id = Id,
+            WarehouseId = WarehouseId,
+            OrganizationId = OrganizationId,
+            ProductId = ProductId,
+            Booked = Booked,
+            InTrash = InTrash,
+            InTransit = InTransit,
+            Amount = Amount
         };
     }
 
@@ -254,32 +254,32 @@ internal class ProductResponse
 
     public ProductTable Get() => new()
     {
-            id = Id,
-            name = Name,
-            categoryId = Category?.Id,
-            categoryName = Category?.Name,
-            boxTypeId = BoxTypeId,
-            boxItem = BoxItem,
-            boxItemBarcode = BoxItemBarcode,
-            unitMeasurementId = UnitMeasurementId,
-            sku = Sku,
-            barcode = Barcode,
-            barcodes = Barcodes.Select(it => it.Get()).ToList(),
-            image = Image,
-            isMarked = IsMarked,
-            isProduct = IsProduct,
-            isMaterial = IsMaterial,
-            isSemiProduct = IsSemiProduct,
-            taxIds = new Domain.Entities.StringList { value = TaxIds },
-            shape = Dimension?.Shape,
-            netWeight = Dimension?.NetWeight ?? 0.0,
-            grossWeight = Dimension?.GrossWeight ?? 0.0,
-            height = Dimension?.Height ?? 0.0,
-            width = Dimension?.Width ?? 0.0,
-            volume = Dimension?.Volume ?? 0.0,
-            diameter = Dimension?.Diameter ?? 0.0,
-            length = Dimension?.Length ?? 0.0,
-            suppliers = Suppliers.Select(it => new ProductTable.Supplier { id = it.Id, name = it.Name }).ToList()
+        Id = Id,
+        Name = Name,
+            CategoryId = Category?.Id,
+            CategoryName = Category?.Name,
+            BoxTypeId = BoxTypeId,
+            BoxItem = BoxItem,
+            BoxItemBarcode = BoxItemBarcode,
+            UnitMeasurementId = UnitMeasurementId,
+            Sku = Sku,
+            Barcode = Barcode,
+            Barcodes = Barcodes.Select(it => it.Get()).ToList(),
+            Image = Image,
+            IsMarked = IsMarked,
+            IsProduct = IsProduct,
+            IsMaterial = IsMaterial,
+            IsSemiProduct = IsSemiProduct,
+            TaxIds = new Domain.Entities.StringList { value = TaxIds },
+            Shape = Dimension?.Shape,
+            NetWeight = Dimension?.NetWeight ?? 0.0,
+            GrossWeight = Dimension?.GrossWeight ?? 0.0,
+            Height = Dimension?.Height ?? 0.0,
+            Width = Dimension?.Width ?? 0.0,
+            Volume = Dimension?.Volume ?? 0.0,
+            Diameter = Dimension?.Diameter ?? 0.0,
+            Length = Dimension?.Length ?? 0.0,
+            Suppliers = Suppliers.Select(it => new ProductTable.Supplier { Id = it.Id, Name = it.Name }).ToList()
         };
 
 }

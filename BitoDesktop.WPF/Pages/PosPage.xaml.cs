@@ -49,8 +49,8 @@ namespace BitoDesktop.WPF.Pages
                 foreach(var product in products) 
                 {
                     ProductController productController = new ProductController();
-                    productController.ProductNameTxt.Text = product.name;
-                    productController.PriceTxt.Text = product.selectedPriceAmount.ToString();
+                    productController.ProductNameTxt.Text = product.Name;
+                    productController.PriceTxt.Text = product.SelectedPriceAmount.ToString();
                     BasketControl.Items.Add(productController);
                 }
                 EmptyBasketImg.Source = null;

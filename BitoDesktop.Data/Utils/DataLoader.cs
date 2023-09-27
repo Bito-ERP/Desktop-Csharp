@@ -15,8 +15,8 @@ public class DataLoader
     public static void Init()
     {
         SqlMapper.AddTypeHandler(typeof(StringList),new StringListConverter());
-        SqlMapper.AddTypeHandler(typeof(ProductTable.Barcode), new BarcodeConverters());
-        SqlMapper.AddTypeHandler(typeof(ProductTable.Supplier), new SupplierConverter());
+        SqlMapper.AddTypeHandler(typeof(List<ProductTable.BarcodeItem>), new BarcodeConverters());
+        SqlMapper.AddTypeHandler(typeof(List<ProductTable.Supplier>), new SupplierConverter());
     }
 }
 

@@ -40,15 +40,13 @@ public partial class ProductService : IProductService
         var warehouses = new List<ProductWarehouse>();
         var prices = new List<ProductPrice>();
 
-        Debug.WriteLine(JsonConvert.SerializeObject(response));
         var products = response.Select<ProductResponse, ProductTable>(product =>
         {
-            Debug.WriteLine(JsonConvert.SerializeObject(product));
             product.Organizations.ForEach(it => organizations.Add(it.Get(product.Id)));
             product.Warehouses.ForEach(it => warehouses.Add(it.Get()));
             product.Prices.ForEach(it => prices.Add(it.Get()));
             return product.Get();
-        });
+        }).ToList();
 
         repository.Insert(
             products,
@@ -57,7 +55,7 @@ public partial class ProductService : IProductService
             prices
         );
 
-        return await repository.GetProducts(0, 100, organizations[0].organizationId, null, null, null, null, null, null, null, null, null, true, false, false, false);
+        return await repository.GetProducts(0, 100, organizations[1].OrganizationId, null, null, null, null, null, null, null, null, null, true, false, false, false);
     }
 
     public async Task<Product> GetAsync(Func<Product, bool> expression = null)

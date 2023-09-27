@@ -34,10 +34,6 @@ internal class Client
             if (!responce.IsSuccessStatusCode)
                 throw new MarketException((int)responce.StatusCode, await responce.Content.ReadAsStringAsync());
 
-            Debug.WriteLine(responce);
-            Debug.WriteLine(JsonConvert.SerializeObject(responce));
-            Debug.WriteLine(await responce.Content.ReadAsStringAsync());
-
             return JsonConvert.DeserializeObject<BaseResponse<T>>(await responce.Content.ReadAsStringAsync());
         }
     }
