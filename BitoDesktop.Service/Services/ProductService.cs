@@ -13,7 +13,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
-using System.Net.Http.Json;
 using System.Threading.Tasks;
 
 namespace BitoDesktop.Service.Services;
@@ -22,6 +21,7 @@ public partial class ProductService : IProductService
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;
+
     public ProductService(IUnitOfWork unitOfWork, IMapper mapper)
     {
         _unitOfWork = unitOfWork;
@@ -51,20 +51,6 @@ public partial class ProductService : IProductService
 
         return result;
     }
-    public async Task<bool> AddApiAsync(ProductForCreationDto dto)
-    {
-        using (HttpClient httpClient = new HttpClient())
-        {
-            var content = new StringContent(JsonConvert.SerializeObject(dto));
-            var responce = await httpClient.PostAsync(Constants.PRODUCT_ROUTE, content);
-
-            if (!responce.IsSuccessStatusCode)
-                throw new MarketException((int)responce.StatusCode,await responce.Content.ReadAsStringAsync());
-        }
-
-        return true;
-    }
-
     public async Task<int> UpdateAsync(int id, ProductForCreationDto dto)
     {
         var product = (await _unitOfWork.Products.GetAllAsync()).FirstOrDefault(p => p.Id == id);

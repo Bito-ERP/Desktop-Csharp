@@ -13,7 +13,6 @@
     WindowState="Maximized"
     mc:Ignorable="d">
     <Grid>
-        <Frame x:Name="LoginFrame" NavigationUIVisibility="Hidden" />
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="64" />
@@ -29,5 +28,6 @@
                 Grid.Column="1"
                 NavigationUIVisibility="Hidden" />
         </Grid>
+        <Frame x:Name="LoginFrame" NavigationUIVisibility="Hidden" />
     </Grid>
 </Window>

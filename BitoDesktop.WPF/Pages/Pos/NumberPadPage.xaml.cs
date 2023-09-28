@@ -1,7 +1,4 @@
-﻿using BitoDesktop.WPF.Pages;
-using BitoDesktop.WPF.Pages.Pos;
-using BitoDesktop.WPF.Pages.Settings;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,19 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace BitoDesktop.WPF
+namespace BitoDesktop.WPF.Pages.Pos
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Логика взаимодействия для NumberPadPage.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class NumberPadPage : Page
     {
-        public MainWindow()
+        public NumberPadPage()
         {
             InitializeComponent();
-            var settings = new PosPage();
-            MainFrame.Content = settings;
-            LoginFrame.Content = new InstallmentPay();
         }
     }
 }

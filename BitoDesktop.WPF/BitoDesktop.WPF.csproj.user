@@ -28,6 +28,12 @@
     <Compile Update="Pages\PosPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Pages\Pos\InstallmentPay.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\Pos\NumberPadPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Pages\Settings\ActiveDevicesSettings.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -73,6 +79,12 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\PosPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\Pos\InstallmentPay.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\Pos\NumberPadPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\Settings\ActiveDevicesSettings.xaml">
