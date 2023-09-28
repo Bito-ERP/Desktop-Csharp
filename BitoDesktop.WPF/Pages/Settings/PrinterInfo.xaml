@@ -78,7 +78,16 @@
                     FontSize="20"
                     Text="Yangi printer" />
                 <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
-                    <Button Background="#EC5B56" Content="O'chirish" />
+                    <Button Background="#EC5B56">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="O'chirish" />
+                            <md:PackIcon
+                                Width="20"
+                                Height="20"
+                                VerticalAlignment="Center"
+                                Kind="Bin" />
+                        </StackPanel>
+                    </Button>
                     <Button Content="Test print +" />
                     <Button Content="Saqlash" />
                 </StackPanel>
