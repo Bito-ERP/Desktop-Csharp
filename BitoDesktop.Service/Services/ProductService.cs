@@ -56,7 +56,7 @@ public partial class ProductService : IProductService
         using (HttpClient httpClient = new HttpClient())
         {
             var content = new StringContent(JsonConvert.SerializeObject(dto));
-            var responce = await httpClient.PostAsync(Constants.PRODUCT_ROUTE, content);
+            var responce = await httpClient.PostAsync(Constants.PRODUCT_ROUT, content);
 
             if (!responce.IsSuccessStatusCode)
                 throw new MarketException((int)responce.StatusCode,await responce.Content.ReadAsStringAsync());

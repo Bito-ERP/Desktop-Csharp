@@ -1,6 +1,4 @@
-﻿using BitoDesktop.WPF.Pages;
-using BitoDesktop.WPF.Pages.Settings;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,18 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace BitoDesktop.WPF
+namespace BitoDesktop.WPF.Pages.Refound
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for RefoundType.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class RefoundType : Page
     {
-        public MainWindow()
+        public RefoundType()
         {
             InitializeComponent();
-            var settings = new SaleInfoSettings();
-            MainFrame.Content = settings;
         }
     }
 }

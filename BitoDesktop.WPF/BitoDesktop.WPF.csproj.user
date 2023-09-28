@@ -28,6 +28,9 @@
     <Compile Update="Pages\PosPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Pages\Refound\RefoundType.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Pages\Settings\ActiveDevicesSettings.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -47,6 +50,15 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Pages\Settings\PrinterSettings.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\Settings\SaleInfoSettings.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\Settings\SaleListSettings.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\Settings\TerminateSession.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Pages\SideBarPage.xaml.cs">
@@ -78,6 +90,9 @@
     <Page Update="Pages\PosPage.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Pages\Refound\RefoundType.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Pages\Settings\ActiveDevicesSettings.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -97,6 +112,15 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\Settings\PrinterSettings.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\Settings\SaleInfoSettings.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\Settings\SaleListSettings.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\Settings\TerminateSession.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\SideBarPage.xaml">
