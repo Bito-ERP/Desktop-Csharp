@@ -26,6 +26,7 @@ namespace BitoDesktop.WPF
         public MainWindow()
         {
             InitializeComponent();
+            MainFrame.Content = new ScaleSettings();
         }
     }
 }

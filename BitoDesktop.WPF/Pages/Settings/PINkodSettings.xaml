@@ -17,48 +17,26 @@
             <Setter Property="Margin" Value="10" />
             <Setter Property="CornerRadius" Value="10" />
         </Style>
+        <Style BasedOn="{StaticResource MaterialDesignOutlinedPasswordBox}" TargetType="PasswordBox">
+            <Setter Property="Width" Value="320" />
+            <Setter Property="Height" Value="56" />
+            <Setter Property="Margin" Value="10" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Background" Value="#F5F5F5" />
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="md:TextFieldAssist.TextFieldCornerRadius" Value="13" />
+            <Setter Property="FontWeight" Value="DemiBold" />
+        </Style>
     </Page.Resources>
 
     <Border Style="{StaticResource CustomBorder}">
         <Grid>
 
             <StackPanel>
-                <PasswordBox
-                    Width="320"
-                    Margin="10"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Center"
-                    md:HintAssist.Hint="Еski PIN kod"
-                    Background="#F5F5F5"
-                    md:TextFieldAssist.TextFieldCornerRadius="13"
-                    BorderThickness="0"
-                    FontSize="15"
-                    FontWeight="DemiBold"
-                    Style="{StaticResource MaterialDesignOutlinedPasswordBox}" />
-                <PasswordBox
-                    Width="320"
-                    Margin="10"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Center"
-                    md:HintAssist.Hint="Yangi PIN kod"
-                    Background="#F5F5F5"
-                    BorderThickness="0"
-                    FontSize="15"
-                    md:TextFieldAssist.TextFieldCornerRadius="13"
-                    FontWeight="DemiBold"
-                    Style="{StaticResource MaterialDesignOutlinedPasswordBox}" />
-                <PasswordBox
-                    Width="320"
-                    Margin="10"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Center"
-                    md:HintAssist.Hint="PIN kodni takrorlang"
-                    Background="#F5F5F5"
-                    md:TextFieldAssist.TextFieldCornerRadius="13"
-                    BorderThickness="0"
-                    FontSize="15"
-                    FontWeight="DemiBold"
-                    Style="{StaticResource MaterialDesignOutlinedPasswordBox}" />
+                <PasswordBox md:HintAssist.Hint="Еski PIN kod" BorderThickness="0" />
+                <PasswordBox md:HintAssist.Hint="Yangi PIN kod" BorderThickness="0" />
+                <PasswordBox md:HintAssist.Hint="PIN kodni takrorlang" BorderThickness="0" />
             </StackPanel>
             <Button
                 Width="140"

@@ -45,11 +45,10 @@
                         HorizontalAlignment="Right"
                         md:ButtonAssist.CornerRadius="10"
                         Background="Red"
+                        BorderThickness="0"
                         Content="Yakunlash" />
                 </Grid>
-                <ScrollViewer 
-                    HorizontalScrollBarVisibility="Disabled" 
-                    VerticalScrollBarVisibility="Auto">
+                <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
                     <ItemsControl />
                 </ScrollViewer>
             </StackPanel>

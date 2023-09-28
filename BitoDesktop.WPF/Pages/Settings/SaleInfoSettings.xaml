@@ -17,20 +17,31 @@
             <Setter Property="Margin" Value="10" />
             <Setter Property="CornerRadius" Value="10" />
         </Style>
+        <Style BasedOn="{StaticResource MaterialDesignRaisedButton}" TargetType="Button">
+            <Setter Property="Width" Value="140" />
+            <Setter Property="Height" Value="48" />
+            <Setter Property="md:ButtonAssist.CornerRadius" Value="10" />
+            <Setter Property="Background" Value="#F5F5F5" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="FontWeight" Value="DemiBold" />
+            <Setter Property="md:ElevationAssist.Elevation" Value="Dp0" />
+            <Setter Property="Foreground" Value="Black" />
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Margin" Value="10" />
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="Foreground" Value="#9DA4B1" />
+        </Style>
     </Page.Resources>
     <Border Style="{StaticResource CustomBorder}">
         <StackPanel>
             <Grid>
                 <Button
                     Width="108"
-                    Height="48"
-                    Margin="10,10,0,0"
+                    Margin="10"
                     HorizontalAlignment="Left"
-                    md:ButtonAssist.CornerRadius="10"
-                    Background="#F5F5F5"
-                    BorderThickness="0"
-                    Content="Ortga"
-                    Foreground="Black" />
+                    Content="Ortga" />
 
                 <TextBlock
                     Margin="140,20"
@@ -38,104 +49,36 @@
                     VerticalAlignment="Center"
                     FontSize="20"
                     FontWeight="DemiBold"
+                    Foreground="#006AFF"
                     Text="#12345678" />
+                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                    <Button Content="Chop etish" />
+                    <Button Content="Yuklab olish" />
+                    <Button Content="Qaytarish" />
+                </StackPanel>
 
-                <Button
-                    Width="140"
-                    Height="48"
-                    Margin="0,10,10,0"
-                    HorizontalAlignment="Right"
-                    md:ButtonAssist.CornerRadius="10"
-                    BorderThickness="0"
-                    Background="#F5F5F5"
-                    Foreground="Black"
-                    FontWeight="DemiBold"
-                    Content="Chop etish" />
-
-                <Button
-                    Width="140"
-                    Height="48"
-                    Margin="10,10,170,0"
-                    HorizontalAlignment="Right"
-                    md:ButtonAssist.CornerRadius="10"
-                    Background="#F5F5F5"
-                    Foreground="Black"
-                    FontWeight="DemiBold"
-                    BorderThickness="0"
-                    Content="Yuklab olish" />
-                <Button
-                    Width="140"
-                    Height="48"
-                    Margin="10,10,330,0"
-                    HorizontalAlignment="Right"
-                    md:ButtonAssist.CornerRadius="10"
-                    Background="#F5F5F5"
-                    Foreground="Black"
-                    FontWeight="DemiBold"
-                    BorderThickness="0"
-                    Content="Qaytarish" />
             </Grid>
-            <TextBlock
-                Margin="10,20,0,10"
-                FontSize="16"
-                FontWeight="DemiBold"
-                Text="Kassir:" />
-            <TextBlock
-                Margin="10,10,0,10"
-                FontSize="16"
-                FontWeight="DemiBold"
-                Text="Sana:" />
-            <TextBlock
-                Margin="10,10,0,50"
-                FontSize="16"
-                FontWeight="DemiBold"
-                Text="Umumiy savdo:" />
+            <StackPanel Margin="0,10">
+                <TextBlock Text="Kassir:" Foreground="Black"/>
+                <TextBlock Text="Sana:" Foreground="Black"/>
+                <TextBlock Text="Umumiy savdo:" Foreground="Black"/>
+            </StackPanel>
 
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.5*" />
-                    <ColumnDefinition  Width="2*"/>
+                    <ColumnDefinition Width="2*" />
                     <ColumnDefinition />
                     <ColumnDefinition />
                     <ColumnDefinition />
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
-                <TextBlock
-                    Margin="10"
-                    VerticalAlignment="Center"
-                    FontSize="15"
-                    Foreground="#9DA4B1"
-                    Text="№" />
-                <TextBlock
-                    Grid.Column="1"
-                    VerticalAlignment="Center"
-                    FontSize="15"
-                    Foreground="#9DA4B1"
-                    Text="Nomi" />
-                <TextBlock
-                    Grid.Column="2"
-                    VerticalAlignment="Center"
-                    FontSize="15"
-                    Foreground="#9DA4B1"
-                    Text="Narxi" />
-                <TextBlock
-                    Grid.Column="3"
-                    VerticalAlignment="Center"
-                    FontSize="15"
-                    Foreground="#9DA4B1"
-                    Text="Chegirma" />
-                <TextBlock
-                    Grid.Column="4"
-                    VerticalAlignment="Center"
-                    FontSize="15"
-                    Foreground="#9DA4B1"
-                    Text="Soni" />
-                <TextBlock
-                    Grid.Column="5"
-                    VerticalAlignment="Center"
-                    FontSize="15"
-                    Foreground="#9DA4B1"
-                    Text="Umumiy narx" />
+                <TextBlock Text="№" />
+                <TextBlock Grid.Column="1" Text="Nomi" />
+                <TextBlock Grid.Column="2" Text="Narxi" />
+                <TextBlock Grid.Column="3" Text="Chegirma" />
+                <TextBlock Grid.Column="4" Text="Soni" />
+                <TextBlock Grid.Column="5" Text="Umumiy narx" />
             </Grid>
         </StackPanel>
     </Border>

@@ -7,18 +7,29 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
     Title="TerminateSession"
-    d:DesignHeight="300"
-    d:DesignWidth="400"
+    MinWidth="800"
+    MinHeight="450"
+    Background="{StaticResource AttentionToActionBrush}"
     mc:Ignorable="d">
-
     <Page.Resources>
         <Style x:Key="CustomBorder" TargetType="Border">
             <Setter Property="Background" Value="White" />
             <Setter Property="Margin" Value="10" />
             <Setter Property="CornerRadius" Value="15" />
         </Style>
+        <Style BasedOn="{StaticResource MaterialDesignRaisedButton}" TargetType="Button">
+            <Setter Property="Width" Value="120" />
+            <Setter Property="Height" Value="48" />
+            <Setter Property="md:ButtonAssist.CornerRadius" Value="10" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Margin" Value="15" />
+            <Setter Property="Foreground" Value="Black" />
+        </Style>
     </Page.Resources>
-    <Border Style="{StaticResource CustomBorder}">
+    <Border
+        Width="400"
+        Height="300"
+        Style="{StaticResource CustomBorder}">
         <StackPanel>
             <Image
                 Width="80"
@@ -35,29 +46,14 @@
                 HorizontalAlignment="Center"
                 FontSize="14"
                 Opacity="0.5"
-                Text="Rostdan ham barcha seanslarni yakunlamoqchimisiz?" />
-            <Grid>
-                <Button
-                    Width="120"
-                    Height="48"
-                    HorizontalAlignment="Left"
-                    md:ButtonAssist.CornerRadius="10"
-                    Background="#F4F4F4"
-                    Margin="45, 10, 0, 0"
-                    BorderThickness="0"
-                    Content="Yo'q"
-                    Foreground="Black" />
-                <Button
-                    Width="120"
-                    Height="48"
-                    Margin="10, 10,45,0"
-                    HorizontalAlignment="Right"
-                    md:ButtonAssist.CornerRadius="10"
-                    Background="#EC5B56"
-                    BorderThickness="0"
-                    Content="Yo'q"
-                    Foreground="Black" />
-            </Grid>
+                TextAlignment="Center"
+                TextWrapping="WrapWithOverflow">
+                Rostdan ham barcha<LineBreak />
+                seanslarni yakunlamoqchimisiz?</TextBlock>
+            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                <Button Background="#F4F4F4" Content="Yo'q" />
+                <Button Background="#EC5B56" Content="Yo'q" />
+            </StackPanel>
         </StackPanel>
     </Border>
 </Page>
