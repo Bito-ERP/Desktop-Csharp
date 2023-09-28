@@ -10,14 +10,14 @@ using System.Threading.Tasks;
 
 namespace BitoDesktop.Data.Converters;
 
-    public class StringListConverter : SqlMapper.TypeHandler<StringList>
+    public class StringListConverter : SqlMapper.TypeHandler<List<string>>
     {
-        public override StringList Parse(object value)
+        public override List<string> Parse(object value)
         {
-            return JsonConvert.DeserializeObject<StringList>(value.ToString());
+            return JsonConvert.DeserializeObject<List<string>>(value.ToString());
         }
 
-        public override void SetValue(IDbDataParameter parameter, StringList value)
+        public override void SetValue(IDbDataParameter parameter, List<string> value)
         {
             parameter.Value = JsonConvert.SerializeObject(value);
         }

@@ -60,7 +60,7 @@ namespace BitoDesktop.Domain.Entities.Products
         public bool IsProduct { get; set; }
         public bool IsMaterial { get; set; }
         public bool IsSemiProduct { get; set; }
-        public StringList TaxIds { get; set; }
+        public List<string> TaxIds { get; set; }
         public string? Shape { get; set; }
         public double NetWeight { get; set; }
         public double GrossWeight { get; set; }
@@ -103,7 +103,7 @@ namespace BitoDesktop.Domain.Entities.Products
         public bool IsProduct { get; set; }
         public bool IsMaterial { get; set; }
         public bool IsSemiProduct { get; set; }
-        public StringList TaxIds { get; set; }
+        public List<string> TaxIds { get; set; }
         public string? Shape { get; set; }
         public double NetWeight { get; set; }
         public double GrossWeight { get; set; }

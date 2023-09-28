@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BitoDesktop.Domain.Entities
+namespace BitoDesktop.Service.DTOs.Finance
 {
-    public class StringList
+    internal class CurrencyResponse
     {
-        public List<string> value { get; set; }
     }
 }

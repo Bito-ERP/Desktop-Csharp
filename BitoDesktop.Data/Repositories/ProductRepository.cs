@@ -165,10 +165,10 @@ public class ProductRepository : IProductRepository
     }
 
     //returns tax ids attached to the given product
-    public async Task<StringList> GetTaxes(string productId)
+    public async Task<List<String>> GetTaxes(string productId)
     {
         Contract.Requires(productId != null);
-        return await dbe.QuerySingleOrDefaultAsync<StringList>(
+        return await dbe.QuerySingleOrDefaultAsync<List<String>>(
             "SELECT taxIds FROM product WHERE Id = @productId",
             new { productId }
             );
