@@ -78,12 +78,12 @@
                     FontSize="20"
                     Text="Yangi printer" />
                 <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
-                    <Button Content="Saqlash" />
-                    <Button Content="Test print +" />
                     <Button Background="#EC5B56" Content="O'chirish" />
+                    <Button Content="Test print +" />
+                    <Button Content="Saqlash" />
                 </StackPanel>
             </Grid>
-            <TextBox md:HintAssist.Hint="Nomi" BorderThickness="0"/>
+            <TextBox md:HintAssist.Hint="Nomi" BorderThickness="0" />
 
             <ComboBox md:HintAssist.Hint="Chek o'lchami" BorderThickness="0">
                 <ComboBoxItem Content="Asosiy printer" />
