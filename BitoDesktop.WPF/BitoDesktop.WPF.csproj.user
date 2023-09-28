@@ -28,6 +28,9 @@
     <Compile Update="Pages\PosPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Pages\Refound\RefoundCancel.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Pages\Refound\RefoundType.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -35,6 +38,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Pages\Settings\LanguageSettings.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\Settings\LogOutSettings.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Pages\Settings\OrganizationSettings.xaml.cs">
@@ -56,6 +62,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Pages\Settings\SaleListSettings.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\Settings\ScaleSettings.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Pages\Settings\TerminateSession.xaml.cs">
@@ -90,6 +99,9 @@
     <Page Update="Pages\PosPage.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Pages\Refound\RefoundCancel.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Pages\Refound\RefoundType.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -97,6 +109,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\Settings\LanguageSettings.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\Settings\LogOutSettings.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\Settings\OrganizationSettings.xaml">
@@ -118,6 +133,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\Settings\SaleListSettings.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\Settings\ScaleSettings.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\Settings\TerminateSession.xaml">

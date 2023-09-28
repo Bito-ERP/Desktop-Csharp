@@ -43,13 +43,14 @@
                     HorizontalAlignment="Left"
                     md:ButtonAssist.CornerRadius="10"
                     Background="#F4F4F4"
+                    Margin="45, 10, 0, 0"
                     BorderThickness="0"
                     Content="Yo'q"
                     Foreground="Black" />
                 <Button
                     Width="120"
                     Height="48"
-                    Margin="10"
+                    Margin="10, 10,45,0"
                     HorizontalAlignment="Right"
                     md:ButtonAssist.CornerRadius="10"
                     Background="#EC5B56"

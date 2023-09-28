@@ -1,6 +1,4 @@
-﻿using BitoDesktop.WPF.Pages;
-using BitoDesktop.WPF.Pages.Settings;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,18 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace BitoDesktop.WPF
+namespace BitoDesktop.WPF.Pages.Settings
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for LogOutSettings.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class LogOutSettings : Page
     {
-        public MainWindow()
+        public LogOutSettings()
         {
             InitializeComponent();
-            var settings = new ScaleSettings();
-            MainFrame.Content = settings;
         }
     }
 }
