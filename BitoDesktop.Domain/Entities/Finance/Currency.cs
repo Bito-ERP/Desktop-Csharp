@@ -26,7 +26,7 @@ public class Currency
     public string Symbol { get; set; }
 
     [Required]
-    public DateTime UpdatedAt { get; set; }
+    public DateTimeOffset UpdatedAt { get; set; }
 
     public class Value
     {

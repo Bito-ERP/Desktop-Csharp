@@ -46,8 +46,8 @@ public class Employee
     public string PhoneNumber { get; set; }
     public string BossId { get; set; }
     public string Address { get; set; }
-    public DateTime? BirthDate { get; set; }
-    public DateTime AcceptanceDate { get; set; }
+    public DateTimeOffset? BirthDate { get; set; }
+    public DateTimeOffset AcceptanceDate { get; set; }
     [Required]
     public string Pincode { get; set; }
     public string Image { get; set; }

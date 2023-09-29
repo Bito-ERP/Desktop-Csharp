@@ -46,7 +46,7 @@ internal class CurrencyResponse
         IsMain = IsMain,
         Side = Side,
         Symbol = string.IsNullOrWhiteSpace(Symbol) ? null : Symbol,
-        UpdatedAt = DateTime.Parse(UpdatedAt)
+        UpdatedAt = DateTimeOffset.Parse(UpdatedAt)
     };
 
 
