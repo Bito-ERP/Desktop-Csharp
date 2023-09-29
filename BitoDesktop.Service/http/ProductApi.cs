@@ -1,6 +1,6 @@
-﻿using BitoDesktop.Service.DTOs;
-using BitoDesktop.Service.DTOs.common;
+﻿using BitoDesktop.Service.DTOs.common;
 using BitoDesktop.Service.DTOs.Common;
+using BitoDesktop.Service.DTOs.Warehouse;
 using System;
 using System.Collections.Generic;
 using System.Linq;

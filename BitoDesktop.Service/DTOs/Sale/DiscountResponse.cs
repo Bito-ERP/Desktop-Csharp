@@ -4,28 +4,29 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace BitoDesktop.Service.DTOs.Sale;
 
 internal class DiscountResponse
 {
-    [JsonProperty("_id")]
+    [JsonPropertyName("_id")]
     public string Id { get; set; }
 
-    [JsonProperty("name")]
+    [JsonPropertyName("name")]
     public string Name { get; set; }
 
-    [JsonProperty("apply_type")]
+    [JsonPropertyName("apply_type")]
     public string ApplyType { get; set; }
 
-    [JsonProperty("value")]
+    [JsonPropertyName("value")]
     public float Value { get; set; }
 
-    [JsonProperty("currency_id")]
+    [JsonPropertyName("currency_id")]
     public string CurrencyId { get; set; }
 
-    [JsonProperty("image")]
+    [JsonPropertyName("image")]
     public string Image { get; set; }
 
     public Discount Get() => new()

@@ -3,39 +3,40 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace BitoDesktop.Service.DTOs.Auth;
 
 internal class RequestLogin
 {
-    [JsonProperty("phone_number")]
+    [JsonPropertyName("phone_number")]
     public string? PhoneNumber { get; set; }
 
-    [JsonProperty("password")]
+    [JsonPropertyName("password")]
     public string? Password { get; set; }
 
-    [JsonProperty("pincode")]
+    [JsonPropertyName("pincode")]
     public string? Pincode { get; set; }
 
-    [JsonProperty("user_id")]
+    [JsonPropertyName("user_id")]
     public string? UserId { get; set; }
 
-    [JsonProperty("token")]
+    [JsonPropertyName("token")]
     public string? Token { get; set; }
 
-    [JsonProperty("brand")]
+    [JsonPropertyName("brand")]
     public string? Brand { get; set; }
 
-    [JsonProperty("device")]
+    [JsonPropertyName("device")]
     public string? Device { get; set; }
 
-    [JsonProperty("manufacturer")]
+    [JsonPropertyName("manufacturer")]
     public string? Manufacturer { get; set; }
 
-    [JsonProperty("model")]
+    [JsonPropertyName("model")]
     public string? Model { get; set; }
 
-    [JsonProperty("product")]
+    [JsonPropertyName("product")]
     public string? Product { get; set; }
 }

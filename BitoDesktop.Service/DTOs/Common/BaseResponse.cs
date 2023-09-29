@@ -1,15 +1,16 @@
 ﻿using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace BitoDesktop.Service.DTOs.Common;
 
 internal class BaseResponse<T>
 {
-    [JsonProperty("code")]
+    [JsonPropertyName("code")]
     public int Code { get; set; }
-    [JsonProperty("message")]
+    [JsonPropertyName("message")]
     public string Message { get; set; }
-    [JsonProperty("data")]
+    [JsonPropertyName("data")]
     public T Data { get; set; }
-    [JsonProperty("time")]
+    [JsonPropertyName("time")]
     public string Time { get; set; }
 }

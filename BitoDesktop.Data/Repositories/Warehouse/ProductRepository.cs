@@ -12,7 +12,7 @@ using BitoDesktop.Data.Converters;
 using Dapper;
 using Npgsql;
 
-namespace BitoDesktop.Data.Repositories;
+namespace BitoDesktop.Data.Repositories.Warehouse;
 
 public class ProductRepository : IProductRepository
 {
@@ -33,7 +33,6 @@ public class ProductRepository : IProductRepository
     private const string ProductPriceValues = "@Id, @PriceId, @OrganizationId, @ProductId, @PriceAmount, @MinPrice, @MaxPrice, @MinSaleAmount";
     private const string ProductPriceUpdate = "PriceId = @PriceId, OrganizationId = @OrganizationId, ProductId = @ProductId, PriceAmount = @PriceAmount, MinPrice = @MinPrice, MaxPrice = @MaxPrice, MinSaleAmount = @MinSaleAmount";
 
-    private readonly DBExcutor dbe = new();
 
     public ProductRepository()
     {
@@ -46,7 +45,7 @@ public class ProductRepository : IProductRepository
        IEnumerable<ProductPrice> prices
         )
     {
-        await dbe.InTransaction(async connection =>
+        await DBExcutor.InTransaction(async connection =>
         {
             await Insert(products, connection);
             await InsertOrganizations(organization, connection);
@@ -57,7 +56,7 @@ public class ProductRepository : IProductRepository
 
     public async void UpdateWarehouseAmount(
         bool inc,
-        List<Tuple<String, double>> productAmounts,
+        List<Tuple<string, double>> productAmounts,
         string warehouseId
        )
     {
@@ -78,7 +77,7 @@ public class ProductRepository : IProductRepository
 
     public async Task<int> Insert(ProductTable entity)
     {
-        return await dbe.ExecuteAsync(
+        return await DBExcutor.ExecuteAsync(
             "INSERT INTO product(" + ProductColumns + ") VALUES(" + ProductValues + ") " +
             "ON CONFLICT (Id) " +
             "DO UPDATE SET " + ProductUpdate, entity);
@@ -86,7 +85,7 @@ public class ProductRepository : IProductRepository
 
     public async Task<int> Insert(IEnumerable<ProductTable> entities, NpgsqlConnection connection = null)
     {
-        return await dbe.ExecuteAsync(
+        return await DBExcutor.ExecuteAsync(
             "INSERT INTO product(" + ProductColumns + ") VALUES(" + ProductValues + ") " +
             "ON CONFLICT (Id) " +
             "DO UPDATE SET " + ProductUpdate, entities);
@@ -94,7 +93,7 @@ public class ProductRepository : IProductRepository
 
     public async Task<int> InsertOrganizations(IEnumerable<ProductOrganization> entities, NpgsqlConnection connection = null)
     {
-        return await dbe.ExecuteAsync(
+        return await DBExcutor.ExecuteAsync(
             "INSERT INTO product_organization(" + ProductOrganizationColumns + ") VALUES(" + ProductOrganizationValues + ") " +
             "ON CONFLICT (OrganizationId, ProductId) " +
             "DO UPDATE SET " + ProductOrganizationUpdate, entities, connection);
@@ -102,7 +101,7 @@ public class ProductRepository : IProductRepository
 
     public async Task<int> InsertWarehouses(IEnumerable<ProductWarehouse> entities, NpgsqlConnection connection = null)
     {
-        return await dbe.ExecuteAsync(
+        return await DBExcutor.ExecuteAsync(
             "INSERT INTO product_warehouse(" + ProductWarehouseColumns + ") VALUES(" + ProductWarehouseValues + ") " +
             "ON CONFLICT (Id) " +
             "DO UPDATE SET " + ProductWarehouseUpdate, entities, connection);
@@ -110,7 +109,7 @@ public class ProductRepository : IProductRepository
 
     public async Task<int> InsertPrices(IEnumerable<ProductPrice> entities, NpgsqlConnection connection = null)
     {
-        return await dbe.ExecuteAsync(
+        return await DBExcutor.ExecuteAsync(
             "INSERT INTO product_price(" + ProductPriceColumns + ") VALUES(" + ProductPriceValues + ") " +
             "ON CONFLICT (Id) " +
             "DO UPDATE SET " + ProductPriceUpdate, entities, connection);
@@ -122,7 +121,7 @@ public class ProductRepository : IProductRepository
         bool isAvailable
     )
     {
-        return await dbe.ExecuteAsync(
+        return await DBExcutor.ExecuteAsync(
              "UPDATE product_organization SET IsAvailable = @isAvailable WHERE ProductId = @productId AND OrganizationId = @organizationId",
              new { isAvailable, productId, organizationId }
            );
@@ -134,7 +133,7 @@ public class ProductRepository : IProductRepository
         string warehouseId
     )
     {
-        return dbe.ExecuteAsync(
+        return DBExcutor.ExecuteAsync(
              "UPDATE product_warehouse SET Amount = Amount + @amount WHERE ProductId = @productId AND WarehouseId = @warehouseId",
              new { amount, productId, warehouseId }
            );
@@ -142,7 +141,7 @@ public class ProductRepository : IProductRepository
 
     public async Task<int> Delete(List<string> productIds)
     {
-        return await dbe.ExecuteAsync(
+        return await DBExcutor.ExecuteAsync(
             "DELETE FROM product WHERE Id IN @productIds",
             new { productIds }
           );
@@ -150,7 +149,7 @@ public class ProductRepository : IProductRepository
 
     public async Task<int> DeleteWarehouses(List<string> warehouseIds)
     {
-        return await dbe.ExecuteAsync(
+        return await DBExcutor.ExecuteAsync(
             "DELETE FROM product_warehouse WHERE Id IN @warehouseIds",
             new { warehouseIds }
           );
@@ -158,17 +157,17 @@ public class ProductRepository : IProductRepository
 
     public async Task<int> DeletePrices(List<string> priceIds)
     {
-        return await dbe.ExecuteAsync(
+        return await DBExcutor.ExecuteAsync(
             "DELETE FROM product_price WHERE Id IN @priceIds",
             new { priceIds }
           );
     }
 
     //returns tax ids attached to the given product
-    public async Task<List<String>> GetTaxes(string productId)
+    public async Task<List<string>> GetTaxes(string productId)
     {
         Contract.Requires(productId != null);
-        return await dbe.QuerySingleOrDefaultAsync<List<String>>(
+        return await DBExcutor.QuerySingleOrDefaultAsync<List<string>>(
             "SELECT taxIds FROM product WHERE Id = @productId",
             new { productId }
             );
@@ -178,7 +177,7 @@ public class ProductRepository : IProductRepository
     public async Task<bool> isExistByBarcode(string barcode)
     {
         Contract.Requires(barcode != null);
-        return await dbe.QuerySingleOrDefaultAsync<bool>(
+        return await DBExcutor.QuerySingleOrDefaultAsync<bool>(
             "SELECT EXISTS(SELECT Id FROM product WHERE B Barcode = @barcode)",
             new { barcode }
             );
@@ -186,9 +185,9 @@ public class ProductRepository : IProductRepository
 
     public async Task<Product> GetById(
         string productId,
-        string? organizationId,
-        string? warehouseId,
-        string? priceId,
+        string organizationId,
+        string warehouseId,
+        string priceId,
         bool withAmount,
         bool withPrices,
         bool withTax            // not yet implemented
@@ -209,9 +208,9 @@ public class ProductRepository : IProductRepository
     // returns a product with the same 'sku'
     public async Task<Product> GetBySku(
        string sku,
-       string? organizationId,
-       string? warehouseId,
-       string? priceId,
+       string organizationId,
+       string warehouseId,
+       string priceId,
        bool withAmount,
        bool withPrices,
        bool withTax            // not yet implemented
@@ -232,9 +231,9 @@ public class ProductRepository : IProductRepository
     // returns a product with the same 'barcode' or if its 'barcodes' contains the given value
     public async Task<Product> GetByBarcode(
        string barcode,
-       string? organizationId,
-       string? warehouseId,
-       string? priceId,
+       string organizationId,
+       string warehouseId,
+       string priceId,
        bool withAmount,
        bool withPrices,
        bool withTax            // not yet implemented
@@ -255,9 +254,9 @@ public class ProductRepository : IProductRepository
     // returns a product with the same 'barcode' or if its 'barcodes' contains the given value
     public async Task<List<Product>> GetMultiple(
         string value,
-        string? organizationId,
-        string? warehouseId,
-        string? priceId,
+        string organizationId,
+        string warehouseId,
+        string priceId,
         bool withAmount,
         bool withPrices,
         bool withTax            // not yet implemented
@@ -281,9 +280,9 @@ public class ProductRepository : IProductRepository
     public async Task<List<Product>> GetByCategories(
         bool isAll,
         string[] value,
-        string? organizationId,
-        string? warehouseId,
-        string? priceId,
+        string organizationId,
+        string warehouseId,
+        string priceId,
         bool withAmount,
         bool withPrices,
         bool withTax            // not yet implemented
@@ -305,16 +304,16 @@ public class ProductRepository : IProductRepository
     public async Task<IEnumerable<Product>> GetProducts(
         int offset,
         int limit,
-        string? organizationId,
-        string? warehouseId,
+        string organizationId,
+        string warehouseId,
         bool? isProduct, // pass null to exclude this param from the filter
         bool? isMaterial, // pass null to exclude this param from the filter
         bool? isSemiProduct, // pass null to exclude this param from the filter
         bool? isAvailableForSale, // pass null to exclude this param from the filter
-        string? searchQuery,
-        string? priceId,
-        string? inStockState, // null, 'yellow_line', 'red_line' or 'negative'
-        string? categoryId,
+        string searchQuery,
+        string priceId,
+        string inStockState, // null, 'yellow_line', 'red_line' or 'negative'
+        string categoryId,
         bool withOrganizationAmount,
         bool filterByWarehouse, // true, return products that exist only in the specified warehouse
         bool filterByPrice,     // true, return products that have the specified price
@@ -354,7 +353,7 @@ public class ProductRepository : IProductRepository
         args.Add("@limit", limit);
         args.Add("@offset", offset);
 
-        return await dbe.QueryAsync<Product>(query.ToString(), args);
+        return await DBExcutor.QueryAsync<Product>(query.ToString(), args);
     }
 
     public async Task<IEnumerable<double>> getProductPrices(
@@ -380,7 +379,7 @@ public class ProductRepository : IProductRepository
         query.Append("WHERE p.Id IN @products");
         args.Add("@products", products);
 
-        return await dbe.QueryAsync<double>(query.ToString(), args);
+        return await DBExcutor.QueryAsync<double>(query.ToString(), args);
     }
 
 
@@ -394,7 +393,7 @@ public class ProductRepository : IProductRepository
         Contract.Requires(organizationId != null);
         Contract.Requires(productId != null);
 
-        return await dbe.QuerySingleOrDefaultAsync<ProductPrice>(
+        return await DBExcutor.QuerySingleOrDefaultAsync<ProductPrice>(
             "SELECT * FROM product_price WHERE PriceId = @priceId AND OrganizationId = @organizationId AND ProductId = @productId",
             new { priceId, organizationId, productId }
             );
@@ -410,7 +409,7 @@ public class ProductRepository : IProductRepository
         args.Add("@organizationId", organizationId);
         args.Add("@productId", productId);
 
-        return await dbe.QueryAsync<ProductTable.Price>(
+        return await DBExcutor.QueryAsync<ProductTable.Price>(
             "SELECT PriceId as PriceId, PriceAmount as SelectedPriceAmount FROM product_price WHERE OrganizationId = @organizationId AND ProductId = @productId",
             args
            );
@@ -419,9 +418,9 @@ public class ProductRepository : IProductRepository
     private async Task<Product> getProductBy(
         string byValue,
         int type,
-        string? organizationId,
-        string? warehouseId,
-        string? priceId,
+        string organizationId,
+        string warehouseId,
+        string priceId,
         bool withAmount,
         bool withPrices,
         bool withTax
@@ -448,7 +447,7 @@ public class ProductRepository : IProductRepository
         if (type == 2)
             args.Add("@byValue2", "%" + byValue + "%");
 
-        var entity = await dbe.QuerySingleOrDefaultAsync<Product>(
+        var entity = await DBExcutor.QuerySingleOrDefaultAsync<Product>(
             query.ToString(),
             args
             );
@@ -462,9 +461,9 @@ public class ProductRepository : IProductRepository
     private async Task<List<Product>> getProductBy(
       object byValue,
       int type,
-      string? organizationId,
-      string? warehouseId,
-      string? priceId,
+      string organizationId,
+      string warehouseId,
+      string priceId,
       bool withAmount,
       bool withPrices,
       bool withTax,
@@ -483,7 +482,7 @@ public class ProductRepository : IProductRepository
             query.Append("(p.Sku = @byValue OR p.Barcode = @byValue OR p.Barcodes LIKE @byValue2 ) ");
             args.Add("@byValue", byValue);
             args.Add("@byValue", byValue);
-            args.Add("@byValue2"," % " + byValue + "%");
+            args.Add("@byValue2", " % " + byValue + "%");
         }
         else if (type == 1)
         {
@@ -500,7 +499,7 @@ public class ProductRepository : IProductRepository
             }
         }
 
-        var entities = (await dbe.QueryAsync<Product>(
+        var entities = (await DBExcutor.QueryAsync<Product>(
             query.ToString(),
             args
             )).ToList();
@@ -520,16 +519,16 @@ public class ProductRepository : IProductRepository
         Dictionary<string, object> args,
         int offset,
         int limit,
-        string? organizationId,
-        string? warehouseId,
+        string organizationId,
+        string warehouseId,
         bool? isProduct, // pass null to exclude this param from the filter
         bool? isMaterial, // pass null to exclude this param from the filter
         bool? isSemiProduct, // pass null to exclude this param from the filter
         bool? isAvailableForSale, // pass null to exclude this param from the filter
-        string? searchQuery,
-        string? priceId,
-        string? inStockState, // null, 'yellow_line', 'red_line' or 'negative'
-        string? categoryId,
+        string searchQuery,
+        string priceId,
+        string inStockState, // null, 'yellow_line', 'red_line' or 'negative'
+        string categoryId,
         bool withOrganizationAmount,
         bool filterByWarehouse, // true, return products that exist only in the specified warehouse
         bool filterByPrice,     // true, return products that have the specified price
@@ -666,9 +665,9 @@ public class ProductRepository : IProductRepository
     private void MakeGetQuery(
         StringBuilder query,
         Dictionary<string, object> args,
-        string? organizationId,
-        string? warehouseId,
-        string? priceId,
+        string organizationId,
+        string warehouseId,
+        string priceId,
         bool withAmount
         )
     {

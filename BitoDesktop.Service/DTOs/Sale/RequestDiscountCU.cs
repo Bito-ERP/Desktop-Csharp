@@ -11,19 +11,19 @@ namespace BitoDesktop.Service.DTOs.Sale;
 
 internal class RequestDiscountCU
 {
-    [JsonProperty("_id")]
+    [JsonPropertyName("_id")]
     public string? Id { get; set; }
 
-    [JsonProperty("name")]
+    [JsonPropertyName("name")]
     public string Name { get; set; }
 
-    [JsonProperty("apply_type")]
+    [JsonPropertyName("apply_type")]
     public string ApplyType { get; set; }
 
-    [JsonProperty("value")]
+    [JsonPropertyName("value")]
     public float Value { get; set; }
 
-    [JsonProperty("currency_id"), JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+    [JsonPropertyName("currency_id"), JsonIgnore(Condition = JsonIgnoreCondition.Never)]
     public string? CurrencyId { get; set; }
 
 }

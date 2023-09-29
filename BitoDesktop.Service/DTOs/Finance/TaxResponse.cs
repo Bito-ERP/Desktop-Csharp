@@ -4,55 +4,56 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace BitoDesktop.Service.DTOs.Finance;
 
 internal class TaxResponse
 {
-    [JsonProperty("_id")]
+    [JsonPropertyName("_id")]
     public string Id { get; set; }
 
-    [JsonProperty("name")]
+    [JsonPropertyName("name")]
     public string Name { get; set; }
 
-    [JsonProperty("rate")]
+    [JsonPropertyName("rate")]
     public float Rate { get; set; }
 
-    [JsonProperty("type")]
+    [JsonPropertyName("type")]
     public string Type { get; set; }
 
-    [JsonProperty("to_price")]
+    [JsonPropertyName("to_price")]
     public bool ToPrice { get; set; }
 
-    [JsonProperty("is_manual")]
+    [JsonPropertyName("is_manual")]
     public bool IsManual { get; set; }
 
-    [JsonProperty("is_all")]
+    [JsonPropertyName("is_all")]
     public bool IsAll { get; set; }
 
-    [JsonProperty("is_all_categories")]
+    [JsonPropertyName("is_all_categories")]
     public bool IsAllCategories { get; set; }
 
-    [JsonProperty("is_all_suppliers")]
+    [JsonPropertyName("is_all_suppliers")]
     public bool IsAllSuppliers { get; set; }
 
-    [JsonProperty("category_ids")]
+    [JsonPropertyName("category_ids")]
     public List<string> CategoryIds { get; set; }
 
-    [JsonProperty("supplier_ids")]
+    [JsonPropertyName("supplier_ids")]
     public List<string> SupplierIds { get; set; }
 
-    [JsonProperty("item_added_ids")]
+    [JsonPropertyName("item_added_ids")]
     public List<string> AddedItemIds { get; set; }
 
-    [JsonProperty("item_removed_ids")]
+    [JsonPropertyName("item_removed_ids")]
     public List<string> RemovedItemIds { get; set; }
 
-    [JsonProperty("organization_ids")]
+    [JsonPropertyName("organization_ids")]
     public List<string> OrganizationIds { get; set; }
 
-    [JsonProperty("item_count")]
+    [JsonPropertyName("item_count")]
     public int ItemCount { get; set; }
 
     public Tax GetEntityTax() => new()

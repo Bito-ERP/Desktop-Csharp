@@ -3,51 +3,52 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace BitoDesktop.Service.DTOs.Hr;
 
 internal class RequestEmployeeCU
 {
-    [JsonProperty("_id")]
+    [JsonPropertyName("_id")]
     public string? Id { get; set; }
 
-    [JsonProperty("person_id")]
+    [JsonPropertyName("person_id")]
     public string? PersonId { get; set; }
 
-    [JsonProperty("full_name")]
+    [JsonPropertyName("full_name")]
     public string FullName { get; set; }
 
-    [JsonProperty("birth_date")]
+    [JsonPropertyName("birth_date")]
     public string? BirthDate { get; set; }
 
-    [JsonProperty("phone_number")]
+    [JsonPropertyName("phone_number")]
     public string PhoneNumber { get; set; }
 
-    [JsonProperty("address")]
+    [JsonPropertyName("address")]
     public string? Address { get; set; }
 
-    [JsonProperty("acceptance_date")]
+    [JsonPropertyName("acceptance_date")]
     public string AcceptanceDate { get; set; }
 
-    [JsonProperty("comment")]
+    [JsonPropertyName("comment")]
     public string? Comment { get; set; }
 
-    [JsonProperty("pincode")]
+    [JsonPropertyName("pincode")]
     public string? Pincode { get; set; }
 
-    [JsonProperty("role_id")]
+    [JsonPropertyName("role_id")]
     public string RoleId { get; set; }
 
-    [JsonProperty("positions")]
+    [JsonPropertyName("positions")]
     public List<Position> Positions { get; set; }
 
     public class Position
     {
-        [JsonProperty("section_id")]
+        [JsonPropertyName("section_id")]
         public string SectionId { get; set; }
 
-        [JsonProperty("position_id")]
+        [JsonPropertyName("position_id")]
         public string PositionId { get; set; }
     }
 }

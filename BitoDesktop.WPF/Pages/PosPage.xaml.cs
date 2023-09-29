@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using BitoDesktop.Data.IRepositories;
 using BitoDesktop.Data.Repositories;
+using BitoDesktop.Data.Repositories.Warehouse;
 using BitoDesktop.Domain.Configurations;
 using BitoDesktop.Service.Interfaces;
 using BitoDesktop.Service.Mappers;

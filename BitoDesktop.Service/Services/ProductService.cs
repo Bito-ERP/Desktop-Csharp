@@ -1,10 +1,13 @@
 using AutoMapper;
 using BitoDesktop.Data.IRepositories;
-using BitoDesktop.Data.Repositories;
+using BitoDesktop.Data.Repositories.Finance;
+using BitoDesktop.Data.Repositories.Settings;
+using BitoDesktop.Data.Repositories.Warehouse;
 using BitoDesktop.Domain.Configurations;
 using BitoDesktop.Domain.Entities.Products;
 using BitoDesktop.Service.DTOs;
 using BitoDesktop.Service.DTOs.common;
+using BitoDesktop.Service.DTOs.Warehouse;
 using BitoDesktop.Service.Exceptions;
 using BitoDesktop.Service.Extensions;
 using BitoDesktop.Service.Helpers;
@@ -33,7 +36,17 @@ public partial class ProductService : IProductService
 
     public async Task<IEnumerable<Product>> GetAllAsync(PaginationParams @params)
     {
-        var response = (await ProductApi.GetPage(new RequestPage { Limit = 100})).Data.PageData;
+        var currencyResponse = (await CurrencyApi.GetAll()).Data.PageData;
+        var currencyRepo = new CurrencyRepository();
+        await currencyRepo.ReplaceAll(currencyResponse.Select(it => it.Get()));
+        await currencyRepo.GetAll(null);
+
+        var measurementResponse = (await UnitMeasurementApi.GetAll()).Data;
+        var measurementRepo = new UnitMeasurementRepository();
+        await measurementRepo.ReplaceAll(measurementResponse.Select(it => it.Get()));
+        await measurementRepo.GetAll();
+
+        var response = (await ProductApi.GetPage(new RequestPage { Limit = 100 })).Data.PageData;
         var organizations = new List<ProductOrganization>();
         var warehouses = new List<ProductWarehouse>();
         var prices = new List<ProductPrice>();

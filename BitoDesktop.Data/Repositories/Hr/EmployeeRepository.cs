@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BitoDesktop.Data.Repositories;
+namespace BitoDesktop.Data.Repositories.Hr;
 
 public class EmployeeRepository
 {
@@ -19,11 +19,9 @@ public class EmployeeRepository
     private const string EmployeePositionUpdate = "EmployeeId = @EmployeeId, OrganizationId = @OrganizationId, RoleId = @RoleId, RoleName = @RoleName, SectionId = @SectionId, SectionName = @SectionName, PositionId = @PositionId, PositionName = @PositionName";
 
 
-    private readonly DBExcutor dbe = new();
-
     public async void Insert(Employee employee)
     {
-        await dbe.InTransaction(async connection =>
+        await DBExcutor.InTransaction(async connection =>
         {
             var result = Insert(employee, connection);
             if (employee.Positions != null)
@@ -36,7 +34,7 @@ public class EmployeeRepository
 
     public async void Insert(IEnumerable<Employee> employees)
     {
-        await dbe.InTransaction(async connection =>
+        await DBExcutor.InTransaction(async connection =>
         {
             await Insert(employees, connection);
             var positions = new List<EmployeePosition>();
@@ -53,7 +51,7 @@ public class EmployeeRepository
 
     public async Task<int> DeletePosition(string employeeId, string organizationId)
     {
-        return await dbe.ExecuteAsync(
+        return await DBExcutor.ExecuteAsync(
             "DELETE FROM employee_postion WHERE EmployeeId=@employeeId AND OrganizationId = @organizationId",
             new { employeeId, organizationId }
             );
@@ -61,7 +59,7 @@ public class EmployeeRepository
 
     public async Task<int> Delete(List<string> employeeIds)
     {
-        return await dbe.ExecuteAsync(
+        return await DBExcutor.ExecuteAsync(
           "DELETE FROM employee WHERE Id IN (@employeeIds)",
           new { employeeIds }
           );
@@ -69,7 +67,7 @@ public class EmployeeRepository
 
     public async Task<int> Delete(string employeeId)
     {
-        return await dbe.ExecuteAsync(
+        return await DBExcutor.ExecuteAsync(
         "DELETE FROM employee WHERE Id = @employeeId",
         new { employeeId }
         );
@@ -77,7 +75,7 @@ public class EmployeeRepository
 
     public async Task<bool> IsBoss(string employeeId)
     {
-        return await dbe.QuerySingleOrDefaultAsync<bool>(
+        return await DBExcutor.QuerySingleOrDefaultAsync<bool>(
        "SELECT IsBoss FROM employee WHERE Id = @employeeId",
        new { employeeId }
        );
@@ -85,7 +83,7 @@ public class EmployeeRepository
 
     public async Task<int> UpdateFullName(string employeeId, string fullName)
     {
-        return await dbe.ExecuteAsync(
+        return await DBExcutor.ExecuteAsync(
       "UPDATE employee SET FullName = @fullName WHERE Id = @employeeId",
       new { fullName, employeeId }
       );
@@ -97,13 +95,13 @@ public class EmployeeRepository
         if (organizationId == null)
             return await Get(employeeId);
         else
-            return await dbe.InTransaction<Employee>(async connection =>
+            return await DBExcutor.InTransaction(async connection =>
                {
-                  var employee = await Get(employeeId, connection);
-                  if (employee != null)
-                      employee.Positions = await GetPositions(employeeId, organizationId);
-                  return employee;
-                });
+                   var employee = await Get(employeeId, connection);
+                   if (employee != null)
+                       employee.Positions = await GetPositions(employeeId, organizationId);
+                   return employee;
+               });
     }
 
     public async Task<IEnumerable<Employee>> GetEmployees(
@@ -146,7 +144,7 @@ public class EmployeeRepository
 
         query.Append("ORDER BY FullName");
 
-        return await  dbe.QueryAsync<Employee>(
+        return await DBExcutor.QueryAsync<Employee>(
             query.ToString(),
             args
             );
@@ -155,7 +153,7 @@ public class EmployeeRepository
 
     private async Task<int> Insert(IEnumerable<Employee> employee, NpgsqlConnection connection = null)
     {
-        return await dbe.ExecuteAsync(
+        return await DBExcutor.ExecuteAsync(
             "INSERT INTO employee(" + EmployeeColumns + ") VALUES(" + EmployeeValues + ") " +
             "ON CONFLICT (Id) " +
             "DO UPDATE SET " + EmployeeUpdate, employee, connection);
@@ -163,7 +161,7 @@ public class EmployeeRepository
 
     private async Task<int> Insert(Employee employee, NpgsqlConnection connection = null)
     {
-        return await dbe.ExecuteAsync(
+        return await DBExcutor.ExecuteAsync(
             "INSERT INTO employee(" + EmployeeColumns + ") VALUES(" + EmployeeValues + ") " +
             "ON CONFLICT (Id) " +
             "DO UPDATE SET " + EmployeeUpdate, employee, connection);
@@ -171,7 +169,7 @@ public class EmployeeRepository
 
     private async Task<int> Insert(IEnumerable<EmployeePosition> positions, NpgsqlConnection connection = null)
     {
-        return await dbe.ExecuteAsync(
+        return await DBExcutor.ExecuteAsync(
             "INSERT INTO employee_positon(" + EmployeePositionColumns + ") VALUES(" + EmployeePositionValues + ") " +
             "ON CONFLICT (EmployeeId, OrganizationId, SectionId, PositionId) " +
             "DO UPDATE SET " + EmployeePositionUpdate, positions, connection);
@@ -180,7 +178,7 @@ public class EmployeeRepository
 
     private async Task<Employee> Get(string employeeId, NpgsqlConnection connection = null)
     {
-        return await dbe.QuerySingleOrDefaultAsync<Employee>(
+        return await DBExcutor.QuerySingleOrDefaultAsync<Employee>(
             "SELECT * FROM employee WHERE Id = @employeeId",
             new { employeeId },
             connection
@@ -189,7 +187,7 @@ public class EmployeeRepository
 
     private async Task<IEnumerable<EmployeePosition>> GetPositions(string employeeId, string organizationId)
     {
-        return await dbe.QueryAsync<EmployeePosition>(
+        return await DBExcutor.QueryAsync<EmployeePosition>(
             "SELECT * FROM employee_positon WHERE EmployeeId = @employeeId AND OrganizationId = @organizationId",
             new { employeeId, organizationId }
             );

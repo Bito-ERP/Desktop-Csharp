@@ -3,21 +3,22 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace BitoDesktop.Service.DTOs.Auth;
 
 internal class DeviceResponse
 {
-    [JsonProperty("_id")]
+    [JsonPropertyName("_id")]
     public string Id { get; set; }
 
-    [JsonProperty("name")]
+    [JsonPropertyName("name")]
     public string Name { get; set; }
 
-    [JsonProperty("record_calls")]
+    [JsonPropertyName("record_calls")]
     public bool RecordCalls { get; set; }
 
-    [JsonProperty("multiple_user")]
+    [JsonPropertyName("multiple_user")]
     public bool MultipleUser { get; set; } = false;
 }

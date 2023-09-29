@@ -3,87 +3,87 @@ using System.Collections.Generic;
 using System.Linq;
 using BitoDesktop.Service.DTOs.Common;
 using BitoDesktop.Domain.Entities.Products;
+using System.Text.Json.Serialization;
 
-
-namespace BitoDesktop.Service.DTOs;
+namespace BitoDesktop.Service.DTOs.Warehouse;
 
 internal class ProductResponse
 {
-    [JsonProperty("_id")]
+    [JsonPropertyName("_id")]
     public string Id { get; set; }
 
-    [JsonProperty("name")]
+    [JsonPropertyName("name")]
     public string Name { get; set; }
 
-    [JsonProperty("category")]
-    public DataResponse? Category { get; set; }
+    [JsonPropertyName("category")]
+    public DataResponse Category { get; set; }
 
-    [JsonProperty("box_type_id")]
+    [JsonPropertyName("box_type_id")]
     public string BoxTypeId { get; set; }
 
-    [JsonProperty("box_item")]
+    [JsonPropertyName("box_item")]
     public double BoxItem { get; set; } = 0.0;
 
-    [JsonProperty("box_item_barcode")]
+    [JsonPropertyName("box_item_barcode")]
     public string BoxItemBarcode { get; set; }
 
-    [JsonProperty("measure_id")]
+    [JsonPropertyName("measure_id")]
     public string UnitMeasurementId { get; set; }
 
-    [JsonProperty("sku")]
+    [JsonPropertyName("sku")]
     public string Sku { get; set; }
 
-    [JsonProperty("barcode")]
+    [JsonPropertyName("barcode")]
     public string Barcode { get; set; }
 
-    [JsonProperty("dimension")]
-    public DimensionResponse? Dimension { get; set; }
+    [JsonPropertyName("dimension")]
+    public DimensionResponse Dimension { get; set; }
 
-    [JsonProperty("image")]
+    [JsonPropertyName("image")]
     public string Image { get; set; }
 
-    [JsonProperty("is_marked")]
+    [JsonPropertyName("is_marked")]
     public bool IsMarked { get; set; }
 
-    [JsonProperty("is_product")]
+    [JsonPropertyName("is_product")]
     public bool IsProduct { get; set; }
 
-    [JsonProperty("is_material")]
+    [JsonPropertyName("is_material")]
     public bool IsMaterial { get; set; }
 
-    [JsonProperty("is_semi_product")]
+    [JsonPropertyName("is_semi_product")]
     public bool IsSemiProduct { get; set; }
 
-    [JsonProperty("barcodes")]
+    [JsonPropertyName("barcodes")]
     public List<BarcodeResponse> Barcodes { get; set; } = new List<BarcodeResponse>();
 
-    [JsonProperty("suppliers")]
+    [JsonPropertyName("suppliers")]
     public List<DataResponse> Suppliers { get; set; } = new List<DataResponse>();
 
-    [JsonProperty("organizations")]
+    [JsonPropertyName("organizations")]
     public List<Organization> Organizations { get; set; } = new List<Organization>();
 
-    [JsonProperty("prices")]
+    [JsonPropertyName("prices")]
     public List<Price> Prices { get; set; } = new List<Price>();
 
-    [JsonProperty("warehouses")]
+    [JsonPropertyName("warehouses")]
     public List<Warehouse> Warehouses { get; set; } = new List<Warehouse>();
 
-    [JsonProperty("tax_ids")]
+    [JsonPropertyName("tax_ids")]
     public List<string> TaxIds { get; set; } = new List<string>();
 
     public class Part
     {
-        [JsonProperty("mark")]
+        [JsonPropertyName("mark")]
         public string Mark { get; set; }
     }
 
     public class BarcodeResponse
     {
-        [JsonProperty("barcode")]
+        [JsonPropertyName("barcode")]
         public string Barcode { get; set; }
 
-        [JsonProperty("is_active")]
+        [JsonPropertyName("is_active")]
         public bool IsActive { get; set; }
 
         public ProductTable.BarcodeItem Get() => new ProductTable.BarcodeItem
@@ -95,34 +95,34 @@ internal class ProductResponse
 
     public class Organization
     {
-        [JsonProperty("organization_id")]
+        [JsonPropertyName("organization_id")]
         public string OrganizationId { get; set; }
 
-        [JsonProperty("amount")]
+        [JsonPropertyName("amount")]
         public float Amount { get; set; }
 
-        [JsonProperty("in_transit")]
+        [JsonPropertyName("in_transit")]
         public float InTransit { get; set; }
 
-        [JsonProperty("trash")]
+        [JsonPropertyName("trash")]
         public float Trash { get; set; }
 
-        [JsonProperty("booked")]
+        [JsonPropertyName("booked")]
         public float Booked { get; set; }
 
-        [JsonProperty("yellow_line")]
+        [JsonPropertyName("yellow_line")]
         public float? YellowLine { get; set; }
 
-        [JsonProperty("red_line")]
+        [JsonPropertyName("red_line")]
         public float? RedLine { get; set; }
 
-        [JsonProperty("max_stock")]
+        [JsonPropertyName("max_stock")]
         public float? MaxStock { get; set; }
 
-        [JsonProperty("is_available")]
+        [JsonPropertyName("is_available")]
         public bool IsAvailable { get; set; }
 
-        [JsonProperty("is_available_for_sale")]
+        [JsonPropertyName("is_available_for_sale")]
         public bool IsAvailableForSale { get; set; }
 
         public ProductOrganization Get(string ProductId) => new()
@@ -143,28 +143,28 @@ internal class ProductResponse
 
     public class Price
     {
-        [JsonProperty("_id")]
+        [JsonPropertyName("_id")]
         public string Id { get; set; }
 
-        [JsonProperty("price_id")]
+        [JsonPropertyName("price_id")]
         public string PriceId { get; set; }
 
-        [JsonProperty("product_id")]
+        [JsonPropertyName("product_id")]
         public string ProductId { get; set; }
 
-        [JsonProperty("organization_id")]
+        [JsonPropertyName("organization_id")]
         public string OrganizationId { get; set; }
 
-        [JsonProperty("amount")]
+        [JsonPropertyName("amount")]
         public double Amount { get; set; }
 
-        [JsonProperty("min_price")]
+        [JsonPropertyName("min_price")]
         public double? MinPrice { get; set; }
 
-        [JsonProperty("max_price")]
+        [JsonPropertyName("max_price")]
         public double? MaxPrice { get; set; }
 
-        [JsonProperty("min_sale_amount")]
+        [JsonPropertyName("min_sale_amount")]
         public double? MinSaleAmount { get; set; }
 
         public ProductPrice Get() => new()
@@ -182,28 +182,28 @@ internal class ProductResponse
 
     public class Warehouse
     {
-        [JsonProperty("_id")]
+        [JsonPropertyName("_id")]
         public string Id { get; set; }
 
-        [JsonProperty("warehouse_id")]
+        [JsonPropertyName("warehouse_id")]
         public string WarehouseId { get; set; }
 
-        [JsonProperty("organization_id")]
+        [JsonPropertyName("organization_id")]
         public string OrganizationId { get; set; }
 
-        [JsonProperty("product_id")]
+        [JsonPropertyName("product_id")]
         public string ProductId { get; set; }
 
-        [JsonProperty("booked")]
+        [JsonPropertyName("booked")]
         public float Booked { get; set; }
 
-        [JsonProperty("in_trash")]
+        [JsonPropertyName("in_trash")]
         public float InTrash { get; set; }
 
-        [JsonProperty("in_transit")]
+        [JsonPropertyName("in_transit")]
         public float InTransit { get; set; }
 
-        [JsonProperty("amount")]
+        [JsonPropertyName("amount")]
         public double Amount { get; set; }
 
 
@@ -222,28 +222,28 @@ internal class ProductResponse
 
     public class DimensionResponse
     {
-        [JsonProperty("shape")]
+        [JsonPropertyName("shape")]
         public string Shape { get; set; }
 
-        [JsonProperty("netto_weight")]
+        [JsonPropertyName("netto_weight")]
         public double NetWeight { get; set; }
 
-        [JsonProperty("gross_weight")]
+        [JsonPropertyName("gross_weight")]
         public double GrossWeight { get; set; }
 
-        [JsonProperty("height")]
+        [JsonPropertyName("height")]
         public double Height { get; set; }
 
-        [JsonProperty("width")]
+        [JsonPropertyName("width")]
         public double Width { get; set; }
 
-        [JsonProperty("volume")]
+        [JsonPropertyName("volume")]
         public double Volume { get; set; }
 
-        [JsonProperty("diameter")]
+        [JsonPropertyName("diameter")]
         public double Diameter { get; set; }
 
-        [JsonProperty("length")]
+        [JsonPropertyName("length")]
         public double Length { get; set; }
     }
 
@@ -251,31 +251,31 @@ internal class ProductResponse
     {
         Id = Id,
         Name = Name,
-            CategoryId = Category?.Id,
-            CategoryName = Category?.Name,
-            BoxTypeId = BoxTypeId,
-            BoxItem = BoxItem,
-            BoxItemBarcode = BoxItemBarcode,
-            UnitMeasurementId = UnitMeasurementId,
-            Sku = Sku,
-            Barcode = Barcode,
-            Barcodes = Barcodes.Select(it => it.Get()).ToList(),
-            Image = Image,
-            IsMarked = IsMarked,
-            IsProduct = IsProduct,
-            IsMaterial = IsMaterial,
-            IsSemiProduct = IsSemiProduct,
-            TaxIds = new Domain.Entities.StringList { value = TaxIds },
-            Shape = Dimension?.Shape,
-            NetWeight = Dimension?.NetWeight ?? 0.0,
-            GrossWeight = Dimension?.GrossWeight ?? 0.0,
-            Height = Dimension?.Height ?? 0.0,
-            Width = Dimension?.Width ?? 0.0,
-            Volume = Dimension?.Volume ?? 0.0,
-            Diameter = Dimension?.Diameter ?? 0.0,
-            Length = Dimension?.Length ?? 0.0,
-            Suppliers = Suppliers.Select(it => new ProductTable.Supplier { Id = it.Id, Name = it.Name }).ToList()
-        };
+        CategoryId = Category?.Id,
+        CategoryName = Category?.Name,
+        BoxTypeId = BoxTypeId,
+        BoxItem = BoxItem,
+        BoxItemBarcode = BoxItemBarcode,
+        UnitMeasurementId = UnitMeasurementId,
+        Sku = Sku,
+        Barcode = Barcode,
+        Barcodes = Barcodes.Select(it => it.Get()).ToList(),
+        Image = Image,
+        IsMarked = IsMarked,
+        IsProduct = IsProduct,
+        IsMaterial = IsMaterial,
+        IsSemiProduct = IsSemiProduct,
+        TaxIds = TaxIds,
+        Shape = Dimension?.Shape,
+        NetWeight = Dimension?.NetWeight ?? 0.0,
+        GrossWeight = Dimension?.GrossWeight ?? 0.0,
+        Height = Dimension?.Height ?? 0.0,
+        Width = Dimension?.Width ?? 0.0,
+        Volume = Dimension?.Volume ?? 0.0,
+        Diameter = Dimension?.Diameter ?? 0.0,
+        Length = Dimension?.Length ?? 0.0,
+        Suppliers = Suppliers.Select(it => new ProductTable.Supplier { Id = it.Id, Name = it.Name }).ToList()
+    };
 
 }
 

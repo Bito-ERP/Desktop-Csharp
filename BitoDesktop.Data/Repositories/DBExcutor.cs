@@ -11,14 +11,9 @@ public delegate void TransactionExcutor(NpgsqlConnection con);
 
 public class DBExcutor
 {
-    private readonly string _connectionString;
+    private static readonly string _connectionString = "Host=localhost;Port=5432;Database=maindb;Username=postgres;Password=password;";
 
-    public DBExcutor()
-    {
-        _connectionString = "Host=localhost;Port=5432;Database=maindb;Username=postgres;Password=password;";
-    }
-
-    public async Task<T> InTransaction<T>(Func<NpgsqlConnection, Task<T>> func)
+    public static async Task<T> InTransaction<T>(Func<NpgsqlConnection, Task<T>> func)
     {
         using var connection = new NpgsqlConnection(_connectionString);
         connection.Open();
@@ -36,7 +31,7 @@ public class DBExcutor
         }
     }
 
-    public async Task<int> ExecuteAsync(string sql, object parameters = null, NpgsqlConnection connection = null)
+    public static async Task<int> ExecuteAsync(string sql, object parameters = null, NpgsqlConnection connection = null)
     {
         if (connection == null)
             using (connection = new NpgsqlConnection(_connectionString))
@@ -48,7 +43,7 @@ public class DBExcutor
             return await connection.ExecuteAsync(sql, parameters);
     }
 
-    public async Task<IEnumerable<T>> QueryAsync<T>(string sql, object parameters = null)
+    public static async Task<IEnumerable<T>> QueryAsync<T>(string sql, object parameters = null)
     {
         using var connection = new NpgsqlConnection(_connectionString);
         connection.Open();
@@ -58,7 +53,7 @@ public class DBExcutor
     }
 
 
-    public async Task<T> QuerySingleOrDefaultAsync<T>(string sql, object parameters = null, NpgsqlConnection connection = null)
+    public static async Task<T> QuerySingleOrDefaultAsync<T>(string sql, object parameters = null, NpgsqlConnection connection = null)
     {
         if (connection == null)
             using (connection = new NpgsqlConnection(_connectionString))

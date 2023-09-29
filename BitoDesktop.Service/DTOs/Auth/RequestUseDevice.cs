@@ -4,17 +4,18 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace BitoDesktop.Service.DTOs.Auth;
 internal class RequestUseDevice
 {
-    [JsonProperty("_id"), Required]
+    [JsonPropertyName("_id"), Required]
     public string Id { get; set; }
 
-    [JsonProperty("device_name"), Required]
+    [JsonPropertyName("device_name"), Required]
     public string DeviceName { get; set; }
 
-    [JsonProperty("imei"), Required]
+    [JsonPropertyName("imei"), Required]
     public string Imei { get; set; }
 }
