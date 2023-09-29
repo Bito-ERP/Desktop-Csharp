@@ -46,6 +46,11 @@ public partial class ProductService : IProductService
         await measurementRepo.ReplaceAll(measurementResponse.Select(it => it.Get()));
         await measurementRepo.GetAll();
 
+        var paymentMethodResponse = (await PaymentMethodApi.GetAll()).Data.PageData;
+        var paymentMethodRepo = new PaymentMethodRepository();
+        await paymentMethodRepo.ReplaceAll(paymentMethodResponse.Select(it => it.Get()));
+        await paymentMethodRepo.GetAll();
+
         var response = (await ProductApi.GetPage(new RequestPage { Limit = 100 })).Data.PageData;
         var organizations = new List<ProductOrganization>();
         var warehouses = new List<ProductWarehouse>();
