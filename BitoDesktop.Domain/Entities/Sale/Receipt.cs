@@ -245,11 +245,11 @@ public class ReceiptItem
     [Required]
     public double AddedTax { get; set; }
 
-    public IEnumerable<ReceiptDiscount> Discounts { get; set; }
+    public List<ReceiptDiscount> Discounts { get; set; }
 
-    public IEnumerable<Tax> Taxes { get; set; }
+    public List<Tax> Taxes { get; set; }
 
-    public IEnumerable<String> Marks { get; set; }
+    public List<String> Marks { get; set; }
 
 
     public class Tax

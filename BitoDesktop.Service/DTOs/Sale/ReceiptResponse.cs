@@ -636,7 +636,7 @@ internal class ReceiptResponse
         public List<Tax> Taxes { get; set; }
 
         [JsonPropertyName("marks")]
-        public string[] Marks { get; set; }
+        public List<string> Marks { get; set; }
 
         public class Tax
         {

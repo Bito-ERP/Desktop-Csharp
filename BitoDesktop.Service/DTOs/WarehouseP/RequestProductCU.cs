@@ -6,7 +6,7 @@ using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace BitoDesktop.Service.DTOs.Warehouse;
+namespace BitoDesktop.Service.DTOs.WarehouseP;
 
 internal class RequestProductCU
 {

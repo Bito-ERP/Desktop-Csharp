@@ -15,4 +15,8 @@ namespace BitoDesktop.Data.Converters
     public class ReceiptItemTaxConverters : JsonConverter<List<ReceiptItem.Tax>>
     {
     };
+
+    public class ReceiptItemDiscountConverters : JsonConverter<List<ReceiptDiscount>>
+    {
+    };
 }

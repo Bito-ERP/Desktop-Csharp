@@ -23,12 +23,12 @@ public class OrganizationRepository
           "DO UPDATE SET " + OrganizationUpdate, items, connection);
     }
 
-    public async Task<int> Insert(Organization paymentMethod)
+    public async Task<int> Insert(Organization item)
     {
         return await DBExcutor.ExecuteAsync(
           "INSERT INTO organization(" + OrganizationColumns + ") VALUES(" + OrganizationValues + ") " +
           "ON CONFLICT (Id) " +
-          "DO UPDATE SET " + OrganizationUpdate, paymentMethod);
+          "DO UPDATE SET " + OrganizationUpdate, item);
     }
 
     public async Task<int> ReplaceAll(IEnumerable<Organization> items)

@@ -3,13 +3,13 @@ using BitoDesktop.Data.IRepositories;
 using BitoDesktop.Data.Repositories.Finance;
 using BitoDesktop.Data.Repositories.Sale;
 using BitoDesktop.Data.Repositories.Settings;
-using BitoDesktop.Data.Repositories.Warehouse;
+using BitoDesktop.Data.Repositories.WarehouseP;
 using BitoDesktop.Domain.Configurations;
 using BitoDesktop.Domain.Entities.Products;
 using BitoDesktop.Domain.Entities.Sale;
 using BitoDesktop.Service.DTOs;
 using BitoDesktop.Service.DTOs.common;
-using BitoDesktop.Service.DTOs.Warehouse;
+using BitoDesktop.Service.DTOs.WarehouseP;
 using BitoDesktop.Service.Exceptions;
 using BitoDesktop.Service.Extensions;
 using BitoDesktop.Service.Helpers;
@@ -87,6 +87,16 @@ public partial class ProductService : IProductService
         var organizationRepo = new OrganizationRepository();
         await organizationRepo.ReplaceAll(organizationResponse.Select(it => it.Get()));
         await organizationRepo.GetAll();
+
+        var warehouseResponse = (await WarehouseApi.GetPage(new RequestPage { Limit = 100})).Data.PageData;
+        var warehouseRepo = new WarehouseRepository();
+        await warehouseRepo.Insert(warehouseResponse.Select(it => it.Get()));
+        await warehouseRepo.GetWarehouses(0, 100, null, "63d23495f1cf6851fcaf832b", null);
+
+        var priceResponse = (await PriceApi.GetAll()).Data;
+        var priceRepo = new PriceRepository();
+        await priceRepo.ReplaceAll(priceResponse.Select(it => it.Get()));
+        await priceRepo.GetPrices(null);
 
         var response = (await ProductApi.GetPage(new RequestPage { Limit = 100 })).Data.PageData;
         var organizations = new List<ProductOrganization>();

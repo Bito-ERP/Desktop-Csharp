@@ -22,6 +22,7 @@ public class DataLoader
         SqlMapper.AddTypeHandler(typeof(List<Currency.Value>), new CurrencyValueConverter());
         SqlMapper.AddTypeHandler(typeof(List<Receipt.Amount>), new ReceiptAmountConverters());
         SqlMapper.AddTypeHandler(typeof(List<ReceiptItem.Tax>), new ReceiptItemTaxConverters());
+        SqlMapper.AddTypeHandler(typeof(List<ReceiptDiscount>), new ReceiptItemDiscountConverters());
 
     }
 }

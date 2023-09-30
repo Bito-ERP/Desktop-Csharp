@@ -12,7 +12,7 @@ using BitoDesktop.Data.Converters;
 using Dapper;
 using Npgsql;
 
-namespace BitoDesktop.Data.Repositories.Warehouse;
+namespace BitoDesktop.Data.Repositories.WarehouseP;
 
 public class ProductRepository : IProductRepository
 {

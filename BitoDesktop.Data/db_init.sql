@@ -96,6 +96,7 @@ CREATE TABLE IF NOT EXISTS discount(
 
 CREATE TABLE IF NOT EXISTS pos_page(
     id TEXT NOT NULL PRIMARY KEY,
+	organizationId TEXT NOT NULL,
 	name TEXT NOT NULL,
 	"order" INTEGER NOT NULL
 );
@@ -104,19 +105,6 @@ CREATE TABLE IF NOT EXISTS pos_table(
     id TEXT NOT NULL PRIMARY KEY,
 	name TEXT NOT NULL,
 	"order" INTEGER NOT NULL
-);
-
-CREATE TABLE IF NOT EXISTS pos_ticket(
-    id SERIAL NOT NULL PRIMARY KEY,
-	name TEXT NOT NULL,
-	overallSum REAL NOT NULL,
-	priceId TEXT NOT NULL,
-	warehouseId TEXT NOT NULL,
-	createdAt INTEGER NOT NULL,
-	tableId TEXT,
-	comment TEXT,
-	customerId TEXT,
-	discounts TEXT
 );
 
 CREATE TABLE IF NOT EXISTS employee(
@@ -155,4 +143,257 @@ CREATE TABLE IF NOT EXISTS employee_position(
 		positionId
 	)
 );
+
+CREATE TABLE IF NOT EXISTS unit_measurement(
+    id TEXT NOT NULL PRIMARY KEY,
+    code TEXT,
+    shortName TEXT,
+    name TEXT NOT NULL,
+    decimalCount INTEGER NOT NULL,
+    status TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS currency(
+    id TEXT NOT NULL PRIMARY KEY,
+    name TEXT NOT NULL,
+    values TEXT NOT NULL,
+    side TEXT NOT NULL,
+    isMain BOOL NOT NULL,
+    symbol TEXT,
+	updatedAt TIMESTAMP WITH TIME ZONE NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS payment_method(
+    id TEXT NOT NULL PRIMARY KEY,
+    name TEXT NOT NULL,
+    isEnabled BOOL NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS receipt(
+    uuid TEXT NOT NULL PRIMARY KEY,
+    id TEXT NOT NULL,
+    organizationId TEXT NOT NULL,
+    counter INTEGER NOT NULL,
+    synced BOOL NOT NULL,
+    calcAddedTaxAfterDiscount BOOL NOT NULL,
+    calcIncludedTaxAfterDiscount BOOL NOT NULL,
+    calcSaleDiscountAfterProducts BOOL NOT NULL,
+    totalToPay REAL NOT NULL,
+    totalToRefund REAL,
+    totalPrice REAL NOT NULL,
+    productsTotalDiscount REAL NOT NULL,
+    saleTotalDiscount REAL NOT NULL,
+    totalIncludedTax REAL NOT NULL,
+    totalAddedTax REAL NOT NULL,
+    isRefund BOOL NOT NULL,
+    state TEXT NOT NULL,
+    number INTEGER NOT NULL,
+    refundNumber INTEGER,
+    refundUUID TEXT,
+    cashboxId TEXT NOT NULL,
+    cashboxName TEXT NOT NULL,
+    deviceId TEXT,
+    deviceName TEXT,
+    creatorId TEXT NOT NULL,
+    creatorName TEXT NOT NULL,
+	responsibleId TEXT,
+	responsibleName TEXT,
+    customerId TEXT,
+    customerName TEXT,
+    currencyId TEXT NOT NULL,
+    currencyName TEXT NOT NULL,
+    currencySide TEXT NOT NULL,
+    currencySymbol TEXT,
+    baseCurrencyValue REAL NOT NULL,
+    earnedCashbackId TEXT,
+    earnedCashbackCurrencyId TEXT,
+    earnedCashbackCurrencyName TEXT,
+    earnedCashbackCurrencyValue REAL,
+    earnedCashbackCurrencySide TEXT,
+    earnedCashbackCurrencySymbol TEXT,
+    earnedCashbackAmount REAL,
+    customerBeforeBalance TEXT NOT NULL,
+    customerAfterBalance TEXT NOT NULL,
+    customerBeforeCashback TEXT NOT NULL,
+    customerAfterCashback TEXT NOT NULL,
+    warehouseId TEXT NOT NULL,
+    warehouseName TEXT NOT NULL,
+    contractId TEXT,
+    contractCode TEXT,
+    contractNumber TEXT,
+    orderId TEXT,
+    orderCode TEXT,
+    orderNumber TEXT,
+    deliveryLatitude REAL,
+    deliveryLongitude REAL,
+    deliveryLocationName TEXT,
+    deliveryDate TIMESTAMP WITH TIME ZONE,
+    isTrash BOOL,
+    sendSms BOOL NOT NULL,
+    soldAt TIMESTAMP WITH TIME ZONE NOT NULL,
+    failed INTEGER NOT NULL,
+    errorCode INTEGER NOT NULL,
+    errorData TEXT
+);
+
+CREATE TABLE IF NOT EXISTS receipt_item (
+    id TEXT NOT NULL PRIMARY KEY,
+    receiptUUID TEXT NOT NULL,
+    synced BOOL NOT NULL,
+    productId TEXT NOT NULL,
+    name TEXT NOT NULL,
+    image TEXT,
+    categoryName TEXT,
+    sku TEXT NOT NULL,
+    barcode TEXT,
+    unitMeasurement TEXT NOT NULL,
+    isMarked BOOL NOT NULL,
+    amount REAL NOT NULL,
+    amountInBox REAL,
+    soldAmount REAL NOT NULL,
+    refundAmount REAL NOT NULL,
+    price REAL NOT NULL,
+    realPrice REAL NOT NULL,
+    productDiscount REAL NOT NULL,
+    distributedDiscount REAL NOT NULL,
+    includedTax REAL NOT NULL,
+    addedTax REAL NOT NULL,
+    discounts TEXT,
+    taxes TEXT,
+    marks TEXT
+);
+
+CREATE TABLE IF NOT EXISTS receipt_payment (
+    id TEXT NOT NULL,
+    receiptId TEXT NOT NULL,
+    synced BOOL NOT NULL,
+    amount REAL NOT NULL,
+    paid REAL NOT NULL,
+    baseCurrencyValue REAL NOT NULL,
+    refunded REAL NOT NULL,
+    paymentMethodId TEXT NOT NULL,
+    paymentMethodName TEXT NOT NULL,
+    currencyId TEXT NOT NULL,
+    currencyName TEXT NOT NULL,
+    currencyValue REAL NOT NULL,
+    currencySide TEXT NOT NULL,
+    currencySymbol TEXT,
+    PRIMARY KEY (id, receiptId)
+);
+
+CREATE TABLE IF NOT EXISTS receipt_installment (
+    id TEXT NOT NULL,
+    receiptId TEXT NOT NULL,
+    date TIMESTAMP WITH TIME ZONE NOT NULL,
+    amount REAL NOT NULL,
+    PRIMARY KEY (id, receiptId)
+);
+
+CREATE TABLE IF NOT EXISTS receipt_cashback (
+    id TEXT NOT NULL,
+    receiptId TEXT NOT NULL,
+    amount REAL NOT NULL,
+    paid REAL NOT NULL,
+    baseCurrencyValue REAL NOT NULL,
+    currencyId TEXT NOT NULL,
+    currencyName TEXT NOT NULL,
+    currencyValue REAL NOT NULL,
+    currencySide TEXT NOT NULL,
+    currencySymbol TEXT,
+    PRIMARY KEY (id, receiptId)
+);
+
+CREATE TABLE IF NOT EXISTS receipt_discount (
+    id TEXT NOT NULL,
+    receiptId TEXT NOT NULL,
+    name TEXT,
+    applyType TEXT NOT NULL,
+    value REAL NOT NULL,
+    currencyId TEXT,
+    isCustom BOOL NOT NULL,
+    PRIMARY KEY (id, receiptId)
+);
+
+CREATE TABLE IF NOT EXISTS receipt_change (
+    id TEXT NOT NULL,
+    receiptId TEXT NOT NULL,
+    amount REAL NOT NULL,
+    paid REAL NOT NULL,
+    baseCurrencyValue REAL NOT NULL,
+    paymentMethodId TEXT NOT NULL,
+    paymentMethodName TEXT NOT NULL,
+    currencyId TEXT NOT NULL,
+    currencyName TEXT NOT NULL,
+    currencyValue REAL NOT NULL,
+    currencySide TEXT NOT NULL,
+    currencySymbol TEXT,
+    PRIMARY KEY (id, receiptId)
+);
+
+CREATE TABLE IF NOT EXISTS invoice (
+    id TEXT NOT NULL PRIMARY KEY,
+    organizationId TEXT NOT NULL,
+    type TEXT NOT NULL,
+    number TEXT NOT NULL,
+    paymentTypeId TEXT NOT NULL,
+    paymentTypeName TEXT NOT NULL,
+    userType TEXT,
+    paymentFor TEXT,
+    isRefund BOOL NOT NULL,
+    date TIMESTAMP WITH TIME ZONE NOT NULL,
+    customerId TEXT,
+    customerName TEXT,
+    employeeId TEXT,
+    employeeName TEXT,
+    supplierId TEXT,
+    supplierName TEXT,
+    personId TEXT,
+    personName TEXT,
+    toBePaid REAL NOT NULL,
+    paid REAL NOT NULL,
+    toBeRefunded REAL NOT NULL,
+    refunded REAL NOT NULL,
+    paidByBalance REAL NOT NULL,
+    paidByCashback REAL NOT NULL,
+    currencyId TEXT NOT NULL,
+    tradeId TEXT
+);
+
+CREATE TABLE IF NOT EXISTS organization(
+    id TEXT NOT NULL PRIMARY KEY,
+	name TEXT NOT NULL,
+	currencyId TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS price(
+    id TEXT PRIMARY KEY,
+    code TEXT,
+    name TEXT NOT NULL,
+    shortName TEXT,
+    status TEXT NOT NULL,
+    currencyId TEXT NOT NULL,
+    type TEXT NOT NULL,
+    minPrice REAL,
+    maxPrice REAL,
+    applyType TEXT NOT NULL,
+    minSaleAmount REAL,
+    isMain BOOL NOT NULL,
+    canBeUpdated BOOL NOT NULL,
+    employees TEXT
+);
+
+CREATE TABLE IF NOT EXISTS warehouse(
+    id TEXT PRIMARY KEY,
+    name TEXT NOT NULL,
+    organizationId TEXT NOT NULL,
+    responsibleEmployeeId TEXT NOT NULL,
+    isMain BOOL NOT NULL,
+    status TEXT NOT NULL,
+    code TEXT
+);
+
+
+
+
+
 

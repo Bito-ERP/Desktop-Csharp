@@ -5,7 +5,7 @@ using BitoDesktop.Service.DTOs.Common;
 using BitoDesktop.Domain.Entities.Products;
 using System.Text.Json.Serialization;
 
-namespace BitoDesktop.Service.DTOs.Warehouse;
+namespace BitoDesktop.Service.DTOs.WarehouseP;
 
 internal class ProductResponse
 {
