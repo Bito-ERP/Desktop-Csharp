@@ -38,7 +38,7 @@ public class ProductRepository : IProductRepository
     {
     }
 
-    public async void Insert(
+    public async Task Insert(
        IEnumerable<ProductTable> products,
        IEnumerable<ProductOrganization> organization,
        IEnumerable<ProductWarehouse> warehouses,
@@ -50,7 +50,7 @@ public class ProductRepository : IProductRepository
             await Insert(products, connection);
             await InsertOrganizations(organization, connection);
             await InsertWarehouses(warehouses, connection);
-            return await InsertPrices(prices, connection);
+            await InsertPrices(prices, connection);
         });
     }
 

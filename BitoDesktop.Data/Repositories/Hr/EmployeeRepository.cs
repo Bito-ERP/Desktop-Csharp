@@ -97,7 +97,7 @@ public class EmployeeRepository
         else
             return await DBExcutor.InTransaction(async connection =>
                {
-                   var employee = await Get(employeeId, connection);
+                   var employee = await Get(employeeId);
                    if (employee != null)
                        employee.Positions = await GetPositions(employeeId, organizationId);
                    return employee;
@@ -176,12 +176,11 @@ public class EmployeeRepository
     }
 
 
-    private async Task<Employee> Get(string employeeId, NpgsqlConnection connection = null)
+    private async Task<Employee> Get(string employeeId)
     {
         return await DBExcutor.QuerySingleOrDefaultAsync<Employee>(
             "SELECT * FROM employee WHERE Id = @employeeId",
-            new { employeeId },
-            connection
+            new { employeeId }
             );
     }
 

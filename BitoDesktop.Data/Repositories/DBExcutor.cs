@@ -31,6 +31,22 @@ public class DBExcutor
         }
     }
 
+    public static async Task InTransaction(Func<NpgsqlConnection, Task> func)
+    {
+        using var connection = new NpgsqlConnection(_connectionString);
+        connection.Open();
+        using var transaction = connection.BeginTransaction();
+        try
+        {
+            await func(connection);
+            transaction.Commit();
+        }
+        catch (Exception)
+        {
+            transaction.Rollback();
+        }
+    }
+
     public static async Task<int> ExecuteAsync(string sql, object parameters = null, NpgsqlConnection connection = null)
     {
         if (connection == null)
@@ -53,16 +69,13 @@ public class DBExcutor
     }
 
 
-    public static async Task<T> QuerySingleOrDefaultAsync<T>(string sql, object parameters = null, NpgsqlConnection connection = null)
+    public static async Task<T> QuerySingleOrDefaultAsync<T>(string sql, object parameters = null)
     {
-        if (connection == null)
-            using (connection = new NpgsqlConnection(_connectionString))
+            using (var connection = new NpgsqlConnection(_connectionString))
             {
                 connection.Open();
                 return await connection.QuerySingleOrDefaultAsync<T>(sql, parameters);
-            }
-        else
-            return await connection.QuerySingleOrDefaultAsync<T>(sql, parameters);
+            } 
     }
 
 }

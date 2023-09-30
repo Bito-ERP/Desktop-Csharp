@@ -60,9 +60,9 @@ public class Receipt
     public string State { get; set; }
 
     [Required]
-    public int Number { get; set; }
+    public long Number { get; set; }
 
-    public int? RefundNumber { get; set; }
+    public long? RefundNumber { get; set; }
 
     public string RefundUuid { get; set; }
 
@@ -81,7 +81,9 @@ public class Receipt
 
     [Required]
     public string CreatorName { get; set; }
+    public string ResponsibleId { get; set; }
 
+    public string ResponsibleName { get; set; }
     public string CustomerId { get; set; }
 
     public string CustomerName { get; set; }
@@ -168,11 +170,11 @@ public class Receipt
 
     public string ErrorData { get; set; }
 
-    public IEnumerable<ReceiptPayment> Payments { get; set; }
-    public IEnumerable<ReceiptInstallment> Installments { get; set; }
-    public IEnumerable<ReceiptCashback> Cashbacks { get; set; }
-    public IEnumerable<ReceiptDiscount> Discounts { get; set; }
-    public IEnumerable<ReceiptChange> Changes { get; set; }
+    public IEnumerable<ReceiptPayment> Payments { get; set; } = null;
+    public IEnumerable<ReceiptInstallment> Installments { get; set; } = null;
+    public IEnumerable<ReceiptCashback> Cashbacks { get; set; } = null;
+    public IEnumerable<ReceiptDiscount> Discounts { get; set; } = null;
+    public IEnumerable<ReceiptChange> Changes { get; set; } = null;
 
 
     public class Amount
@@ -287,6 +289,9 @@ public class ReceiptPayment
 
     [Required]
     public float BaseCurrencyValue { get; set; }
+
+    [Required]
+    public double Refunded { get; set; }
 
     [Required]
     public string PaymentMethodId { get; set; }

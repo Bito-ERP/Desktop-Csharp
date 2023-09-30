@@ -1,10 +1,12 @@
 using AutoMapper;
 using BitoDesktop.Data.IRepositories;
 using BitoDesktop.Data.Repositories.Finance;
+using BitoDesktop.Data.Repositories.Sale;
 using BitoDesktop.Data.Repositories.Settings;
 using BitoDesktop.Data.Repositories.Warehouse;
 using BitoDesktop.Domain.Configurations;
 using BitoDesktop.Domain.Entities.Products;
+using BitoDesktop.Domain.Entities.Sale;
 using BitoDesktop.Service.DTOs;
 using BitoDesktop.Service.DTOs.common;
 using BitoDesktop.Service.DTOs.Warehouse;
@@ -51,6 +53,36 @@ public partial class ProductService : IProductService
         await paymentMethodRepo.ReplaceAll(paymentMethodResponse.Select(it => it.Get()));
         await paymentMethodRepo.GetAll();
 
+        var receiptdResponse = (await ReceiptApi.GetPage(new RequestPage { Limit = 100 })).Data.PageData;
+        var receiptdRepo = new ReceiptRepository();
+
+        var payments = new List<ReceiptPayment>();
+        var installments = new List<ReceiptInstallment>();
+        var cashbacks = new List<ReceiptCashback>();
+        var discounts = new List<ReceiptDiscount>();
+        var changes = new List<ReceiptChange>();
+
+        var receipts = receiptdResponse.Select(receipt =>
+        {
+            receipt.Payments.ForEach(it => payments.Add(it.Get(receipt.Uuid)));
+            receipt.InstallmentPlans.ForEach(it => installments.Add(it.Get(receipt.Uuid)));
+            receipt.AppliedCashbacks.ForEach(it => cashbacks.Add(it.Get(receipt.Uuid)));
+            receipt.Discounts.ForEach(it => discounts.Add(it.Get(receipt.Uuid, receipt.Currency.Id)));
+            receipt.Changes.ForEach(it => changes.Add(it.Get(receipt.Uuid)));
+
+            return receipt.Get("63d23495f1cf6851fcaf832b");
+        }).ToList();
+
+        await receiptdRepo.Insert(
+            receipts,
+            payments,
+            installments,
+            cashbacks,
+            discounts,
+            changes
+            );
+        await receiptdRepo.GetReceipts(0, 100, "63d23495f1cf6851fcaf832b", null, null, null, null, null, null, null, null, null, null, false);
+
         var response = (await ProductApi.GetPage(new RequestPage { Limit = 100 })).Data.PageData;
         var organizations = new List<ProductOrganization>();
         var warehouses = new List<ProductWarehouse>();
@@ -64,7 +96,7 @@ public partial class ProductService : IProductService
             return product.Get();
         }).ToList();
 
-        repository.Insert(
+        await repository.Insert(
             products,
             organizations,
             warehouses,
