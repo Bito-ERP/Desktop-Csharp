@@ -73,22 +73,27 @@ public partial class ProductService : IProductService
             return receipt.Get("63d23495f1cf6851fcaf832b");
         }).ToList();
 
-        await receiptdRepo.Insert(
-            receipts,
-            payments,
-            installments,
-            cashbacks,
-            discounts,
-            changes
-            );
-        await receiptdRepo.GetReceipts(0, 100, "63d23495f1cf6851fcaf832b", null, null, null, null, null, null, null, null, null, null, false);
+       await receiptdRepo.Insert(
+           receipts,
+           payments,
+           installments,
+           cashbacks,
+           discounts,
+           changes
+           );
+        var receipt_ = await receiptdRepo.GetReceipts(0, 100, "63d23495f1cf6851fcaf832b", null, null, null, null, null, null, null, null, null, null, false);
+
+        var organizationResponse = (await OrganizationApi.GetAll()).Data;
+        var organizationRepo = new OrganizationRepository();
+        await organizationRepo.ReplaceAll(organizationResponse.Select(it => it.Get()));
+        await organizationRepo.GetAll();
 
         var response = (await ProductApi.GetPage(new RequestPage { Limit = 100 })).Data.PageData;
         var organizations = new List<ProductOrganization>();
         var warehouses = new List<ProductWarehouse>();
         var prices = new List<ProductPrice>();
 
-        var products = response.Select<ProductResponse, ProductTable>(product =>
+        var products = response.Select(product =>
         {
             product.Organizations.ForEach(it => organizations.Add(it.Get(product.Id)));
             product.Warehouses.ForEach(it => warehouses.Add(it.Get()));

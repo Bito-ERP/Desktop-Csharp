@@ -14,7 +14,7 @@ public class ReceiptRepository
 
     private static readonly string ReceiptColumns = "Uuid, Id, OrganizationId, Counter, Synced, CalcAddedTaxAfterDiscount, CalcIncludedTaxAfterDiscount, CalcSaleDiscountAfterProducts, TotalToPay, TotalToRefund, TotalPrice, ProductsTotalDiscount, SaleTotalDiscount, TotalIncludedTax, TotalAddedTax, IsRefund, State, Number, RefundNumber, RefundUuid, CashboxId, CashboxName, DeviceId, DeviceName, CreatorId, CreatorName, ResponsibleId, ResponsibleName, CustomerId, CustomerName, CurrencyId, CurrencyName, CurrencySide, CurrencySymbol, BaseCurrencyValue, EarnedCashbackId, EarnedCashbackCurrencyId, EarnedCashbackCurrencyName, EarnedCashbackCurrencyValue, EarnedCashbackCurrencySide, EarnedCashbackCurrencySymbol, EarnedCashbackAmount, CustomerBeforeBalance, CustomerAfterBalance, CustomerBeforeCashback, CustomerAfterCashback, WarehouseId, WarehouseName, ContractId, ContractCode, ContractNumber, OrderId, OrderCode, OrderNumber, DeliveryLatitude, DeliveryLongitude, DeliveryLocationName, DeliveryDate, IsTrash, SendSms, SoldAt, Failed, ErrorCode, ErrorData";
     private static readonly string ReceiptValues = "@Uuid, @Id, @OrganizationId, @Counter, @Synced, @CalcAddedTaxAfterDiscount, @CalcIncludedTaxAfterDiscount, @CalcSaleDiscountAfterProducts, @TotalToPay, @TotalToRefund, @TotalPrice, @ProductsTotalDiscount, @SaleTotalDiscount, @TotalIncludedTax, @TotalAddedTax, @IsRefund, @State, @Number, @RefundNumber, @RefundUuid, @CashboxId, @CashboxName, @DeviceId, @DeviceName, @CreatorId, @CreatorName, @ResponsibleId, @ResponsibleName, @CustomerId, @CustomerName, @CurrencyId, @CurrencyName, @CurrencySide, @CurrencySymbol, @BaseCurrencyValue, @EarnedCashbackId, @EarnedCashbackCurrencyId, @EarnedCashbackCurrencyName, @EarnedCashbackCurrencyValue, @EarnedCashbackCurrencySide, @EarnedCashbackCurrencySymbol, @EarnedCashbackAmount, @CustomerBeforeBalance, @CustomerAfterBalance, @CustomerBeforeCashback, @CustomerAfterCashback, @WarehouseId, @WarehouseName, @ContractId, @ContractCode, @ContractNumber, @OrderId, @OrderCode, @OrderNumber, @DeliveryLatitude, @DeliveryLongitude, @DeliveryLocationName, @DeliveryDate, @IsTrash, @SendSms, @SoldAt, @Failed, @ErrorCode, @ErrorData";
-    private static readonly string ReceiptUpdate = "Uuid = @Uuid, Id = @Id, OrganizationId = @OrganizationId, Counter = @Counter, Synced = @Synced, CalcAddedTaxAfterDiscount = @CalcAddedTaxAfterDiscount, CalcIncludedTaxAfterDiscount = @CalcIncludedTaxAfterDiscount, CalcSaleDiscountAfterProducts = @CalcSaleDiscountAfterProducts, TotalToPay = @TotalToPay, TotalToRefund = @TotalToRefund, TotalPrice = @TotalPrice, ProductsTotalDiscount = @ProductsTotalDiscount, SaleTotalDiscount = @SaleTotalDiscount, TotalIncludedTax = @TotalIncludedTax, TotalAddedTax = @TotalAddedTax, IsRefund = @IsRefund, State = @State, Number = @Number, RefundNumber = @RefundNumber, RefundUuid = @RefundUuid, CashboxId = @CashboxId, CashboxName = @CashboxName, DeviceId = @DeviceId, DeviceName = @DeviceName, CreatorId = @CreatorId, CreatorName = @CreatorName, ResponsibleId = @ResponsibleId, ResponsibleName = @ResponsibleName, CustomerId = @CustomerId, CustomerName = @CustomerName, CurrencyId = @CurrencyId, CurrencyName = @CurrencyName, CurrencySide = @CurrencySide, CurrencySymbol = @CurrencySymbol, BaseCurrencyValue = @BaseCurrencyValue, EarnedCashbackId = @EarnedCashbackId, EarnedCashbackCurrencyId = @EarnedCashbackCurrencyId, EarnedCashbackCurrencyName = @EarnedCashbackCurrencyName, EarnedCashbackCurrencyValue = @EarnedCashbackCurrencyValue, EarnedCashbackCurrencySide = @EarnedCashbackCurrencySide, EarnedCashbackCurrencySymbol = @EarnedCashbackCurrencySymbol, EarnedCashbackAmount = @EarnedCashbackAmount, CustomerBeforeBalance = @CustomerBeforeBalance, CustomerAfterBalance = @CustomerAfterBalance, CustomerBeforeCashback = @CustomerBeforeCashback, CustomerAfterCashback = @CustomerAfterCashback, WarehouseId = @WarehouseId, WarehouseName = @WarehouseName, ContractId = @ContractId, ContractCode = @ContractCode, ContractNumber = @ContractNumber, OrderId = @OrderId, OrderCode = @OrderCode, OrderNumber = @OrderNumber, DeliveryLatitude = @DeliveryLatitude, DeliveryLongitude = @DeliveryLongitude, DeliveryLocationName = @DeliveryLocationName, DeliveryDate = @DeliveryDate, IsTrash = @IsTrash, SendSms = @SendSms, SoldAt = @SoldAt, Failed = @Failed, ErrorCode = @ErrorCode, ErrorData = @ErrorData";
+    private static readonly string ReceiptUpdate = "Id = @Id, OrganizationId = @OrganizationId, Counter = @Counter, Synced = @Synced, CalcAddedTaxAfterDiscount = @CalcAddedTaxAfterDiscount, CalcIncludedTaxAfterDiscount = @CalcIncludedTaxAfterDiscount, CalcSaleDiscountAfterProducts = @CalcSaleDiscountAfterProducts, TotalToPay = @TotalToPay, TotalToRefund = @TotalToRefund, TotalPrice = @TotalPrice, ProductsTotalDiscount = @ProductsTotalDiscount, SaleTotalDiscount = @SaleTotalDiscount, TotalIncludedTax = @TotalIncludedTax, TotalAddedTax = @TotalAddedTax, IsRefund = @IsRefund, State = @State, Number = @Number, RefundNumber = @RefundNumber, RefundUuid = @RefundUuid, CashboxId = @CashboxId, CashboxName = @CashboxName, DeviceId = @DeviceId, DeviceName = @DeviceName, CreatorId = @CreatorId, CreatorName = @CreatorName, ResponsibleId = @ResponsibleId, ResponsibleName = @ResponsibleName, CustomerId = @CustomerId, CustomerName = @CustomerName, CurrencyId = @CurrencyId, CurrencyName = @CurrencyName, CurrencySide = @CurrencySide, CurrencySymbol = @CurrencySymbol, BaseCurrencyValue = @BaseCurrencyValue, EarnedCashbackId = @EarnedCashbackId, EarnedCashbackCurrencyId = @EarnedCashbackCurrencyId, EarnedCashbackCurrencyName = @EarnedCashbackCurrencyName, EarnedCashbackCurrencyValue = @EarnedCashbackCurrencyValue, EarnedCashbackCurrencySide = @EarnedCashbackCurrencySide, EarnedCashbackCurrencySymbol = @EarnedCashbackCurrencySymbol, EarnedCashbackAmount = @EarnedCashbackAmount, CustomerBeforeBalance = @CustomerBeforeBalance, CustomerAfterBalance = @CustomerAfterBalance, CustomerBeforeCashback = @CustomerBeforeCashback, CustomerAfterCashback = @CustomerAfterCashback, WarehouseId = @WarehouseId, WarehouseName = @WarehouseName, ContractId = @ContractId, ContractCode = @ContractCode, ContractNumber = @ContractNumber, OrderId = @OrderId, OrderCode = @OrderCode, OrderNumber = @OrderNumber, DeliveryLatitude = @DeliveryLatitude, DeliveryLongitude = @DeliveryLongitude, DeliveryLocationName = @DeliveryLocationName, DeliveryDate = @DeliveryDate, IsTrash = @IsTrash, SendSms = @SendSms, SoldAt = @SoldAt, Failed = @Failed, ErrorCode = @ErrorCode, ErrorData = @ErrorData";
 
     private static readonly string ItemColumns = "Id, ReceiptUUID, Synced, ProductId, Name, Image, CategoryName, Sku, Barcode, UnitMeasurement, IsMarked, Amount, AmountInBox, SoldAmount, RefundAmount, Price, RealPrice, ProductDiscount, DistributedDiscount, IncludedTax, AddedTax, Discounts, Taxes, Marks";
     private static readonly string ItemValues = "@Id, @ReceiptUUID, @Synced, @ProductId, @Name, @Image, @CategoryName, @Sku, @Barcode, @UnitMeasurement, @IsMarked, @Amount, @AmountInBox, @SoldAmount, @RefundAmount, @Price, @RealPrice, @ProductDiscount, @DistributedDiscount, @IncludedTax, @AddedTax, @Discounts, @Taxes, @Marks";
@@ -217,11 +217,11 @@ public class ReceiptRepository
         {
             if (receipt.Synced)
                 await DBExcutor.ExecuteAsync("DELTE FROM receipt_payment WHERE ReceiptId = @receiptId AND Synced = FALSE", new { receiptId = receipt.Uuid });
-            receipt.Payments = await GetPayments(receipt.Uuid);
-            receipt.Installments = await GetInstallments(receipt.Uuid);
-            receipt.Cashbacks = await GetCashbacks(receipt.Uuid);
-            receipt.Discounts = await GetDiscounts(receipt.Uuid);
-            receipt.Changes = await GetChanges(receipt.Uuid);
+            receipt.Payments = (await GetPayments(receipt.Uuid)).ToList();
+            receipt.Installments = (await GetInstallments(receipt.Uuid)).ToList();
+            receipt.Cashbacks = (await GetCashbacks(receipt.Uuid)).ToList();
+            receipt.Discounts = (await GetDiscounts(receipt.Uuid)).ToList();
+            receipt.Changes = (await GetChanges(receipt.Uuid)).ToList();
         }
 
         return receipt;
@@ -294,11 +294,11 @@ public class ReceiptRepository
 
         foreach (var receipt in receipts)
         {
-            receipt.Payments = await GetPayments(receipt.Uuid);
-            receipt.Installments = await GetInstallments(receipt.Uuid);
-            receipt.Cashbacks = await GetCashbacks(receipt.Uuid);
-            receipt.Discounts = await GetDiscounts(receipt.Uuid);
-            receipt.Changes = await GetChanges(receipt.Uuid);
+            receipt.Payments = (await GetPayments(receipt.Uuid)).ToList();
+            receipt.Installments = (await GetInstallments(receipt.Uuid)).ToList();
+            receipt.Cashbacks = (await GetCashbacks(receipt.Uuid)).ToList();
+            receipt.Discounts = (await GetDiscounts(receipt.Uuid)).ToList();
+            receipt.Changes = (await GetChanges(receipt.Uuid)).ToList();
         }
         return receipts;
     }
@@ -486,7 +486,7 @@ public class ReceiptRepository
         return await DBExcutor.ExecuteAsync(
            "INSERT INTO receipt(" + ReceiptColumns + ") VALUES(" + ReceiptValues + ") " +
             "ON CONFLICT (Uuid) " +
-            "DO UPDATE SET " + ReceiptUpdate, new {items}, connection);
+            "DO UPDATE SET " + ReceiptUpdate, items, connection);
     }
 
     private async Task<int> Insert(IEnumerable<ReceiptPayment> items, NpgsqlConnection connection = null)

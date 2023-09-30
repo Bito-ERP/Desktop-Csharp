@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using System;
 using System.Diagnostics;
+using System.Data.SqlClient;
 
 namespace BitoDesktop.Data.Repositories;
 
@@ -41,8 +42,12 @@ public class DBExcutor
             await func(connection);
             transaction.Commit();
         }
-        catch (Exception)
+        catch (Exception ex)
         {
+#if DEBUG
+            transaction.Rollback();
+            throw;
+#endif
             transaction.Rollback();
         }
     }

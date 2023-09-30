@@ -88,7 +88,7 @@ public class ProductRepository : IProductRepository
         return await DBExcutor.ExecuteAsync(
             "INSERT INTO product(" + ProductColumns + ") VALUES(" + ProductValues + ") " +
             "ON CONFLICT (Id) " +
-            "DO UPDATE SET " + ProductUpdate, entities);
+            "DO UPDATE SET " + ProductUpdate, entities, connection);
     }
 
     public async Task<int> InsertOrganizations(IEnumerable<ProductOrganization> entities, NpgsqlConnection connection = null)

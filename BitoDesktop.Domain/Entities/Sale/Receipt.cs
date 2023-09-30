@@ -117,16 +117,16 @@ public class Receipt
     public double? EarnedCashbackAmount { get; set; }
 
     [Required]
-    public IEnumerable<Amount> CustomerBeforeBalance { get; set; }
+    public List<Amount> CustomerBeforeBalance { get; set; }
 
     [Required]
-    public IEnumerable<Amount> CustomerAfterBalance { get; set; }
+    public List<Amount> CustomerAfterBalance { get; set; }
 
     [Required]
-    public IEnumerable<Amount> CustomerBeforeCashback { get; set; }
+    public List<Amount> CustomerBeforeCashback { get; set; }
 
     [Required]
-    public IEnumerable<Amount> CustomerAfterCashback { get; set; }
+    public List<Amount> CustomerAfterCashback { get; set; }
 
     [Required]
     public string WarehouseId { get; set; }
@@ -170,11 +170,11 @@ public class Receipt
 
     public string ErrorData { get; set; }
 
-    public IEnumerable<ReceiptPayment> Payments { get; set; } = null;
-    public IEnumerable<ReceiptInstallment> Installments { get; set; } = null;
-    public IEnumerable<ReceiptCashback> Cashbacks { get; set; } = null;
-    public IEnumerable<ReceiptDiscount> Discounts { get; set; } = null;
-    public IEnumerable<ReceiptChange> Changes { get; set; } = null;
+    public List<ReceiptPayment> Payments { get; set; } = null;
+    public List<ReceiptInstallment> Installments { get; set; } = null;
+    public List<ReceiptCashback> Cashbacks { get; set; } = null;
+    public List<ReceiptDiscount> Discounts { get; set; } = null;
+    public List<ReceiptChange> Changes { get; set; } = null;
 
 
     public class Amount
