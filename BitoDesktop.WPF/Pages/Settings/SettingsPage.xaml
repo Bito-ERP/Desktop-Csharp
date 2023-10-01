@@ -35,6 +35,12 @@
             <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="FontSize" Value="15" />
         </Style>
+        <Style BasedOn="{StaticResource MaterialDesignRaisedButton}" TargetType="Button">
+            <Setter Property="Height" Value="48" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="md:ElevationAssist.Elevation" Value="Dp0" />
+        </Style>
     </Page.Resources>
 
     <Grid>
@@ -47,97 +53,90 @@
             VerticalAlignment="Top"
             Style="{StaticResource CustomBorder}">
             <StackPanel Grid.Column="1" Margin="0,15">
-                <Border Height="48">
-                    <Grid>
-                        <StackPanel
-                            Margin="10,0"
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Center"
-                            Orientation="Horizontal">
-                            <Image Source="/Icons/Settings/watch.png" />
-                            <TextBlock Text="Sotuvlar tarixi" />
-                        </StackPanel>
-                        <md:PackIcon />
-                    </Grid>
-                </Border>
-                <Border Height="48">
-                    <Grid>
-                        <StackPanel
-                            Margin="10,0"
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Center"
-                            Orientation="Horizontal">
-                            <Image Source="/Icons/Settings/printer.png" />
-                            <TextBlock Text="Printerlar" />
-                        </StackPanel>
-                        <md:PackIcon />
-                    </Grid>
-                </Border>
-                <Border Height="48">
-                    <Grid>
-                        <StackPanel
-                            Margin="10,0"
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Center"
-                            Orientation="Horizontal">
-                            <Image Source="/Icons/Settings/scales.png" />
-                            <TextBlock Text="Tarozi" />
-                        </StackPanel>
-                        <md:PackIcon />
-                    </Grid>
-                </Border>
-                <Border Height="48">
-                    <Grid>
-                        <StackPanel
-                            Margin="10,0"
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Center"
-                            Orientation="Horizontal">
-                            <Image Source="/Icons/Settings/devices.png" />
-                            <TextBlock Text="Qurilmalar" />
-                        </StackPanel>
-                        <md:PackIcon />
-                    </Grid>
-                </Border>
-                <Border Height="48">
-                    <Grid>
-                        <StackPanel
-                            Margin="10,0"
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Center"
-                            Orientation="Horizontal">
-                            <Image Source="/Icons/Settings/companies.png" />
-                            <TextBlock Text="Tashkilotlar" />
-                        </StackPanel>
-                        <md:PackIcon />
-                    </Grid>
-                </Border>
-                <Border Height="48">
-                    <Grid>
-                        <StackPanel
-                            Margin="10,0"
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Center"
-                            Orientation="Horizontal">
-                            <Image Source="/Icons/Settings/pincode.png" />
-                            <TextBlock Text="PINkod almashtirish" />
-                        </StackPanel>
-                        <md:PackIcon />
-                    </Grid>
-                </Border>
-                <Border Height="48">
-                    <Grid>
-                        <StackPanel
-                            Margin="10,0"
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Center"
-                            Orientation="Horizontal">
-                            <Image Source="/Icons/Settings/language.png" />
-                            <TextBlock Text="Dastur tili" />
-                        </StackPanel>
-                        <md:PackIcon />
-                    </Grid>
-                </Border>
+                <Grid>
+                    <StackPanel
+                        Margin="10,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Orientation="Horizontal">
+                        <Image Source="/Icons/Settings/watch.png" />
+                        <TextBlock Text="Sotuvlar tarixi" />
+                    </StackPanel>
+                    <md:PackIcon />
+                    <Button />
+                </Grid>
+                <Grid>
+                    <StackPanel
+                        Margin="10,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Orientation="Horizontal">
+                        <Image Source="/Icons/Settings/printer.png" />
+                        <TextBlock Text="Printerlar" />
+                    </StackPanel>
+                    <md:PackIcon />
+                    <Button />
+                </Grid>
+                <Grid>
+                    <StackPanel
+                        Margin="10,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Orientation="Horizontal">
+                        <Image Source="/Icons/Settings/scales.png" />
+                        <TextBlock Text="Tarozi" />
+                    </StackPanel>
+                    <md:PackIcon />
+                    <Button />
+                </Grid>
+                <Grid>
+                    <StackPanel
+                        Margin="10,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Orientation="Horizontal">
+                        <Image Source="/Icons/Settings/devices.png" />
+                        <TextBlock Text="Qurilmalar" />
+                    </StackPanel>
+                    <md:PackIcon />
+                    <Button />
+                </Grid>
+                <Grid>
+                    <StackPanel
+                        Margin="10,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Orientation="Horizontal">
+                        <Image Source="/Icons/Settings/companies.png" />
+                        <TextBlock Text="Tashkilotlar" />
+                    </StackPanel>
+                    <md:PackIcon />
+                    <Button />
+                </Grid>
+                <Grid>
+                    <StackPanel
+                        Margin="10,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Orientation="Horizontal">
+                        <Image Source="/Icons/Settings/pincode.png" />
+                        <TextBlock Text="PINkod almashtirish" />
+                    </StackPanel>
+                    <md:PackIcon />
+                    <Button />
+                </Grid>
+                <Grid>
+                    <StackPanel
+                        Margin="10,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Orientation="Horizontal">
+                        <Image Source="/Icons/Settings/language.png" />
+                        <TextBlock Text="Dastur tili" />
+                    </StackPanel>
+                    <md:PackIcon />
+                    <Button />
+                </Grid>
             </StackPanel>
 
         </Border>
@@ -162,6 +161,7 @@
                     </StackPanel>
                 </StackPanel>
                 <md:PackIcon />
+                <Button />
             </Grid>
         </Border>
     </Grid>

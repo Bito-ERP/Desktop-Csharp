@@ -11,6 +11,7 @@
     <None Remove="Icons\homeactive.png" />
     <None Remove="Icons\Pos\minus.png" />
     <None Remove="Icons\Pos\Plus.png" />
+    <None Remove="Icons\Settings\cancel.png" />
     <None Remove="Icons\Settings\companies.png" />
     <None Remove="Icons\Settings\devices.png" />
     <None Remove="Icons\Settings\language.png" />
@@ -39,6 +40,7 @@
     <Resource Include="Icons\settings.png" />
     <Resource Include="Icons\box.png" />
     <Resource Include="Icons\frame.png" />
+    <Resource Include="Icons\Settings\cancel.png" />
     <Resource Include="Icons\Settings\leave.png" />
     <Resource Include="Icons\Settings\pincode.png" />
     <Resource Include="Icons\Settings\printer.png" />
