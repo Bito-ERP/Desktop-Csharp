@@ -1,8 +1,4 @@
-﻿using BitoDesktop.WPF.Pages;
-using BitoDesktop.WPF.Pages.Pos;
-using BitoDesktop.WPF.Pages.Refound;
-using BitoDesktop.WPF.Pages.Settings;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,19 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace BitoDesktop.WPF
+namespace BitoDesktop.WPF.Pages.Refound
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for RefoundWithReceipt.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class RefoundWithReceipt : Page
     {
-        public MainWindow()
+        public RefoundWithReceipt()
         {
             InitializeComponent();
-            SettingsPage settings = new SettingsPage();
-            settings.MainFrame.Content = new PrinterCreateSettings();
-            MainFrame.Content = settings;
         }
     }
 }

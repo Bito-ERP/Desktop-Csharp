@@ -3,12 +3,63 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:local="clr-namespace:BitoDesktop.WPF.Pages.Refound"
       mc:Ignorable="d" 
+<<<<<<< HEAD
       MinHeight="450" MinWidth="540"
+=======
+      d:DesignHeight="300" d:DesignWidth="400"
+>>>>>>> 1e671b694c3c7a5b4109bb7db3fa47f4d57b736e
       Title="RefoundCancel">
 
-    <Grid>
-        
-    </Grid>
+    <Page.Resources>
+        <Style x:Key="CustomBorder" TargetType="Border">
+            <Setter Property="Background" Value="White" />
+            <Setter Property="Margin" Value="10" />
+            <Setter Property="CornerRadius" Value="15" />
+        </Style>
+    </Page.Resources>
+    <Border Style="{StaticResource CustomBorder}">
+        <StackPanel>
+            <Image
+            Width="80"
+            Height="80"
+            Margin="10"
+            Source="/Icons/Settings/quit.png" />
+            <TextBlock
+            HorizontalAlignment="Center"
+            FontSize="16"
+            FontWeight="DemiBold"
+            Text="Bekor qilish" />
+            <TextBlock
+            Margin="10"
+            HorizontalAlignment="Center"
+            FontSize="14"
+            Opacity="0.5"
+            Text="Rostdan ham qaytarishni bekor qilmoqchimisiz?" />
+            <Grid>
+                <Button
+                Width="120"
+                Height="48"
+                HorizontalAlignment="Left"
+                md:ButtonAssist.CornerRadius="10"
+                Background="#F4F4F4"
+                Margin="45, 10, 0, 0"
+                BorderThickness="0"
+                Content="Yo'q"
+                Foreground="Black" />
+                <Button
+                Width="120"
+                Height="48"
+                Margin="10, 10,45,0"
+                HorizontalAlignment="Right"
+                md:ButtonAssist.CornerRadius="10"
+                Background="#EC5B56"
+                BorderThickness="0"
+                Content="Yo'q"
+                Foreground="Black" />
+            </Grid>
+        </StackPanel>
+    </Border>
 </Page>
