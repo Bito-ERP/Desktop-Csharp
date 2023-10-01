@@ -392,6 +392,50 @@ CREATE TABLE IF NOT EXISTS warehouse(
     code TEXT
 );
 
+CREATE TABLE IF NOT EXISTS customer (
+    id TEXT PRIMARY KEY NOT NULL,
+    type TEXT NOT NULL,
+    personId TEXT,
+    personName TEXT,
+    categoryId TEXT,
+    categoryName TEXT,
+    name TEXT NOT NULL,
+    inn TEXT,
+    phoneNumber TEXT,
+    agentId TEXT,
+    agentName TEXT,
+    latitude REAL,
+    longitude REAL,
+    addressName TEXT,
+    description TEXT,
+    firstSale TIMESTAMP WITH TIME ZONE,
+    lastSale TIMESTAMP WITH TIME ZONE,
+    totalSale REAL NOT NULL,
+    point REAL NOT NULL,
+    organizations TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS customer_cashback (
+    id TEXT PRIMARY KEY,
+    customerId TEXT NOT NULL,
+    amount REAL NOT NULL,
+    currencyId TEXT NOT NULL
+);
+
+
+CREATE TABLE IF NOT EXISTS customer_total_balance (
+    customerId TEXT NOT NULL,
+    organizationId TEXT NOT NULL,
+    balanceList TEXT NOT NULL,
+    PRIMARY KEY (customerId, organizationId)
+);
+
+CREATE TABLE IF NOT EXISTS customer_balance_list (
+    customerId TEXT NOT NULL,
+    organizationId TEXT NOT NULL,
+    balanceList TEXT NOT NULL,
+    PRIMARY KEY (customerId, organizationId)
+);
 
 
 

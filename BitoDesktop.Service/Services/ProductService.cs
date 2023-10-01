@@ -1,10 +1,12 @@
 using AutoMapper;
 using BitoDesktop.Data.IRepositories;
+using BitoDesktop.Data.Repositories.CustomerP;
 using BitoDesktop.Data.Repositories.Finance;
 using BitoDesktop.Data.Repositories.Sale;
 using BitoDesktop.Data.Repositories.Settings;
 using BitoDesktop.Data.Repositories.WarehouseP;
 using BitoDesktop.Domain.Configurations;
+using BitoDesktop.Domain.Entities.CustomerP;
 using BitoDesktop.Domain.Entities.Products;
 using BitoDesktop.Domain.Entities.Sale;
 using BitoDesktop.Service.DTOs;
@@ -97,6 +99,29 @@ public partial class ProductService : IProductService
         var priceRepo = new PriceRepository();
         await priceRepo.ReplaceAll(priceResponse.Select(it => it.Get()));
         await priceRepo.GetPrices(null);
+
+        var customerResponse = (await CustomerApi.GetPage(new RequestPage { Limit = 100 })).Data.PageData;
+        var customerRepo = new CustomerRepository();
+        var totalBalances = new List<CustomerTotalBalance>();
+        var balanceList = new List<CustomerBalanceList>();
+        var customerCashbacks = new List<CustomerCashback>();
+        var customers = customerResponse.Select(it =>
+        {
+            it.AddBalanceList(balanceList); 
+            it.AddTotalBalances(totalBalances);
+            foreach (var item in it.CashbackList)
+            {
+                customerCashbacks.Add(item.Get());
+            }
+            return it.Get();
+        }).ToList();
+        await customerRepo.Insert(
+            customers,
+            balanceList,
+            totalBalances,
+            customerCashbacks
+            );
+        await customerRepo.GetCustomers(0, 100, null, null, false, false, false);
 
         var response = (await ProductApi.GetPage(new RequestPage { Limit = 100 })).Data.PageData;
         var organizations = new List<ProductOrganization>();

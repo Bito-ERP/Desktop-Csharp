@@ -2,6 +2,7 @@
 using Npgsql;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -105,6 +106,8 @@ public class EmployeeRepository
     }
 
     public async Task<IEnumerable<Employee>> GetEmployees(
+        [Required] int offset,
+        [Required] int limit,
         string searchQuery,
         string organizationId
         )
@@ -142,7 +145,15 @@ public class EmployeeRepository
         if (organizationId != null)
             query.Append("GROUP BY Id ");
 
-        query.Append("ORDER BY FullName");
+        query.Append("ORDER BY FullName ")
+            .Append(
+               "LIMIT @limit "
+             ).Append(
+             "OFFSET @offset "
+         );
+
+        args.Add("@limit", limit);
+        args.Add("@offset", offset);
 
         return await DBExcutor.QueryAsync<Employee>(
             query.ToString(),
