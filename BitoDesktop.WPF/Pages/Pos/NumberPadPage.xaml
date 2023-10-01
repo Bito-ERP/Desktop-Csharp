@@ -60,8 +60,8 @@
             <ComboBox
                 Grid.Column="2"
                 Width="100"
-                HorizontalAlignment="Left"
                 Height="56"
+                HorizontalAlignment="Left"
                 Background="#F5F5F5"
                 BorderThickness="0"
                 Style="{StaticResource MaterialDesignOutlinedComboBox}">
