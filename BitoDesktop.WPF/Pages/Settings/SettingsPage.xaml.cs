@@ -25,10 +25,5 @@ namespace BitoDesktop.WPF.Pages
         {
             InitializeComponent();
         }
-
-        private void Page_Loaded(object sender, RoutedEventArgs e)
-        {
-            MainFrame.Content = new PINkodSettings();
-        }
     }
 }

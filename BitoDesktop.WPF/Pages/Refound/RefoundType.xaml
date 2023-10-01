@@ -7,8 +7,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
     Title="RefoundType"
-    d:DesignHeight="238"
-    d:DesignWidth="360"
+    MinHeight="238"
+    MinWidth="360"
     mc:Ignorable="d">
 
     <Page.Resources>

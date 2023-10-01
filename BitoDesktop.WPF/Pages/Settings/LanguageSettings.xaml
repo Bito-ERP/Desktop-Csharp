@@ -7,8 +7,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
     Title="Language"
-    d:DesignHeight="450"
-    d:DesignWidth="800"
+    MinWidth="540"
+    MinHeight="450"
     mc:Ignorable="d">
 
     <Page.Resources>
@@ -26,7 +26,7 @@
         </Style>
     </Page.Resources>
 
-    <Border>
+    <Border Margin="5">
         <StackPanel>
             <Border Height="48" Background="#F7F8F9">
                 <RadioButton Content="O'zbek" />

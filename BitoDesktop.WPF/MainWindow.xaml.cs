@@ -26,7 +26,9 @@ namespace BitoDesktop.WPF
         public MainWindow()
         {
             InitializeComponent();
-            MainFrame.Content = new ScaleSettings();
+            SettingsPage settings = new SettingsPage();
+            settings.MainFrame.Content = new PrinterCreateSettings();
+            MainFrame.Content = settings;
         }
     }
 }

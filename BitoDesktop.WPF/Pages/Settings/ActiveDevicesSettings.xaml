@@ -7,14 +7,14 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
     Title="ActiveDevicesSettings"
-    d:DesignHeight="450"
-    d:DesignWidth="800"
+    MinHeight="450"
+    MinWidth="540"
     mc:Ignorable="d">
 
     <Page.Resources>
         <Style x:Key="CustomBorder" TargetType="Border">
             <Setter Property="Background" Value="White" />
-            <Setter Property="Margin" Value="10" />
+            <Setter Property="Margin" Value="5" />
             <Setter Property="CornerRadius" Value="10" />
         </Style>
     </Page.Resources>

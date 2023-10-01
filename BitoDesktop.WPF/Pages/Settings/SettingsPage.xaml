@@ -7,15 +7,33 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
     Title="SettingsPage"
-    MinWidth="800"
+    MinWidth="540"
     MinHeight="450"
-    Loaded="Page_Loaded"
     mc:Ignorable="d">
     <Page.Resources>
         <Style x:Key="CustomBorder" TargetType="Border">
             <Setter Property="Background" Value="White" />
             <Setter Property="Margin" Value="10" />
             <Setter Property="CornerRadius" Value="10" />
+        </Style>
+        <Style TargetType="md:PackIcon">
+            <Setter Property="Width" Value="24" />
+            <Setter Property="Height" Value="24" />
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="HorizontalAlignment" Value="Right" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Kind" Value="ChevronRight" />
+            <Setter Property="Opacity" Value="0.3" />
+        </Style>
+        <Style TargetType="Image">
+            <Setter Property="Width" Value="24" />
+            <Setter Property="Height" Value="24" />
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontWeight" Value="DemiBold" />
+            <Setter Property="Margin" Value="10" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="FontSize" Value="15" />
         </Style>
     </Page.Resources>
 
@@ -28,7 +46,7 @@
             Height="368"
             VerticalAlignment="Top"
             Style="{StaticResource CustomBorder}">
-            <StackPanel Grid.Column="1" Margin="0,20">
+            <StackPanel Grid.Column="1" Margin="0,15">
                 <Border Height="48">
                     <Grid>
                         <StackPanel
@@ -36,25 +54,10 @@
                             HorizontalAlignment="Left"
                             VerticalAlignment="Center"
                             Orientation="Horizontal">
-                            <Image
-                                Width="24"
-                                Height="24"
-                                Source="/Icons/Settings/watch.png" />
-                            <TextBlock
-                                Margin="10"
-                                VerticalAlignment="Center"
-                                FontSize="15"
-                                FontWeight="DemiBold"
-                                Text="Sotuvlar tarixi" />
+                            <Image Source="/Icons/Settings/watch.png" />
+                            <TextBlock Text="Sotuvlar tarixi" />
                         </StackPanel>
-                        <TextBlock
-                            Margin="10"
-                            HorizontalAlignment="Right"
-                            VerticalAlignment="Center"
-                            FontSize="15"
-                            FontWeight="Bold"
-                            Opacity="0.5"
-                            Text="&gt;" />
+                        <md:PackIcon />
                     </Grid>
                 </Border>
                 <Border Height="48">
@@ -64,25 +67,10 @@
                             HorizontalAlignment="Left"
                             VerticalAlignment="Center"
                             Orientation="Horizontal">
-                            <Image
-                                Width="24"
-                                Height="24"
-                                Source="/Icons/Settings/printer.png" />
-                            <TextBlock
-                                Margin="10"
-                                VerticalAlignment="Center"
-                                FontSize="15"
-                                FontWeight="DemiBold"
-                                Text="Printerlar" />
+                            <Image Source="/Icons/Settings/printer.png" />
+                            <TextBlock Text="Printerlar" />
                         </StackPanel>
-                        <TextBlock
-                            Margin="10"
-                            HorizontalAlignment="Right"
-                            VerticalAlignment="Center"
-                            FontSize="15"
-                            FontWeight="Bold"
-                            Opacity="0.5"
-                            Text="&gt;" />
+                        <md:PackIcon />
                     </Grid>
                 </Border>
                 <Border Height="48">
@@ -92,25 +80,10 @@
                             HorizontalAlignment="Left"
                             VerticalAlignment="Center"
                             Orientation="Horizontal">
-                            <Image
-                                Width="24"
-                                Height="24"
-                                Source="/Icons/Settings/scales.png" />
-                            <TextBlock
-                                Margin="10"
-                                VerticalAlignment="Center"
-                                FontSize="15"
-                                FontWeight="DemiBold"
-                                Text="Tarozi" />
+                            <Image Source="/Icons/Settings/scales.png" />
+                            <TextBlock Text="Tarozi" />
                         </StackPanel>
-                        <TextBlock
-                            Margin="10"
-                            HorizontalAlignment="Right"
-                            VerticalAlignment="Center"
-                            FontSize="15"
-                            FontWeight="Bold"
-                            Opacity="0.5"
-                            Text="&gt;" />
+                        <md:PackIcon />
                     </Grid>
                 </Border>
                 <Border Height="48">
@@ -120,25 +93,10 @@
                             HorizontalAlignment="Left"
                             VerticalAlignment="Center"
                             Orientation="Horizontal">
-                            <Image
-                                Width="24"
-                                Height="24"
-                                Source="/Icons/Settings/devices.png" />
-                            <TextBlock
-                                Margin="10"
-                                VerticalAlignment="Center"
-                                FontSize="15"
-                                FontWeight="DemiBold"
-                                Text="Qurilmalar" />
+                            <Image Source="/Icons/Settings/devices.png" />
+                            <TextBlock Text="Qurilmalar" />
                         </StackPanel>
-                        <TextBlock
-                            Margin="10"
-                            HorizontalAlignment="Right"
-                            VerticalAlignment="Center"
-                            FontSize="15"
-                            FontWeight="Bold"
-                            Opacity="0.5"
-                            Text="&gt;" />
+                        <md:PackIcon />
                     </Grid>
                 </Border>
                 <Border Height="48">
@@ -148,25 +106,10 @@
                             HorizontalAlignment="Left"
                             VerticalAlignment="Center"
                             Orientation="Horizontal">
-                            <Image
-                                Width="24"
-                                Height="24"
-                                Source="/Icons/Settings/companies.png" />
-                            <TextBlock
-                                Margin="10"
-                                VerticalAlignment="Center"
-                                FontSize="15"
-                                FontWeight="DemiBold"
-                                Text="Tashkilotlar" />
+                            <Image Source="/Icons/Settings/companies.png" />
+                            <TextBlock Text="Tashkilotlar" />
                         </StackPanel>
-                        <TextBlock
-                            Margin="10"
-                            HorizontalAlignment="Right"
-                            VerticalAlignment="Center"
-                            FontSize="15"
-                            FontWeight="Bold"
-                            Opacity="0.5"
-                            Text="&gt;" />
+                        <md:PackIcon />
                     </Grid>
                 </Border>
                 <Border Height="48">
@@ -176,25 +119,10 @@
                             HorizontalAlignment="Left"
                             VerticalAlignment="Center"
                             Orientation="Horizontal">
-                            <Image
-                                Width="24"
-                                Height="24"
-                                Source="/Icons/Settings/pincode.png" />
-                            <TextBlock
-                                Margin="10"
-                                VerticalAlignment="Center"
-                                FontSize="15"
-                                FontWeight="DemiBold"
-                                Text="PINkod almashtirish" />
+                            <Image Source="/Icons/Settings/pincode.png" />
+                            <TextBlock Text="PINkod almashtirish" />
                         </StackPanel>
-                        <TextBlock
-                            Margin="10"
-                            HorizontalAlignment="Right"
-                            VerticalAlignment="Center"
-                            FontSize="15"
-                            FontWeight="Bold"
-                            Opacity="0.5"
-                            Text="&gt;" />
+                        <md:PackIcon />
                     </Grid>
                 </Border>
                 <Border Height="48">
@@ -204,25 +132,10 @@
                             HorizontalAlignment="Left"
                             VerticalAlignment="Center"
                             Orientation="Horizontal">
-                            <Image
-                                Width="24"
-                                Height="24"
-                                Source="/Icons/Settings/language.png" />
-                            <TextBlock
-                                Margin="10"
-                                VerticalAlignment="Center"
-                                FontSize="15"
-                                FontWeight="DemiBold"
-                                Text="Dastur tili" />
+                            <Image Source="/Icons/Settings/language.png" />
+                            <TextBlock Text="Dastur tili" />
                         </StackPanel>
-                        <TextBlock
-                            Margin="10"
-                            HorizontalAlignment="Right"
-                            VerticalAlignment="Center"
-                            FontSize="15"
-                            FontWeight="Bold"
-                            Opacity="0.5"
-                            Text="&gt;" />
+                        <md:PackIcon />
                     </Grid>
                 </Border>
             </StackPanel>
@@ -242,33 +155,13 @@
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
                     Orientation="Horizontal">
-                    <Image
-                        Width="24"
-                        Height="24"
-                        Source="/Icons/Settings/leave.png" />
+                    <Image Source="/Icons/Settings/leave.png" />
                     <StackPanel>
-                        <TextBlock
-                            Margin="10,0"
-                            VerticalAlignment="Center"
-                            FontSize="15"
-                            FontWeight="DemiBold"
-                            Text="Tizimdan chiqish" />
-                        <TextBlock
-                            Margin="10,0"
-                            VerticalAlignment="Center"
-                            FontSize="15"
-                            FontWeight="DemiBold"
-                            Text="+998974481512" />
+                        <TextBlock Margin="10,0" Text="Tizimdan chiqish" />
+                        <TextBlock Margin="10,0" Text="+998974481512" />
                     </StackPanel>
                 </StackPanel>
-                <TextBlock
-                    Margin="10"
-                    HorizontalAlignment="Right"
-                    VerticalAlignment="Center"
-                    FontSize="15"
-                    FontWeight="Bold"
-                    Opacity="0.5"
-                    Text="&gt;" />
+                <md:PackIcon />
             </Grid>
         </Border>
     </Grid>

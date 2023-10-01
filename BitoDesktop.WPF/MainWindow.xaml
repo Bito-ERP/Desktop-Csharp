@@ -10,6 +10,7 @@
     MinWidth="1024"
     MinHeight="800"
     Background="#EAEEF1"
+    ResizeMode="CanMinimize"
     WindowState="Maximized"
     mc:Ignorable="d">
     <Grid>

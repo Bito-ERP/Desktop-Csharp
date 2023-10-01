@@ -7,14 +7,14 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
     Title="ScaleSettings"
-    MinWidth="850"
-    MinHeight="750"
+    MinWidth="540"
+    MinHeight="450"
     mc:Ignorable="d">
 
     <Page.Resources>
         <Style x:Key="CustomBorder" TargetType="Border">
             <Setter Property="Background" Value="White" />
-            <Setter Property="Margin" Value="10" />
+            <Setter Property="Margin" Value="5" />
             <Setter Property="CornerRadius" Value="10" />
         </Style>
         <Style BasedOn="{StaticResource MaterialDesignOutlinedComboBox}" TargetType="ComboBox">
