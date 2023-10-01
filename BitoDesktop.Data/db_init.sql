@@ -423,13 +423,6 @@ CREATE TABLE IF NOT EXISTS customer_balance_list (
     PRIMARY KEY (customerId, organizationId)
 );
 
-CREATE TABLE IF NOT EXISTS pos_page(
-    id TEXT NOT NULL PRIMARY KEY,
-	organizationId TEXT NOT NULL,
-	name TEXT NOT NULL,
-	"order" INTEGER NOT NULL
-);
-
 CREATE TABLE IF NOT EXISTS pos_table(
     id TEXT NOT NULL PRIMARY KEY,
 	organizationId TEXT NOT NULL,
@@ -468,6 +461,50 @@ CREATE TABLE IF NOT EXISTS ticket_item (
 	marks TEXT
 );
 
+CREATE TABLE IF NOT EXISTS product_category (
+    id TEXT PRIMARY KEY,
+    name TEXT NOT NULL,
+    parentId TEXT,
+    parentName TEXT,
+    image TEXT,
+    itemCount INTEGER NOT NULL,
+    childCount INTEGER NOT NULL,
+    organizationIds TEXT
+);
 
+CREATE TABLE IF NOT EXISTS pos_page(
+    id TEXT NOT NULL PRIMARY KEY,
+	organizationId TEXT NOT NULL,
+	name TEXT NOT NULL,
+	"order" INTEGER NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS pos_page(
+    id TEXT NOT NULL PRIMARY KEY,
+	organizationId TEXT NOT NULL,
+	name TEXT NOT NULL,
+	"order" INTEGER NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS pos_page_item
+(
+    id TEXT PRIMARY KEY NOT NULL,
+    type INT NOT NULL,
+    "order" INT NOT NULL,
+    pageId TEXT NOT NULL,
+    itemId TEXT,
+    itemName TEXT,
+    itemImage TEXT,
+    productUnitMeasurementId TEXT,
+    productSku TEXT,
+    productBarcode TEXT,
+    isMarked BOOLEAN,
+    amountInBox REAL,
+    productCategoryId TEXT,
+    productCategoryName TEXT,
+    categoryChildCount INT,
+    discountValue REAL,
+    discountCurrencyId TEXT
+);
 
 
