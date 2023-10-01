@@ -119,7 +119,7 @@ public class EmployeeRepository
 
         if (organizationId != null)
         {
-            query.Append("JOIN ${EntityNames.EMPLOYEE_POSITION} pos ON pos.EmployeeId = Id AND pos.OrganizationId = @organizationId ");
+            query.Append("JOIN employee_position pos ON pos.EmployeeId = Id AND pos.OrganizationId = @organizationId ");
             args.Add("@organizationId", organizationId);
         }
 

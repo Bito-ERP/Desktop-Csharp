@@ -6,7 +6,7 @@ using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace BitoDesktop.Service.DTOs.common;
+namespace BitoDesktop.Service.DTOs.Common;
 
     internal class RequestPage
     {

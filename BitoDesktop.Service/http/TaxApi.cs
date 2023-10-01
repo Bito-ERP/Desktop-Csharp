@@ -1,5 +1,4 @@
-﻿using BitoDesktop.Service.DTOs.common;
-using BitoDesktop.Service.DTOs.Common;
+﻿using BitoDesktop.Service.DTOs.Common;
 using BitoDesktop.Service.DTOs.Finance;
 using BitoDesktop.Service.DTOs.Sale;
 using System;

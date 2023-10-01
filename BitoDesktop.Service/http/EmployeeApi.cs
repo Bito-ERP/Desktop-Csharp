@@ -1,6 +1,5 @@
 ﻿using BitoDesktop.Service.DTOs;
 using BitoDesktop.Service.DTOs.Auth;
-using BitoDesktop.Service.DTOs.common;
 using BitoDesktop.Service.DTOs.Common;
 using BitoDesktop.Service.DTOs.Hr;
 using System;

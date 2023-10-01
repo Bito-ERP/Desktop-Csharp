@@ -10,12 +10,13 @@ using BitoDesktop.Domain.Entities.CustomerP;
 using BitoDesktop.Domain.Entities.Products;
 using BitoDesktop.Domain.Entities.Sale;
 using BitoDesktop.Service.DTOs;
-using BitoDesktop.Service.DTOs.common;
+using BitoDesktop.Service.DTOs.Common;
 using BitoDesktop.Service.DTOs.WarehouseP;
 using BitoDesktop.Service.Exceptions;
 using BitoDesktop.Service.Extensions;
 using BitoDesktop.Service.Helpers;
 using BitoDesktop.Service.http;
+using BitoDesktop.Service.http.Warehouse;
 using BitoDesktop.Service.Interfaces;
 using Newtonsoft.Json;
 using System;
@@ -99,6 +100,11 @@ public partial class ProductService : IProductService
         var priceRepo = new PriceRepository();
         await priceRepo.ReplaceAll(priceResponse.Select(it => it.Get()));
         await priceRepo.GetPrices(null);
+
+        var categoryResponse = (await CategoryApi.GetPage(new RequestPage { Limit = 100 })).Data.PageData;
+        var categoryRepo = new CategoryRepository();
+        await categoryRepo.Insert(categoryResponse.Select(it => it.Get()));
+        await categoryRepo.GetCategories(0, 100, null, null, null, null);
 
         var customerResponse = (await CustomerApi.GetPage(new RequestPage { Limit = 100 })).Data.PageData;
         var customerRepo = new CustomerRepository();
