@@ -52,7 +52,7 @@
                 seanslarni yakunlamoqchimisiz?</TextBlock>
             <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
                 <Button Background="#F4F4F4" Content="Yo'q" />
-                <Button Background="#EC5B56" Content="Yo'q" />
+                <Button Background="#EC5B56" Content="Ha" />
             </StackPanel>
         </StackPanel>
     </Border>
