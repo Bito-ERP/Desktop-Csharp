@@ -93,20 +93,6 @@ CREATE TABLE IF NOT EXISTS discount(
 	image TEXT
 );
 
-
-CREATE TABLE IF NOT EXISTS pos_page(
-    id TEXT NOT NULL PRIMARY KEY,
-	organizationId TEXT NOT NULL,
-	name TEXT NOT NULL,
-	"order" INTEGER NOT NULL
-);
-
-CREATE TABLE IF NOT EXISTS pos_table(
-    id TEXT NOT NULL PRIMARY KEY,
-	name TEXT NOT NULL,
-	"order" INTEGER NOT NULL
-);
-
 CREATE TABLE IF NOT EXISTS employee(
     id TEXT NOT NULL PRIMARY KEY,
     fullName TEXT NOT NULL,
@@ -437,6 +423,50 @@ CREATE TABLE IF NOT EXISTS customer_balance_list (
     PRIMARY KEY (customerId, organizationId)
 );
 
+CREATE TABLE IF NOT EXISTS pos_page(
+    id TEXT NOT NULL PRIMARY KEY,
+	organizationId TEXT NOT NULL,
+	name TEXT NOT NULL,
+	"order" INTEGER NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS pos_table(
+    id TEXT NOT NULL PRIMARY KEY,
+	organizationId TEXT NOT NULL,
+	name TEXT NOT NULL,
+	"order" INTEGER NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS ticket (
+    id SERIAL PRIMARY KEY,
+	organizationId TEXT NOT NULL,
+    name TEXT NOT NULL,
+    overallSum REAL NOT NULL,
+    priceId TEXT NOT NULL,
+    warehouseId TEXT NOT NULL,
+    createdAt TIMESTAMP WITH TIME ZONE NOT NULL,
+    tableId TEXT,
+    comment TEXT,
+    customerId TEXT,
+	discounts TEXT
+);
+
+CREATE TABLE IF NOT EXISTS ticket_item (
+    id SERIAL PRIMARY KEY,
+    productId TEXT NOT NULL,
+    price REAL NOT NULL,
+    amount REAL NOT NULL,
+    boxAmount INTEGER NOT NULL,
+    ticketId INTEGER NOT NULL,
+    totalAddedTax REAL NOT NULL,
+    totalIncludedTax REAL NOT NULL,
+	taxes TEXT, 
+	totalDiscountCash REAL NOT NULL,
+	totalDiscountPercent REAL NOT NULL,
+    amountInBox REAL,
+	discounts TEXT,
+	marks TEXT
+);
 
 
 
