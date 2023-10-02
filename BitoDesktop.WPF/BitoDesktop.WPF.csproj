@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Icons\Baskets\BasketClear.png" />
     <None Remove="Icons\emptybasket.png" />
     <None Remove="Icons\homeactive.png" />
     <None Remove="Icons\Pos\minus.png" />
@@ -31,6 +32,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Icons\Baskets\BasketClear.png" />
     <Resource Include="Icons\emptybasket.png" />
     <Resource Include="Icons\homeactive.png" />
     <Resource Include="Icons\Pos\minus.png" />

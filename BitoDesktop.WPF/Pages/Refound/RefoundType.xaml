@@ -7,8 +7,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
     Title="RefoundType"
-    MinHeight="238"
     MinWidth="360"
+    MinHeight="238"
     mc:Ignorable="d">
 
     <Page.Resources>
@@ -26,7 +26,7 @@
                 FontSize="16"
                 FontWeight="DemiBold"
                 Text="Qaytarish turi" />
-            <Button
+            <!--<Button
                 Width="312"
                 Height="56"
                 Margin="10"
@@ -34,16 +34,48 @@
                 HorizontalContentAlignment="Left"
                 md:ButtonAssist.CornerRadius="10"
                 Background="#006AFF"
-                Content="Chek orqali qaytarish" />
+                Content="Chek orqali qaytarish" >
+
+            </Button>-->
             <Button
                 Width="312"
                 Height="56"
                 Margin="10"
                 HorizontalAlignment="Left"
-                HorizontalContentAlignment="Left"
                 md:ButtonAssist.CornerRadius="10"
-                Background="#006AFF"
-                Content="Cheksiz qaytarish" />
+                Background="#006AFF">
+                <Grid Width="274" HorizontalAlignment="Left">
+                    <TextBlock
+                        HorizontalAlignment="Left"
+                        FontWeight="DemiBold"
+                        Text="Chek orqali qaytarish" />
+                    <Image
+                        Width="24"
+                        Height="24"
+                        HorizontalAlignment="Right"
+                        Source="/Icons/Refounds/Arrow.png" />
+                </Grid>
+            </Button>
+
+            <Button
+                Width="312"
+                Height="56"
+                Margin="10"
+                HorizontalAlignment="Left"
+                md:ButtonAssist.CornerRadius="10"
+                Background="#006AFF">
+                <Grid Width="274" HorizontalAlignment="Left">
+                    <TextBlock
+                        HorizontalAlignment="Left"
+                        FontWeight="DemiBold"
+                        Text="Cheksiz qaytarish" />
+                    <Image
+                        Width="24"
+                        Height="24"
+                        HorizontalAlignment="Right"
+                        Source="/Icons/Refounds/Arrow.png" />
+                </Grid>
+            </Button>
         </StackPanel>
     </Border>
 </Page>

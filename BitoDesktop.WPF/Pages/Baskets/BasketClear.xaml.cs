@@ -1,10 +1,4 @@
-﻿using BitoDesktop.WPF.Pages;
-using BitoDesktop.WPF.Pages.Baskets;
-using BitoDesktop.WPF.Pages.Catalogs;
-using BitoDesktop.WPF.Pages.Pos;
-using BitoDesktop.WPF.Pages.Refound;
-using BitoDesktop.WPF.Pages.Settings;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,17 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace BitoDesktop.WPF
+namespace BitoDesktop.WPF.Pages.Baskets
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for BasketClear.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class BasketClear : Page
     {
-        public MainWindow()
+        public BasketClear()
         {
             InitializeComponent();
-            LoginFrame.Content = new CatalogCreateTemplate();
         }
     }
 }

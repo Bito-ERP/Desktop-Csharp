@@ -1,0 +1,74 @@
+﻿<Page
+    x:Class="BitoDesktop.WPF.Pages.Catalogs.AddNewProductToCatalog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:BitoDesktop.WPF.Pages.Catalogs"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+    Title="AddNewProductToCatalog"
+    MinWidth="1100"
+    MinHeight="640"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <Style x:Key="CustomBorder" TargetType="Border">
+            <Setter Property="Background" Value="White" />
+            <Setter Property="Margin" Value="10" />
+            <Setter Property="CornerRadius" Value="15" />
+        </Style>
+    </Page.Resources>
+    <Border
+        Width="360"
+        Height="222"
+        Style="{StaticResource CustomBorder}">
+
+        <StackPanel>
+            <Grid>
+                <TextBlock
+                    Margin="0,20,0,0"
+                    HorizontalAlignment="Center"
+                    FontSize="20"
+                    FontWeight="DemiBold"
+                    Text="Yangi yaratish" />
+                <Button
+                    Width="42"
+                    Height="42"
+                    Margin="0,15,15,0"
+                    Padding="10"
+                    HorizontalAlignment="Right"
+                    md:ButtonAssist.CornerRadius="20"
+                    Background="#F5F5F5"
+                    BorderThickness="0"
+                    Foreground="Black">
+                    <StackPanel Orientation="Horizontal">
+                        <md:PackIcon
+                            Width="23"
+                            Height="23"
+                            VerticalAlignment="Center"
+                            Kind="Close"
+                            Opacity="0.5" />
+                    </StackPanel>
+                </Button>
+
+            </Grid>
+            <Grid
+                Width="320"
+                Height="56"
+                Margin="0,20,0,0">
+                <TextBox
+                    md:TextFieldAssist.TextFieldCornerRadius="10"
+                    Background="#F5F5F5"
+                    BorderThickness="0"
+                    Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+            </Grid>
+            <Button
+                Width="320"
+                Height="56"
+                Margin="20"
+                md:ButtonAssist.CornerRadius="10"
+                Background="#0068FB"
+                Content="Saqlash" />
+        </StackPanel>
+    </Border>
+</Page>
