@@ -7,8 +7,9 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
     Title="RefoundReceipt"
-    d:DesignHeight="450"
-    d:DesignWidth="800"
+    MinWidth="900"
+    MinHeight="650"
+    Background="#80000000"
     mc:Ignorable="d">
 
     <Page.Resources>
@@ -35,7 +36,10 @@
             <Setter Property="Foreground" Value="#9DA4B1" />
         </Style>
     </Page.Resources>
-    <Border Style="{StaticResource CustomBorder}">
+    <Border
+        Width="868"
+        Height="620"
+        Style="{StaticResource CustomBorder}">
         <StackPanel>
             <Grid>
                 <Button
