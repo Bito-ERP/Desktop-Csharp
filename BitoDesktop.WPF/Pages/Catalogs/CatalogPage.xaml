@@ -1,0 +1,121 @@
+﻿<Page
+    x:Class="BitoDesktop.WPF.Pages.Catalogs.CatalogPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:BitoDesktop.WPF.Controllers.Catalogs"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:BitoDesktop.WPF.Pages.Catalogs"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+    Title="CatalogPage"
+    MinWidth="1024"
+    MinHeight="700"
+    Background="#80000000"
+    mc:Ignorable="d">
+
+    <Border
+        Margin="50,50,50,0"
+        Background="White"
+        CornerRadius="20,20,0,0">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="70" />
+                <RowDefinition Height="70" />
+                <RowDefinition Height="70" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <TextBlock
+                Margin="30,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                FontSize="20"
+                FontWeight="DemiBold"
+                Text="Catalog" />
+            <Button
+                Width="42"
+                Height="42"
+                Margin="30,0"
+                Padding="0"
+                HorizontalAlignment="Right"
+                md:ButtonAssist.CornerRadius="25"
+                Background="#F5F5F5"
+                BorderThickness="0"
+                Style="{StaticResource MaterialDesignOutlinedButton}">
+                <md:PackIcon
+                    Width="24"
+                    Height="24"
+                    Foreground="#999999"
+                    Kind="Close" />
+            </Button>
+
+            <Border
+                Grid.Row="1"
+                Height="48"
+                Margin="30,0"
+                Background="#F6F6F6"
+                CornerRadius="10">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="40" />
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="50" />
+                    </Grid.ColumnDefinitions>
+                    <md:PackIcon
+                        Width="20"
+                        Height="20"
+                        Margin="10"
+                        VerticalAlignment="Center"
+                        Kind="Search" />
+                    <TextBox
+                        Grid.Column="1"
+                        Height="48"
+                        Padding="5"
+                        VerticalContentAlignment="Center"
+                        md:HintAssist.Hint="Mahsulot nomi, barkod yoki SKU"
+                        BorderThickness="0"
+                        FontSize="12"
+                        FontWeight="DemiBold"
+                        Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+                    <Button
+                        Grid.Column="2"
+                        Width="29"
+                        Height="22"
+                        Margin="10"
+                        Padding="0"
+                        HorizontalAlignment="Right"
+                        md:ButtonAssist.CornerRadius="10"
+                        Background="White"
+                        BorderBrush="#E9E9E9"
+                        Content="/"
+                        FontSize="10"
+                        FontWeight="DemiBold"
+                        Foreground="Black"
+                        Style="{StaticResource MaterialDesignRaisedButton}" />
+                </Grid>
+            </Border>
+            <ScrollViewer
+                Grid.Row="2"
+                Margin="30,0"
+                HorizontalScrollBarVisibility="Hidden"
+                VerticalScrollBarVisibility="Hidden">
+                <ItemsControl x:Name="CatalogItemsControl">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <VirtualizingStackPanel Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <controls:AllCatalogsController Margin="5" />
+                    <controls:CatalogControl Margin="5" />
+                    <controls:AddCatalogController Margin="5" />
+                </ItemsControl>
+            </ScrollViewer>
+            <ScrollViewer
+                Grid.Row="3"
+                Margin="30,0"
+                HorizontalScrollBarVisibility="Disabled"
+                VerticalScrollBarVisibility="Auto">
+                <WrapPanel x:Name="ProductsPanel" />
+            </ScrollViewer>
+        </Grid>
+    </Border>
+</Page>

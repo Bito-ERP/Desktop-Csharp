@@ -9,7 +9,7 @@
     Title="NumberPadPage"
     MinWidth="540"
     MinHeight="450"
-    Background="{StaticResource AttentionToActionBrush}"
+    Background="#80000000"
     mc:Ignorable="d">
     <Page.Resources>
         <Style BasedOn="{StaticResource MaterialDesignRaisedButton}" TargetType="Button">

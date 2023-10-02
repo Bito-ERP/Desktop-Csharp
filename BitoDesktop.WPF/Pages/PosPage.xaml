@@ -21,11 +21,12 @@
     </Page.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="64" />
             <ColumnDefinition Width="1.5*" />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <Frame NavigationUIVisibility="Hidden" Source="SideBarPage.xaml" />
-        <Border Grid.Column="0" Style="{StaticResource CustomBorder}">
+        <Border Grid.Column="1" Style="{StaticResource CustomBorder}">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="210" />
@@ -44,26 +45,35 @@
                             <ColumnDefinition Width="72" />
                             <ColumnDefinition Width="72" />
                         </Grid.ColumnDefinitions>
-                        <Border Background="#F6F6F6" CornerRadius="10">
+                        <Border
+                            Grid.Row="1"
+                            Height="48"
+                            Background="#F6F6F6"
+                            CornerRadius="10">
                             <Grid>
-                                <StackPanel Orientation="Horizontal">
-                                    <md:PackIcon
-                                        Width="20"
-                                        Height="20"
-                                        Margin="10"
-                                        VerticalAlignment="Center"
-                                        Kind="Search" />
-                                    <TextBox
-                                        Height="48"
-                                        Padding="5"
-                                        VerticalContentAlignment="Center"
-                                        md:HintAssist.Hint="Mahsulot nomi, barkod yoki SKU"
-                                        BorderThickness="0"
-                                        FontSize="12"
-                                        FontWeight="DemiBold"
-                                        Style="{StaticResource MaterialDesignOutlinedTextBox}" />
-                                </StackPanel>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="40" />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition Width="50" />
+                                </Grid.ColumnDefinitions>
+                                <md:PackIcon
+                                    Width="20"
+                                    Height="20"
+                                    Margin="10"
+                                    VerticalAlignment="Center"
+                                    Kind="Search" />
+                                <TextBox
+                                    Grid.Column="1"
+                                    Height="48"
+                                    Padding="5"
+                                    VerticalContentAlignment="Center"
+                                    md:HintAssist.Hint="Mahsulot nomi, barkod yoki SKU"
+                                    BorderThickness="0"
+                                    FontSize="12"
+                                    FontWeight="DemiBold"
+                                    Style="{StaticResource MaterialDesignOutlinedTextBox}" />
                                 <Button
+                                    Grid.Column="2"
                                     Width="29"
                                     Height="22"
                                     Margin="10"
@@ -192,26 +202,35 @@
                     <RowDefinition />
                 </Grid.RowDefinitions>
                 <StackPanel Margin="10" VerticalAlignment="Top">
-                    <Border Background="#F6F6F6" CornerRadius="10">
+                    <Border
+                        Grid.Row="1"
+                        Height="48"
+                        Background="#F6F6F6"
+                        CornerRadius="10">
                         <Grid>
-                            <StackPanel Orientation="Horizontal">
-                                <md:PackIcon
-                                    Width="20"
-                                    Height="20"
-                                    Margin="10"
-                                    VerticalAlignment="Center"
-                                    Kind="Search" />
-                                <TextBox
-                                    Height="48"
-                                    Padding="5"
-                                    VerticalContentAlignment="Center"
-                                    md:HintAssist.Hint="Mijoz ismi yoki telefon raqami"
-                                    BorderThickness="0"
-                                    FontSize="12"
-                                    FontWeight="DemiBold"
-                                    Style="{StaticResource MaterialDesignOutlinedTextBox}" />
-                            </StackPanel>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40" />
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="50" />
+                            </Grid.ColumnDefinitions>
+                            <md:PackIcon
+                                Width="20"
+                                Height="20"
+                                Margin="10"
+                                VerticalAlignment="Center"
+                                Kind="Search" />
+                            <TextBox
+                                Grid.Column="1"
+                                Height="48"
+                                Padding="5"
+                                VerticalContentAlignment="Center"
+                                md:HintAssist.Hint="Mahsulot nomi, barkod yoki SKU"
+                                BorderThickness="0"
+                                FontSize="12"
+                                FontWeight="DemiBold"
+                                Style="{StaticResource MaterialDesignOutlinedTextBox}" />
                             <Button
+                                Grid.Column="2"
                                 Width="29"
                                 Height="22"
                                 Margin="10"
@@ -220,7 +239,7 @@
                                 md:ButtonAssist.CornerRadius="10"
                                 Background="White"
                                 BorderBrush="#E9E9E9"
-                                Content="c"
+                                Content="/"
                                 FontSize="10"
                                 FontWeight="DemiBold"
                                 Foreground="Black"
@@ -364,5 +383,6 @@
                 </Border>
             </Grid>
         </Border>
+        <Frame x:Name="MainFrame" Grid.ColumnSpan="3" />
     </Grid>
 </Page>

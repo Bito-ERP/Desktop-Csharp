@@ -1,21 +1,9 @@
 ﻿using BitoDesktop.WPF.Pages;
+using BitoDesktop.WPF.Pages.Catalogs;
 using BitoDesktop.WPF.Pages.Pos;
-using BitoDesktop.WPF.Pages.Refound;
+using BitoDesktop.WPF.Pages.Products;
 using BitoDesktop.WPF.Pages.Settings;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace BitoDesktop.WPF
 {
@@ -27,9 +15,9 @@ namespace BitoDesktop.WPF
         public MainWindow()
         {
             InitializeComponent();
-            SettingsPage settings = new SettingsPage();
-            settings.MainFrame.Content = new PrinterCreateSettings();
-            MainFrame.Content = settings;
+            PosPage posPage = new PosPage();
+            MainFrame.Content = posPage;
+            MainFrame2.Content = new CatalogPage();
         }
     }
 }

@@ -11,8 +11,8 @@
     MinHeight="800"
     Background="#EAEEF1"
     ResizeMode="CanMinimize"
-    WindowStyle="None"
     WindowState="Maximized"
+    WindowStyle="None"
     mc:Ignorable="d">
     <Grid>
         <Grid>
@@ -24,12 +24,13 @@
                 x:Name="SideBarFrame"
                 NavigationUIVisibility="Hidden"
                 Source="/Pages/SideBarPage.xaml" />
-
             <Frame
                 x:Name="MainFrame"
-                Grid.Column="1"
+                Grid.ColumnSpan="2"
+                NavigationUIVisibility="Hidden" /><Frame
+                x:Name="MainFrame2"
+                Grid.ColumnSpan="2"
                 NavigationUIVisibility="Hidden" />
         </Grid>
-        <Frame x:Name="LoginFrame" NavigationUIVisibility="Hidden" />
     </Grid>
 </Window>
