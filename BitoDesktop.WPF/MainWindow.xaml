@@ -11,6 +11,7 @@
     MinHeight="800"
     Background="#EAEEF1"
     ResizeMode="CanMinimize"
+    WindowStyle="None"
     WindowState="Maximized"
     mc:Ignorable="d">
     <Grid>
