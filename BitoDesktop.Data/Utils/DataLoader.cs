@@ -4,6 +4,7 @@ using BitoDesktop.Domain.Entities.CustomerP;
 using BitoDesktop.Domain.Entities.Finance;
 using BitoDesktop.Domain.Entities.Products;
 using BitoDesktop.Domain.Entities.Sale;
+using BitoDesktop.Domain.Entities.Settings;
 using Dapper;
 using System;
 using System.Collections.Generic;
@@ -25,7 +26,7 @@ public class DataLoader
         SqlMapper.AddTypeHandler(typeof(List<ReceiptItem.Tax>), new ReceiptItemTaxConverters());
         SqlMapper.AddTypeHandler(typeof(List<ReceiptDiscount>), new ReceiptItemDiscountConverters());
         SqlMapper.AddTypeHandler(typeof(IEnumerable<CustomerAmount>), new CustomerAmountConverter());
-
+        SqlMapper.AddTypeHandler(typeof(IEnumerable<CashbackSetting.Cashback>), new CashbackConverter());
     }
 }
 

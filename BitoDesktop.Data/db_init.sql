@@ -507,4 +507,43 @@ CREATE TABLE IF NOT EXISTS pos_page_item
     discountCurrencyId TEXT
 );
 
+CREATE TABLE IF NOT EXISTS reason (
+    id TEXT PRIMARY KEY,
+    name TEXT NOT NULL,
+    description TEXT,
+    type TEXT NOT NULL,
+    isActive BOOL NOT NULL,
+    isTrash BOOL,
+    orderNumber INTEGER,
+    code TEXT
+);
+
+CREATE TABLE IF NOT EXISTS printer (
+    id TEXT PRIMARY KEY,
+    name TEXT NOT NULL,
+    type TEXT NOT NULL,
+    address TEXT NOT NULL,
+    paperWidth INTEGER NOT NULL,
+    printReceipts BOOL NOT NULL,
+    automaticallyPrintReceipts BOOL NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS cashback_setting (
+    organizationId TEXT PRIMARY KEY,
+    type TEXT,
+    isActive BOOL,
+    cashbacks TEXT
+);
+
+CREATE TABLE IF NOT EXISTS scale (
+    id TEXT PRIMARY KEY  NOT NULL,
+    organizationId TEXT NOT NULL,
+    type INT NOT NULL,
+    skuCount INT NOT NULL,
+    sumCheckIndex INT NOT NULL,
+    priceCount INT NOT NULL,
+    weightCount INT NOT NULL,
+    departmentCode INT NOT NULL,
+    countAfterDot INT NOT NULL
+);
 

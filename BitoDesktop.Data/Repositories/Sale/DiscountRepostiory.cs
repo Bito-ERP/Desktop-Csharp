@@ -55,7 +55,7 @@ public class DiscountRepostiory
           );
     }
 
-    public async Task<IEnumerable<Discount>> GetPage(int offset, int limit, string searchQuery)
+    public async Task<IEnumerable<Discount>> GetDiscounts(int offset, int limit, string searchQuery)
     {
         return await DBExcutor.QueryAsync<Discount>(
           "SELECT * FROM discount WHERE Name LIKE @searchQuery ORDER BY Name LIMIT @limit OFFSET @offset ",
