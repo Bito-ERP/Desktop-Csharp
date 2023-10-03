@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using BitoDesktop.Data.IRepositories;
 using BitoDesktop.Data.Repositories;
+using BitoDesktop.Data.Repositories.WarehouseP;
 using BitoDesktop.Domain.Configurations;
 using BitoDesktop.Service.Interfaces;
 using BitoDesktop.Service.Mappers;
@@ -50,7 +51,7 @@ namespace BitoDesktop.WPF.Pages
                 {
                     ProductController productController = new ProductController();
                     productController.ProductNameTxt.Text = product.Name;
-                    productController.PriceTxt.Text = product.Price.ToString();
+                    productController.PriceTxt.Text = product.SelectedPriceAmount.ToString();
                     BasketControl.Items.Add(productController);
                 }
                 EmptyBasketImg.Source = null;
