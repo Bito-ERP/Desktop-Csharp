@@ -1,0 +1,108 @@
+﻿<Page
+    x:Class="BitoDesktop.WPF.Pages.Settings.ScaleSettings"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:BitoDesktop.WPF.Pages.Settings"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+    Title="ScaleSettings"
+    MinWidth="540"
+    MinHeight="450"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <Style x:Key="CustomBorder" TargetType="Border">
+            <Setter Property="Background" Value="White" />
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="CornerRadius" Value="10" />
+        </Style>
+        <Style BasedOn="{StaticResource MaterialDesignOutlinedComboBox}" TargetType="ComboBox">
+            <Setter Property="Width" Value="320" />
+            <Setter Property="Height" Value="56" />
+            <Setter Property="Margin" Value="10,5" />
+            <Setter Property="Margin" Value="10,5" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="md:TextFieldAssist.TextFieldCornerRadius" Value="13" />
+            <Setter Property="Background" Value="#F5F5F5" />
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="FontWeight" Value="DemiBold" />
+        </Style>
+        <Style BasedOn="{StaticResource MaterialDesignOutlinedTextBox}" TargetType="TextBox">
+            <Setter Property="Width" Value="320" />
+            <Setter Property="Height" Value="56" />
+            <Setter Property="Margin" Value="10,5" />
+            <Setter Property="Margin" Value="10,5" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="md:TextFieldAssist.TextFieldCornerRadius" Value="13" />
+            <Setter Property="Background" Value="#F5F5F5" />
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="FontWeight" Value="DemiBold" />
+        </Style>
+    </Page.Resources>
+    <Border Style="{StaticResource CustomBorder}">
+        <StackPanel>
+            <Grid>
+                <Button
+                    Width="108"
+                    Height="48"
+                    Margin="10"
+                    HorizontalAlignment="Left"
+                    md:ButtonAssist.CornerRadius="10"
+                    Background="#F5F5F5"
+                    BorderThickness="0"
+                    Content="Ortga"
+                    Foreground="Black" />
+                <Button
+                    Width="140"
+                    Height="48"
+                    Margin="10"
+                    HorizontalAlignment="Right"
+                    md:ButtonAssist.CornerRadius="10"
+                    Background="#006AFF"
+                    BorderThickness="0"
+                    Content="Saqlash" />
+            </Grid>
+            <ComboBox md:HintAssist.Hint="Turi" BorderThickness="0">
+                <ComboBoxItem Content="EAN13-6" />
+            </ComboBox>
+            <TextBlock
+                Margin="10"
+                HorizontalAlignment="Left"
+                FontSize="14"
+                FontWeight="DemiBold"
+                Opacity="0.5"
+                Text="Oldindan belgilangan tarozi sozlamalar turini tanlang yoki maxsus tarozi yaratish" />
+            <TextBox md:HintAssist.Hint="Bo'lim kodi" BorderThickness="0" />
+            <TextBox md:HintAssist.Hint="Nuqtadan keyin raqam" BorderThickness="0" />
+            <TextBlock
+                Margin="10"
+                FontSize="14"
+                FontWeight="DemiBold"
+                Opacity="0.5"
+                Text="Bo'lim kodi - Raqamlar yoki harflar uchun ishlatiladi farqlovchi shkala shtrix kodi nuqtadan keyingi raqam - qancha sonli shkala beradi nuqtadan keyin. 12.345, raqam. Masalan, agar raqam bo'lsa nuqtadan keyin 3"
+                TextWrapping="Wrap" />
+            <TextBlock
+                Margin="10"
+                FontSize="16"
+                FontWeight="DemiBold"
+                Foreground="#006AFF"
+                Text="Raqamlar" />
+            <ComboBox md:HintAssist.Hint="1-raqam" BorderThickness="0">
+                <ComboBoxItem Content="Bo'lim kodi" />
+            </ComboBox>
+            <ComboBox md:HintAssist.Hint="2-raqam" BorderThickness="0">
+                <ComboBoxItem Content="Bo'lim kodi" />
+            </ComboBox>
+            <ComboBox md:HintAssist.Hint="3-raqam" BorderThickness="0">
+                <ComboBoxItem Content="SKU" />
+            </ComboBox>
+            <ComboBox md:HintAssist.Hint="4-raqam" BorderThickness="0">
+                <ComboBoxItem Content="Check sum for price (4 digits)" />
+            </ComboBox>
+            <ComboBox md:HintAssist.Hint="5-raqam" BorderThickness="0">
+                <ComboBoxItem Content="Check sum for price (5 digits)" />
+            </ComboBox>
+        </StackPanel>
+    </Border>
+</Page>

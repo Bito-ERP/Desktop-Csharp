@@ -7,18 +7,58 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
     Title="PrinterCreateSettings"
-    d:DesignHeight="450"
-    d:DesignWidth="800"
+    MinWidth="540"
+    MinHeight="450"
     mc:Ignorable="d">
-
     <Page.Resources>
-        <Style x:Key="CustomBorder" TargetType="Border">
+        <Style TargetType="Border">
             <Setter Property="Background" Value="White" />
-            <Setter Property="Margin" Value="10" />
+            <Setter Property="Margin" Value="5" />
             <Setter Property="CornerRadius" Value="10" />
         </Style>
+        <Style BasedOn="{StaticResource MaterialDesignRaisedButton}" TargetType="Button">
+            <Setter Property="Width" Value="140" />
+            <Setter Property="Height" Value="48" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="md:ButtonAssist.CornerRadius" Value="10" />
+            <Setter Property="Background" Value="#006AFF" />
+            <Setter Property="Margin" Value="7" />
+        </Style>
+        <Style BasedOn="{StaticResource MaterialDesignOutlinedTextBox}" TargetType="TextBox">
+            <Setter Property="Width" Value="320" />
+            <Setter Property="Height" Value="56" />
+            <Setter Property="Margin" Value="10,5" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="md:TextFieldAssist.TextFieldCornerRadius" Value="13" />
+            <Setter Property="Background" Value="#F5F5F5" />
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="FontWeight" Value="DemiBold" />
+            <Setter Property="FontWeight" Value="DemiBold" />
+        </Style>
+        <Style BasedOn="{StaticResource MaterialDesignOutlinedComboBox}" TargetType="ComboBox">
+            <Setter Property="Width" Value="320" />
+            <Setter Property="Height" Value="56" />
+            <Setter Property="Margin" Value="10,5" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="md:TextFieldAssist.TextFieldCornerRadius" Value="13" />
+            <Setter Property="Background" Value="#F5F5F5" />
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="FontWeight" Value="DemiBold" />
+            <Setter Property="FontWeight" Value="DemiBold" />
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="Margin" Value="10" />
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="FontWeight" Value="DemiBold" />
+        </Style>
+        <Style BasedOn="{StaticResource MaterialDesignSwitchLightToggleButton}" TargetType="ToggleButton">
+            <Setter Property="Margin" Value="300,0" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="md:ToggleButtonAssist.SwitchTrackOnBackground" Value="#006AFF" />
+            <Setter Property="ToolTip" Value="Mat" />
+        </Style>
     </Page.Resources>
-    <Border Style="{StaticResource CustomBorder}">
+    <Border>
         <StackPanel>
             <Grid>
                 <Button
@@ -26,12 +66,45 @@
                     Height="48"
                     Margin="10"
                     HorizontalAlignment="Left"
-                    md:ButtonAssist.CornerRadius="10"
-                    Content="Ortga">
-                </Button>
-                <TextBlock Text="Yangi printer" >
-                    
-                </TextBlock>
+                    Background="#F5F5F5"
+                    Content="Ortga"
+                    Foreground="Black" />
+
+                <TextBlock
+                    Margin="140,20"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    FontSize="20"
+                    Text="Yangi printer" />
+                <StackPanel
+                    Margin="5"
+                    HorizontalAlignment="Right"
+                    Orientation="Horizontal">
+                    <Button Content="Test print +" />
+                    <Button Content="Saqlash" />
+                </StackPanel>
+
+            </Grid>
+            <TextBox md:HintAssist.Hint="Nomi" BorderThickness="0" />
+
+            <ComboBox md:HintAssist.Hint="Chek o'lchami" BorderThickness="0">
+                <ComboBoxItem Content="Asosiy printer" />
+                <ComboBoxItem Content="Keyingi printer" />
+            </ComboBox>
+
+            <ComboBox md:HintAssist.Hint="Interfeys" BorderThickness="0">
+                <ComboBoxItem Content="Etherface" />
+                <ComboBoxItem Content="Noface" />
+            </ComboBox>
+
+            <TextBox md:HintAssist.Hint="Printer IP adresi" BorderThickness="0" />
+            <Grid>
+                <TextBlock Text="Cheklarni chop etish" />
+                <ToggleButton />
+            </Grid>
+            <Grid>
+                <TextBlock Text="Avtomatik cheklarni chop etish" />
+                <ToggleButton />
             </Grid>
         </StackPanel>
     </Border>

@@ -1,0 +1,116 @@
+﻿<Page
+    x:Class="BitoDesktop.WPF.Pages.Settings.SaleInfoSettings"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:BitoDesktop.WPF.Pages.Settings"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+    Title="SaleInfoSettings"
+    MinWidth="540"
+    MinHeight="450"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <Style x:Key="CustomBorder" TargetType="Border">
+            <Setter Property="Background" Value="White" />
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="CornerRadius" Value="10" />
+        </Style>
+        <Style BasedOn="{StaticResource MaterialDesignRaisedButton}" TargetType="Button">
+            <Setter Property="Width" Value="160" />
+            <Setter Property="Height" Value="48" />
+            <Setter Property="md:ButtonAssist.CornerRadius" Value="10" />
+            <Setter Property="Background" Value="#F5F5F5" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="FontWeight" Value="DemiBold" />
+            <Setter Property="md:ElevationAssist.Elevation" Value="Dp0" />
+            <Setter Property="Foreground" Value="Black" />
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Margin" Value="10" />
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="Foreground" Value="#9DA4B1" />
+        </Style>
+    </Page.Resources>
+    <Border Style="{StaticResource CustomBorder}">
+        <StackPanel>
+            <Grid>
+                <Button
+                    Width="108"
+                    Margin="10"
+                    HorizontalAlignment="Left"
+                    Content="Ortga" />
+
+                <TextBlock
+                    Margin="140,20"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    FontSize="20"
+                    FontWeight="DemiBold"
+                    Foreground="#006AFF"
+                    Text="#12345678" />
+                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                    <Button>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Qaytarish" />
+                            <md:PackIcon
+                                Width="24"
+                                Height="24"
+                                VerticalAlignment="Center"
+                                Foreground="#006AFF"
+                                Kind="ArrowULeftBottom" />
+                        </StackPanel>
+                    </Button>
+                    <Button>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Yuklab olish" />
+                            <md:PackIcon
+                                Width="24"
+                                Height="24"
+                                VerticalAlignment="Center"
+                                Foreground="#006AFF"
+                                Kind="Download" />
+                        </StackPanel>
+                    </Button>
+                    <Button>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Chop etish" />
+                            <md:PackIcon
+                                Width="24"
+                                Height="24"
+                                VerticalAlignment="Center"
+                                Foreground="#006AFF"
+                                Kind="Printer" />
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+
+            </Grid>
+            <StackPanel Margin="0,10">
+                <TextBlock Foreground="Black" Text="Kassir:" />
+                <TextBlock Foreground="Black" Text="Sana:" />
+                <TextBlock Foreground="Black" Text="Umumiy savdo:" />
+            </StackPanel>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.5*" />
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="№" />
+                <TextBlock Grid.Column="1" Text="Nomi" />
+                <TextBlock Grid.Column="2" Text="Narxi" />
+                <TextBlock Grid.Column="3" Text="Chegirma" />
+                <TextBlock Grid.Column="4" Text="Soni" />
+                <TextBlock Grid.Column="5" Text="Umumiy narx" />
+            </Grid>
+        </StackPanel>
+    </Border>
+</Page>

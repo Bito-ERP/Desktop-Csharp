@@ -9,6 +9,7 @@ using BitoDesktop.Domain.Configurations;
 using BitoDesktop.Domain.Entities.CustomerP;
 using BitoDesktop.Domain.Entities.Products;
 using BitoDesktop.Domain.Entities.Sale;
+using BitoDesktop.Domain.Settings;
 using BitoDesktop.Service.DTOs;
 using BitoDesktop.Service.DTOs.Common;
 using BitoDesktop.Service.DTOs.WarehouseP;
@@ -23,6 +24,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace BitoDesktop.Service.Services;
@@ -33,6 +35,7 @@ public partial class ProductService : IProductService
     private readonly IMapper _mapper;
 
     private readonly ProductRepository repository = new();
+
     public ProductService(IUnitOfWork unitOfWork, IMapper mapper)
     {
         _unitOfWork = unitOfWork;
@@ -161,7 +164,6 @@ public partial class ProductService : IProductService
     {
         throw new MarketException(404, "Product not found");
     }
-
     public async Task<int> UpdateAsync(int id, ProductForCreationDto dto)
     {
         throw new MarketException(404, "Product not found");

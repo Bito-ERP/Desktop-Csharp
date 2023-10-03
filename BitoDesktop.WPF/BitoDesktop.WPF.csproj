@@ -7,22 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Icons\emptybasket.png" />
-    <None Remove="Icons\homeactive.png" />
-    <None Remove="Icons\Pos\minus.png" />
-    <None Remove="Icons\Pos\Plus.png" />
-    <None Remove="Icons\Settings\companies.png" />
-    <None Remove="Icons\Settings\devices.png" />
-    <None Remove="Icons\Settings\language.png" />
-    <None Remove="Icons\Settings\leave.png" />
-    <None Remove="Icons\Settings\pincode.png" />
-    <None Remove="Icons\Settings\printer.png" />
-    <None Remove="Icons\Settings\scales.png" />
-    <None Remove="Icons\Settings\watch.png" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="MaterialDesignThemes" Version="4.9.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
   <ItemGroup>
@@ -30,6 +16,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Icons\Catalogs\addproduct.png" />
+    <Resource Include="Icons\Baskets\BasketClear.png" />
     <Resource Include="Icons\emptybasket.png" />
     <Resource Include="Icons\homeactive.png" />
     <Resource Include="Icons\Pos\minus.png" />
@@ -38,6 +26,7 @@
     <Resource Include="Icons\settings.png" />
     <Resource Include="Icons\box.png" />
     <Resource Include="Icons\frame.png" />
+    <Resource Include="Icons\Settings\cancel.png" />
     <Resource Include="Icons\Settings\leave.png" />
     <Resource Include="Icons\Settings\pincode.png" />
     <Resource Include="Icons\Settings\printer.png" />

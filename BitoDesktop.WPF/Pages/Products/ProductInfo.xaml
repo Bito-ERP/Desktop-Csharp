@@ -1,0 +1,226 @@
+﻿<Page
+    x:Class="BitoDesktop.WPF.Pages.Products.ProductInfo"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:BitoDesktop.WPF.Pages.Products"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+    Title="ProductInfo"
+    MinWidth="800"
+    MinHeight="600"
+    Background="#80000000"
+    mc:Ignorable="d">
+    <Page.Resources>
+        <Style BasedOn="{StaticResource MaterialDesignRaisedButton}" TargetType="Button">
+            <Setter Property="Height" Value="60" />
+            <Setter Property="Width" Value="100" />
+            <Setter Property="Background" Value="#F5F5F5" />
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="FontWeight" Value="DemiBold" />
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="md:ButtonAssist.CornerRadius" Value="10" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="md:ElevationAssist.Elevation" Value="Dp0" />
+        </Style>
+        <Style BasedOn="{StaticResource MaterialDesignOutlinedTextBox}" TargetType="TextBox">
+            <Setter Property="Width" Value="330" />
+            <Setter Property="Height" Value="60" />
+            <Setter Property="Margin" Value="20,5" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="Background" Value="#F5F5F5" />
+        </Style>
+        <Style BasedOn="{StaticResource MaterialDesignOutlinedComboBox}" TargetType="ComboBox">
+            <Setter Property="Width" Value="330" />
+            <Setter Property="Height" Value="60" />
+            <Setter Property="Margin" Value="20,5" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="Background" Value="#F5F5F5" />
+        </Style>
+    </Page.Resources>
+    <Border
+        Width="742"
+        Height="536"
+        Background="White"
+        CornerRadius="20">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <StackPanel>
+                <StackPanel
+                    Margin="10"
+                    VerticalAlignment="Top"
+                    Orientation="Horizontal">
+                    <Border
+                        Width="132"
+                        Height="132"
+                        Margin="10"
+                        Background="#F5F5F5"
+                        CornerRadius="10">
+                        <md:PackIcon
+                            Width="40"
+                            Height="40"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Foreground="#BDBDBD"
+                            Kind="Image" />
+                    </Border>
+                    <TextBlock
+                        Width="170"
+                        Margin="10"
+                        FontSize="15"
+                        FontWeight="DemiBold"
+                        Text="Product name"
+                        TextWrapping="Wrap" />
+                </StackPanel>
+                <TextBox md:HintAssist.Hint="Miqdori" BorderThickness="0" />
+                <TextBox md:HintAssist.Hint="Narxi" BorderThickness="0" />
+                <TextBox md:HintAssist.Hint="Barkod" BorderThickness="0" />
+                <ComboBox md:HintAssist.Hint="Chegirma" BorderThickness="0" />
+                <Button
+                    Width="330"
+                    Height="60"
+                    Margin="5"
+                    Padding="0"
+                    md:ButtonAssist.CornerRadius="10"
+                    md:ElevationAssist.Elevation="Dp0"
+                    Background="#F5F5F5"
+                    BorderThickness="0"
+                    Style="{StaticResource MaterialDesignRaisedButton}">
+                    <Grid
+                        Width="330"
+                        Height="60"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+                        <TextBlock
+                            Margin="16"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Foreground="#006AFF"
+                            Text="Markirovkalarini kiritish" />
+                        <md:PackIcon
+                            Width="24"
+                            Height="24"
+                            Margin="16"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            Foreground="#006AFF"
+                            Kind="Bookmark" />
+                    </Grid>
+                </Button>
+            </StackPanel>
+
+            <Grid Grid.Column="1" Margin="0,10">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <TextBox
+                    Grid.Row="0"
+                    Grid.ColumnSpan="3"
+                    Width="324"
+                    Height="56"
+                    VerticalContentAlignment="Center"
+                    Background="#F5F5F5"
+                    BorderThickness="0"
+                    FontSize="15"
+                    FontWeight="DemiBold"
+                    Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+                <Button
+                    Grid.Row="1"
+                    HorizontalAlignment="Right"
+                    Content="1" />
+                <Button
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Content="2" />
+                <Button
+                    Grid.Row="1"
+                    Grid.Column="2"
+                    HorizontalAlignment="Left"
+                    Content="3" />
+                <Button
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    HorizontalAlignment="Right"
+                    Content="4" />
+                <Button
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Content="5" />
+                <Button
+                    Grid.Row="2"
+                    Grid.Column="2"
+                    HorizontalAlignment="Left"
+                    Content="6" />
+                <Button
+                    Grid.Row="3"
+                    Grid.Column="0"
+                    HorizontalAlignment="Right"
+                    Content="7" />
+                <Button
+                    Grid.Row="3"
+                    Grid.Column="1"
+                    Content="8" />
+                <Button
+                    Grid.Row="3"
+                    Grid.Column="2"
+                    HorizontalAlignment="Left"
+                    Content="9" />
+                <Button
+                    Grid.Row="4"
+                    Grid.Column="0"
+                    HorizontalAlignment="Right"
+                    Content="." />
+                <Button
+                    Grid.Row="4"
+                    Grid.Column="1"
+                    Content="0" />
+                <Button
+                    Grid.Row="4"
+                    Grid.Column="2"
+                    HorizontalAlignment="Left">
+                    <md:PackIcon Kind="Backspace" />
+                </Button>
+                <Button
+                    Grid.Row="5"
+                    Grid.Column="0"
+                    HorizontalAlignment="Right"
+                    Content="000" />
+                <Button
+                    Grid.Row="5"
+                    Grid.Column="1"
+                    Content="00" />
+                <Button
+                    Grid.Row="5"
+                    Grid.Column="2"
+                    HorizontalAlignment="Left"
+                    Content="C" />
+
+                <Button
+                    Grid.Row="6"
+                    Grid.ColumnSpan="3"
+                    Width="324"
+                    Background="#006AFF"
+                    Content="Saqlash va yopish"
+                    Foreground="White" />
+            </Grid>
+            <Frame x:Name="MainFrame" Grid.ColumnSpan="2" />
+        </Grid>
+    </Border>
+</Page>

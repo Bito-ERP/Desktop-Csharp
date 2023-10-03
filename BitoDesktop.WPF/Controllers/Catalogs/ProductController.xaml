@@ -1,0 +1,40 @@
+﻿<UserControl
+    x:Class="BitoDesktop.WPF.Controllers.Catalogs.ProductController"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:BitoDesktop.WPF.Controllers.Catalogs"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+    Width="209"
+    Height="196"
+    mc:Ignorable="d">
+    <Grid Background="White">
+        <StackPanel>
+            <Border
+                Height="130"
+                VerticalAlignment="Top"
+                Background="#F4F4F4"
+                CornerRadius="10">
+                <md:PackIcon
+                    Width="40"
+                    Height="40"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Foreground="#BDBDBD"
+                    Kind="Image" />
+            </Border>
+            <TextBlock
+                Width="209"
+                Margin="5"
+                Text="Name"
+                TextWrapping="Wrap" />
+        </StackPanel>
+        <TextBlock
+            Width="209"
+            Margin="5"
+            VerticalAlignment="Bottom"
+            FontWeight="DemiBold"
+            Text="Price" />
+    </Grid>
+</UserControl>

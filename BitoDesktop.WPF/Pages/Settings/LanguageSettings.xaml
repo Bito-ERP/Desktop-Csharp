@@ -5,50 +5,37 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:BitoDesktop.WPF.Pages.Settings"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
     Title="Language"
-    d:DesignHeight="450"
-    d:DesignWidth="800"
+    MinWidth="540"
+    MinHeight="450"
     mc:Ignorable="d">
 
     <Page.Resources>
-        <Style x:Key="CustomBorder" TargetType="Border">
+        <Style TargetType="Border">
             <Setter Property="Background" Value="White" />
             <Setter Property="Margin" Value="10" />
             <Setter Property="CornerRadius" Value="10" />
         </Style>
+        <Style BasedOn="{StaticResource MaterialDesignAccentRadioButton}" TargetType="RadioButton">
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="FontWeight" Value="DemiBold" />
+            <Setter Property="Background" Value="#006AFF" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Margin" Value="10,0" />
+        </Style>
     </Page.Resources>
 
-    <Border Style="{StaticResource CustomBorder}">
+    <Border Margin="5">
         <StackPanel>
-            <Border
-                Height="48"
-                Margin="10"
-                Background="#F7F8F9"
-                CornerRadius="10">
-                <RadioButton
-                    Background="#006AFF"
-                    Content="O'zbek"
-                    FontSize="15" />
+            <Border Height="48" Background="#F7F8F9">
+                <RadioButton Content="O'zbek" />
             </Border>
-            <Border
-                Height="48"
-                Margin="10"
-                Background="#F7F8F9"
-                CornerRadius="10">
-                <RadioButton
-                    Background="#006AFF"
-                    Content="Русский"
-                    FontSize="15" />
+            <Border Height="48" Background="#F7F8F9">
+                <RadioButton Content="Русский" />
             </Border>
-            <Border
-                Height="48"
-                Margin="10"
-                Background="#F7F8F9"
-                CornerRadius="10">
-                <RadioButton
-                    Background="#006AFF"
-                    Content="English"
-                    FontSize="15" />
+            <Border Height="48" Background="#F7F8F9">
+                <RadioButton Content="English" />
             </Border>
         </StackPanel>
     </Border>
