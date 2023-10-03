@@ -1,5 +1,4 @@
-﻿using BitoDesktop.Domain.Entities.Sale;
-using BitoDesktop.Domain.Entities.Settings;
+﻿using BitoDesktop.Domain.Entities.Settings;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -27,7 +26,7 @@ public class CashbackSettingRepostiory
                "DO UPDATE SET " + CashbackSettingUpdate, items);
     }
 
- 
+
     public async Task<CashbackSetting> Get(string organizationId)
     {
         return await DBExcutor.QuerySingleOrDefaultAsync<CashbackSetting>(

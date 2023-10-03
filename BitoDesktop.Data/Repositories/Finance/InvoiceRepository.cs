@@ -1,8 +1,6 @@
 ﻿using BitoDesktop.Domain.Entities.Finance;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -35,7 +33,7 @@ internal class InvoiceRepository
     public async Task<Invoice> Get(string value, int type)
     {
         var query = new StringBuilder("SELECT e.* FROM invoice e WHERE ");
-        var args = new Dictionary<string, object>();    
+        var args = new Dictionary<string, object>();
 
         if (type == 0)
         {

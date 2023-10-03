@@ -268,7 +268,7 @@ public class ReceiptRepository
     public async Task<IEnumerable<Receipt>> GetRange(
         bool? synced,             // false, return only unsynchronized receipts
         int? minFailedAttempts,   // min count of failed attempts
-        int? limit              
+        int? limit
         )
     {
         var filtered = false;

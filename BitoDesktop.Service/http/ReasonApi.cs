@@ -1,17 +1,14 @@
 ﻿using BitoDesktop.Service.DTOs.Common;
-using BitoDesktop.Service.DTOs.Sale;
 using BitoDesktop.Service.DTOs.Settings;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace BitoDesktop.Service.http;
 
 internal class ReasonApi
 {
-     
+
     public static async Task<BaseResponse<ReasonResponse>> Create(RequestReasonCU request) =>
         await Client.Post<ReasonResponse>("employee/settings/reason/create", request);
 
@@ -25,7 +22,7 @@ internal class ReasonApi
       await Client.Post("employee/settings/reason/delete", request);
 
     public static async Task<BaseResponse<List<String>>> GetDeleteds(RequestBy request) =>
-      await Client.Post<List<String >> ("employee/settings/reason/get-deleted", request);
+      await Client.Post<List<String>>("employee/settings/reason/get-deleted", request);
 
 }
 

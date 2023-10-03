@@ -1,10 +1,6 @@
-﻿using BitoDesktop.Domain.Entities.Hr;
-using BitoDesktop.Domain.Entities.Pos;
-using Npgsql;
-using System;
+﻿using BitoDesktop.Domain.Entities.Pos;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 

@@ -1,11 +1,7 @@
-﻿using BitoDesktop.Domain.Entities.Hr;
-using BitoDesktop.Domain.Entities.WarehouseP;
-using Microsoft.Extensions.Primitives;
+﻿using BitoDesktop.Domain.Entities.WarehouseP;
 using Npgsql;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -37,7 +33,7 @@ public class CategoryRepository
     public async Task<int> DeletePosition(string categoryId, string organizationId)
     {
         var category = await Get(categoryId);
-        if(category == null)
+        if (category == null)
             return 0;
         category.OrganizationIds.Remove(organizationId);
         return await Insert(category);
@@ -57,7 +53,7 @@ public class CategoryRepository
             new { categoryId }
             );
     }
-    
+
     public async Task<IEnumerable<Category>> GetCategories(
         [Required] int offset,
         [Required] int limit,

@@ -1,6 +1,4 @@
-﻿using BitoDesktop.Domain.Entities.Finance;
-using BitoDesktop.Domain.Entities.Sale;
-using BitoDesktop.Domain.Entities.Settings;
+﻿using BitoDesktop.Domain.Entities.Settings;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

@@ -1,26 +1,20 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.Json.Serialization;
-using System.Threading.Tasks;
+﻿using System.Text.Json.Serialization;
 
 namespace BitoDesktop.Service.DTOs.Finance;
 
 internal class RequestTaxCU
 {
     [JsonPropertyName("_id")]
-    public string? Id { get; set; }
+    public string Id { get; set; }
 
     [JsonPropertyName("name")]
-    public string? Name { get; set; }
+    public string Name { get; set; }
 
     [JsonPropertyName("rate")]
     public float? Rate { get; set; }
 
     [JsonPropertyName("type")]
-    public string? Type { get; set; }
+    public string Type { get; set; }
 
     [JsonPropertyName("to_price")]
     public bool? ToPrice { get; set; }

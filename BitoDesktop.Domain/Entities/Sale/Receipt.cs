@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BitoDesktop.Domain.Entities.Sale;
 
@@ -261,11 +258,11 @@ public class ReceiptItem
         [Required]
         public float Rate { get; set; }
         [Required]
-        public string Type {  get; set; }
+        public string Type { get; set; }
         [Required]
         public bool ToPrice { get; set; }
         [Required]
-        public bool IsManual { get; set; }  
+        public bool IsManual { get; set; }
     }
 
 }

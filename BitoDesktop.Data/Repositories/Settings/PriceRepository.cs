@@ -1,9 +1,7 @@
 ﻿using BitoDesktop.Domain.Entities.Settings;
 using Npgsql;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -55,7 +53,7 @@ public class PriceRepository
     {
         return await DBExcutor.QuerySingleOrDefaultAsync<Price>(
            "SELECT * FROM price WHERE IsMain = TRUE AND Type = @type AND Status = 'active' AND (Employees IS NULL OR Employees LIKE @employeeId)",
-           new { type, employeeId = $"%{employeeId??""}%" }
+           new { type, employeeId = $"%{employeeId ?? ""}%" }
            );
     }
 

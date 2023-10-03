@@ -1,6 +1,5 @@
-﻿using System;
+﻿using BitoDesktop.Data.Utils;
 using System.Windows;
-using BitoDesktop.Data.Utils;
 
 namespace BitoDesktop.WPF
 {

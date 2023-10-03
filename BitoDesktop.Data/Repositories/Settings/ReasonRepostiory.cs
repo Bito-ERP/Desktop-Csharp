@@ -1,5 +1,4 @@
-﻿using BitoDesktop.Domain.Entities.Sale;
-using BitoDesktop.Domain.Entities.Settings;
+﻿using BitoDesktop.Domain.Entities.Settings;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
@@ -43,7 +42,7 @@ public class ReasonRepostiory
         [Required] int limit,
         string searchQuery,
         [Required] string type,  // 'customer_return' for now
-        bool? isActive           
+        bool? isActive
     )
     {
         var filtered = false;
@@ -78,17 +77,17 @@ public class ReasonRepostiory
                 6
             );
 
-         query.Append(" ORDER BY Name ")
-            .Append(
-              "LIMIT @limit "
-             ).Append(
-             "OFFSET @offset "
-           );
+        query.Append(" ORDER BY Name ")
+           .Append(
+             "LIMIT @limit "
+            ).Append(
+            "OFFSET @offset "
+          );
 
         args.Add("@limit", limit);
         args.Add("@offset", offset);
 
-        return await DBExcutor.QueryAsync<Reason>( query.ToString(), args);  
+        return await DBExcutor.QueryAsync<Reason>(query.ToString(), args);
     }
 
     public async Task<int> Delete(string reasonId)

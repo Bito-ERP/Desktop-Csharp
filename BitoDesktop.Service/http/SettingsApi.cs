@@ -1,17 +1,13 @@
 ﻿using BitoDesktop.Service.DTOs.Common;
-using BitoDesktop.Service.DTOs.Sale;
 using BitoDesktop.Service.DTOs.Settings;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace BitoDesktop.Service.http;
 
 internal class SettingApi
 {
-     
+
     public static async Task<BaseResponse<GeneralSettingsResponse>> GetGeneralSettings() =>
         await Client.Post<GeneralSettingsResponse>("employee/settings/general-settings/get");
 

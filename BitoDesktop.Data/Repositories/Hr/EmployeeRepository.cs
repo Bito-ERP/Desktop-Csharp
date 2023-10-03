@@ -1,9 +1,7 @@
 ﻿using BitoDesktop.Domain.Entities.Hr;
 using Npgsql;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -95,13 +93,11 @@ public class EmployeeRepository
     {
         if (organizationId == null)
             return await Get(employeeId);
-        else
-            return {
-                 var employee = await Get(employeeId);
-                 if (employee != null)
-                    employee.Positions = await GetPositions(employeeId, organizationId);
-                 return employee
-            }
+
+        var employee = await Get(employeeId);
+        if (employee != null)
+            employee.Positions = await GetPositions(employeeId, organizationId);
+        return employee;
     }
 
     public async Task<IEnumerable<Employee>> GetEmployees(

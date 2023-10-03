@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
 
 namespace BitoDesktop.Domain.Entities.CustomerP;
 public class Customer
@@ -82,10 +77,11 @@ public class CustomerAmount
     [Required]
     public string CurrencyId { get; set; }
     [Required]
-    public string Amount { get; set; }  
+    public string Amount { get; set; }
 }
 
-public class CustomerAddress {
+public class CustomerAddress
+{
     public string Id { get; set; }
     public string Name { get; set; }
     public string PhoneNumber { get; set; }

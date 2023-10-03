@@ -1,10 +1,5 @@
-﻿using BitoDesktop.Domain.Entities.Products;
-using BitoDesktop.Domain.Entities.Sale;
-using System;
+﻿using BitoDesktop.Domain.Entities.Sale;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BitoDesktop.Data.Converters
 {

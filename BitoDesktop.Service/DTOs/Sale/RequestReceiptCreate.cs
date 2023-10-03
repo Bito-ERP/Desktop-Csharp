@@ -1,10 +1,6 @@
 ﻿using BitoDesktop.Service.DTOs.Common;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 
 namespace BitoDesktop.Service.DTOs.Sale;
 internal class RequestReceiptCreate
@@ -25,7 +21,7 @@ internal class RequestReceiptCreate
     public float BaseCurrencyValue { get; set; }
 
     [JsonPropertyName("customer_id")]
-    public string? CustomerId { get; set; }
+    public string CustomerId { get; set; }
 
     [JsonPropertyName("payments")]
     public List<Payment> Payments { get; set; }
@@ -37,7 +33,7 @@ internal class RequestReceiptCreate
     public string CreatedBy { get; set; }
 
     [JsonPropertyName("responsible_id")]
-    public string? ResponsibleId { get; set; }
+    public string ResponsibleId { get; set; }
 
     [JsonPropertyName("sold_at")]
     public string SoldAt { get; set; }
@@ -46,19 +42,19 @@ internal class RequestReceiptCreate
     public string Uuid { get; set; }
 
     [JsonPropertyName("order_id")]
-    public string? OrderId { get; set; }
+    public string OrderId { get; set; }
 
     [JsonPropertyName("contract_id")]
-    public string? ContractId { get; set; }
+    public string ContractId { get; set; }
 
     [JsonPropertyName("state")]
-    public string? State { get; set; }
+    public string State { get; set; }
 
     [JsonPropertyName("delivery_address")]
     public LocationRequest? DeliveryAddress { get; set; }
 
     [JsonPropertyName("delivery_date")]
-    public string? DeliveryDate { get; set; }
+    public string DeliveryDate { get; set; }
 
     [JsonPropertyName("calc_tax_after_discount")]
     public bool CalcTaxAfterDiscount { get; set; }
@@ -97,16 +93,16 @@ internal class RequestReceiptCreate
     public bool ToSendCustomer { get; set; }
 
     [JsonPropertyName("warehouse_id")]
-    public string? WarehouseId { get; set; }
+    public string WarehouseId { get; set; }
 
     [JsonPropertyName("note")]
-    public string? Note { get; set; }
+    public string Note { get; set; }
 
     [JsonPropertyName("refund_uuid")]
-    public string? RefundUuid { get; set; }
+    public string RefundUuid { get; set; }
 
     [JsonPropertyName("reason_id")]
-    public string? ReasonId { get; set; }
+    public string ReasonId { get; set; }
 
     public class CurrencyRequest
     {
@@ -120,10 +116,10 @@ internal class RequestReceiptCreate
         public float Value { get; set; }
 
         [JsonPropertyName("side")]
-        public string? Side { get; set; }
+        public string Side { get; set; }
 
         [JsonPropertyName("symbol")]
-        public string? Symbol { get; set; }
+        public string Symbol { get; set; }
     }
 
     public class Payment
@@ -147,7 +143,7 @@ internal class RequestReceiptCreate
     public class Product
     {
         [JsonPropertyName("_id")]
-        public string? Id { get; set; }
+        public string Id { get; set; }
 
         [JsonPropertyName("product_id")]
         public string ProductId { get; set; }
@@ -195,10 +191,10 @@ internal class RequestReceiptCreate
     public class Discount
     {
         [JsonPropertyName("_id")]
-        public string? Id { get; set; }
+        public string Id { get; set; }
 
         [JsonPropertyName("name")]
-        public string? Name { get; set; }
+        public string Name { get; set; }
 
         [JsonPropertyName("apply_type")]
         public string ApplyType { get; set; }
