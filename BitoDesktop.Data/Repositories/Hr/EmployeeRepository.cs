@@ -50,7 +50,7 @@ public class EmployeeRepository
         });
     }
 
-    public async Task<int> DeletePosition(string employeeId, string organizationId)
+    public async Task<int> DeletePosition([Required] string employeeId, [Required] string organizationId)
     {
         return await DBExcutor.ExecuteAsync(
             "DELETE FROM employee_postion WHERE EmployeeId=@employeeId AND OrganizationId = @organizationId",
@@ -96,20 +96,19 @@ public class EmployeeRepository
         if (organizationId == null)
             return await Get(employeeId);
         else
-            return await DBExcutor.InTransaction(async connection =>
-               {
-                   var employee = await Get(employeeId);
-                   if (employee != null)
-                       employee.Positions = await GetPositions(employeeId, organizationId);
-                   return employee;
-               });
+            return {
+                 var employee = await Get(employeeId);
+                 if (employee != null)
+                    employee.Positions = await GetPositions(employeeId, organizationId);
+                 return employee
+            }
     }
 
     public async Task<IEnumerable<Employee>> GetEmployees(
         [Required] int offset,
         [Required] int limit,
         string searchQuery,
-        string organizationId
+        string organizationId // filter by organizaton
         )
     {
         var filtered = false;

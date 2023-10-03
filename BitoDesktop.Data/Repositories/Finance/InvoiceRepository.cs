@@ -31,7 +31,7 @@ internal class InvoiceRepository
     }
 
     // Get(invoiceId, 0), by invoiceId
-    // Get(TradeId, 1), by tradeId
+    // Get(TradeId, 1), by tradeId, Id of Receipt
     public async Task<Invoice> Get(string value, int type)
     {
         var query = new StringBuilder("SELECT e.* FROM invoice e WHERE ");
@@ -54,9 +54,9 @@ internal class InvoiceRepository
         [Required] int offset,
         [Required] int limit,
         string searchQuery,
-        string organizationId,
-        string type,
-        bool? fullyPaid
+        string organizationId,    // filter by organization
+        string type,              // income/expense
+        bool? fullyPaid           // if provided, returns only fully paids or not-yet-paids
         )
     {
         var filtered = false;

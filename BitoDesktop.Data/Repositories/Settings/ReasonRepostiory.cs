@@ -42,8 +42,8 @@ public class ReasonRepostiory
         [Required] int offset,
         [Required] int limit,
         string searchQuery,
-        [Required] string type,
-        bool? isActive
+        [Required] string type,  // 'customer_return' for now
+        bool? isActive           
     )
     {
         var filtered = false;

@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace BitoDesktop.Data.Repositories.Settings
+namespace BitoDesktop.Service.DTOs.Settings
 {
     internal class RequestScaleSet
     {

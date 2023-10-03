@@ -49,6 +49,9 @@ public class CustomerRepository
         });
     }
 
+    /*
+     * merge all customers' balanceList, totalBalance and chaback lists into one while mapping
+     */
     public async Task Insert(
         IEnumerable<Customer> items,
         IEnumerable<CustomerBalanceList> balanceList,
@@ -137,8 +140,8 @@ public class CustomerRepository
     public async Task<Customer> GetById(
         [Required] string customerId,
         string organizationId,
-        [Required] bool withTotalSpent,
-        [Required] bool withBalance
+        [Required] bool withTotalSpent, // true, TotalBalance is added to the returning customer model 
+        [Required] bool withBalance     // true, BalanceList is added to the returning customer model 
         )
     {
         var filtered = false;
@@ -214,6 +217,9 @@ public class CustomerRepository
             );
     }
 
+    /*
+     * returns customers which are located inside of the given rect
+     */
     public async Task<IEnumerable<CustomerAddress>> GetCustomers(
        double topLeftLatitude,
        double topLeftLongitude,
@@ -237,10 +243,10 @@ public class CustomerRepository
         [Required] int offset,
         [Required] int limit,
         string searchQuery,
-        string organizationId,
-        [Required] bool withTotalSpent,
-        [Required] bool withBalance,
-        [Required] bool forMap
+        string organizationId,            // if provided, returns customers that are available only in that organization
+        [Required] bool withTotalSpent,   // true, TotalBalance is added to the returning customer model 
+        [Required] bool withBalance,      // true, BalanceList is added to the returning customer model 
+        [Required] bool forMap            // true, returns ones only with location info.
     )
     {
         var filtered = false;

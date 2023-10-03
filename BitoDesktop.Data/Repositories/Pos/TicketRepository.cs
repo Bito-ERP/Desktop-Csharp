@@ -45,9 +45,10 @@ public class TicketRepository
         });
     }
 
+    // provide one of these fields, and only the given one wil be updated
     public async Task<int> UpdateTicket(
         [Required] long ticketId,
-        double? overallSum,
+        double? overallSum,       
         string name,
         string customerId,
         IEnumerable<ReceiptDiscount> discounts,
@@ -96,6 +97,7 @@ public class TicketRepository
         return await DBExcutor.ExecuteAsync(query.ToString(), args);
     }
 
+    // delete all items of this ticket then insert new items
     public async Task ReplaceItems(
         long ticketId,
         IEnumerable<TicketItem> ticketItems
@@ -120,7 +122,7 @@ public class TicketRepository
             );
     }
 
-    public async Task<IEnumerable<Ticket>> getAll([Required] string organizationId)
+    public async Task<IEnumerable<Ticket>> getTickets([Required] string organizationId)
     {
         return await DBExcutor.QueryAsync<Ticket>(
             "SELECT * FROM ticket WHERE OrganizationId = @organizationId ORDER BY Name ASC",

@@ -27,7 +27,7 @@ internal class SettingApi
     public static async Task<BaseResponse<ScaleResponse>> GetScale() =>
      await Client.Post<ScaleResponse>("employee/settings/scales/get");
 
-    public static async Task<BaseResponse<ScaleResponse>> SetScale(RequestSetState request) =>
+    public static async Task<BaseResponse<ScaleResponse>> SetScale(RequestScaleSet request) =>
     await Client.Post<ScaleResponse>("employee/settings/scales/set", request);
 
     public static async Task<BaseResponse<List<CashbackSettingsResponse>>> GetCashbackSettings() =>

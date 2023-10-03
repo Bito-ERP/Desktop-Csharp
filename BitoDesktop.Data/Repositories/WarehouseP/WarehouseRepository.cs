@@ -40,6 +40,8 @@ public class WarehouseRepository
            );
     }
 
+
+    // get main warehouse of organization
     public async Task<Warehouse> GetMain(string organizationId)
     {
         return await DBExcutor.QuerySingleOrDefaultAsync<Warehouse>(
@@ -48,6 +50,7 @@ public class WarehouseRepository
            );
     }
 
+    // check if there is any warehouse related to the organization
     public async Task<bool> IsNotEmpty(string organizationId)
     {
         var filtered = false;
@@ -80,8 +83,8 @@ public class WarehouseRepository
        [Required] int offset,
        [Required] int limit,
        string searchQuery,
-       string organisationId,
-       string status
+       string organisationId,  // filter by organization
+       string status           // active/inactive or null
        )
     {
 

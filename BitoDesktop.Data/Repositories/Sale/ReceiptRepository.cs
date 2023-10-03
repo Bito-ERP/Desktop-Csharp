@@ -48,6 +48,8 @@ public class ReceiptRepository
            );
     }
 
+
+    // returns the count of unsynchronized receipts
     public async Task<int> GetCountOfUnsynceds()
     {
         return await DBExcutor.QuerySingleOrDefaultAsync<int>(
@@ -55,6 +57,8 @@ public class ReceiptRepository
           );
     }
 
+
+    // save errorData and errorCode of a exception you get while syncing
     public async Task<int> SetFailData(
         string uuid,
         int failed,
@@ -68,6 +72,8 @@ public class ReceiptRepository
          );
     }
 
+
+    // set 0 to failed of all receipts
     public async Task<int> ClearFailCount()
     {
         return await DBExcutor.ExecuteAsync(
@@ -75,6 +81,11 @@ public class ReceiptRepository
        );
     }
 
+    /*
+    * merge all receipts' payments, installments, cashbacks, discounts and changes lists into one while mapping
+    * then insert all of them in single transaction
+    * usually this is done once after every API page request
+    */
     public async Task Insert(
         IEnumerable<Receipt> receipts,
         IEnumerable<ReceiptPayment> payments,
@@ -114,6 +125,10 @@ public class ReceiptRepository
             "DO UPDATE SET " + ReceiptUpdate, receipt, connection);
     }
 
+    /*
+    * merge all receipts' payments, installments, cashbacks, discounts and changes lists into one while mapping 
+    * then insert all of them in single transaction
+    */
     public async Task Insert(
     Receipt receipt,
     IEnumerable<ReceiptItem> items,
@@ -155,6 +170,8 @@ public class ReceiptRepository
          "DO UPDATE SET " + ItemUpdate, items, connection);
     }
 
+
+    // Delete all data related to receipt, such as discounts, products, cashbacks ....
     public async Task<int> DeleteReceiptAndDetails(string uuid, NpgsqlConnection connection = null)
     {
         if (connection != null)
@@ -175,6 +192,8 @@ public class ReceiptRepository
     }
 
 
+    // used to update amount of products of a receipt just been refunded
+    // provide list of tuples containing string(Id) and double(RefundAmount)
     public async Task UpdateRefundAmounts(IEnumerable<Tuple<string, double>> items)
     {
         await DBExcutor.InTransaction(async connection =>
@@ -235,6 +254,8 @@ public class ReceiptRepository
             );
     }
 
+
+    // returns uuids of receipts which are refund of given receipt(uuid)
     public async Task<IEnumerable<string>> GetRefunds(string uuid)
     {
         return await DBExcutor.QueryAsync<string>(
@@ -243,10 +264,11 @@ public class ReceiptRepository
             );
     }
 
+    // used to get receipts to sync, or to export
     public async Task<IEnumerable<Receipt>> GetRange(
-        bool? synced,
-        int? minFailedAttempts,
-        int? limit
+        bool? synced,             // false, return only unsynchronized receipts
+        int? minFailedAttempts,   // min count of failed attempts
+        int? limit              
         )
     {
         var filtered = false;
@@ -306,18 +328,18 @@ public class ReceiptRepository
     public async Task<IEnumerable<Receipt>> GetReceipts(
         [Required] int offset,
         [Required] int limit,
-        [Required] string organizationId,
-        string state,
+        [Required] string organizationId,  // filter by organization
+        string state,                      // filter by state
         string searchQuery,
-        string customerId,
-        string productId,
-        DateTimeOffset? fromDate,
-        DateTimeOffset? toDate,
-        string currencyId,
-        double? fromSum,
-        double? toSum,
-        bool? isRefund,
-        bool notCompletelyRefunded
+        string customerId,                 // returns receipts associated with this customer
+        string productId,                  // if receipt contains a product with this Id 
+        DateTimeOffset? fromDate,          // returns receipts sold after the given date  [exclusive]
+        DateTimeOffset? toDate,            // returns receipts sold before the given date [exclusive]
+        string currencyId,                 // returns receipts sold in this currency
+        double? fromSum,                   // check if TotalToPay >= this
+        double? toSum,                     // check if TotalToPay <= this
+        bool? isRefund,                    // true to get refund receipts, null to get all items
+        bool notCompletelyRefunded         // returns not completely refunded receipts
         )
     {
         var filtered = true;

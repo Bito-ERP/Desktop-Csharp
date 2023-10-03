@@ -56,6 +56,7 @@ public class PrinterRepostiory
           );
     }
 
+    // only PrintReceipts = TRUE
     public async Task<IEnumerable<Printer>> GetPrintAll(string searchQuery)
     {
         return await DBExcutor.QueryAsync<Printer>(
@@ -64,6 +65,8 @@ public class PrinterRepostiory
           );
     }
 
+
+    // only AutomaticallyPrintReceipts = TRUE
     public async Task<IEnumerable<Printer>> GetAutomaticallyPrintAll(string searchQuery)
     {
         return await DBExcutor.QueryAsync<Printer>(

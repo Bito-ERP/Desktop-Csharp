@@ -48,27 +48,32 @@ public class PriceRepository
            );
     }
 
+    // return main price, may be null
+    // type is one of 'sale', 'income'
+    // provide null to employeeId if he/she is a boss
     public async Task<Price> GetMain(string type, string employeeId)
     {
         return await DBExcutor.QuerySingleOrDefaultAsync<Price>(
            "SELECT * FROM price WHERE IsMain = TRUE AND Type = @type AND Status = 'active' AND (Employees IS NULL OR Employees LIKE @employeeId)",
-           new { type, employeeId }
+           new { type, employeeId = $"%{employeeId??""}%" }
            );
     }
 
+    // provide null to employeeId if he/she is a boss
     public async Task<IEnumerable<Price>> GetPrices(string employeeId)
     {
-        return await DBExcutor.QueryAsync<Price>("SELECT * FROM price WHERE Employees IS NULL OR Employees LIKE @employeeId", new { employeeId });
+        return await DBExcutor.QueryAsync<Price>("SELECT * FROM price WHERE Employees IS NULL OR Employees LIKE @employeeId", new { employeeId = $"%{employeeId ?? ""}%" });
     }
+
 
     public async Task<IEnumerable<Price>> GetPrices(
         [Required] int offset,
         [Required] int limit,
         string searchQuery,
-        string type,
-        string currencyId,
-        string status,
-        string employeeId
+        string type,         // 'sale', 'income'
+        string currencyId,   // filter by currency 
+        string status,       // active or inactive, null to get all
+        string employeeId    // provide null to employeeId if he/she is a boss
         )
     {
         var filtered = false;
@@ -99,7 +104,7 @@ public class PriceRepository
 
         filtered = true;
         query.Append("(Employees IS NULL OR Employees LIKE @employeeId) AND ");
-        args.Add("employeeId", employeeId);
+        args.Add("employeeId", employeeId = $"%{employeeId ?? ""}%");
 
         if (searchQuery != null && searchQuery.Length != 0)
         {

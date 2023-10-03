@@ -163,12 +163,12 @@ public class Receipt
     public DateTimeOffset SoldAt { get; set; }
 
     [Required]
-    public int Failed { get; set; }
+    public int Failed { get; set; } // count of failed attempts to sync, used to filter receipts in order to prevent infinite requests
 
     [Required]
-    public int ErrorCode { get; set; }
+    public int ErrorCode { get; set; }  // code of error returned from a server
 
-    public string ErrorData { get; set; }
+    public string ErrorData { get; set; } // might be used to save productId which is caused a exception while syncing, you get it from a error response
 
     public List<ReceiptPayment> Payments { get; set; } = null;
     public List<ReceiptInstallment> Installments { get; set; } = null;

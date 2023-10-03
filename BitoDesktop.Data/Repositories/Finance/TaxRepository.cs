@@ -1,5 +1,6 @@
 ﻿using BitoDesktop.Domain.Entities.Finance;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 
 namespace BitoDesktop.Data.Repositories.Finance;
@@ -39,7 +40,7 @@ public class TaxRepository
            );
     }
 
-    public async Task<IEnumerable<Tax>> GetAll(string searchQuery, string organizationId)
+    public async Task<IEnumerable<Tax>> GetAll(string searchQuery, [Required] string organizationId)
     {
         return await DBExcutor.QueryAsync<Tax>(
           "SELECT * FROM finance_tax WHERE Name LIKE @searchQuery AND OrganizationIds LIKE @organizationId",
@@ -47,7 +48,8 @@ public class TaxRepository
           );
     }
 
-    public async Task<IEnumerable<Tax>> Get(IEnumerable<string> taxIds, string organizationId)
+    // Get Taxes by their ids, used to get taxes of a product
+    public async Task<IEnumerable<Tax>> Get(IEnumerable<string> taxIds, [Required] string organizationId)
     {
         return await DBExcutor.QueryAsync<Tax>(
           "SELECT * FROM finance_tax WHERE (IsManual = TRUE OR Id IN @taxIds) AND OrganizationIds LIKE @organizationId",

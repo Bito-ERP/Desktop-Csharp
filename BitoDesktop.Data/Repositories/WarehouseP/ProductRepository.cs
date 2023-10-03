@@ -38,6 +38,9 @@ public class ProductRepository : IProductRepository
     {
     }
 
+    /*
+    * merge all products' organization, warehouses and prices lists into one while mapping
+    */
     public async Task Insert(
        IEnumerable<ProductTable> products,
        IEnumerable<ProductOrganization> organization,
@@ -54,9 +57,10 @@ public class ProductRepository : IProductRepository
         });
     }
 
+    // after receipt is created, increase/decrease amount of the products in the given warehouse
     public async void UpdateWarehouseAmount(
-        bool inc,
-        List<Tuple<string, double>> productAmounts,
+        bool inc, // true to increase, false to decrease
+        List<Tuple<string, double>> productAmounts,  // {Id, amount which is addded to or subtrackted from product's original amount}
         string warehouseId
        )
     {
@@ -115,6 +119,7 @@ public class ProductRepository : IProductRepository
             "DO UPDATE SET " + ProductPriceUpdate, entities, connection);
     }
 
+    // when user deletes a product, just remove that product from organization, provide false to isAvailable
     public async Task<int> UpdateAvailability(
         string productId,
         string organizationId,
@@ -257,8 +262,8 @@ public class ProductRepository : IProductRepository
         string organizationId,
         string warehouseId,
         string priceId,
-        bool withAmount,
-        bool withPrices,
+        bool withAmount,        //  true, infos of product related to given organization will be added
+        bool withPrices,        // true, prices of product will be added to response
         bool withTax            // not yet implemented
    )
     {
@@ -283,8 +288,8 @@ public class ProductRepository : IProductRepository
         string organizationId,
         string warehouseId,
         string priceId,
-        bool withAmount,
-        bool withPrices,
+        bool withAmount,         //  true, infos of product related to given organization will be added
+        bool withPrices,         // true, prices of product will be added to response
         bool withTax            // not yet implemented
    )
     {
@@ -311,10 +316,10 @@ public class ProductRepository : IProductRepository
         bool? isSemiProduct, // pass null to exclude this param from the filter
         bool? isAvailableForSale, // pass null to exclude this param from the filter
         string searchQuery,
-        string priceId,
+        string priceId,        // provide price id to get price of product, it is returndes as SelectedPriceAmount
         string inStockState, // null, 'yellow_line', 'red_line' or 'negative'
-        string categoryId,
-        bool withOrganizationAmount,
+        string categoryId, // filter by category
+        bool withOrganizationAmount,  //  true, infos of product related to given organization will be added
         bool filterByWarehouse, // true, return products that exist only in the specified warehouse
         bool filterByPrice,     // true, return products that have the specified price
         bool excludeOutOfStockProducts // true, exclude products that are oud of stock
@@ -355,6 +360,7 @@ public class ProductRepository : IProductRepository
 
         return await DBExcutor.QueryAsync<Product>(query.ToString(), args);
     }
+
 
     public async Task<IEnumerable<double>> getProductPrices(
         List<string> products,
@@ -529,7 +535,7 @@ public class ProductRepository : IProductRepository
         string priceId,
         string inStockState, // null, 'yellow_line', 'red_line' or 'negative'
         string categoryId,
-        bool withOrganizationAmount,
+        bool withOrganizationAmount, //  true, infos of product related to given organization will be added
         bool filterByWarehouse, // true, return products that exist only in the specified warehouse
         bool filterByPrice,     // true, return products that have the specified price
         bool excludeOutOfStockProducts // true, exclude products that are oud of stock

@@ -62,9 +62,9 @@ public class CategoryRepository
         [Required] int offset,
         [Required] int limit,
         string searchQuery,
-        string parentCategoryId,
-        bool? onlyTops,
-        string organizationId
+        string parentCategoryId, // provide categoryId, returns its childres
+        bool? onlyTops,          // true, returns categories that don't have parent category
+        string organizationId    // filter by organizationId
         )
     {
         var filtered = false;
