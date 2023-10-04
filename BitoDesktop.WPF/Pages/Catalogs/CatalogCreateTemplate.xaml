@@ -52,7 +52,6 @@
             <TextBox
                 Width="328"
                 Height="56"
-                Padding="5"
                 Margin="0,10"
                 VerticalContentAlignment="Center"
                 md:HintAssist.Hint="Mijoz ismi"

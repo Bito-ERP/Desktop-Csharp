@@ -33,11 +33,19 @@
                     <RowDefinition />
                 </Grid.RowDefinitions>
                 <StackPanel>
-                    <TextBlock
-                        Margin="10"
-                        FontSize="25"
-                        FontWeight="DemiBold"
-                        Text="Sotuv #" />
+                    <Grid>
+                        <TextBlock
+                            Margin="10"
+                            FontSize="25"
+                            FontWeight="DemiBold"
+                            Text="Sotuv #" />
+                        <md:PackIcon
+                            Width="36"
+                            Height="36"
+                            Margin="10"
+                            HorizontalAlignment="Right"
+                            Kind="DotsVertical" />
+                    </Grid>
 
                     <Grid Margin="10">
                         <Grid.ColumnDefinitions>
@@ -383,6 +391,9 @@
                 </Border>
             </Grid>
         </Border>
-        <Frame x:Name="MainFrame" Grid.ColumnSpan="3" />
+        <!--<Frame
+            x:Name="MainFrame"
+            Grid.ColumnSpan="3"
+            Navigated="MainFrame_Navigated" />-->
     </Grid>
 </Page>

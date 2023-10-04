@@ -57,5 +57,6 @@ namespace BitoDesktop.WPF.Pages
                 EmptyBasketTxt.Text = string.Empty;
             }
         }
+
     }
 }

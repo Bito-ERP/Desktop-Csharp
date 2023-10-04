@@ -52,7 +52,7 @@ namespace BitoDesktop.Data.Repositories
         public async Task<Product> GetByIdAsync(int id)
         {
             var sql = "SELECT * FROM Products WHERE Id = @Id;";
-            using (var connection = new NpgsqlConnection("Host=localhost;Port=5432;Database=MarketDb;Username=postgres;Password=muham1812;"))
+            using (var connection = new NpgsqlConnection("Host=localhost;Port=5432;Database=MarketDb;Username=postgres;Password=8520;"))
             {
                 connection.Open();
                 var result = await connection.QuerySingleOrDefaultAsync<Product>(sql, new { Id = id });
@@ -63,7 +63,7 @@ namespace BitoDesktop.Data.Repositories
         public async Task<int> UpdateAsync(Product entity)
         {
             var sql = "UPDATE Products SET Name = @Name, Price = @Price WHERE Id = @Id";
-            using (var connection = new NpgsqlConnection("Host=localhost;Port=5432;Database=MarketDb;Username=postgres;Password=muham1812;"))
+            using (var connection = new NpgsqlConnection("Host=localhost;Port=5432;Database=MarketDb;Username=postgres;Password=8520;"))
             {
                 connection.Open();
                 var result = await connection.ExecuteAsync(sql, entity);

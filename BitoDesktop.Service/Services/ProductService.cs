@@ -44,6 +44,7 @@ public partial class ProductService : IProductService
         return product;
     }
 
+
     public async Task<int> AddAsync(ProductForCreationDto dto)
     {    
         var mappedProduct = _mapper.Map<Product>(dto);
