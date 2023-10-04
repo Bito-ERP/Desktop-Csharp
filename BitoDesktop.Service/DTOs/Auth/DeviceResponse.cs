@@ -2,7 +2,7 @@
 
 namespace BitoDesktop.Service.DTOs.Auth;
 
-internal class DeviceResponse
+public class DeviceResponse
 {
     [JsonPropertyName("_id")]
     public string Id { get; set; }

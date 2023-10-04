@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
 namespace BitoDesktop.Service.DTOs.Auth;
-internal class RequestUseDevice
+public class RequestUseDevice
 {
     [JsonPropertyName("_id"), Required]
     public string Id { get; set; }

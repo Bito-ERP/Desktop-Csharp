@@ -2,7 +2,7 @@
 using System.Text.Json.Serialization;
 
 namespace BitoDesktop.Service.DTOs.Pos;
-internal class PageResponse
+public class PageResponse
 {
     [JsonPropertyName("order")]
     public int Order { get; set; }

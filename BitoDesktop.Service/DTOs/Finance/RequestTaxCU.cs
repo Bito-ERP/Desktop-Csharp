@@ -2,7 +2,7 @@
 
 namespace BitoDesktop.Service.DTOs.Finance;
 
-internal class RequestTaxCU
+public class RequestTaxCU
 {
     [JsonPropertyName("_id")]
     public string Id { get; set; }
@@ -32,14 +32,14 @@ internal class RequestTaxCU
     public bool? IsAllSuppliers { get; set; }
 
     [JsonPropertyName("category_ids")]
-    public string[]? CategoryIds { get; set; }
+    public string[] CategoryIds { get; set; }
 
     [JsonPropertyName("supplier_ids")]
-    public string[]? SupplierIds { get; set; }
+    public string[] SupplierIds { get; set; }
 
     [JsonPropertyName("item_added_ids")]
-    public string[]? AddedIds { get; set; }
+    public string[] AddedIds { get; set; }
 
     [JsonPropertyName("item_removed_ids")]
-    public string[]? RemovedIds { get; set; }
+    public string[] RemovedIds { get; set; }
 }

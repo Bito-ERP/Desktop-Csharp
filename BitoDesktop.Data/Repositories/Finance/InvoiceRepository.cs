@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BitoDesktop.Data.Repositories.Finance;
 
-internal class InvoiceRepository
+public class InvoiceRepository
 {
 
     private const string InvoiceColumns = "Id, OrganizationId, Type, Number, PaymentTypeId, PaymentTypeName, UserType, PaymentFor, IsRefund, Date, CustomerId, CustomerName, EmployeeId, EmployeeName, SupplierId, SupplierName, PersonId, PersonName, ToBePaid, Paid, ToBeRefunded, Refunded, PaidByBalance, PaidByCashback, CurrencyId, TradeId";

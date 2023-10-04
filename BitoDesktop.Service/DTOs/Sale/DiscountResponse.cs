@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace BitoDesktop.Service.DTOs.Sale;
 
-internal class DiscountResponse
+public class DiscountResponse
 {
     [JsonPropertyName("_id")]
     public string Id { get; set; }

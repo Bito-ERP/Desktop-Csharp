@@ -3,7 +3,7 @@ using BitoDesktop.Service.DTOs.Finance;
 using System.Threading.Tasks;
 
 namespace BitoDesktop.Service.http;
-internal class CurrencyApi
+public class CurrencyApi
 {
     public static async Task<BaseResponse<PagingResponse<CurrencyResponse>>> GetAll() =>
        await Client.Post<PagingResponse<CurrencyResponse>>("employee/finance/currency/get-all");

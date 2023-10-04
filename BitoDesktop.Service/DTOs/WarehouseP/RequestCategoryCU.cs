@@ -2,7 +2,7 @@
 
 namespace BitoDesktop.Service.DTOs.WarehouseP;
 
-internal class RequestCategoryCU
+public class RequestCategoryCU
 {
     [JsonPropertyName("_id")]
     public string Id { get; set; }

@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace BitoDesktop.Service.DTOs.Common;
 
-internal class RequestPage
+public class RequestPage
 {
     [JsonPropertyName("limit")]
     public int Limit { get; set; } = 50;

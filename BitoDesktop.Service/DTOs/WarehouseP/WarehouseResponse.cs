@@ -3,7 +3,7 @@ using BitoDesktop.Service.DTOs.Common;
 using System.Text.Json.Serialization;
 
 namespace BitoDesktop.Service.DTOs.WarehouseP;
-internal class WarehouseResponse
+public class WarehouseResponse
 {
     [JsonPropertyName("_id")]
     public string Id { get; set; }

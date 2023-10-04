@@ -2,7 +2,7 @@
 
 namespace BitoDesktop.Service.DTOs.Settings
 {
-    internal class RequestReasonCU
+    public class RequestReasonCU
     {
         [JsonPropertyName("_id")]
         public string Id { get; set; }

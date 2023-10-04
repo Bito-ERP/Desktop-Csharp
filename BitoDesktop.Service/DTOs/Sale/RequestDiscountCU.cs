@@ -2,7 +2,7 @@
 
 namespace BitoDesktop.Service.DTOs.Sale;
 
-internal class RequestDiscountCU
+public class RequestDiscountCU
 {
     [JsonPropertyName("_id")]
     public string Id { get; set; }

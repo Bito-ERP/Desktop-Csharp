@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace BitoDesktop.Service.http.Warehouse;
 
-internal class CategoryApi
+public class CategoryApi
 {
     public static async Task<BaseResponse<PagingResponse<DTOs.WarehouseP.CategoryResponse>>> GetPage(RequestPage request) =>
      await Client.Post<PagingResponse<DTOs.WarehouseP.CategoryResponse>>("employee/product/category/get-paging", request);

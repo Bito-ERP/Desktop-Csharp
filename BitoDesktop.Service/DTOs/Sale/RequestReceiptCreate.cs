@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
 namespace BitoDesktop.Service.DTOs.Sale;
-internal class RequestReceiptCreate
+public class RequestReceiptCreate
 {
     [JsonPropertyName("organization_id")]
     public string OrganizationId { get; set; }
@@ -51,7 +51,7 @@ internal class RequestReceiptCreate
     public string State { get; set; }
 
     [JsonPropertyName("delivery_address")]
-    public LocationRequest? DeliveryAddress { get; set; }
+    public LocationRequest DeliveryAddress { get; set; }
 
     [JsonPropertyName("delivery_date")]
     public string DeliveryDate { get; set; }
@@ -72,7 +72,7 @@ internal class RequestReceiptCreate
     public double SaleTotalDiscount { get; set; }
 
     [JsonPropertyName("discounts")]
-    public List<Discount>? Discounts { get; set; }
+    public List<Discount> Discounts { get; set; }
 
     [JsonPropertyName("total_included_tax")]
     public double TotalIncludedTax { get; set; }
@@ -81,13 +81,13 @@ internal class RequestReceiptCreate
     public double TotalAddedTax { get; set; }
 
     [JsonPropertyName("installment_plan")]
-    public List<Installment>? Installments { get; set; }
+    public List<Installment> Installments { get; set; }
 
     [JsonPropertyName("applied_cashbacks")]
-    public List<Cashback>? Cashbacks { get; set; }
+    public List<Cashback> Cashbacks { get; set; }
 
     [JsonPropertyName("changes")]
-    public List<Change>? Changes { get; set; }
+    public List<Change> Changes { get; set; }
 
     [JsonPropertyName("to_send_customer")]
     public bool ToSendCustomer { get; set; }
@@ -167,13 +167,13 @@ internal class RequestReceiptCreate
         public double TotalTax { get; set; }
 
         [JsonPropertyName("discounts")]
-        public List<Discount>? Discounts { get; set; }
+        public List<Discount> Discounts { get; set; }
 
         [JsonPropertyName("taxes")]
-        public List<Tax>? Taxes { get; set; }
+        public List<Tax> Taxes { get; set; }
 
         [JsonPropertyName("marks")]
-        public List<string>? Marks { get; set; }
+        public List<string> Marks { get; set; }
 
         [JsonPropertyName("cost")]
         public double? Cost { get; set; }

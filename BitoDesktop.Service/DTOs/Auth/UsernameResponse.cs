@@ -2,7 +2,7 @@
 
 namespace BitoDesktop.Service.DTOs.Auth;
 
-internal class UsernameResponse
+public class UsernameResponse
 {
     [JsonPropertyName("username")]
     public string Username { get; set; }

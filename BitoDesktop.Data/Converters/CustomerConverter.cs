@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 namespace BitoDesktop.Data.Converters;
-internal class CustomerAmountConverter : JsonConverter<IEnumerable<CustomerAmount>>
+public class CustomerAmountConverter : JsonConverter<IEnumerable<CustomerAmount>>
 {
 }
 

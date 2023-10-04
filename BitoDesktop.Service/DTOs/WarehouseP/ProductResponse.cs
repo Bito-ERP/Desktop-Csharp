@@ -6,7 +6,7 @@ using System.Text.Json.Serialization;
 
 namespace BitoDesktop.Service.DTOs.WarehouseP;
 
-internal class ProductResponse
+public class ProductResponse
 {
     [JsonPropertyName("_id")]
     public string Id { get; set; }

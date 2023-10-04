@@ -2,7 +2,7 @@
 
 namespace BitoDesktop.Service.DTOs.Settings
 {
-    internal class RequestPrinterCU
+    public class RequestPrinterCU
     {
         [JsonPropertyName("_id")]
         public string Id { get; set; }

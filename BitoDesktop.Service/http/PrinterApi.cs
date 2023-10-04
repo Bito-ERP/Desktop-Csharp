@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace BitoDesktop.Service.http;
 
-internal class PrinterApi
+public class PrinterApi
 {
 
     public static async Task<BaseResponse<PrinterResponse>> Create(RequestPrinterCU request) =>

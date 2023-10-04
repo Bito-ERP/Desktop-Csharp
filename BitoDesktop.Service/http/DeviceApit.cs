@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace BitoDesktop.Service.http;
 
-internal class DeviceApi
+public class DeviceApi
 {
     public static async Task<BaseResponse<PagingResponse<DeviceResponse>>> GetPage(RequestPage request) =>
         await Client.Post<PagingResponse<DeviceResponse>>("employee/settings/device/get-paging", request);

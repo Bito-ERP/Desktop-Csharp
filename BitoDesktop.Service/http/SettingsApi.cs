@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace BitoDesktop.Service.http;
 
-internal class SettingApi
+public class SettingApi
 {
 
     public static async Task<BaseResponse<GeneralSettingsResponse>> GetGeneralSettings() =>

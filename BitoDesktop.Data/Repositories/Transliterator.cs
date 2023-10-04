@@ -4,7 +4,7 @@ using System.Text;
 
 namespace BitoDesktop.Data.Repositories;
 
-internal class Transliterator
+public class Transliterator
 {
 
     public static Dictionary<Int32, Int32> lToC;

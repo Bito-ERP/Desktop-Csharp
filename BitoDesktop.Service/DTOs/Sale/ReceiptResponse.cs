@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text.Json.Serialization;
 
 namespace BitoDesktop.Service.DTOs.Sale;
-internal class ReceiptResponse
+public class ReceiptResponse
 {
     [JsonPropertyName("uuid")]
     public string Uuid { get; set; }

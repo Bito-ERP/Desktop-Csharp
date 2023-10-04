@@ -7,7 +7,7 @@ using System.Text.Json.Serialization;
 
 namespace BitoDesktop.Service.DTOs.Hr;
 
-internal class EmployeeResponse
+public class EmployeeResponse
 {
 
     [JsonPropertyName("_id")]
@@ -85,10 +85,10 @@ internal class EmployeeResponse
         public DataResponse Role { get; set; }
 
         [JsonPropertyName("section")]
-        public DataResponse? Section { get; set; }
+        public DataResponse Section { get; set; }
 
         [JsonPropertyName("position")]
-        public DataResponse? Position { get; set; }
+        public DataResponse Position { get; set; }
     }
 
     public Employee Get() => new()

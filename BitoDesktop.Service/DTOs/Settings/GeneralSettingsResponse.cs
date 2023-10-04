@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace BitoDesktop.Service.DTOs.Settings
 {
-    internal class GeneralSettingsResponse
+    public class GeneralSettingsResponse
     {
         [JsonPropertyName("isArchived")]
         public bool IsArchived { get; set; }
@@ -125,11 +125,11 @@ namespace BitoDesktop.Service.DTOs.Settings
         [JsonPropertyName("transferReason")]
         public bool TransferReason { get; set; }
 
-        [JsonPropertyName("internalTransferRequest")]
-        public bool InternalTransferRequest { get; set; }
+        [JsonPropertyName("publicTransferRequest")]
+        public bool publicTransferRequest { get; set; }
 
-        [JsonPropertyName("internalTransfer")]
-        public bool InternalTransfer { get; set; }
+        [JsonPropertyName("publicTransfer")]
+        public bool publicTransfer { get; set; }
 
         [JsonPropertyName("organizationalTransferRequest")]
         public bool OrganizationalTransferRequest { get; set; }

@@ -3,7 +3,7 @@ using BitoDesktop.Service.DTOs.Finance;
 using System.Threading.Tasks;
 
 namespace BitoDesktop.Service.http;
-internal class InvoiceApi
+public class InvoiceApi
 {
 
     public static async Task<BaseResponse<InvoiceResponse>> GetById(RequestBy request) =>

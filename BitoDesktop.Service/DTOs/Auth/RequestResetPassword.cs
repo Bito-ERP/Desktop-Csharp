@@ -2,7 +2,7 @@
 
 namespace BitoDesktop.Service.DTOs.Auth;
 
-internal class RequestResetPassword
+public class RequestResetPassword
 {
     [JsonPropertyName("phone_number")]
     public string PhoneNumber { get; set; }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BitoDesktop.Service.http;
 
-internal class DiscountApi
+public class DiscountApi
 {
 
     public static async Task<BaseResponse<DiscountResponse>> Create(RequestDiscountCU request) =>
@@ -24,8 +24,8 @@ internal class DiscountApi
     public static async Task Delete(RequestBy request) =>
       await Client.Post("employee/sale/discount/delete", request);
 
-    public static async Task<BaseResponse<List<String>>> GetDeleteds(RequestBy request) =>
-      await Client.Post<List<String>>("employee/sale/discount/get-deleted", request);
+    public static async Task<BaseResponse<List<string>>> GetDeleteds(RequestBy request) =>
+      await Client.Post<List<string>>("employee/sale/discount/get-deleted", request);
 
 }
 

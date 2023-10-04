@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace BitoDesktop.Service.DTOs.Settings
 {
-    internal class ScaleResponse
+    public class ScaleResponse
     {
         [JsonPropertyName("_id")]
         public string Id { get; set; }

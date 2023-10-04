@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BitoDesktop.Service.http;
 
-internal class ReasonApi
+public class ReasonApi
 {
 
     public static async Task<BaseResponse<ReasonResponse>> Create(RequestReasonCU request) =>
@@ -21,8 +21,8 @@ internal class ReasonApi
     public static async Task Delete(RequestBy request) =>
       await Client.Post("employee/settings/reason/delete", request);
 
-    public static async Task<BaseResponse<List<String>>> GetDeleteds(RequestBy request) =>
-      await Client.Post<List<String>>("employee/settings/reason/get-deleted", request);
+    public static async Task<BaseResponse<List<string>>> GetDeleteds(RequestBy request) =>
+      await Client.Post<List<string>>("employee/settings/reason/get-deleted", request);
 
 }
 

@@ -2,7 +2,7 @@
 using System.Text.Json.Serialization;
 
 namespace BitoDesktop.Service.DTOs.Finance;
-internal class InvoiceResponse
+public class InvoiceResponse
 {
     [JsonPropertyName("_id")]
     public string Id { get; set; }

@@ -2,7 +2,7 @@
 
 namespace BitoDesktop.Service.DTOs.Settings
 {
-    internal class SaleSettingsResponse
+    public class SaleSettingsResponse
     {
         [JsonProperty("calc_tax_after_discount")]
         public bool CalcTaxAfterDiscount { get; set; }

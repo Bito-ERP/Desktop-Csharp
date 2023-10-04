@@ -2,7 +2,7 @@
 using System.Text.Json.Serialization;
 
 namespace BitoDesktop.Service.DTOs.Settings;
-internal class UnitMeasurementResponse
+public class UnitMeasurementResponse
 {
     [JsonPropertyName("_id")]
     public string Id { get; set; }

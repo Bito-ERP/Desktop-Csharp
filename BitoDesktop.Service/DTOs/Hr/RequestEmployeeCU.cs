@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace BitoDesktop.Service.DTOs.Hr;
 
-internal class RequestEmployeeCU
+public class RequestEmployeeCU
 {
     [JsonPropertyName("_id")]
     public string Id { get; set; }

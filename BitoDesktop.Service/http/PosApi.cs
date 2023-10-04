@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace BitoDesktop.Service.http;
-internal class PosApi
+public class PosApi
 {
 
     public static async Task<BaseResponse<IEnumerable<PageResponse>>> GetPages() =>

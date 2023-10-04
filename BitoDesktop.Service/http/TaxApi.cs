@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BitoDesktop.Service.http;
 
-internal class TaxApi
+public class TaxApi
 {
     public static async Task<BaseResponse<DiscountResponse>> Create(RequestTaxCU request) =>
     await Client.Post<DiscountResponse>("employee/finance/tax/create", request);
@@ -21,6 +21,6 @@ internal class TaxApi
     public static async Task Delete(RequestBy request) =>
       await Client.Post("employee/finance/tax/delete", request);
 
-    public static async Task<BaseResponse<List<String>>> GetDeleteds(RequestBy request) =>
-      await Client.Post<List<String>>("employee/finance/tax/get-deleted", request);
+    public static async Task<BaseResponse<List<string>>> GetDeleteds(RequestBy request) =>
+      await Client.Post<List<string>>("employee/finance/tax/get-deleted", request);
 }

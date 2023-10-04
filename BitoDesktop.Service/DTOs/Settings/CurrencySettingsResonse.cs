@@ -2,7 +2,7 @@
 
 namespace BitoDesktop.Service.DTOs.Settings
 {
-    internal class CurrencySettingsResonse
+    public class CurrencySettingsResonse
     {
         [JsonProperty("apply_in_main")]
         public bool ApplyInMain { get; set; }

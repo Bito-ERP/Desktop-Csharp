@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BitoDesktop.Service.http;
 
-internal class EmployeeApi
+public class EmployeeApi
 {
 
     public static async Task<BaseResponse<PagingResponse<EmployeeResponse>>> GetPage(RequestPage request) =>

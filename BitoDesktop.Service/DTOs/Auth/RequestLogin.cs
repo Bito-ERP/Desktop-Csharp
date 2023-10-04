@@ -2,7 +2,7 @@
 
 namespace BitoDesktop.Service.DTOs.Auth;
 
-internal class RequestLogin
+public class RequestLogin
 {
     [JsonPropertyName("phone_number")]
     public string PhoneNumber { get; set; }

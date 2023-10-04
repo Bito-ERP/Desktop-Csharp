@@ -1,7 +1,7 @@
 ﻿using System.Text.Json.Serialization;
 
 namespace BitoDesktop.Service.DTOs.Common;
-internal class LocationRequest
+public class LocationRequest
 {
     [JsonPropertyName("lat")]
     public double Lat { get; set; }

@@ -2,7 +2,7 @@
 
 namespace BitoDesktop.Service.DTOs.Common;
 
-internal class RequestSetState
+public class RequestSetState
 {
     [JsonPropertyName("state")]
     public string State { get; set; }

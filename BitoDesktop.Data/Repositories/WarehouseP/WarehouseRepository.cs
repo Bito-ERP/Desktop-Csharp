@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace BitoDesktop.Data.Repositories.WarehouseP;
+// Ombor
 public class WarehouseRepository
 {
 

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace BitoDesktop.Service.http;
-internal class TicketApi
+public class TicketApi
 {
     public static async Task<BaseResponse<List<TableResponse>>> GetTables() =>
         await Client.Post<List<TableResponse>>("employee/settings/booking-table/get-all");

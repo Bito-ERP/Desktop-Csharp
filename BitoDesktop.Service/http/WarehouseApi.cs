@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace BitoDesktop.Service.http;
-internal class WarehouseApi
+public class WarehouseApi
 {
     public static async Task<BaseResponse<PagingResponse<WarehouseResponse>>> GetPage(RequestPage request) =>
      await Client.Post<PagingResponse<WarehouseResponse>>("employee/warehouse/warehouse/get-paging", request);

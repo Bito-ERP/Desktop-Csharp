@@ -1,7 +1,7 @@
 ﻿using System.Text.Json.Serialization;
 
 namespace BitoDesktop.Service.DTOs.Settings;
-internal class AccessResponse
+public class AccessResponse
 {
     [JsonPropertyName("_id")]
     public string Id { get; set; }
@@ -525,23 +525,23 @@ internal class AccessResponse
         [JsonPropertyName("material_transfer_delete")]
         public bool MaterialTransferDelete { get; set; }
 
-        [JsonPropertyName("internal_transfer_request")]
-        public bool InternalTransferRequest { get; set; }
+        [JsonPropertyName("public_transfer_request")]
+        public bool publicTransferRequest { get; set; }
 
-        [JsonPropertyName("internal_transfer_request_create")]
-        public bool InternalTransferRequestCreate { get; set; }
+        [JsonPropertyName("public_transfer_request_create")]
+        public bool publicTransferRequestCreate { get; set; }
 
-        [JsonPropertyName("internal_transfer_request_update")]
-        public bool InternalTransferRequestUpdate { get; set; }
+        [JsonPropertyName("public_transfer_request_update")]
+        public bool publicTransferRequestUpdate { get; set; }
 
-        [JsonPropertyName("internal_transfer")]
-        public bool InternalTransfer { get; set; }
+        [JsonPropertyName("public_transfer")]
+        public bool publicTransfer { get; set; }
 
-        [JsonPropertyName("internal_transfer_create")]
-        public bool InternalTransferCreate { get; set; }
+        [JsonPropertyName("public_transfer_create")]
+        public bool publicTransferCreate { get; set; }
 
-        [JsonPropertyName("internal_transfer_update")]
-        public bool InternalTransferUpdate { get; set; }
+        [JsonPropertyName("public_transfer_update")]
+        public bool publicTransferUpdate { get; set; }
 
         [JsonPropertyName("organizational_transfer")]
         public bool OrganizationalTransfer { get; set; }

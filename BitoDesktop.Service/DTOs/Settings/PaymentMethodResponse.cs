@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace BitoDesktop.Service.DTOs.Settings;
 
-internal class PaymentMethodResponse
+public class PaymentMethodResponse
 {
     [Required]
     [JsonPropertyName("_id")]

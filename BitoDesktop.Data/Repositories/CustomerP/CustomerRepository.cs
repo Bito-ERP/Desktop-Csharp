@@ -230,6 +230,7 @@ public class CustomerRepository
             );
     }
 
+    #region Buni ishlatamiz
     public async Task<IEnumerable<Customer>> GetCustomers(
         [Required] int offset,
         [Required] int limit,
@@ -322,5 +323,6 @@ public class CustomerRepository
             args
             );
     }
+    #endregion
 }
 

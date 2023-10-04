@@ -246,7 +246,7 @@ public class ReceiptItem
 
     public List<Tax> Taxes { get; set; }
 
-    public List<String> Marks { get; set; }
+    public List<string> Marks { get; set; }
 
 
     public class Tax

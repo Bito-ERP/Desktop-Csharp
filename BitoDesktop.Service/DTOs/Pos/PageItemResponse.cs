@@ -3,7 +3,7 @@ using BitoDesktop.Service.DTOs.Common;
 using System.Text.Json.Serialization;
 
 namespace BitoDesktop.Service.DTOs.Pos;
-internal class PageItemResponse
+public class PageItemResponse
 {
     [JsonPropertyName("_id")]
     public string Id { get; set; }

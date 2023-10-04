@@ -2,7 +2,7 @@
 
 namespace BitoDesktop.Service.DTOs.Common;
 
-internal class BaseResponse<T>
+public class BaseResponse<T>
 {
     [JsonPropertyName("code")]
     public int Code { get; set; }

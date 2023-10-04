@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace BitoDesktop.Data.Converters
 {
-    internal class CashbackConverter : JsonConverter<IEnumerable<CashbackSetting.Cashback>>
+    public class CashbackConverter : JsonConverter<IEnumerable<CashbackSetting.Cashback>>
     {
     }
 }

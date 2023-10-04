@@ -2,7 +2,7 @@
 using System.Text.Json.Serialization;
 
 namespace BitoDesktop.Service.DTOs.Common;
-internal class UserResponse
+public class UserResponse
 {
     [Required]
     [JsonPropertyName("_id")]

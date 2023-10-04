@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace BitoDesktop.Service.http;
 
-internal class PriceApi
+public class PriceApi
 {
     public static async Task<BaseResponse<PagingResponse<PriceResponse>>> GetPage(RequestPage request) =>
       await Client.Post<PagingResponse<PriceResponse>>("employee/settings/price/get-paging", request);

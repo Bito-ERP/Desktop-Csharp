@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace BitoDesktop.Service.DTOs.Settings
 {
-    internal class RequestScaleSet
+    public class RequestScaleSet
     {
         [JsonPropertyName("type")]
         public int Type { get; set; }

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace BitoDesktop.Service.http;
 
-internal class AccessApi
+public class AccessApi
 {
 
     public static async Task<BaseResponse<List<AccessResponse>>> GetAccesses(RequestBy request) =>

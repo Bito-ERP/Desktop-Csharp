@@ -6,7 +6,7 @@ using System.Text.Json.Serialization;
 
 namespace BitoDesktop.Service.DTOs.Finance;
 
-internal class CurrencyResponse
+public class CurrencyResponse
 {
     [JsonPropertyName("values")]
     public List<Value> Values { get; set; }

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace BitoDesktop.Service.http;
-internal class ReceiptApi
+public class ReceiptApi
 {
 
     public static async Task<BaseResponse<PagingResponse<ReceiptResponse>>> GetPage(RequestPage request) =>

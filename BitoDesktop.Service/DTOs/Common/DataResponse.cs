@@ -2,7 +2,7 @@
 
 namespace BitoDesktop.Service.DTOs.Common;
 
-internal class DataResponse
+public class DataResponse
 {
     [JsonPropertyName("_id")]
     public string Id { get; set; }

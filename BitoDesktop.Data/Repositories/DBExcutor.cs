@@ -44,7 +44,6 @@ public class DBExcutor
         catch
         {
             transaction.Rollback();
-            throw;
         }
     }
 
