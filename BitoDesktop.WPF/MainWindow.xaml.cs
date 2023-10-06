@@ -1,4 +1,4 @@
-﻿using BitoDesktop.WPF.Pages;
+using BitoDesktop.WPF.Pages;
 using BitoDesktop.WPF.Pages.Baskets;
 using BitoDesktop.WPF.Pages.Catalogs;
 using BitoDesktop.WPF.Pages.Pos;
@@ -16,7 +16,9 @@ namespace BitoDesktop.WPF
         public MainWindow()
         {
             InitializeComponent();
-            WarehousePage posPage = new WarehousePage();
+            var settings = new PosPage();
+            MainFrame.Content = settings;
+            PosPage posPage = new PosPage();
             MainFrame.Content = posPage;
         }
     }
