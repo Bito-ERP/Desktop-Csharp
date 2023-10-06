@@ -12,5 +12,6 @@ namespace BitoDesktop.Service.Interfaces
     {
         Task<string> LoginAsync(RequestLogin request);
         Task<PagingResponse<DeviceResponse>> GetDevices(string phonenumber);
+        Task<List<UsernameResponse>> GetUsernames(string phoneNumber, string password);
     }
 }

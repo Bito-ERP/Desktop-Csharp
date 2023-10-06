@@ -10,7 +10,6 @@
     Title="PosPage"
     MinWidth="540"
     MinHeight="450"
-    Loaded="Page_Loaded"
     mc:Ignorable="d">
     <Page.Resources>
         <Style x:Key="CustomBorder" TargetType="Border">

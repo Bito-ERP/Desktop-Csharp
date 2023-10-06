@@ -1,5 +1,6 @@
 ﻿using BitoDesktop.Service.DTOs.Auth;
 using BitoDesktop.Service.Exceptions;
+using BitoDesktop.Service.Http;
 using BitoDesktop.Service.Interfaces;
 using BitoDesktop.Service.Services;
 using BitoDesktop.WPF.Controllers.Login;
@@ -10,6 +11,7 @@ using System.Globalization;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Threading;
 
 namespace BitoDesktop.WPF.Pages
@@ -27,6 +29,7 @@ namespace BitoDesktop.WPF.Pages
 
         private LoginController loginController;
         private DeviceChooserController deviceChooserController ;
+        private ServerChooserController serverChooserController ;
         private OrganizatinController organizationController;
         PinCodeController pinCodeController;
 
@@ -39,6 +42,7 @@ namespace BitoDesktop.WPF.Pages
             
             loginController = new LoginController();
             deviceChooserController = new DeviceChooserController();
+            serverChooserController = new ServerChooserController();
             organizationController = new OrganizatinController();
             pinCodeController = new PinCodeController();
 
@@ -66,7 +70,7 @@ namespace BitoDesktop.WPF.Pages
             LoginStageControl.Items.Add(loginController);
         }
 
-        private async void LoadDeviceChooser()
+        private async Task LoadDeviceChooser()
         {
             LoginStageControl.Items.Clear();
             var res = await authService.GetDevices(loginController.PhoneNumberTxt.Text);
@@ -74,8 +78,29 @@ namespace BitoDesktop.WPF.Pages
             {
                 DeviceController deviceController = new DeviceController();
                 deviceController.DeviceNameTxt.Text = device.Name;
+                deviceController.MouseDown += DeviceChoosen;
                 deviceChooserController.DeviceItemsControl.Items.Add(deviceController);
             }
+            LoginStageControl.Items.Add(deviceChooserController);
+        }
+
+        private async Task LoadServerChooser()
+        {
+            LoginStageControl.Items.Clear();
+            var res = await authService.GetUsernames(loginController.PhoneNumberTxt.Text,loginController.PasswordTxt.Password);
+            foreach (var server in res)
+            {
+                ServerController serverController = new ServerController();
+                serverController.ServerNameTxt.Text = server.Username;
+                serverController.MouseDown += DeviceChoosen;
+                serverChooserController.ServerItemsControl.Items.Add(serverController);
+            }
+            LoginStageControl.Items.Add(serverChooserController);
+        }
+
+        private void DeviceChoosen(object sender, MouseButtonEventArgs e)
+        {
+            MessageBox.Show("good");
         }
 
         private async void Login(object sender, RoutedEventArgs e)
@@ -84,13 +109,15 @@ namespace BitoDesktop.WPF.Pages
             {
                 PhoneNumber = loginController.PhoneNumberTxt.Text,
                 Password = loginController.PasswordTxt.Password,
-                Brand = loginController.ServerNameTxt.Text
             };
             try
             {
-                await authService.LoginAsync(request);
+                var res = await authService.LoginAsync(request);
 
-                LoadDeviceChooser();
+                Client.Token = res;
+
+                
+                await LoadServerChooser();
             }
             catch(MarketException ex) 
             {

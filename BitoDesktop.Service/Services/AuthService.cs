@@ -36,5 +36,21 @@ namespace BitoDesktop.Service.Services
             }
             return responce.Data;
         }
+
+        public async Task<List<UsernameResponse>> GetUsernames(string phoneNumber, string password)
+        {
+            var responce = await AuthApi.GetUsernames(new RequestLogin()
+            {
+                PhoneNumber = phoneNumber,
+                Password = password
+            });
+
+            if (responce.Message != "Success")
+            {
+                throw new MarketException(responce.Code, responce.Message);
+            }
+
+            return responce.Data;
+        }
     }
 }
