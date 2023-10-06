@@ -12,7 +12,7 @@ namespace BitoDesktop.WPF
         public MainWindow()
         {
             InitializeComponent();
-            LoginPage loginPage = new LoginPage();
+            PosPage loginPage = new PosPage();
             MainFrame.Content = loginPage;
         }
     }
