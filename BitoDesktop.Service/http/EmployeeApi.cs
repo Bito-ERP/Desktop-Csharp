@@ -1,16 +1,12 @@
-﻿using BitoDesktop.Service.DTOs;
-using BitoDesktop.Service.DTOs.Auth;
+﻿using BitoDesktop.Service.DTOs.Auth;
 using BitoDesktop.Service.DTOs.Common;
 using BitoDesktop.Service.DTOs.Hr;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
-namespace BitoDesktop.Service.http;
+namespace BitoDesktop.Service.Http;
 
-internal class EmployeeApi
+public class EmployeeApi
 {
 
     public static async Task<BaseResponse<PagingResponse<EmployeeResponse>>> GetPage(RequestPage request) =>

@@ -1,14 +1,9 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
 using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 
 namespace BitoDesktop.Service.DTOs.Auth;
-internal class RequestUseDevice
+public class RequestUseDevice
 {
     [JsonPropertyName("_id"), Required]
     public string Id { get; set; }

@@ -1,14 +1,9 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 
 namespace BitoDesktop.Service.DTOs.Finance;
 
-internal class RequestCurrencyCU
+public class RequestCurrencyCU
 {
     [JsonPropertyName("_id")]
     public string Id { get; set; }

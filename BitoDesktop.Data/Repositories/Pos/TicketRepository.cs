@@ -1,7 +1,5 @@
-﻿using BitoDesktop.Domain.Entities.Hr;
-using BitoDesktop.Domain.Entities.Pos;
+﻿using BitoDesktop.Domain.Entities.Pos;
 using BitoDesktop.Domain.Entities.Sale;
-using Npgsql;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -48,7 +46,7 @@ public class TicketRepository
     // provide one of these fields, and only the given one wil be updated
     public async Task<int> UpdateTicket(
         [Required] long ticketId,
-        double? overallSum,       
+        double? overallSum,
         string name,
         string customerId,
         IEnumerable<ReceiptDiscount> discounts,
@@ -255,7 +253,7 @@ public class TicketRepository
                 new { toTicketId }
              );
 
-            await ReplaceItems(toTicketId, items);  
+            await ReplaceItems(toTicketId, items);
 
             if (discounts.Count > 0)
             {

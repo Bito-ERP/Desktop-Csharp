@@ -1,15 +1,9 @@
 ﻿using BitoDesktop.Domain.Entities.CustomerP;
-using BitoDesktop.Domain.Entities.Hr;
-using Microsoft.Extensions.Primitives;
 using Npgsql;
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Xml.Linq;
 
 namespace BitoDesktop.Data.Repositories.CustomerP;
 
@@ -48,10 +42,7 @@ public class CustomerRepository
                 await Insert(cashbacks, connection);
         });
     }
-
-    /*
-     * merge all customers' balanceList, totalBalance and chaback lists into one while mapping
-     */
+    // merge all customers balanceList, totalBalance and chashback lists into one while mapping
     public async Task Insert(
         IEnumerable<Customer> items,
         IEnumerable<CustomerBalanceList> balanceList,
@@ -239,6 +230,7 @@ public class CustomerRepository
             );
     }
 
+    #region Buni ishlatamiz
     public async Task<IEnumerable<Customer>> GetCustomers(
         [Required] int offset,
         [Required] int limit,
@@ -331,5 +323,6 @@ public class CustomerRepository
             args
             );
     }
+    #endregion
 }
 

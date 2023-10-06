@@ -1,13 +1,8 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BitoDesktop.Service.DTOs.Settings
 {
-    internal class SaleSettingsResponse
+    public class SaleSettingsResponse
     {
         [JsonProperty("calc_tax_after_discount")]
         public bool CalcTaxAfterDiscount { get; set; }

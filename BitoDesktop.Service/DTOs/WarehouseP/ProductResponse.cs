@@ -1,13 +1,12 @@
-﻿using Newtonsoft.Json;
+﻿using BitoDesktop.Domain.Entities.Products;
+using BitoDesktop.Service.DTOs.Common;
 using System.Collections.Generic;
 using System.Linq;
-using BitoDesktop.Service.DTOs.Common;
-using BitoDesktop.Domain.Entities.Products;
 using System.Text.Json.Serialization;
 
 namespace BitoDesktop.Service.DTOs.WarehouseP;
 
-internal class ProductResponse
+public class ProductResponse
 {
     [JsonPropertyName("_id")]
     public string Id { get; set; }

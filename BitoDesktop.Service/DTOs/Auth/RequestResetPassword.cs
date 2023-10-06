@@ -1,14 +1,8 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.Json.Serialization;
-using System.Threading.Tasks;
+﻿using System.Text.Json.Serialization;
 
 namespace BitoDesktop.Service.DTOs.Auth;
 
-internal class RequestResetPassword
+public class RequestResetPassword
 {
     [JsonPropertyName("phone_number")]
     public string PhoneNumber { get; set; }

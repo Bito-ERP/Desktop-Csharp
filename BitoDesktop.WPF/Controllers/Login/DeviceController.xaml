@@ -9,7 +9,7 @@
     mc:Ignorable="d">
     <Border Background="#F5F5F5" CornerRadius="5">
         <TextBlock
-            x:Name="DeviceName"
+            x:Name="DeviceNameTxt"
             Margin="10"
             VerticalAlignment="Center"
             FontSize="15"

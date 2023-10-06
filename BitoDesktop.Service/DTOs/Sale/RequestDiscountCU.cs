@@ -2,10 +2,10 @@
 
 namespace BitoDesktop.Service.DTOs.Sale;
 
-internal class RequestDiscountCU
+public class RequestDiscountCU
 {
     [JsonPropertyName("_id")]
-    public string? Id { get; set; }
+    public string Id { get; set; }
 
     [JsonPropertyName("name")]
     public string Name { get; set; }
@@ -17,6 +17,6 @@ internal class RequestDiscountCU
     public float Value { get; set; }
 
     [JsonPropertyName("currency_id"), JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-    public string? CurrencyId { get; set; }
+    public string CurrencyId { get; set; }
 
 }

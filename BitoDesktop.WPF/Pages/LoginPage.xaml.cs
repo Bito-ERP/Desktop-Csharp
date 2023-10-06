@@ -1,18 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using BitoDesktop.Service.DTOs.Auth;
+using BitoDesktop.Service.Exceptions;
+using BitoDesktop.Service.Interfaces;
+using BitoDesktop.Service.Services;
+using BitoDesktop.WPF.Controllers.Login;
+using BitoDesktop.WPF.Dialog;
+using Newtonsoft.Json;
+using System;
 using System.Globalization;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Windows.Threading;
 
 namespace BitoDesktop.WPF.Pages
@@ -25,10 +22,26 @@ namespace BitoDesktop.WPF.Pages
         private readonly DispatcherTimer _timer;
         private readonly string dateTimeFormat = "dd MMMM yyyy\nHH:mm:ss";
         private readonly CultureInfo ci;
+
+        private readonly IAuthService authService;
+
+        private LoginController loginController;
+        private DeviceChooserController deviceChooserController ;
+        private OrganizatinController organizationController;
+        PinCodeController pinCodeController;
+
         public LoginPage()
         {
             InitializeComponent();
             ci = new CultureInfo("uz-UZ");
+            
+            authService = new AuthService();
+            
+            loginController = new LoginController();
+            deviceChooserController = new DeviceChooserController();
+            organizationController = new OrganizatinController();
+            pinCodeController = new PinCodeController();
+
             _timer = new DispatcherTimer();
         }
 
@@ -44,7 +57,47 @@ namespace BitoDesktop.WPF.Pages
             _timer.Tick += Timer_Tick;
             _timer.Interval = TimeSpan.FromSeconds(1);
             _timer.Start();
+            LoadLogin();
         }
 
+        private void LoadLogin()
+        {
+            loginController.LoginBtn.Click += Login;
+            LoginStageControl.Items.Add(loginController);
+        }
+
+        private async void LoadDeviceChooser()
+        {
+            LoginStageControl.Items.Clear();
+            var res = await authService.GetDevices(loginController.PhoneNumberTxt.Text);
+            foreach (var device in res.PageData)
+            {
+                DeviceController deviceController = new DeviceController();
+                deviceController.DeviceNameTxt.Text = device.Name;
+                deviceChooserController.DeviceItemsControl.Items.Add(deviceController);
+            }
+        }
+
+        private async void Login(object sender, RoutedEventArgs e)
+        {
+            RequestLogin request = new RequestLogin()
+            {
+                PhoneNumber = loginController.PhoneNumberTxt.Text,
+                Password = loginController.PasswordTxt.Password,
+                Brand = loginController.ServerNameTxt.Text
+            };
+            try
+            {
+                await authService.LoginAsync(request);
+
+                LoadDeviceChooser();
+            }
+            catch(MarketException ex) 
+            {
+                string message = JsonConvert.DeserializeObject<dynamic>(ex.Message).messages.uz;
+                ErrorDialog dialog = new ErrorDialog(message);
+                dialog.ShowDialog();   
+            }
+        }
     }
 }

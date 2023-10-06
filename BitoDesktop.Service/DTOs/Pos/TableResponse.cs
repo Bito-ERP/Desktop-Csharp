@@ -1,13 +1,8 @@
 ﻿using BitoDesktop.Domain.Entities.Pos;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 
 namespace BitoDesktop.Service.DTOs.Pos;
-internal class TableResponse
+public class TableResponse
 {
     [JsonPropertyName("order")]
     public int Order { get; set; }

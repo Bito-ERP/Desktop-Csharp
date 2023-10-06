@@ -1,4 +1,3 @@
-using BitoDesktop.Domain.Commons;
 using System.Collections.Generic;
 
 namespace BitoDesktop.Domain.Entities.Products
@@ -46,22 +45,22 @@ namespace BitoDesktop.Domain.Entities.Products
     {
         public string Id { get; set; }
         public string Name { get; set; }
-        public string? CategoryId { get; set; }
-        public string? CategoryName { get; set; }
-        public string? BoxTypeId { get; set; }
+        public string CategoryId { get; set; }
+        public string CategoryName { get; set; }
+        public string BoxTypeId { get; set; }
         public double BoxItem { get; set; }
-        public string? BoxItemBarcode { get; set; }
+        public string BoxItemBarcode { get; set; }
         public string UnitMeasurementId { get; set; }
         public string Sku { get; set; }
-        public string? Barcode { get; set; }
+        public string Barcode { get; set; }
         public List<ProductTable.BarcodeItem> Barcodes { get; set; }
-        public string? Image { get; set; }
+        public string Image { get; set; }
         public bool IsMarked { get; set; }
         public bool IsProduct { get; set; }
         public bool IsMaterial { get; set; }
         public bool IsSemiProduct { get; set; }
         public List<string> TaxIds { get; set; }
-        public string? Shape { get; set; }
+        public string Shape { get; set; }
         public double NetWeight { get; set; }
         public double GrossWeight { get; set; }
         public double Height { get; set; }
@@ -76,9 +75,9 @@ namespace BitoDesktop.Domain.Entities.Products
         public double YellowLine { get; set; }
         public double RedLine { get; set; }
         public bool IsAvailableForSale { get; set; }
-        public string? SelectedPriceId { get; set; }
+        public string SelectedPriceId { get; set; }
         public double SelectedPriceAmount { get; set; }
-        public string? SelectedPriceCurrencyId { get; set; }
+        public string SelectedPriceCurrencyId { get; set; }
         public double Booked { get; set; }
         public double InTrash { get; set; }
         public double InTransit { get; set; }
@@ -89,22 +88,22 @@ namespace BitoDesktop.Domain.Entities.Products
     {
         public string Id { get; set; }
         public string Name { get; set; }
-        public string? CategoryId { get; set; }
-        public string? CategoryName { get; set; }
-        public string? BoxTypeId { get; set; }
+        public string CategoryId { get; set; }
+        public string CategoryName { get; set; }
+        public string BoxTypeId { get; set; }
         public double BoxItem { get; set; }
-        public string? BoxItemBarcode { get; set; }
+        public string BoxItemBarcode { get; set; }
         public string UnitMeasurementId { get; set; }
         public string Sku { get; set; }
-        public string? Barcode { get; set; }
+        public string Barcode { get; set; }
         public List<BarcodeItem> Barcodes { get; set; }
-        public string? Image { get; set; }
+        public string Image { get; set; }
         public bool IsMarked { get; set; }
         public bool IsProduct { get; set; }
         public bool IsMaterial { get; set; }
         public bool IsSemiProduct { get; set; }
         public List<string> TaxIds { get; set; }
-        public string? Shape { get; set; }
+        public string Shape { get; set; }
         public double NetWeight { get; set; }
         public double GrossWeight { get; set; }
         public double Height { get; set; }

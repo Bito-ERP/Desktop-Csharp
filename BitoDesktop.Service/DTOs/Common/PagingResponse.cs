@@ -1,10 +1,9 @@
-﻿using Newtonsoft.Json;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
 namespace BitoDesktop.Service.DTOs.Common;
 
-internal class PagingResponse<T>
+public class PagingResponse<T>
 {
     [JsonPropertyName("total")]
     public int Total { get; set; }

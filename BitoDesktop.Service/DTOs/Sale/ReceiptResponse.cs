@@ -1,21 +1,14 @@
 ﻿using BitoDesktop.Domain.Entities.Finance;
-using BitoDesktop.Domain.Entities.Products;
 using BitoDesktop.Domain.Entities.Sale;
-using BitoDesktop.Domain.Entities.Settings;
 using BitoDesktop.Service.DTOs.Common;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Diagnostics.Contracts;
 using System.Linq;
-using System.Text;
 using System.Text.Json.Serialization;
-using System.Threading.Tasks;
-using static BitoDesktop.Domain.Entities.Sale.Receipt;
-using static BitoDesktop.Service.DTOs.Sale.ReceiptResponse;
 
 namespace BitoDesktop.Service.DTOs.Sale;
-internal class ReceiptResponse
+public class ReceiptResponse
 {
     [JsonPropertyName("uuid")]
     public string Uuid { get; set; }
@@ -85,7 +78,7 @@ internal class ReceiptResponse
     public string Number { get; set; }
 
     [JsonPropertyName("refund_number")]
-    public string? RefundNumber { get; set; }
+    public string RefundNumber { get; set; }
 
     [JsonPropertyName("refund_uuid")]
     public string RefundUuid { get; set; }
@@ -172,7 +165,7 @@ internal class ReceiptResponse
             IsRefund = IsRefund,
             State = State,
             Number = long.Parse(Number),
-            RefundNumber = RefundNumber == null ? null :long.Parse(RefundNumber),
+            RefundNumber = RefundNumber == null ? null : long.Parse(RefundNumber),
             RefundUuid = RefundUuid,
             CashboxId = Cashbox.Id,
             CashboxName = Cashbox.Name,
@@ -424,7 +417,7 @@ internal class ReceiptResponse
             {
                 Id = Id,
                 ReceiptId = receiptUuid,
-                Synced = true, 
+                Synced = true,
                 Amount = Amount,
                 Paid = Paid,
                 BaseCurrencyValue = BaseCurrencyValue,

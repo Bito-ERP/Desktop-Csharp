@@ -1,5 +1,4 @@
-﻿using BitoDesktop.Domain.Entities.Sale;
-using BitoDesktop.Domain.Entities.Settings;
+﻿using BitoDesktop.Domain.Entities.Settings;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -52,7 +51,7 @@ public class PrinterRepostiory
     {
         return await DBExcutor.QueryAsync<Printer>(
           "SELECT * FROM printer WHERE Name LIKE @searchQuery",
-          new { searchQuery = $"%{searchQuery??""}%" }
+          new { searchQuery = $"%{searchQuery ?? ""}%" }
           );
     }
 

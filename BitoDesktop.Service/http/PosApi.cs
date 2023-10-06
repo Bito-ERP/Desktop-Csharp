@@ -1,13 +1,10 @@
 ﻿using BitoDesktop.Service.DTOs.Common;
 using BitoDesktop.Service.DTOs.Pos;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
-namespace BitoDesktop.Service.http;
-internal class PosApi
+namespace BitoDesktop.Service.Http;
+public class PosApi
 {
 
     public static async Task<BaseResponse<IEnumerable<PageResponse>>> GetPages() =>

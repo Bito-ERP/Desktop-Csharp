@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Text.Json.Serialization;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
 
 namespace BitoDesktop.Service.DTOs.Common;
 
-internal class RequestBy
+public class RequestBy
 {
     [JsonPropertyName("_id")]
     public string Id { get; set; }
@@ -77,5 +72,5 @@ internal class RequestBy
     public string Service { get; set; }
 
     [JsonPropertyName("states")]
-    public List<string?> States { get; set; }
+    public List<string> States { get; set; }
 }

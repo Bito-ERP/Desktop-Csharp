@@ -1,15 +1,11 @@
 ﻿using BitoDesktop.Service.DTOs.Common;
-using BitoDesktop.Service.DTOs.Sale;
 using BitoDesktop.Service.DTOs.Settings;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
-namespace BitoDesktop.Service.http;
+namespace BitoDesktop.Service.Http;
 
-internal class PriceApi
+public class PriceApi
 {
     public static async Task<BaseResponse<PagingResponse<PriceResponse>>> GetPage(RequestPage request) =>
       await Client.Post<PagingResponse<PriceResponse>>("employee/settings/price/get-paging", request);

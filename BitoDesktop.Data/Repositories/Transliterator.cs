@@ -1,13 +1,10 @@
-﻿using Microsoft.Extensions.Primitives;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace BitoDesktop.Data.Repositories;
 
-internal class Transliterator
+public class Transliterator
 {
 
     public static Dictionary<Int32, Int32> lToC;
@@ -20,7 +17,8 @@ internal class Transliterator
     {
         this.str = str?.ToLower();
 
-        if (this.str != null) {
+        if (this.str != null)
+        {
             var latinCount = 0;
             var cyrillicCount = 0;
 

@@ -1,13 +1,10 @@
 ﻿using BitoDesktop.Service.DTOs.Common;
 using BitoDesktop.Service.DTOs.Sale;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
-namespace BitoDesktop.Service.http;
-internal class ReceiptApi
+namespace BitoDesktop.Service.Http;
+public class ReceiptApi
 {
 
     public static async Task<BaseResponse<PagingResponse<ReceiptResponse>>> GetPage(RequestPage request) =>

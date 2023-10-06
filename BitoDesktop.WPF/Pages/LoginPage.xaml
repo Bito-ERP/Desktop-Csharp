@@ -16,9 +16,7 @@
         <ItemsControl
             x:Name="LoginStageControl"
             HorizontalAlignment="Center"
-            VerticalAlignment="Center">
-            <stage:LoginController Loaded="LoginController_Loaded" />
-        </ItemsControl>
+            VerticalAlignment="Center" />
         <TextBlock
             x:Name="DateTimeTxt"
             Margin="15"

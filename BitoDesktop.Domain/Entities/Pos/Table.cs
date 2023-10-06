@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BitoDesktop.Domain.Entities.Pos;
+﻿namespace BitoDesktop.Domain.Entities.Pos;
 public class Table
 {
     public string Id { get; set; }

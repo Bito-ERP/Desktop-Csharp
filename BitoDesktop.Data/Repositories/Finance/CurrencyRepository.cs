@@ -1,5 +1,4 @@
 ﻿using BitoDesktop.Domain.Entities.Finance;
-using BitoDesktop.Domain.Entities.Sale;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -10,7 +9,7 @@ public class CurrencyRepository
     private const string CurrencyColumns = "Id, Name, Values, Side, IsMain, Symbol, UpdatedAt";
     private const string CurrencyValues = "@Id, @Name, @Values, @Side, @IsMain, @Symbol, @UpdatedAt";
     private const string CurrencyUpdate = "Id = @Id, Name = @Name, Values = @Values, Side = @Side, IsMain = @IsMain, Symbol = @Symbol, UpdatedAt = @UpdatedAt";
-    
+
     public async Task<int> Insert(Currency currency)
     {
         return await DBExcutor.ExecuteAsync(

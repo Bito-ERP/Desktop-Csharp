@@ -1,14 +1,13 @@
-﻿using Newtonsoft.Json;
+﻿using BitoDesktop.Domain.Entities.Hr;
+using BitoDesktop.Service.DTOs.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using BitoDesktop.Service.DTOs.Common;
-using BitoDesktop.Domain.Entities.Hr;
-using System;
 using System.Text.Json.Serialization;
 
 namespace BitoDesktop.Service.DTOs.Hr;
 
-internal class EmployeeResponse
+public class EmployeeResponse
 {
 
     [JsonPropertyName("_id")]
@@ -24,10 +23,10 @@ internal class EmployeeResponse
     public string AcceptanceDate { get; set; }
 
     [JsonPropertyName("birth_date")]
-    public string? BirthDate { get; set; }
+    public string BirthDate { get; set; }
 
     [JsonPropertyName("address")]
-    public string? Address { get; set; }
+    public string Address { get; set; }
 
     [JsonPropertyName("phone_number")]
     public string PhoneNumber { get; set; }
@@ -36,10 +35,10 @@ internal class EmployeeResponse
     public string Pincode { get; set; }
 
     [JsonPropertyName("comment")]
-    public string? Comment { get; set; }
+    public string Comment { get; set; }
 
     [JsonPropertyName("token")]
-    public string? Token { get; set; }
+    public string Token { get; set; }
 
     [JsonPropertyName("is_boss")]
     public bool IsBoss { get; set; }
@@ -63,10 +62,10 @@ internal class EmployeeResponse
     public string BossId { get; set; } = "";
 
     [JsonPropertyName("imageUrl")]
-    public string? Image { get; set; }
+    public string Image { get; set; }
 
     [JsonPropertyName("device_sign")]
-    public string? DeviceSign { get; set; }
+    public string DeviceSign { get; set; }
 
     [JsonPropertyName("receipt_counter")]
     public long? ReceiptCounter { get; set; }
@@ -86,10 +85,10 @@ internal class EmployeeResponse
         public DataResponse Role { get; set; }
 
         [JsonPropertyName("section")]
-        public DataResponse? Section { get; set; }
+        public DataResponse Section { get; set; }
 
         [JsonPropertyName("position")]
-        public DataResponse? Position { get; set; }
+        public DataResponse Position { get; set; }
     }
 
     public Employee Get() => new()

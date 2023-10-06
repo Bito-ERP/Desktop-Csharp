@@ -1,23 +1,17 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.Json.Serialization;
-using System.Threading.Tasks;
+﻿using System.Text.Json.Serialization;
 
 namespace BitoDesktop.Service.DTOs.Settings
 {
-    internal class RequestReasonCU
+    public class RequestReasonCU
     {
         [JsonPropertyName("_id")]
-        public string? Id { get; set; }
+        public string Id { get; set; }
 
         [JsonPropertyName("name")]
         public string Name { get; set; }
 
         [JsonPropertyName("description")]
-        public string? Description { get; set; }
+        public string Description { get; set; }
 
         [JsonPropertyName("type")]
         public string Type { get; set; }
@@ -32,6 +26,6 @@ namespace BitoDesktop.Service.DTOs.Settings
         public long? OrderNumber { get; set; }
 
         [JsonPropertyName("code")]
-        public string? Code { get; set; }
+        public string Code { get; set; }
     }
 }

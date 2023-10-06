@@ -1,5 +1,3 @@
-using System;
-
 namespace BitoDesktop.Domain.Commons;
 
 #pragma warning disable

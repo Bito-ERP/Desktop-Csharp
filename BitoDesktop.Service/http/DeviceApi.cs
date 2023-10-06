@@ -1,15 +1,11 @@
 ﻿using BitoDesktop.Service.DTOs.Auth;
 using BitoDesktop.Service.DTOs.Common;
 using BitoDesktop.Service.DTOs.Hr;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
-namespace BitoDesktop.Service.http;
+namespace BitoDesktop.Service.Http;
 
-internal class DeviceApi
+public class DeviceApi
 {
     public static async Task<BaseResponse<PagingResponse<DeviceResponse>>> GetPage(RequestPage request) =>
         await Client.Post<PagingResponse<DeviceResponse>>("employee/settings/device/get-paging", request);

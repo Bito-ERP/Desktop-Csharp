@@ -1,10 +1,9 @@
-using Npgsql;
 using Dapper;
-using System.Threading.Tasks;
-using System.Collections.Generic;
+using Npgsql;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
-using System.Data.SqlClient;
+using System.Threading.Tasks;
 
 namespace BitoDesktop.Data.Repositories;
 
@@ -42,7 +41,7 @@ public class DBExcutor
             await func(connection);
             transaction.Commit();
         }
-        catch (Exception ex)
+        catch
         {
             transaction.Rollback();
             throw;
@@ -73,11 +72,11 @@ public class DBExcutor
 
     public static async Task<T> QuerySingleOrDefaultAsync<T>(string sql, object parameters = null)
     {
-            using (var connection = new NpgsqlConnection(_connectionString))
-            {
-                connection.Open();
-                return await connection.QuerySingleOrDefaultAsync<T>(sql, parameters);
-            } 
+        using (var connection = new NpgsqlConnection(_connectionString))
+        {
+            connection.Open();
+            return await connection.QuerySingleOrDefaultAsync<T>(sql, parameters);
+        }
     }
 
 }

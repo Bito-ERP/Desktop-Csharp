@@ -1,13 +1,8 @@
 ﻿using BitoDesktop.Service.DTOs.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 
 namespace BitoDesktop.Service.DTOs.Finance;
-internal class InvoiceResponse
+public class InvoiceResponse
 {
     [JsonPropertyName("_id")]
     public string Id { get; set; }

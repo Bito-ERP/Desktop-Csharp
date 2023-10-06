@@ -1,16 +1,12 @@
 ﻿using BitoDesktop.Domain.Entities.Finance;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Text;
 using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 
 namespace BitoDesktop.Service.DTOs.Finance;
 
-internal class CurrencyResponse
+public class CurrencyResponse
 {
     [JsonPropertyName("values")]
     public List<Value> Values { get; set; }

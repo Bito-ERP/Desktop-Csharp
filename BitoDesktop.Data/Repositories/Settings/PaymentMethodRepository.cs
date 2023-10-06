@@ -1,9 +1,6 @@
-﻿using BitoDesktop.Domain.Entities.Finance;
-using BitoDesktop.Domain.Entities.Sale;
-using BitoDesktop.Domain.Entities.Settings;
+﻿using BitoDesktop.Domain.Entities.Settings;
 using Npgsql;
 using System.Collections.Generic;
-using System.Data;
 using System.Threading.Tasks;
 
 namespace BitoDesktop.Data.Repositories.Settings;
@@ -36,7 +33,7 @@ public class PaymentMethodRepository
         return await DBExcutor.InTransaction(async connection =>
         {
             await DBExcutor.ExecuteAsync("DELETE FROM payment_method");
-            return await Insert(items, connection); 
+            return await Insert(items, connection);
         });
     }
 

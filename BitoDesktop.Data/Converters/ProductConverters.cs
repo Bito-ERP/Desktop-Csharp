@@ -1,5 +1,4 @@
 ﻿using BitoDesktop.Domain.Entities.Products;
-using BitoDesktop.Data.Converters;
 using System.Collections.Generic;
 
 namespace BitoDesktop.Data.Converters

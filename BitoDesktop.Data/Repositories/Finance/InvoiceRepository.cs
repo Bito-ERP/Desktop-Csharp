@@ -1,14 +1,12 @@
 ﻿using BitoDesktop.Domain.Entities.Finance;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace BitoDesktop.Data.Repositories.Finance;
 
-internal class InvoiceRepository
+public class InvoiceRepository
 {
 
     private const string InvoiceColumns = "Id, OrganizationId, Type, Number, PaymentTypeId, PaymentTypeName, UserType, PaymentFor, IsRefund, Date, CustomerId, CustomerName, EmployeeId, EmployeeName, SupplierId, SupplierName, PersonId, PersonName, ToBePaid, Paid, ToBeRefunded, Refunded, PaidByBalance, PaidByCashback, CurrencyId, TradeId";
@@ -35,7 +33,7 @@ internal class InvoiceRepository
     public async Task<Invoice> Get(string value, int type)
     {
         var query = new StringBuilder("SELECT e.* FROM invoice e WHERE ");
-        var args = new Dictionary<string, object>();    
+        var args = new Dictionary<string, object>();
 
         if (type == 0)
         {

@@ -1,22 +1,19 @@
 ﻿using BitoDesktop.Service.DTOs.Common;
 using BitoDesktop.Service.Exceptions;
-using Newtonsoft.Json;
-using System;
 using System.Diagnostics;
 using System.Net.Http;
-using System.Net.Http.Json;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace BitoDesktop.Service.http;
+namespace BitoDesktop.Service.Http;
 
-internal class Client
+public class Client
 {
 
     const string BASE_URL = "https://api.systematicdev.uz/pos-api/";
 
-    public static async Task<BaseResponse<T>> Post<T>(string route, object? request = null)
+    public static async Task<BaseResponse<T>> Post<T>(string route, object request = null)
     {
         using HttpClient httpClient = new();
         httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwaG9uZV9udW1iZXIiOiIrOTk4OTQyNzAwNTUwIiwiYXBwX3R5cGUiOiJtb2JpbGUiLCJ1c2VybmFtZSI6ImRldiIsImlhdCI6MTY5NTczMjEyOSwiZXhwIjoxNjk2MzM2OTI5fQ.ZMFfssLW6S0ggUr5cZ6FOEWsq9pDPOP2v-ZHwlyzCYs");
@@ -55,7 +52,7 @@ internal class Client
         return System.Text.Json.JsonSerializer.Deserialize<BaseResponse<T>>(await responce.Content.ReadAsStringAsync());
     }
 
-    public static async Task Post(string route, object? request = null)
+    public static async Task Post(string route, object request = null)
     {
         using HttpClient httpClient = new();
         httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwaG9uZV9udW1iZXIiOiIrOTk4OTQyNzAwNTUwIiwiYXBwX3R5cGUiOiJtb2JpbGUiLCJ1c2VybmFtZSI6ImRldiIsImlhdCI6MTY5NTczMjEyOSwiZXhwIjoxNjk2MzM2OTI5fQ.ZMFfssLW6S0ggUr5cZ6FOEWsq9pDPOP2v-ZHwlyzCYs");

@@ -1,16 +1,13 @@
 ﻿using BitoDesktop.Data.IRepositories;
 using BitoDesktop.Domain.Entities.Products;
-using System.Threading.Tasks;
-using System.Linq;
-using System.Collections.Generic;
-using System.Transactions;
-using System;
-using BitoDesktop.Domain.Entities;
-using System.Diagnostics.Contracts;
-using System.Text;
-using BitoDesktop.Data.Converters;
-using Dapper;
 using Npgsql;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics.Contracts;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Transactions;
 
 namespace BitoDesktop.Data.Repositories.WarehouseP;
 

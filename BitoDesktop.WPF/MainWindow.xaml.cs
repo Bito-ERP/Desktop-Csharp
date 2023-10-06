@@ -1,9 +1,5 @@
 using BitoDesktop.WPF.Pages;
-using BitoDesktop.WPF.Pages.Baskets;
 using BitoDesktop.WPF.Pages.Catalogs;
-using BitoDesktop.WPF.Pages.Pos;
-using BitoDesktop.WPF.Pages.Products;
-using BitoDesktop.WPF.Pages.Settings;
 using System.Windows;
 
 namespace BitoDesktop.WPF
@@ -16,6 +12,7 @@ namespace BitoDesktop.WPF
         public MainWindow()
         {
             InitializeComponent();
+
             var settings = new PosPage();
             MainFrame.Content = settings;
             PosPage posPage = new PosPage();

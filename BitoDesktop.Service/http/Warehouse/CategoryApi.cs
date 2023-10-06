@@ -1,14 +1,11 @@
 ﻿using BitoDesktop.Service.DTOs.Common;
 using BitoDesktop.Service.DTOs.WarehouseP;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using static BitoDesktop.Service.DTOs.Pos.PageItemResponse;
 
-namespace BitoDesktop.Service.http.Warehouse;
+namespace BitoDesktop.Service.Http.Warehouse;
 
-internal class CategoryApi
+public class CategoryApi
 {
     public static async Task<BaseResponse<PagingResponse<DTOs.WarehouseP.CategoryResponse>>> GetPage(RequestPage request) =>
      await Client.Post<PagingResponse<DTOs.WarehouseP.CategoryResponse>>("employee/product/category/get-paging", request);

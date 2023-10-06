@@ -1,15 +1,11 @@
 ﻿using BitoDesktop.Domain.Entities.WarehouseP;
 using BitoDesktop.Service.DTOs.Common;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 
 namespace BitoDesktop.Service.DTOs.WarehouseP;
 
-internal class CategoryResponse
+public class CategoryResponse
 {
     [JsonPropertyName("_id")]
     public string Id { get; set; }

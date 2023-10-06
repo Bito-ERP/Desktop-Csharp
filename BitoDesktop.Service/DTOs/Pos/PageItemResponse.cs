@@ -1,14 +1,9 @@
 ﻿using BitoDesktop.Domain.Entities.Pos;
 using BitoDesktop.Service.DTOs.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 
 namespace BitoDesktop.Service.DTOs.Pos;
-internal class PageItemResponse
+public class PageItemResponse
 {
     [JsonPropertyName("_id")]
     public string Id { get; set; }
