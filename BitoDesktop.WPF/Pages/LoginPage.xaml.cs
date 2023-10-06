@@ -74,7 +74,7 @@ namespace BitoDesktop.WPF.Pages
         {
             LoginStageControl.Items.Clear();
             var res = await authService.GetDevices(loginController.PhoneNumberTxt.Text);
-            foreach (var device in res.PageData)
+            foreach (var device in res?.PageData)
             {
                 DeviceController deviceController = new DeviceController();
                 deviceController.DeviceNameTxt.Text = device.Name;
@@ -92,10 +92,15 @@ namespace BitoDesktop.WPF.Pages
             {
                 ServerController serverController = new ServerController();
                 serverController.ServerNameTxt.Text = server.Username;
-                serverController.MouseDown += DeviceChoosen;
+                serverController.MouseDown += ServerChoosen;
                 serverChooserController.ServerItemsControl.Items.Add(serverController);
             }
             LoginStageControl.Items.Add(serverChooserController);
+        }
+
+        private async void ServerChoosen(object sender, MouseButtonEventArgs e)
+        {
+            await LoadDeviceChooser();
         }
 
         private void DeviceChoosen(object sender, MouseButtonEventArgs e)
