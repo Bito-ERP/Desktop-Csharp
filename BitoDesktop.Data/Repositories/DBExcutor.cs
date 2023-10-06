@@ -44,11 +44,8 @@ public class DBExcutor
         }
         catch (Exception ex)
         {
-#if DEBUG
             transaction.Rollback();
             throw;
-#endif
-            transaction.Rollback();
         }
     }
 
