@@ -6,6 +6,7 @@ public class BaseResponse<T>
 {
     [JsonPropertyName("code")]
     public int Code { get; set; }
+    public bool IsSuccessStatusCode => Code >= 299;
     [JsonPropertyName("message")]
     public string Message { get; set; }
     [JsonPropertyName("data")]

@@ -3,7 +3,7 @@ using BitoDesktop.Service.DTOs.Pos;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace BitoDesktop.Service.http;
+namespace BitoDesktop.Service.Http;
 public class PosApi
 {
 

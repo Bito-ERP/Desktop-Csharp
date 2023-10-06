@@ -3,7 +3,7 @@ using BitoDesktop.Service.DTOs.WarehouseP;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace BitoDesktop.Service.http.Warehouse;
+namespace BitoDesktop.Service.Http.Warehouse;
 
 public class CategoryApi
 {

@@ -3,7 +3,7 @@ using BitoDesktop.Service.DTOs.Common;
 using BitoDesktop.Service.DTOs.Hr;
 using System.Threading.Tasks;
 
-namespace BitoDesktop.Service.http;
+namespace BitoDesktop.Service.Http;
 
 public class DeviceApi
 {

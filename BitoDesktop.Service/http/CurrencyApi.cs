@@ -2,7 +2,7 @@
 using BitoDesktop.Service.DTOs.Finance;
 using System.Threading.Tasks;
 
-namespace BitoDesktop.Service.http;
+namespace BitoDesktop.Service.Http;
 public class CurrencyApi
 {
     public static async Task<BaseResponse<PagingResponse<CurrencyResponse>>> GetAll() =>

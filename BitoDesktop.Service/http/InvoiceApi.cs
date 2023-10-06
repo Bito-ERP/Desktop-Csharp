@@ -2,7 +2,7 @@
 using BitoDesktop.Service.DTOs.Finance;
 using System.Threading.Tasks;
 
-namespace BitoDesktop.Service.http;
+namespace BitoDesktop.Service.Http;
 public class InvoiceApi
 {
 

@@ -2,7 +2,7 @@
 using BitoDesktop.Service.DTOs.Settings;
 using System.Threading.Tasks;
 
-namespace BitoDesktop.Service.http;
+namespace BitoDesktop.Service.Http;
 
 public class PaymentMethodApi
 {
