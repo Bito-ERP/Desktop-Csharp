@@ -24,8 +24,10 @@
                 Width="600"
                 Height="48"
                 Margin="10"
-                HorizontalAlignment="Left">
-                <Grid Background="#F5F5F5">
+                HorizontalAlignment="Left"
+                Background="#F5F5F5"
+                CornerRadius="10">
+                <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="40" />
                         <ColumnDefinition />
