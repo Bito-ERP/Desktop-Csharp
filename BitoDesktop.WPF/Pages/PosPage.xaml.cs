@@ -16,7 +16,7 @@ using System.Windows.Shapes;
 namespace BitoDesktop.WPF.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для PosPage.xaml
+    /// Interaction logic for PosPage.xaml
     /// </summary>
     public partial class PosPage : Page
     {

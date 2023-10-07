@@ -38,12 +38,26 @@
                             FontSize="25"
                             FontWeight="DemiBold"
                             Text="Sotuv #" />
-                        <md:PackIcon
-                            Width="36"
-                            Height="36"
-                            Margin="10"
+                        <md:PopupBox
+                            Width="35"
+                            Height="35"
                             HorizontalAlignment="Right"
-                            Kind="DotsVertical" />
+                            DockPanel.Dock="Right">
+                            <ListBox>
+                                <ListBoxItem>
+                                    <TextBlock
+                                        FontSize="14"
+                                        FontWeight="DemiBold"
+                                        Text="Ombor" />
+                                </ListBoxItem>
+                                <ListBoxItem>
+                                    <TextBlock
+                                        FontSize="14"
+                                        FontWeight="DemiBold"
+                                        Text="Narx" />
+                                </ListBoxItem>
+                            </ListBox>
+                        </md:PopupBox>
                     </Grid>
 
                     <Grid Margin="10">
