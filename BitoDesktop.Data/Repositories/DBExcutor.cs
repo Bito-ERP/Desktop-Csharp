@@ -13,6 +13,13 @@ public class DBExcutor
 {
     private static readonly string _connectionString = "Host=localhost;Port=5432;Database=maindb;Username=postgres;Password=password;";
 
+    public static async Task<T> UseConnection<T>(Func<NpgsqlConnection, Task<T>> func)
+    {
+        using var connection = new NpgsqlConnection(_connectionString);
+        connection.Open();
+        return await func(connection);
+    }
+
     public static async Task<T> InTransaction<T>(Func<NpgsqlConnection, Task<T>> func)
     {
         using var connection = new NpgsqlConnection(_connectionString);
