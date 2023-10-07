@@ -1,25 +1,25 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace BitoDesktop.Service.DTOs.Common;
 public class UserResponse
 {
     [Required]
-    [JsonPropertyName("_id")]
+    [JsonProperty("_id")]
     public string Id { get; set; }
 
-    [JsonPropertyName("full_name")]
+    [JsonProperty("full_name")]
     public string FullName { get; set; }
 
-    [JsonPropertyName("name")]
+    [JsonProperty("name")]
     public string Name { get; set; }
 
-    [JsonPropertyName("first_name")]
+    [JsonProperty("first_name")]
     public string FirstName { get; set; }
 
-    [JsonPropertyName("middle_name")]
+    [JsonProperty("middle_name")]
     public string MiddleName { get; set; }
 
-    [JsonPropertyName("last_name")]
+    [JsonProperty("last_name")]
     public string LastName { get; set; }
 }

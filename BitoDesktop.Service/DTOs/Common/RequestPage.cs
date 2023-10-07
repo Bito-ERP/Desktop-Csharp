@@ -1,143 +1,143 @@
 ﻿using System.Collections.Generic;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace BitoDesktop.Service.DTOs.Common;
 
 public class RequestPage
 {
-    [JsonPropertyName("limit")]
+    [JsonProperty("limit")]
     public int Limit { get; set; } = 50;
 
-    [JsonPropertyName("page")]
+    [JsonProperty("page")]
     public int Page { get; set; } = 1;
 
-    [JsonPropertyName("search")]
+    [JsonProperty("search")]
     public string Search { get; set; }
 
-    [JsonPropertyName("updated_at")]
+    [JsonProperty("updated_at")]
     public string UpdatedAt { get; set; }
 
-    [JsonPropertyName("_id")]
+    [JsonProperty("_id")]
     public string Id { get; set; }
 
-    [JsonPropertyName("organization_id")]
+    [JsonProperty("organization_id")]
     public string OrganizationId { get; set; }
 
-    [JsonPropertyName("customer_id")]
+    [JsonProperty("customer_id")]
     public string CustomerId { get; set; }
 
-    [JsonPropertyName("supplier_id")]
+    [JsonProperty("supplier_id")]
     public string SupplierId { get; set; }
 
-    [JsonPropertyName("employee_id")]
+    [JsonProperty("employee_id")]
     public string EmployeeId { get; set; }
 
-    [JsonPropertyName("person_id")]
+    [JsonProperty("person_id")]
     public string PersonId { get; set; }
 
-    [JsonPropertyName("cashbox_id")]
+    [JsonProperty("cashbox_id")]
     public string CashBoxId { get; set; }
 
-    [JsonPropertyName("category_id")]
+    [JsonProperty("category_id")]
     public string CategoryId { get; set; }
 
-    [JsonPropertyName("section_id")]
+    [JsonProperty("section_id")]
     public string SectionId { get; set; }
 
-    [JsonPropertyName("list_id")]
+    [JsonProperty("list_id")]
     public string ListId { get; set; }
 
-    [JsonPropertyName("process_id")]
+    [JsonProperty("process_id")]
     public string ProcessId { get; set; }
 
-    [JsonPropertyName("block_id")]
+    [JsonProperty("block_id")]
     public string BlockId { get; set; }
 
-    [JsonPropertyName("revision_id")]
+    [JsonProperty("revision_id")]
     public string RevisionId { get; set; }
 
-    [JsonPropertyName("parent_id")]
+    [JsonProperty("parent_id")]
     public string ParentId { get; set; }
 
-    [JsonPropertyName("destination_organization_id")]
+    [JsonProperty("destination_organization_id")]
     public string DestinationOrganizationId { get; set; }
 
-    [JsonPropertyName("product_id")]
+    [JsonProperty("product_id")]
     public string ProductId { get; set; }
 
-    [JsonPropertyName("warehouse_id")]
+    [JsonProperty("warehouse_id")]
     public string WarehouseId { get; set; }
 
-    [JsonPropertyName("price_id")]
+    [JsonProperty("price_id")]
     public string PriceId { get; set; }
 
-    [JsonPropertyName("currency_id")]
+    [JsonProperty("currency_id")]
     public string CurrencyId { get; set; }
 
-    [JsonPropertyName("status")]
+    [JsonProperty("status")]
     public string Status { get; set; }
 
-    [JsonPropertyName("state")]
+    [JsonProperty("state")]
     public string State { get; set; }
 
-    [JsonPropertyName("states")]
+    [JsonProperty("states")]
     public List<string> States { get; set; }
 
-    [JsonPropertyName("statuses")]
+    [JsonProperty("statuses")]
     public List<string> Statuses { get; set; }
 
-    [JsonPropertyName("in_stock")]
+    [JsonProperty("in_stock")]
     public string InStock { get; set; }
 
-    [JsonPropertyName("is_product")]
+    [JsonProperty("is_product")]
     public bool? IsProduct { get; set; }
 
-    [JsonPropertyName("is_material")]
+    [JsonProperty("is_material")]
     public bool? IsMaterial { get; set; }
 
-    [JsonPropertyName("is_semi_product")]
+    [JsonProperty("is_semi_product")]
     public bool? IsSemiProduct { get; set; }
 
-    [JsonPropertyName("is_available_for_sale")]
+    [JsonProperty("is_available_for_sale")]
     public bool? IsAvailableForSale { get; set; }
 
-    [JsonPropertyName("is_marked")]
+    [JsonProperty("is_marked")]
     public bool? IsMarked { get; set; }
 
-    [JsonPropertyName("is_main")]
+    [JsonProperty("is_main")]
     public bool? IsMain { get; set; }
 
-    [JsonPropertyName("is_fully_income")]
+    [JsonProperty("is_fully_income")]
     public bool? IsFullyIncome { get; set; }
 
-    [JsonPropertyName("is_fully_refunded")]
+    [JsonProperty("is_fully_refunded")]
     public bool? IsFullyRefunded { get; set; }
 
-    [JsonPropertyName("type")]
+    [JsonProperty("type")]
     public string Type { get; set; }
 
-    [JsonPropertyName("top")]
+    [JsonProperty("top")]
     public bool? Top { get; set; }
 
-    [JsonPropertyName("date_from")]
+    [JsonProperty("date_from")]
     public string DateFrom { get; set; }
 
-    [JsonPropertyName("date_to")]
+    [JsonProperty("date_to")]
     public string DateTo { get; set; }
 
-    [JsonPropertyName("total_from")]
+    [JsonProperty("total_from")]
     public float? TotalFrom { get; set; }
 
-    [JsonPropertyName("total_to")]
+    [JsonProperty("total_to")]
     public float? TotalTo { get; set; }
 
-    [JsonPropertyName("is_fully_paid")]
+    [JsonProperty("is_fully_paid")]
     public bool? IsFullyPaid { get; set; }
 
-    [JsonPropertyName("imei")]
+    [JsonProperty("imei")]
     public string Imei { get; set; }
 
-    [JsonPropertyName("phone_number")]
+    [JsonProperty("phone_number")]
     public string PhoneNumber { get; set; }
 }
 

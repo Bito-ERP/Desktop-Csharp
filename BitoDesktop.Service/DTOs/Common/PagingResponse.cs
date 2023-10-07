@@ -1,14 +1,14 @@
 ﻿using System.Collections.Generic;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace BitoDesktop.Service.DTOs.Common;
 
 public class PagingResponse<T>
 {
-    [JsonPropertyName("total")]
+    [JsonProperty("total")]
     public int Total { get; set; }
 
-    [JsonPropertyName("data")]
+    [JsonProperty("data")]
     public List<T> PageData { get; set; }
 }
 

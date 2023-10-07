@@ -10,8 +10,8 @@ public class PriceApi
     public static async Task<BaseResponse<PagingResponse<PriceResponse>>> GetPage(RequestPage request) =>
       await Client.Post<PagingResponse<PriceResponse>>("employee/settings/price/get-paging", request);
 
-    public static async Task<BaseResponse<IEnumerable<PriceResponse>>> GetAll() =>
-       await Client.Post<IEnumerable<PriceResponse>>("employee/settings/price/get-all");
+    public static async Task<BaseResponse<List<PriceResponse>>> GetAll() =>
+       await Client.Post<List<PriceResponse>>("employee/settings/price/get-all");
 
     public static async Task<BaseResponse<PriceResponse>> Create(RequestPriceCU request) =>
       await Client.Post<PriceResponse>("employee/settings/price/create", request);

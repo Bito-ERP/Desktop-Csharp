@@ -2,31 +2,31 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace BitoDesktop.Service.DTOs.Finance;
 
 public class CurrencyResponse
 {
-    [JsonPropertyName("values")]
+    [JsonProperty("values")]
     public List<Value> Values { get; set; }
 
-    [JsonPropertyName("_id")]
+    [JsonProperty("_id")]
     public string Id { get; set; }
 
-    [JsonPropertyName("name")]
+    [JsonProperty("name")]
     public string Name { get; set; }
 
-    [JsonPropertyName("is_main")]
+    [JsonProperty("is_main")]
     public bool IsMain { get; set; }
 
-    [JsonPropertyName("side")]
+    [JsonProperty("side")]
     public string Side { get; set; }
 
-    [JsonPropertyName("symbol")]
+    [JsonProperty("symbol")]
     public string Symbol { get; set; }
 
-    [JsonPropertyName("updated_at")]
+    [JsonProperty("updated_at")]
     public string UpdatedAt { get; set; }
 
     public Currency Get() => new()
@@ -48,10 +48,10 @@ public class CurrencyResponse
 
     public class Value
     {
-        [JsonPropertyName("value")]
+        [JsonProperty("value")]
         public double Amount { get; set; }
 
-        [JsonPropertyName("to_currency_id")]
+        [JsonProperty("to_currency_id")]
         public string ToCurrencyId { get; set; }
     }
 }

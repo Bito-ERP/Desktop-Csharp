@@ -1,34 +1,34 @@
-﻿using System.Text.Json.Serialization;
+﻿using Newtonsoft.Json;
 
 namespace BitoDesktop.Service.DTOs.Auth;
 
 public class RequestResetPassword
 {
-    [JsonPropertyName("phone_number")]
+    [JsonProperty("phone_number")]
     public string PhoneNumber { get; set; }
 
-    [JsonPropertyName("password")]
+    [JsonProperty("password")]
     public string Password { get; set; }
 
-    [JsonPropertyName("confirm_password")]
+    [JsonProperty("confirm_password")]
     public string ConfirmPassword { get; set; }
 
-    [JsonPropertyName("otp")]
+    [JsonProperty("otp")]
     public string Otp { get; set; }
 
-    [JsonPropertyName("brand")]
+    [JsonProperty("brand")]
     public string Brand { get; set; }
 
-    [JsonPropertyName("device")]
+    [JsonProperty("device")]
     public string Device { get; set; }
 
-    [JsonPropertyName("manufacturer")]
+    [JsonProperty("manufacturer")]
     public string Manufacturer { get; set; }
 
-    [JsonPropertyName("model")]
+    [JsonProperty("model")]
     public string Model { get; set; }
 
-    [JsonPropertyName("product")]
+    [JsonProperty("product")]
     public string Product { get; set; }
 }
 

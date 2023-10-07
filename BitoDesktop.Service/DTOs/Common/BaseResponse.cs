@@ -1,16 +1,16 @@
-﻿using System.Text.Json.Serialization;
+﻿using Newtonsoft.Json;
 
 namespace BitoDesktop.Service.DTOs.Common;
 
 public class BaseResponse<T>
 {
-    [JsonPropertyName("code")]
+    [JsonProperty("code")]
     public int Code { get; set; }
     public bool IsSuccessStatusCode => Code >= 299;
-    [JsonPropertyName("message")]
+    [JsonProperty("message")]
     public string Message { get; set; }
-    [JsonPropertyName("data")]
+    [JsonProperty("data")]
     public T Data { get; set; }
-    [JsonPropertyName("time")]
+    [JsonProperty("time")]
     public string Time { get; set; }
 }

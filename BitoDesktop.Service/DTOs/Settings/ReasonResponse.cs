@@ -1,32 +1,32 @@
 ﻿using BitoDesktop.Domain.Entities.Settings;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace BitoDesktop.Service.DTOs.Settings
 {
     public class ReasonResponse
     {
-        [JsonPropertyName("_id")]
+        [JsonProperty("_id")]
         public string Id { get; set; }
 
-        [JsonPropertyName("name")]
+        [JsonProperty("name")]
         public string Name { get; set; }
 
-        [JsonPropertyName("description")]
+        [JsonProperty("description")]
         public string Description { get; set; }
 
-        [JsonPropertyName("type")]
+        [JsonProperty("type")]
         public string Type { get; set; }
 
-        [JsonPropertyName("is_active")]
+        [JsonProperty("is_active")]
         public bool IsActive { get; set; }
 
-        [JsonPropertyName("is_trash")]
+        [JsonProperty("is_trash")]
         public bool? IsTrash { get; set; }
 
-        [JsonPropertyName("order_number")]
+        [JsonProperty("order_number")]
         public long? OrderNumber { get; set; }
 
-        [JsonPropertyName("code")]
+        [JsonProperty("code")]
         public string Code { get; set; }
 
         public Reason Get()

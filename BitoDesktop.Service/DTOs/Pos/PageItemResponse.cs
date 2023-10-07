@@ -1,35 +1,35 @@
 ﻿using BitoDesktop.Domain.Entities.Pos;
 using BitoDesktop.Service.DTOs.Common;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace BitoDesktop.Service.DTOs.Pos;
 public class PageItemResponse
 {
-    [JsonPropertyName("_id")]
+    [JsonProperty("_id")]
     public string Id { get; set; }
 
-    [JsonPropertyName("is_product")]
+    [JsonProperty("is_product")]
     public bool IsProduct { get; set; }
 
-    [JsonPropertyName("is_material")]
+    [JsonProperty("is_material")]
     public bool IsMaterial { get; set; }
 
-    [JsonPropertyName("is_category")]
+    [JsonProperty("is_category")]
     public bool IsCategory { get; set; }
 
-    [JsonPropertyName("is_discount")]
+    [JsonProperty("is_discount")]
     public bool IsDiscount { get; set; }
 
-    [JsonPropertyName("order")]
+    [JsonProperty("order")]
     public int Order { get; set; }
 
-    [JsonPropertyName("item")]
+    [JsonProperty("item")]
     public Product Item { get; set; }
 
-    [JsonPropertyName("category")]
+    [JsonProperty("category")]
     public CategoryResponse Category { get; set; }
 
-    [JsonPropertyName("discount")]
+    [JsonProperty("discount")]
     public DiscountResponse Discount { get; set; }
 
     public PageItem Get(string pageId)
@@ -80,64 +80,64 @@ public class PageItemResponse
 
     public class Product
     {
-        [JsonPropertyName("_id")]
+        [JsonProperty("_id")]
         public string Id { get; set; }
 
-        [JsonPropertyName("name")]
+        [JsonProperty("name")]
         public string Name { get; set; }
 
-        [JsonPropertyName("measure_id")]
+        [JsonProperty("measure_id")]
         public string UnitMeasurementId { get; set; }
 
-        [JsonPropertyName("image")]
+        [JsonProperty("image")]
         public string Image { get; set; }
 
-        [JsonPropertyName("sku")]
+        [JsonProperty("sku")]
         public string Sku { get; set; }
 
-        [JsonPropertyName("barcode")]
+        [JsonProperty("barcode")]
         public string Barcode { get; set; }
 
-        [JsonPropertyName("is_marked")]
+        [JsonProperty("is_marked")]
         public bool IsMarked { get; set; }
 
-        [JsonPropertyName("box_item")]
+        [JsonProperty("box_item")]
         public double? BoxItem { get; set; }
 
-        [JsonPropertyName("category")]
+        [JsonProperty("category")]
         public DataResponse Category { get; set; }
     }
 
     public class CategoryResponse
     {
-        [JsonPropertyName("_id")]
+        [JsonProperty("_id")]
         public string Id { get; set; }
 
-        [JsonPropertyName("name")]
+        [JsonProperty("name")]
         public string Name { get; set; }
 
-        [JsonPropertyName("image")]
+        [JsonProperty("image")]
         public string Image { get; set; }
 
-        [JsonPropertyName("child_count")]
+        [JsonProperty("child_count")]
         public int ChildCount { get; set; }
     }
 
     public class DiscountResponse
     {
-        [JsonPropertyName("_id")]
+        [JsonProperty("_id")]
         public string Id { get; set; }
 
-        [JsonPropertyName("name")]
+        [JsonProperty("name")]
         public string Name { get; set; }
 
-        [JsonPropertyName("apply_type")]
+        [JsonProperty("apply_type")]
         public string ApplyType { get; set; }
 
-        [JsonPropertyName("value")]
+        [JsonProperty("value")]
         public float Value { get; set; }
 
-        [JsonPropertyName("currency_id")]
+        [JsonProperty("currency_id")]
         public string CurrencyId { get; set; }
     }
 }

@@ -1,54 +1,54 @@
 ﻿using BitoDesktop.Domain.Entities.Finance;
 using System.Collections.Generic;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace BitoDesktop.Service.DTOs.Finance;
 
 public class TaxResponse
 {
-    [JsonPropertyName("_id")]
+    [JsonProperty("_id")]
     public string Id { get; set; }
 
-    [JsonPropertyName("name")]
+    [JsonProperty("name")]
     public string Name { get; set; }
 
-    [JsonPropertyName("rate")]
+    [JsonProperty("rate")]
     public float Rate { get; set; }
 
-    [JsonPropertyName("type")]
+    [JsonProperty("type")]
     public string Type { get; set; }
 
-    [JsonPropertyName("to_price")]
+    [JsonProperty("to_price")]
     public bool ToPrice { get; set; }
 
-    [JsonPropertyName("is_manual")]
+    [JsonProperty("is_manual")]
     public bool IsManual { get; set; }
 
-    [JsonPropertyName("is_all")]
+    [JsonProperty("is_all")]
     public bool IsAll { get; set; }
 
-    [JsonPropertyName("is_all_categories")]
+    [JsonProperty("is_all_categories")]
     public bool IsAllCategories { get; set; }
 
-    [JsonPropertyName("is_all_suppliers")]
+    [JsonProperty("is_all_suppliers")]
     public bool IsAllSuppliers { get; set; }
 
-    [JsonPropertyName("category_ids")]
+    [JsonProperty("category_ids")]
     public List<string> CategoryIds { get; set; }
 
-    [JsonPropertyName("supplier_ids")]
+    [JsonProperty("supplier_ids")]
     public List<string> SupplierIds { get; set; }
 
-    [JsonPropertyName("item_added_ids")]
+    [JsonProperty("item_added_ids")]
     public List<string> AddedItemIds { get; set; }
 
-    [JsonPropertyName("item_removed_ids")]
+    [JsonProperty("item_removed_ids")]
     public List<string> RemovedItemIds { get; set; }
 
-    [JsonPropertyName("organization_ids")]
+    [JsonProperty("organization_ids")]
     public List<string> OrganizationIds { get; set; }
 
-    [JsonPropertyName("item_count")]
+    [JsonProperty("item_count")]
     public int ItemCount { get; set; }
 
     public Tax GetEntityTax() => new()

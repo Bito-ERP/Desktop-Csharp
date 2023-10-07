@@ -1,53 +1,53 @@
 ﻿using BitoDesktop.Domain.Entities.Settings;
 using System.Collections.Generic;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace BitoDesktop.Service.DTOs.Settings;
 public class PriceResponse
 {
-    [JsonPropertyName("_id")]
+    [JsonProperty("_id")]
     public string Id { get; set; }
 
-    [JsonPropertyName("code")]
+    [JsonProperty("code")]
     public string Code { get; set; }
 
-    [JsonPropertyName("name")]
+    [JsonProperty("name")]
     public string Name { get; set; }
 
-    [JsonPropertyName("short_name")]
+    [JsonProperty("short_name")]
     public string ShortName { get; set; }
 
-    [JsonPropertyName("status")]
+    [JsonProperty("status")]
     public string Status { get; set; }
 
-    [JsonPropertyName("currency_id")]
+    [JsonProperty("currency_id")]
     public string CurrencyId { get; set; }
 
-    [JsonPropertyName("type")]
+    [JsonProperty("type")]
     public string Type { get; set; }
 
-    [JsonPropertyName("min_price")]
+    [JsonProperty("min_price")]
     public double? MinPrice { get; set; }
 
-    [JsonPropertyName("max_price")]
+    [JsonProperty("max_price")]
     public double? MaxPrice { get; set; }
 
-    [JsonPropertyName("apply_type")]
+    [JsonProperty("apply_type")]
     public string ApplyType { get; set; } = "cash";
 
-    [JsonPropertyName("min_sale_amount")]
+    [JsonProperty("min_sale_amount")]
     public double? MinSaleAmount { get; set; }
 
-    [JsonPropertyName("is_main")]
+    [JsonProperty("is_main")]
     public bool IsMain { get; set; }
 
-    [JsonPropertyName("has_access")]
+    [JsonProperty("has_access")]
     public bool HasAccess { get; set; } = false;
 
-    [JsonPropertyName("employee_ids")]
+    [JsonProperty("employee_ids")]
     public List<string> Employees { get; set; } = new List<string>();
 
-    [JsonPropertyName("can_be_updated")]
+    [JsonProperty("can_be_updated")]
     public bool CanBeUpdated { get; set; }
 
     public Price Get()

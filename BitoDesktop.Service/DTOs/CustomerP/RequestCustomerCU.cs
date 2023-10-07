@@ -1,40 +1,40 @@
 ﻿using BitoDesktop.Service.DTOs.Common;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace BitoDesktop.Service.DTOs.CustomerP;
 public class RequestCustomerCU
 {
-    [JsonPropertyName("_id")]
+    [JsonProperty("_id")]
     public string Id { get; set; }
 
-    [JsonPropertyName("type")]
+    [JsonProperty("type")]
     public string Type { get; set; }
 
-    [JsonPropertyName("b2c_id")]
+    [JsonProperty("b2c_id")]
     public string B2CId { get; set; }
 
-    [JsonPropertyName("person_id")]
+    [JsonProperty("person_id")]
     public string PersonId { get; set; }
 
-    [JsonPropertyName("category_id"), JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+    [JsonProperty("category_id")]
     public string CategoryId { get; set; }
 
-    [JsonPropertyName("name")]
+    [JsonProperty("name")]
     public string Name { get; set; }
 
-    [JsonPropertyName("inn"), JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+    [JsonProperty("inn")]
     public string Inn { get; set; }
 
-    [JsonPropertyName("phone_number")]
+    [JsonProperty("phone_number")]
     public string PhoneNumber { get; set; }
 
-    [JsonPropertyName("agent_id")]
+    [JsonProperty("agent_id")]
     public string AgentId { get; set; }
 
-    [JsonPropertyName("delivery_address")]
+    [JsonProperty("delivery_address")]
     public LocationRequest DeliveryAddress { get; set; }
 
-    [JsonPropertyName("description")]
+    [JsonProperty("description")]
     public string Description { get; set; }
 }
 

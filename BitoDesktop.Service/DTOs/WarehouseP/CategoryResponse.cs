@@ -1,25 +1,25 @@
 ﻿using BitoDesktop.Domain.Entities.WarehouseP;
 using BitoDesktop.Service.DTOs.Common;
 using System.Collections.Generic;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace BitoDesktop.Service.DTOs.WarehouseP;
 
 public class CategoryResponse
 {
-    [JsonPropertyName("_id")]
+    [JsonProperty("_id")]
     public string Id { get; set; }
-    [JsonPropertyName("name")]
+    [JsonProperty("name")]
     public string Name { get; set; }
-    [JsonPropertyName("image")]
+    [JsonProperty("image")]
     public string Image { get; set; }
-    [JsonPropertyName("item_count")]
+    [JsonProperty("item_count")]
     public int ItemCount { get; set; }
-    [JsonPropertyName("child_count")]
+    [JsonProperty("child_count")]
     public int ChildCount { get; set; }
-    [JsonPropertyName("parent")]
+    [JsonProperty("parent")]
     public DataResponse Parent { get; set; }
-    [JsonPropertyName("organization_ids")]
+    [JsonProperty("organization_ids")]
     public List<string> OrganizationIds { get; set; }
 
     public Category Get()

@@ -1,271 +1,271 @@
 ﻿using BitoDesktop.Service.DTOs.Common;
 using System.Collections.Generic;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace BitoDesktop.Service.DTOs.Sale;
 public class RequestReceiptCreate
 {
-    [JsonPropertyName("organization_id")]
+    [JsonProperty("organization_id")]
     public string OrganizationId { get; set; }
 
-    [JsonPropertyName("total_to_pay")]
+    [JsonProperty("total_to_pay")]
     public double TotalToPay { get; set; }
 
-    [JsonPropertyName("total_to_refund")]
+    [JsonProperty("total_to_refund")]
     public double? TotalToRefund { get; set; }
 
-    [JsonPropertyName("currency")]
+    [JsonProperty("currency")]
     public CurrencyRequest Currency { get; set; }
 
-    [JsonPropertyName("base_currency_value")]
+    [JsonProperty("base_currency_value")]
     public float BaseCurrencyValue { get; set; }
 
-    [JsonPropertyName("customer_id")]
+    [JsonProperty("customer_id")]
     public string CustomerId { get; set; }
 
-    [JsonPropertyName("payments")]
+    [JsonProperty("payments")]
     public List<Payment> Payments { get; set; }
 
-    [JsonPropertyName("products")]
+    [JsonProperty("products")]
     public List<Product> Products { get; set; }
 
-    [JsonPropertyName("created_by")]
+    [JsonProperty("created_by")]
     public string CreatedBy { get; set; }
 
-    [JsonPropertyName("responsible_id")]
+    [JsonProperty("responsible_id")]
     public string ResponsibleId { get; set; }
 
-    [JsonPropertyName("sold_at")]
+    [JsonProperty("sold_at")]
     public string SoldAt { get; set; }
 
-    [JsonPropertyName("uuid")]
+    [JsonProperty("uuid")]
     public string Uuid { get; set; }
 
-    [JsonPropertyName("order_id")]
+    [JsonProperty("order_id")]
     public string OrderId { get; set; }
 
-    [JsonPropertyName("contract_id")]
+    [JsonProperty("contract_id")]
     public string ContractId { get; set; }
 
-    [JsonPropertyName("state")]
+    [JsonProperty("state")]
     public string State { get; set; }
 
-    [JsonPropertyName("delivery_address")]
+    [JsonProperty("delivery_address")]
     public LocationRequest DeliveryAddress { get; set; }
 
-    [JsonPropertyName("delivery_date")]
+    [JsonProperty("delivery_date")]
     public string DeliveryDate { get; set; }
 
-    [JsonPropertyName("calc_tax_after_discount")]
+    [JsonProperty("calc_tax_after_discount")]
     public bool CalcTaxAfterDiscount { get; set; }
 
-    [JsonPropertyName("calc_sale_discount_after_product")]
+    [JsonProperty("calc_sale_discount_after_product")]
     public bool CalcSaleDiscountAfterProducts { get; set; }
 
-    [JsonPropertyName("offline_counter")]
+    [JsonProperty("offline_counter")]
     public long OfflineCounter { get; set; }
 
-    [JsonPropertyName("products_total_discount")]
+    [JsonProperty("products_total_discount")]
     public double ProductsTotalDiscount { get; set; }
 
-    [JsonPropertyName("sale_total_discount")]
+    [JsonProperty("sale_total_discount")]
     public double SaleTotalDiscount { get; set; }
 
-    [JsonPropertyName("discounts")]
+    [JsonProperty("discounts")]
     public List<Discount> Discounts { get; set; }
 
-    [JsonPropertyName("total_included_tax")]
+    [JsonProperty("total_included_tax")]
     public double TotalIncludedTax { get; set; }
 
-    [JsonPropertyName("total_added_tax")]
+    [JsonProperty("total_added_tax")]
     public double TotalAddedTax { get; set; }
 
-    [JsonPropertyName("installment_plan")]
+    [JsonProperty("installment_plan")]
     public List<Installment> Installments { get; set; }
 
-    [JsonPropertyName("applied_cashbacks")]
+    [JsonProperty("applied_cashbacks")]
     public List<Cashback> Cashbacks { get; set; }
 
-    [JsonPropertyName("changes")]
+    [JsonProperty("changes")]
     public List<Change> Changes { get; set; }
 
-    [JsonPropertyName("to_send_customer")]
+    [JsonProperty("to_send_customer")]
     public bool ToSendCustomer { get; set; }
 
-    [JsonPropertyName("warehouse_id")]
+    [JsonProperty("warehouse_id")]
     public string WarehouseId { get; set; }
 
-    [JsonPropertyName("note")]
+    [JsonProperty("note")]
     public string Note { get; set; }
 
-    [JsonPropertyName("refund_uuid")]
+    [JsonProperty("refund_uuid")]
     public string RefundUuid { get; set; }
 
-    [JsonPropertyName("reason_id")]
+    [JsonProperty("reason_id")]
     public string ReasonId { get; set; }
 
     public class CurrencyRequest
     {
-        [JsonPropertyName("_id")]
+        [JsonProperty("_id")]
         public string CurrencyId { get; set; }
 
-        [JsonPropertyName("name")]
+        [JsonProperty("name")]
         public string Name { get; set; }
 
-        [JsonPropertyName("value")]
+        [JsonProperty("value")]
         public float Value { get; set; }
 
-        [JsonPropertyName("side")]
+        [JsonProperty("side")]
         public string Side { get; set; }
 
-        [JsonPropertyName("symbol")]
+        [JsonProperty("symbol")]
         public string Symbol { get; set; }
     }
 
     public class Payment
     {
-        [JsonPropertyName("currency")]
+        [JsonProperty("currency")]
         public CurrencyRequest Currency { get; set; }
 
-        [JsonPropertyName("payment_method")]
+        [JsonProperty("payment_method")]
         public PaymentMethod PaymentMethod { get; set; }
 
-        [JsonPropertyName("amount")]
+        [JsonProperty("amount")]
         public double Amount { get; set; }
 
-        [JsonPropertyName("paid")]
+        [JsonProperty("paid")]
         public double Paid { get; set; }
 
-        [JsonPropertyName("base_currency_value")]
+        [JsonProperty("base_currency_value")]
         public float BaseCurrencyValue { get; set; }
     }
 
     public class Product
     {
-        [JsonPropertyName("_id")]
+        [JsonProperty("_id")]
         public string Id { get; set; }
 
-        [JsonPropertyName("product_id")]
+        [JsonProperty("product_id")]
         public string ProductId { get; set; }
 
-        [JsonPropertyName("amount")]
+        [JsonProperty("amount")]
         public double Amount { get; set; }
 
-        [JsonPropertyName("sold_amount")]
+        [JsonProperty("sold_amount")]
         public double SoldAmount { get; set; }
 
-        [JsonPropertyName("price")]
+        [JsonProperty("price")]
         public double Price { get; set; }
 
-        [JsonPropertyName("real_price")]
+        [JsonProperty("real_price")]
         public double RealPrice { get; set; }
 
-        [JsonPropertyName("product_discount")]
+        [JsonProperty("product_discount")]
         public double ProductDiscount { get; set; }
 
-        [JsonPropertyName("total_tax")]
+        [JsonProperty("total_tax")]
         public double TotalTax { get; set; }
 
-        [JsonPropertyName("discounts")]
+        [JsonProperty("discounts")]
         public List<Discount> Discounts { get; set; }
 
-        [JsonPropertyName("taxes")]
+        [JsonProperty("taxes")]
         public List<Tax> Taxes { get; set; }
 
-        [JsonPropertyName("marks")]
+        [JsonProperty("marks")]
         public List<string> Marks { get; set; }
 
-        [JsonPropertyName("cost")]
+        [JsonProperty("cost")]
         public double? Cost { get; set; }
     }
 
     public class PaymentMethod
     {
-        [JsonPropertyName("_id")]
+        [JsonProperty("_id")]
         public string Id { get; set; }
 
-        [JsonPropertyName("name")]
+        [JsonProperty("name")]
         public string Name { get; set; }
     }
 
     public class Discount
     {
-        [JsonPropertyName("_id")]
+        [JsonProperty("_id")]
         public string Id { get; set; }
 
-        [JsonPropertyName("name")]
+        [JsonProperty("name")]
         public string Name { get; set; }
 
-        [JsonPropertyName("apply_type")]
+        [JsonProperty("apply_type")]
         public string ApplyType { get; set; }
 
-        [JsonPropertyName("value")]
+        [JsonProperty("value")]
         public float Value { get; set; }
 
-        [JsonPropertyName("is_custom")]
+        [JsonProperty("is_custom")]
         public bool IsCustom { get; set; }
     }
 
     public class Tax
     {
-        [JsonPropertyName("_id")]
+        [JsonProperty("_id")]
         public string Id { get; set; }
 
-        [JsonPropertyName("name")]
+        [JsonProperty("name")]
         public string Name { get; set; }
 
-        [JsonPropertyName("rate")]
+        [JsonProperty("rate")]
         public float Rate { get; set; }
 
-        [JsonPropertyName("type")]
+        [JsonProperty("type")]
         public string Type { get; set; }
 
-        [JsonPropertyName("to_price")]
+        [JsonProperty("to_price")]
         public bool ToPrice { get; set; }
 
-        [JsonPropertyName("is_manual")]
+        [JsonProperty("is_manual")]
         public bool IsManual { get; set; }
     }
 
     public class Installment
     {
-        [JsonPropertyName("date")]
+        [JsonProperty("date")]
         public string Date { get; set; }
 
-        [JsonPropertyName("amount")]
+        [JsonProperty("amount")]
         public double Amount { get; set; }
     }
 
     public class Cashback
     {
-        [JsonPropertyName("currency")]
+        [JsonProperty("currency")]
         public CurrencyRequest Currency { get; set; }
 
-        [JsonPropertyName("amount")]
+        [JsonProperty("amount")]
         public double Amount { get; set; }
 
-        [JsonPropertyName("paid")]
+        [JsonProperty("paid")]
         public double Paid { get; set; }
 
-        [JsonPropertyName("base_currency_value")]
+        [JsonProperty("base_currency_value")]
         public float BaseCurrencyValue { get; set; }
     }
 
     public class Change
     {
-        [JsonPropertyName("currency")]
+        [JsonProperty("currency")]
         public CurrencyRequest Currency { get; set; }
 
-        [JsonPropertyName("payment_method")]
+        [JsonProperty("payment_method")]
         public PaymentMethod PaymentMethod { get; set; }
 
-        [JsonPropertyName("amount")]
+        [JsonProperty("amount")]
         public double Amount { get; set; }
 
-        [JsonPropertyName("paid")]
+        [JsonProperty("paid")]
         public double Paid { get; set; }
 
-        [JsonPropertyName("base_currency_value")]
+        [JsonProperty("base_currency_value")]
         public float BaseCurrencyValue { get; set; }
     }
 }

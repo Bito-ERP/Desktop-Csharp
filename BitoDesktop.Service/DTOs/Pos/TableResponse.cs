@@ -1,19 +1,19 @@
 ﻿using BitoDesktop.Domain.Entities.Pos;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace BitoDesktop.Service.DTOs.Pos;
 public class TableResponse
 {
-    [JsonPropertyName("order")]
+    [JsonProperty("order")]
     public int Order { get; set; }
 
-    [JsonPropertyName("_id")]
+    [JsonProperty("_id")]
     public string Id { get; set; }
 
-    [JsonPropertyName("organization_id")]
+    [JsonProperty("organization_id")]
     public string OrganizationId { get; set; }
 
-    [JsonPropertyName("name")]
+    [JsonProperty("name")]
     public string Name { get; set; }
 
     public Table Get() => new()

@@ -1,18 +1,18 @@
-﻿using System.Text.Json.Serialization;
+﻿using Newtonsoft.Json;
 
 namespace BitoDesktop.Service.DTOs.Auth;
 
 public class DeviceResponse
 {
-    [JsonPropertyName("_id")]
+    [JsonProperty("_id")]
     public string Id { get; set; }
 
-    [JsonPropertyName("name")]
+    [JsonProperty("name")]
     public string Name { get; set; }
 
-    [JsonPropertyName("record_calls")]
+    [JsonProperty("record_calls")]
     public bool RecordCalls { get; set; }
 
-    [JsonPropertyName("multiple_user")]
+    [JsonProperty("multiple_user")]
     public bool MultipleUser { get; set; } = false;
 }

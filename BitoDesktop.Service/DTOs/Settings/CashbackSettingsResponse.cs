@@ -1,23 +1,23 @@
 ﻿using BitoDesktop.Domain.Entities.Settings;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace BitoDesktop.Service.DTOs.Settings
 {
     public class CashbackSettingsResponse
     {
 
-        [JsonPropertyName("organization_id")]
+        [JsonProperty("organization_id")]
         public string OrganizationId { get; set; }
 
-        [JsonPropertyName("type")]
+        [JsonProperty("type")]
         public string Type { get; set; }
 
-        [JsonPropertyName("is_active")]
+        [JsonProperty("is_active")]
         public bool IsActive { get; set; }
 
-        [JsonPropertyName("cashbacks")]
+        [JsonProperty("cashbacks")]
         public List<Cashback> Cashbacks { get; set; }
 
         public CashbackSetting Get()
@@ -33,16 +33,16 @@ namespace BitoDesktop.Service.DTOs.Settings
 
         public class Cashback
         {
-            [JsonPropertyName("cashback_type")]
+            [JsonProperty("cashback_type")]
             public string Type { get; set; }
 
-            [JsonPropertyName("min_amount")]
+            [JsonProperty("min_amount")]
             public double MinAmount { get; set; }
 
-            [JsonPropertyName("amount")]
+            [JsonProperty("amount")]
             public double Amount { get; set; }
 
-            [JsonPropertyName("currency_id")]
+            [JsonProperty("currency_id")]
             public string CurrencyId { get; set; }
 
             public CashbackSetting.Cashback Get()

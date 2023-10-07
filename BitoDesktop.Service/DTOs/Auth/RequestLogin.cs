@@ -1,36 +1,36 @@
-﻿using System.Text.Json.Serialization;
+﻿using Newtonsoft.Json;
 
 namespace BitoDesktop.Service.DTOs.Auth;
 
 public class RequestLogin
 {
-    [JsonPropertyName("phone_number")]
+    [JsonProperty("phone_number")]
     public string PhoneNumber { get; set; }
 
-    [JsonPropertyName("password")]
+    [JsonProperty("password")]
     public string Password { get; set; }
 
-    [JsonPropertyName("pincode")]
+    [JsonProperty("pincode")]
     public string Pincode { get; set; }
 
-    [JsonPropertyName("user_id")]
+    [JsonProperty("user_id")]
     public string UserId { get; set; }
 
-    [JsonPropertyName("token")]
+    [JsonProperty("token")]
     public string Token { get; set; }
 
-    [JsonPropertyName("brand")]
+    [JsonProperty("brand")]
     public string Brand { get; set; }
 
-    [JsonPropertyName("device")]
+    [JsonProperty("device")]
     public string Device { get; set; }
 
-    [JsonPropertyName("manufacturer")]
+    [JsonProperty("manufacturer")]
     public string Manufacturer { get; set; }
 
-    [JsonPropertyName("model")]
+    [JsonProperty("model")]
     public string Model { get; set; }
 
-    [JsonPropertyName("product")]
+    [JsonProperty("product")]
     public string Product { get; set; }
 }

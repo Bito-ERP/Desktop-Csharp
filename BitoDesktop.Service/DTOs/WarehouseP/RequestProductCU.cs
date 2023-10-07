@@ -1,54 +1,54 @@
 ﻿using System.Collections.Generic;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace BitoDesktop.Service.DTOs.WarehouseP;
 
 public class RequestProductCU
 {
-    [JsonPropertyName("_id")]
+    [JsonProperty("_id")]
     public string Id { get; set; }
-    [JsonPropertyName("name")]
+    [JsonProperty("name")]
     public string Name { get; set; }
-    [JsonPropertyName("category_id")]
+    [JsonProperty("category_id")]
     public string CategoryId { get; set; }
-    [JsonPropertyName("measure_id")]
+    [JsonProperty("measure_id")]
     public string UnitMeasurementId { get; set; }
-    [JsonPropertyName("box_type_id")]
+    [JsonProperty("box_type_id")]
     public string BoxTypeId { get; set; }
-    [JsonPropertyName("box_item")]
+    [JsonProperty("box_item")]
     public double? BoxItem { get; set; }
-    [JsonPropertyName("box_item_barcode")]
+    [JsonProperty("box_item_barcode")]
     public string BoxItemBarcode { get; set; }
-    [JsonPropertyName("sku")]
+    [JsonProperty("sku")]
     public string Sku { get; set; }
-    [JsonPropertyName("barcode")]
+    [JsonProperty("barcode")]
     public string Barcode { get; set; }
-    [JsonPropertyName("is_available_for_sale")]
+    [JsonProperty("is_available_for_sale")]
     public bool? IsAvailableForSale { get; set; }
-    [JsonPropertyName("is_product")]
+    [JsonProperty("is_product")]
     public bool IsProduct { get; set; }
-    [JsonPropertyName("is_material")]
+    [JsonProperty("is_material")]
     public bool IsMaterial { get; set; }
-    [JsonPropertyName("is_semi_product")]
+    [JsonProperty("is_semi_product")]
     public bool IsSemiProduct { get; set; }
-    [JsonPropertyName("is_marked")]
+    [JsonProperty("is_marked")]
     public bool IsMarked { get; set; }
-    [JsonPropertyName("max_stock")]
+    [JsonProperty("max_stock")]
     public float? MaxStock { get; set; }
-    [JsonPropertyName("yellow_line")]
+    [JsonProperty("yellow_line")]
     public float? YellowLine { get; set; }
-    [JsonPropertyName("red_line")]
+    [JsonProperty("red_line")]
     public float? RedLine { get; set; }
-    [JsonPropertyName("image")]
+    [JsonProperty("image")]
     public string Image { get; set; }
-    [JsonPropertyName("prices")]
+    [JsonProperty("prices")]
     public List<Price> Prices { get; set; }
 
     public class Price
     {
-        [JsonPropertyName("price_id")]
+        [JsonProperty("price_id")]
         public string PriceId { get; set; }
-        [JsonPropertyName("amount")]
+        [JsonProperty("amount")]
         public double Amount { get; set; }
     }
 }

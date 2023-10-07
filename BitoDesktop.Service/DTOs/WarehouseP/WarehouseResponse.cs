@@ -1,29 +1,29 @@
 ﻿using BitoDesktop.Domain.Entities.WarehouseP;
 using BitoDesktop.Service.DTOs.Common;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace BitoDesktop.Service.DTOs.WarehouseP;
 public class WarehouseResponse
 {
-    [JsonPropertyName("_id")]
+    [JsonProperty("_id")]
     public string Id { get; set; }
 
-    [JsonPropertyName("name")]
+    [JsonProperty("name")]
     public string Name { get; set; }
 
-    [JsonPropertyName("organization")]
+    [JsonProperty("organization")]
     public DataResponse Organisation { get; set; }
 
-    [JsonPropertyName("responsible_employee")]
+    [JsonProperty("responsible_employee")]
     public UserResponse ResponsibleEmployee { get; set; }
 
-    [JsonPropertyName("is_main")]
+    [JsonProperty("is_main")]
     public bool IsMain { get; set; }
 
-    [JsonPropertyName("status")]
+    [JsonProperty("status")]
     public string Status { get; set; }
 
-    [JsonPropertyName("code")]
+    [JsonProperty("code")]
     public string Code { get; set; }
 
     public Warehouse Get()

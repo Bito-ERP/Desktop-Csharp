@@ -1,326 +1,326 @@
 ﻿using System;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace BitoDesktop.Service.DTOs.Settings
 {
     public class GeneralSettingsResponse
     {
-        [JsonPropertyName("isArchived")]
+        [JsonProperty("isArchived")]
         public bool IsArchived { get; set; }
 
-        [JsonPropertyName("_id")]
+        [JsonProperty("_id")]
         public string Id { get; set; }
 
-        [JsonPropertyName("isDeleted")]
+        [JsonProperty("isDeleted")]
         public bool IsDeleted { get; set; }
 
-        [JsonPropertyName("createdAt")]
+        [JsonProperty("createdAt")]
         public DateTime CreatedAt { get; set; }
 
-        [JsonPropertyName("updatedAt")]
+        [JsonProperty("updatedAt")]
         public DateTime UpdatedAt { get; set; }
 
-        [JsonPropertyName("completelyDeleted")]
+        [JsonProperty("completelyDeleted")]
         public bool CompletelyDeleted { get; set; }
 
-        [JsonPropertyName("username")]
+        [JsonProperty("username")]
         public string Username { get; set; }
 
-        [JsonPropertyName("userId")]
+        [JsonProperty("userId")]
         public string UserId { get; set; }
 
-        [JsonPropertyName("useDeliveryLocation")]
+        [JsonProperty("useDeliveryLocation")]
         public bool UseDeliveryLocation { get; set; }
 
-        [JsonPropertyName("statistics")]
+        [JsonProperty("statistics")]
         public bool Statistics { get; set; }
 
-        [JsonPropertyName("sales")]
+        [JsonProperty("sales")]
         public bool Sales { get; set; }
 
-        [JsonPropertyName("discount")]
+        [JsonProperty("discount")]
         public bool Discount { get; set; }
 
-        [JsonPropertyName("etiket")]
+        [JsonProperty("etiket")]
         public bool Etiket { get; set; }
 
-        [JsonPropertyName("customerReturnReason")]
+        [JsonProperty("customerReturnReason")]
         public bool CustomerReturnReason { get; set; }
 
-        [JsonPropertyName("saleRefund")]
+        [JsonProperty("saleRefund")]
         public bool SaleRefund { get; set; }
 
-        [JsonPropertyName("installmentPlan")]
+        [JsonProperty("installmentPlan")]
         public bool InstallmentPlan { get; set; }
 
-        [JsonPropertyName("customers")]
+        [JsonProperty("customers")]
         public bool Customers { get; set; }
 
-        [JsonPropertyName("customer")]
+        [JsonProperty("customer")]
         public bool Customer { get; set; }
 
-        [JsonPropertyName("saleOrder")]
+        [JsonProperty("saleOrder")]
         public bool SaleOrder { get; set; }
 
-        [JsonPropertyName("customerCategory")]
+        [JsonProperty("customerCategory")]
         public bool CustomerCategory { get; set; }
 
-        [JsonPropertyName("supply")]
+        [JsonProperty("supply")]
         public bool Supply { get; set; }
 
-        [JsonPropertyName("purchaseRequest")]
+        [JsonProperty("purchaseRequest")]
         public bool PurchaseRequest { get; set; }
 
-        [JsonPropertyName("purchaseOrder")]
+        [JsonProperty("purchaseOrder")]
         public bool PurchaseOrder { get; set; }
 
-        [JsonPropertyName("purchase")]
+        [JsonProperty("purchase")]
         public bool Purchase { get; set; }
 
-        [JsonPropertyName("purchaseReturn")]
+        [JsonProperty("purchaseReturn")]
         public bool PurchaseReturn { get; set; }
 
-        [JsonPropertyName("supplier")]
+        [JsonProperty("supplier")]
         public bool Supplier { get; set; }
 
-        [JsonPropertyName("supplierCategory")]
+        [JsonProperty("supplierCategory")]
         public bool SupplierCategory { get; set; }
 
-        [JsonPropertyName("purchaseReason")]
+        [JsonProperty("purchaseReason")]
         public bool PurchaseReason { get; set; }
 
-        [JsonPropertyName("supplierReturnReason")]
+        [JsonProperty("supplierReturnReason")]
         public bool SupplierReturnReason { get; set; }
 
-        [JsonPropertyName("warehouse")]
+        [JsonProperty("warehouse")]
         public bool Warehouse { get; set; }
 
-        [JsonPropertyName("income")]
+        [JsonProperty("income")]
         public bool Income { get; set; }
 
-        [JsonPropertyName("inventorization")]
+        [JsonProperty("inventorization")]
         public bool Inventorization { get; set; }
 
-        [JsonPropertyName("writeOffReason")]
+        [JsonProperty("writeOffReason")]
         public bool WriteOffReason { get; set; }
 
-        [JsonPropertyName("writeOff")]
+        [JsonProperty("writeOff")]
         public bool WriteOff { get; set; }
 
-        [JsonPropertyName("material")]
+        [JsonProperty("material")]
         public bool Material { get; set; }
 
-        [JsonPropertyName("semiProduct")]
+        [JsonProperty("semiProduct")]
         public bool SemiProduct { get; set; }
 
-        [JsonPropertyName("productCategory")]
+        [JsonProperty("productCategory")]
         public bool ProductCategory { get; set; }
 
-        [JsonPropertyName("warehouseGet")]
+        [JsonProperty("warehouseGet")]
         public bool WarehouseGet { get; set; }
 
-        [JsonPropertyName("warehouseType")]
+        [JsonProperty("warehouseType")]
         public bool WarehouseType { get; set; }
 
-        [JsonPropertyName("transferReason")]
+        [JsonProperty("transferReason")]
         public bool TransferReason { get; set; }
 
-        [JsonPropertyName("publicTransferRequest")]
+        [JsonProperty("publicTransferRequest")]
         public bool publicTransferRequest { get; set; }
 
-        [JsonPropertyName("publicTransfer")]
+        [JsonProperty("publicTransfer")]
         public bool publicTransfer { get; set; }
 
-        [JsonPropertyName("organizationalTransferRequest")]
+        [JsonProperty("organizationalTransferRequest")]
         public bool OrganizationalTransferRequest { get; set; }
 
-        [JsonPropertyName("organizationalTransfer")]
+        [JsonProperty("organizationalTransfer")]
         public bool OrganizationalTransfer { get; set; }
 
-        [JsonPropertyName("productStock")]
+        [JsonProperty("productStock")]
         public bool ProductStock { get; set; }
 
-        [JsonPropertyName("statisticsProductAmount")]
+        [JsonProperty("statisticsProductAmount")]
         public bool StatisticsProductAmount { get; set; }
 
-        [JsonPropertyName("statisticsProductCost")]
+        [JsonProperty("statisticsProductCost")]
         public bool StatisticsProductCost { get; set; }
 
-        [JsonPropertyName("statisticsProductIncome")]
+        [JsonProperty("statisticsProductIncome")]
         public bool StatisticsProductIncome { get; set; }
 
-        [JsonPropertyName("finance")]
+        [JsonProperty("finance")]
         public bool Finance { get; set; }
 
-        [JsonPropertyName("cashbox")]
+        [JsonProperty("cashbox")]
         public bool Cashbox { get; set; }
 
-        [JsonPropertyName("transactions")]
+        [JsonProperty("transactions")]
         public bool Transactions { get; set; }
 
-        [JsonPropertyName("invoice")]
+        [JsonProperty("invoice")]
         public bool Invoice { get; set; }
 
-        [JsonPropertyName("customerBalanceUpdate")]
+        [JsonProperty("customerBalanceUpdate")]
         public bool CustomerBalanceUpdate { get; set; }
 
-        [JsonPropertyName("supplierBalanceUpdate")]
+        [JsonProperty("supplierBalanceUpdate")]
         public bool SupplierBalanceUpdate { get; set; }
 
-        [JsonPropertyName("employeeBalanceUpdate")]
+        [JsonProperty("employeeBalanceUpdate")]
         public bool EmployeeBalanceUpdate { get; set; }
 
-        [JsonPropertyName("cashboxBalanceUpdate")]
+        [JsonProperty("cashboxBalanceUpdate")]
         public bool CashboxBalanceUpdate { get; set; }
 
-        [JsonPropertyName("currency")]
+        [JsonProperty("currency")]
         public bool Currency { get; set; }
 
-        [JsonPropertyName("tax")]
+        [JsonProperty("tax")]
         public bool Tax { get; set; }
 
-        [JsonPropertyName("paymentType")]
+        [JsonProperty("paymentType")]
         public bool PaymentType { get; set; }
 
-        [JsonPropertyName("extraCost")]
+        [JsonProperty("extraCost")]
         public bool ExtraCost { get; set; }
 
-        [JsonPropertyName("contract")]
+        [JsonProperty("contract")]
         public bool Contract { get; set; }
 
-        [JsonPropertyName("customerBalance")]
+        [JsonProperty("customerBalance")]
         public bool CustomerBalance { get; set; }
 
-        [JsonPropertyName("employeeBalance")]
+        [JsonProperty("employeeBalance")]
         public bool EmployeeBalance { get; set; }
 
-        [JsonPropertyName("supplierBalance")]
+        [JsonProperty("supplierBalance")]
         public bool SupplierBalance { get; set; }
 
-        [JsonPropertyName("personBalance")]
+        [JsonProperty("personBalance")]
         public bool PersonBalance { get; set; }
 
-        [JsonPropertyName("statisticsCostByCategory")]
+        [JsonProperty("statisticsCostByCategory")]
         public bool StatisticsCostByCategory { get; set; }
 
-        [JsonPropertyName("statisticsBalance")]
+        [JsonProperty("statisticsBalance")]
         public bool StatisticsBalance { get; set; }
 
-        [JsonPropertyName("statisticsCashflow")]
+        [JsonProperty("statisticsCashflow")]
         public bool StatisticsCashflow { get; set; }
 
-        [JsonPropertyName("hr")]
+        [JsonProperty("hr")]
         public bool Hr { get; set; }
 
-        [JsonPropertyName("employee")]
+        [JsonProperty("employee")]
         public bool Employee { get; set; }
 
-        [JsonPropertyName("section")]
+        [JsonProperty("section")]
         public bool Section { get; set; }
 
-        [JsonPropertyName("position")]
+        [JsonProperty("position")]
         public bool Position { get; set; }
 
-        [JsonPropertyName("role")]
+        [JsonProperty("role")]
         public bool Role { get; set; }
 
-        [JsonPropertyName("integrations")]
+        [JsonProperty("integrations")]
         public bool Integrations { get; set; }
 
-        [JsonPropertyName("integration")]
+        [JsonProperty("integration")]
         public bool Integration { get; set; }
 
-        [JsonPropertyName("smsTemplate")]
+        [JsonProperty("smsTemplate")]
         public bool SmsTemplate { get; set; }
 
-        [JsonPropertyName("production")]
+        [JsonProperty("production")]
         public bool Production { get; set; }
 
-        [JsonPropertyName("productionRouteSheet")]
+        [JsonProperty("productionRouteSheet")]
         public bool ProductionRouteSheet { get; set; }
 
-        [JsonPropertyName("productionOperation")]
+        [JsonProperty("productionOperation")]
         public bool ProductionOperation { get; set; }
 
-        [JsonPropertyName("reference")]
+        [JsonProperty("reference")]
         public bool Reference { get; set; }
 
-        [JsonPropertyName("price")]
+        [JsonProperty("price")]
         public bool Price { get; set; }
 
-        [JsonPropertyName("legalPerson")]
+        [JsonProperty("legalPerson")]
         public bool LegalPerson { get; set; }
 
-        [JsonPropertyName("naturalPerson")]
+        [JsonProperty("naturalPerson")]
         public bool NaturalPerson { get; set; }
 
-        [JsonPropertyName("producer")]
+        [JsonProperty("producer")]
         public bool Producer { get; set; }
 
-        [JsonPropertyName("brand")]
+        [JsonProperty("brand")]
         public bool Brand { get; set; }
 
-        [JsonPropertyName("settings")]
+        [JsonProperty("settings")]
         public bool Settings { get; set; }
 
-        [JsonPropertyName("isMarkActive")]
+        [JsonProperty("isMarkActive")]
         public bool IsMarkActive { get; set; }
 
-        [JsonPropertyName("isNoteActive")]
+        [JsonProperty("isNoteActive")]
         public bool IsNoteActive { get; set; }
 
-        [JsonPropertyName("isReceiptActive")]
+        [JsonProperty("isReceiptActive")]
         public bool IsReceiptActive { get; set; }
 
-        [JsonPropertyName("materialCategory")]
+        [JsonProperty("materialCategory")]
         public bool MaterialCategory { get; set; }
 
-        [JsonPropertyName("useCompoundProduct")]
+        [JsonProperty("useCompoundProduct")]
         public bool UseCompoundProduct { get; set; }
 
-        [JsonPropertyName("useVariantProduct")]
+        [JsonProperty("useVariantProduct")]
         public bool UseVariantProduct { get; set; }
 
-        [JsonPropertyName("transferRequest")]
+        [JsonProperty("transferRequest")]
         public bool TransferRequest { get; set; }
 
-        [JsonPropertyName("statisticsSale")]
+        [JsonProperty("statisticsSale")]
         public bool StatisticsSale { get; set; }
 
-        [JsonPropertyName("statisticsCashbox")]
+        [JsonProperty("statisticsCashbox")]
         public bool StatisticsCashbox { get; set; }
 
-        [JsonPropertyName("statisticsProduct")]
+        [JsonProperty("statisticsProduct")]
         public bool StatisticsProduct { get; set; }
 
-        [JsonPropertyName("statisticsCategory")]
+        [JsonProperty("statisticsCategory")]
         public bool StatisticsCategory { get; set; }
 
-        [JsonPropertyName("statisticsEmployee")]
+        [JsonProperty("statisticsEmployee")]
         public bool StatisticsEmployee { get; set; }
 
-        [JsonPropertyName("statisticsCustomer")]
+        [JsonProperty("statisticsCustomer")]
         public bool StatisticsCustomer { get; set; }
 
-        [JsonPropertyName("statisticsPaymentMethod")]
+        [JsonProperty("statisticsPaymentMethod")]
         public bool StatisticsPaymentMethod { get; set; }
 
-        [JsonPropertyName("statisticsReceipt")]
+        [JsonProperty("statisticsReceipt")]
         public bool StatisticsReceipt { get; set; }
 
-        [JsonPropertyName("statisticsWarehouse")]
+        [JsonProperty("statisticsWarehouse")]
         public bool StatisticsWarehouse { get; set; }
 
-        [JsonPropertyName("statisticsSpecificProduct")]
+        [JsonProperty("statisticsSpecificProduct")]
         public bool StatisticsSpecificProduct { get; set; }
 
-        [JsonPropertyName("statisticsSpecificCustomer")]
+        [JsonProperty("statisticsSpecificCustomer")]
         public bool StatisticsSpecificCustomer { get; set; }
 
-        [JsonPropertyName("statisticsByCustomer")]
+        [JsonProperty("statisticsByCustomer")]
         public bool StatisticsByCustomer { get; set; }
 
-        [JsonPropertyName("statisticsProfitLoss")]
+        [JsonProperty("statisticsProfitLoss")]
         public bool StatisticsProfitLoss { get; set; }
     }
 }

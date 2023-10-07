@@ -1,27 +1,27 @@
-﻿using System.Text.Json.Serialization;
+﻿using Newtonsoft.Json;
 
 namespace BitoDesktop.Service.DTOs.Settings;
 
 public class RequestPriceCU
 {
-    [JsonPropertyName("_id")]
+    [JsonProperty("_id")]
     public string Id { get; set; }
 
-    [JsonPropertyName("code")]
+    [JsonProperty("code")]
     public string Code { get; set; }
 
-    [JsonPropertyName("name")]
+    [JsonProperty("name")]
     public string Name { get; set; }
 
-    [JsonPropertyName("short_name")]
+    [JsonProperty("short_name")]
     public string ShortName { get; set; }
 
-    [JsonPropertyName("currency_id")]
+    [JsonProperty("currency_id")]
     public string CurrencyId { get; set; }
 
-    [JsonPropertyName("status")]
+    [JsonProperty("status")]
     public string Status { get; set; }
 
-    [JsonPropertyName("type")]
+    [JsonProperty("type")]
     public string Type { get; set; }
 }

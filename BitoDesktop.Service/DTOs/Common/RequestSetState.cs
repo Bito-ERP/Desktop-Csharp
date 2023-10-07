@@ -1,15 +1,15 @@
-﻿using System.Text.Json.Serialization;
+﻿using Newtonsoft.Json;
 
 namespace BitoDesktop.Service.DTOs.Common;
 
 public class RequestSetState
 {
-    [JsonPropertyName("state")]
+    [JsonProperty("state")]
     public string State { get; set; }
 
-    [JsonPropertyName("_id")]
+    [JsonProperty("_id")]
     public string Id { get; set; }
 
-    [JsonPropertyName("uuid")]
+    [JsonProperty("uuid")]
     public string Uuid { get; set; }
 }

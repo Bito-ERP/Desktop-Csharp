@@ -21,9 +21,9 @@
     </UserControl.Resources>
     <Border Background="White" CornerRadius="20">
         <StackPanel HorizontalAlignment="Center">
-            <ComboBox md:HintAssist.Hint="Organzatsiya" />
-            <ComboBox md:HintAssist.Hint="Ombor" />
-            <ComboBox md:HintAssist.Hint="Narx" />
+            <ComboBox x:Name="OrgCmb" md:HintAssist.Hint="Organzatsiya" />
+            <ComboBox x:Name="WarehouseCmb" md:HintAssist.Hint="Ombor" />
+            <ComboBox x:Name="PriceCmb" md:HintAssist.Hint="Narx" />
         </StackPanel>
     </Border>
 </UserControl>

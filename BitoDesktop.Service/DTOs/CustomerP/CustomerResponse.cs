@@ -5,52 +5,52 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace BitoDesktop.Service.DTOs.CustomerP;
 public class CustomerResponse
 {
-    [JsonPropertyName("_id")]
+    [JsonProperty("_id")]
     public string Id { get; set; }
-    [JsonPropertyName("type")]
+    [JsonProperty("type")]
     public string Type { get; set; }
-    [JsonPropertyName("person")]
+    [JsonProperty("person")]
     public DataResponse Person { get; set; }
-    [JsonPropertyName("category")]
+    [JsonProperty("category")]
     public DataResponse Category { get; set; }
-    [JsonPropertyName("name")]
+    [JsonProperty("name")]
     [Required]
     public string Name { get; set; }
-    [JsonPropertyName("inn")]
+    [JsonProperty("inn")]
     public string Inn { get; set; }
-    [JsonPropertyName("phone_number")]
+    [JsonProperty("phone_number")]
     public string PhoneNumber { get; set; }
-    [JsonPropertyName("agent")]
+    [JsonProperty("agent")]
     public UserResponse Agent { get; set; }
-    [JsonPropertyName("delivery_address")]
+    [JsonProperty("delivery_address")]
     public LocationResponse DeliveryAddress { get; set; }
-    [JsonPropertyName("description")]
+    [JsonProperty("description")]
     public string Description { get; set; }
-    [JsonPropertyName("first_sale_at")]
+    [JsonProperty("first_sale_at")]
     [Required]
     public string FirstSale { get; set; }
-    [JsonPropertyName("last_sale_at")]
+    [JsonProperty("last_sale_at")]
     [Required]
     public string LastSale { get; set; }
-    [JsonPropertyName("total_sale")]
+    [JsonProperty("total_sale")]
     [Required]
     public double TotalSale { get; set; }
-    [JsonPropertyName("point")]
+    [JsonProperty("point")]
     [Required]
     public float Point { get; set; }
-    [JsonPropertyName("organization_ids")]
+    [JsonProperty("organization_ids")]
     [Required]
     public List<string> Organizations { get; set; }
-    [JsonPropertyName("total_balance")]
+    [JsonProperty("total_balance")]
     public List<TotalBalance> TotalBalanceList { get; set; }
-    [JsonPropertyName("balance_list")]
+    [JsonProperty("balance_list")]
     public List<BalanceListResponse> BalanceList { get; set; }
-    [JsonPropertyName("cashback_list")]
+    [JsonProperty("cashback_list")]
     public List<Cashback> CashbackList { get; set; }
 
     public Customer Get()
@@ -147,35 +147,35 @@ public class CustomerResponse
 
     public class TotalBalance
     {
-        [JsonPropertyName("_id")]
+        [JsonProperty("_id")]
         public string Id { get; set; }
-        [JsonPropertyName("currency_id")]
+        [JsonProperty("currency_id")]
         public string CurrencyId { get; set; }
-        [JsonPropertyName("amount")]
+        [JsonProperty("amount")]
         public double Amount { get; set; }
     }
 
     public class BalanceListResponse
     {
-        [JsonPropertyName("_id")]
+        [JsonProperty("_id")]
         public string Id { get; set; }
-        [JsonPropertyName("organization_id")]
+        [JsonProperty("organization_id")]
         public string OrganizationId { get; set; }
-        [JsonPropertyName("currency_id")]
+        [JsonProperty("currency_id")]
         public string CurrencyId { get; set; }
-        [JsonPropertyName("amount")]
+        [JsonProperty("amount")]
         public double Amount { get; set; }
     }
 
     public class Cashback
     {
-        [JsonPropertyName("_id")]
+        [JsonProperty("_id")]
         public string Id { get; set; }
-        [JsonPropertyName("customer_id")]
+        [JsonProperty("customer_id")]
         public string CustomerId { get; set; }
-        [JsonPropertyName("amount")]
+        [JsonProperty("amount")]
         public double Amount { get; set; }
-        [JsonPropertyName("currency_id")]
+        [JsonProperty("currency_id")]
         public string CurrencyId { get; set; }
 
         public CustomerCashback Get()
@@ -194,9 +194,9 @@ public class CustomerResponse
 
 public class CustomerResponseByInn
 {
-    [JsonPropertyName("full_name")]
+    [JsonProperty("full_name")]
     public string FullName { get; set; }
 
-    [JsonPropertyName("type")]
+    [JsonProperty("type")]
     public string Type { get; set; }
 }

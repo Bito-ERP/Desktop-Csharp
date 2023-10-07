@@ -1,76 +1,76 @@
 ﻿using System.Collections.Generic;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace BitoDesktop.Service.DTOs.Common;
 
 public class RequestBy
 {
-    [JsonPropertyName("_id")]
+    [JsonProperty("_id")]
     public string Id { get; set; }
 
-    [JsonPropertyName("barcode")]
+    [JsonProperty("barcode")]
     public string Barcode { get; set; }
 
-    [JsonPropertyName("sku")]
+    [JsonProperty("sku")]
     public string Sku { get; set; }
 
-    [JsonPropertyName("mark")]
+    [JsonProperty("mark")]
     public string Mark { get; set; }
 
-    [JsonPropertyName("inn")]
+    [JsonProperty("inn")]
     public string Inn { get; set; }
 
-    [JsonPropertyName("name")]
+    [JsonProperty("name")]
     public string Name { get; set; }
 
-    [JsonPropertyName("organization_id")]
+    [JsonProperty("organization_id")]
     public string OrganizationId { get; set; }
 
-    [JsonPropertyName("warehouse_id")]
+    [JsonProperty("warehouse_id")]
     public string WarehouseId { get; set; }
 
-    [JsonPropertyName("deleted_at")]
+    [JsonProperty("deleted_at")]
     public string DeletedAt { get; set; }
 
-    [JsonPropertyName("receiver_warehouse_id")]
+    [JsonProperty("receiver_warehouse_id")]
     public string ReceiverWarehouseId { get; set; }
 
-    [JsonPropertyName("uuid")]
+    [JsonProperty("uuid")]
     public string Uuid { get; set; }
 
-    [JsonPropertyName("trade_id")]
+    [JsonProperty("trade_id")]
     public string TradeId { get; set; }
 
-    [JsonPropertyName("pos_page_id")]
+    [JsonProperty("pos_page_id")]
     public string PosPageId { get; set; }
 
-    [JsonPropertyName("field_name")]
+    [JsonProperty("field_name")]
     public string FieldName { get; set; }
 
-    [JsonPropertyName("username")]
+    [JsonProperty("username")]
     public string Username { get; set; }
 
-    [JsonPropertyName("block_id")]
+    [JsonProperty("block_id")]
     public string BlockId { get; set; }
 
-    [JsonPropertyName("b2c_id")]
+    [JsonProperty("b2c_id")]
     public string B2cId { get; set; }
 
-    [JsonPropertyName("revision_id")]
+    [JsonProperty("revision_id")]
     public string RevisionId { get; set; }
 
-    [JsonPropertyName("category_ids")]
+    [JsonProperty("category_ids")]
     public string[] CategoryIds { get; set; }
 
-    [JsonPropertyName("is_all")]
+    [JsonProperty("is_all")]
     public bool IsAll { get; set; }
 
-    [JsonPropertyName("product_id")]
+    [JsonProperty("product_id")]
     public string ProductId { get; set; }
 
-    [JsonPropertyName("service")]
+    [JsonProperty("service")]
     public string Service { get; set; }
 
-    [JsonPropertyName("states")]
+    [JsonProperty("states")]
     public List<string> States { get; set; }
 }

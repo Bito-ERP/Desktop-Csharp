@@ -5,142 +5,142 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace BitoDesktop.Service.DTOs.Sale;
 public class ReceiptResponse
 {
-    [JsonPropertyName("uuid")]
+    [JsonProperty("uuid")]
     public string Uuid { get; set; }
 
-    [JsonPropertyName("_id")]
+    [JsonProperty("_id")]
     public string Id { get; set; }
 
-    [JsonPropertyName("total_to_pay")]
+    [JsonProperty("total_to_pay")]
     public double TotalToPay { get; set; }
 
-    [JsonPropertyName("total_to_refund")]
+    [JsonProperty("total_to_refund")]
     public double? TotalToRefund { get; set; }
 
-    [JsonPropertyName("total_price")]
+    [JsonProperty("total_price")]
     public double TotalPrice { get; set; }
 
-    [JsonPropertyName("discount")]
+    [JsonProperty("discount")]
     public double Discount { get; set; } = 0.0;
 
-    [JsonPropertyName("total_discount")]
+    [JsonProperty("total_discount")]
     public double TotalDiscount { get; set; } = 0.0;
 
-    [JsonPropertyName("total_included_tax")]
+    [JsonProperty("total_included_tax")]
     public double TotalIncludedTax { get; set; } = 0.0;
 
-    [JsonPropertyName("total_added_tax")]
+    [JsonProperty("total_added_tax")]
     public double TotalAddedTax { get; set; } = 0.0;
 
-    [JsonPropertyName("is_refund")]
+    [JsonProperty("is_refund")]
     public bool IsRefund { get; set; }
 
-    [JsonPropertyName("calc_tax_after_discount")]
+    [JsonProperty("calc_tax_after_discount")]
     public bool CalcTaxAfterDiscount { get; set; }
 
-    [JsonPropertyName("calc_sale_discount_after_product")]
+    [JsonProperty("calc_sale_discount_after_product")]
     public bool CalcSaleDiscountAfterProducts { get; set; }
 
-    [JsonPropertyName("state")]
+    [JsonProperty("state")]
     public string State { get; set; }
 
-    [JsonPropertyName("currency")]
+    [JsonProperty("currency")]
     public ReceiptCurrency Currency { get; set; }
 
-    [JsonPropertyName("base_currency_value")]
+    [JsonProperty("base_currency_value")]
     public float BaseCurrencyValue { get; set; }
 
-    [JsonPropertyName("earned_cashback")]
+    [JsonProperty("earned_cashback")]
     public ReceiptEarnedCashback EarnedCashback { get; set; }
 
-    [JsonPropertyName("customer_before_balance")]
+    [JsonProperty("customer_before_balance")]
     public List<Amount> CustomerBeforeBalance { get; set; } = new List<Amount>();
 
-    [JsonPropertyName("customer_after_balance")]
+    [JsonProperty("customer_after_balance")]
     public List<Amount> CustomerAfterBalance { get; set; } = new List<Amount>();
 
-    [JsonPropertyName("cashback_before_balance")]
+    [JsonProperty("cashback_before_balance")]
     public List<Amount> CashbackBeforeBalance { get; set; } = new List<Amount>();
 
-    [JsonPropertyName("cashback_after_balance")]
+    [JsonProperty("cashback_after_balance")]
     public List<Amount> CashbackAfterBalance { get; set; } = new List<Amount>();
 
-    [JsonPropertyName("cashbox")]
+    [JsonProperty("cashbox")]
     public DataResponse Cashbox { get; set; }
 
     [Required]
-    [JsonPropertyName("number")]
+    [JsonProperty("number")]
     public string Number { get; set; }
 
-    [JsonPropertyName("refund_number")]
+    [JsonProperty("refund_number")]
     public string RefundNumber { get; set; }
 
-    [JsonPropertyName("refund_uuid")]
+    [JsonProperty("refund_uuid")]
     public string RefundUuid { get; set; }
 
-    [JsonPropertyName("total_amount")]
+    [JsonProperty("total_amount")]
     public double TotalAmount { get; set; } = 0.0;
 
-    [JsonPropertyName("total_refunded_amount")]
+    [JsonProperty("total_refunded_amount")]
     public double TotalRefundedAmount { get; set; } = 0.0;
 
-    [JsonPropertyName("device")]
+    [JsonProperty("device")]
     public ReceiptDevice Device { get; set; }
 
-    [JsonPropertyName("responsible")]
+    [JsonProperty("responsible")]
     public UserResponse Responsible { get; set; }
 
-    [JsonPropertyName("created_by")]
+    [JsonProperty("created_by")]
     public UserResponse CreatedBy { get; set; }
 
-    [JsonPropertyName("customer")]
+    [JsonProperty("customer")]
     public DataResponse Customer { get; set; }
 
-    [JsonPropertyName("warehouse")]
+    [JsonProperty("warehouse")]
     public DataResponse Warehouse { get; set; }
 
-    [JsonPropertyName("contract")]
+    [JsonProperty("contract")]
     public ReceiptContract Contract { get; set; }
 
-    [JsonPropertyName("order")]
+    [JsonProperty("order")]
     public ReceiptOrder Order { get; set; }
 
-    [JsonPropertyName("delivery_address")]
+    [JsonProperty("delivery_address")]
     public LocationResponse DeliveryAddress { get; set; }
 
-    [JsonPropertyName("delivery_date")]
+    [JsonProperty("delivery_date")]
     public string DeliveryDate { get; set; }
 
-    [JsonPropertyName("sold_at")]
+    [JsonProperty("sold_at")]
     public string SoldAt { get; set; }
 
-    [JsonPropertyName("is_trash")]
+    [JsonProperty("is_trash")]
     public bool? IsTrash { get; set; }
 
-    [JsonPropertyName("invoice")]
+    [JsonProperty("invoice")]
     public ReceiptInvoice Invoice { get; set; }
 
-    [JsonPropertyName("payments")]
+    [JsonProperty("payments")]
     public List<Payment> Payments { get; set; }
 
-    [JsonPropertyName("installment_plan")]
+    [JsonProperty("installment_plan")]
     public List<InstallmentPlan> InstallmentPlans { get; set; }
 
-    [JsonPropertyName("applied_cashbacks")]
+    [JsonProperty("applied_cashbacks")]
     public List<AppliedCashback> AppliedCashbacks { get; set; }
 
-    [JsonPropertyName("discounts")]
+    [JsonProperty("discounts")]
     public List<DiscountResponse> Discounts { get; set; }
 
-    [JsonPropertyName("changes")]
+    [JsonProperty("changes")]
     public List<Change> Changes { get; set; }
 
-    [JsonPropertyName("products")]
+    [JsonProperty("products")]
     public List<Product> Products { get; set; }
 
     public Receipt Get(string organizationId)
@@ -216,64 +216,64 @@ public class ReceiptResponse
 
     public class ReceiptInvoice
     {
-        [JsonPropertyName("_id")]
+        [JsonProperty("_id")]
         public string Id { get; set; }
 
-        [JsonPropertyName("type")]
+        [JsonProperty("type")]
         public string Type { get; set; }
 
-        [JsonPropertyName("number")]
+        [JsonProperty("number")]
         public string Number { get; set; }
 
-        [JsonPropertyName("payment_type")]
+        [JsonProperty("payment_type")]
         public DataResponse PaymentType { get; set; }
 
-        [JsonPropertyName("user_type")]
+        [JsonProperty("user_type")]
         public string UserType { get; set; }
 
-        [JsonPropertyName("payment_for")]
+        [JsonProperty("payment_for")]
         public string PaymentFor { get; set; }
 
-        [JsonPropertyName("is_refund")]
+        [JsonProperty("is_refund")]
         public bool IsRefund { get; set; }
 
-        [JsonPropertyName("date")]
+        [JsonProperty("date")]
         public string Date { get; set; }
 
-        [JsonPropertyName("customer")]
+        [JsonProperty("customer")]
         public DataResponse Customer { get; set; }
 
-        [JsonPropertyName("employee")]
+        [JsonProperty("employee")]
         public UserResponse Employee { get; set; }
 
-        [JsonPropertyName("supplier")]
+        [JsonProperty("supplier")]
         public DataResponse Supplier { get; set; }
 
-        [JsonPropertyName("person")]
+        [JsonProperty("person")]
         public DataResponse Person { get; set; }
 
-        [JsonPropertyName("to_be_paid")]
+        [JsonProperty("to_be_paid")]
         public double ToBePaid { get; set; }
 
-        [JsonPropertyName("paid")]
+        [JsonProperty("paid")]
         public double Paid { get; set; }
 
-        [JsonPropertyName("to_be_refunded")]
+        [JsonProperty("to_be_refunded")]
         public double ToBeRefunded { get; set; }
 
-        [JsonPropertyName("refunded")]
+        [JsonProperty("refunded")]
         public double Refunded { get; set; }
 
-        [JsonPropertyName("paid_by_balance")]
+        [JsonProperty("paid_by_balance")]
         public double PaidByBalance { get; set; } = 0.0;
 
-        [JsonPropertyName("paid_by_cashback")]
+        [JsonProperty("paid_by_cashback")]
         public double PaidByCashback { get; set; } = 0.0;
 
-        [JsonPropertyName("currency_id")]
+        [JsonProperty("currency_id")]
         public string CurrencyId { get; set; }
 
-        [JsonPropertyName("trade_id")]
+        [JsonProperty("trade_id")]
         public string TradeId { get; set; }
 
         public Invoice Get(string organizationId)
@@ -312,34 +312,34 @@ public class ReceiptResponse
 
     public class ReceiptContract
     {
-        [JsonPropertyName("_id")]
+        [JsonProperty("_id")]
         public string Id { get; set; }
 
-        [JsonPropertyName("number")]
+        [JsonProperty("number")]
         public string Number { get; set; }
 
-        [JsonPropertyName("code")]
+        [JsonProperty("code")]
         public string Code { get; set; }
     }
 
     public class ReceiptOrder
     {
-        [JsonPropertyName("_id")]
+        [JsonProperty("_id")]
         public string Id { get; set; }
 
-        [JsonPropertyName("number")]
+        [JsonProperty("number")]
         public string Number { get; set; }
 
-        [JsonPropertyName("code")]
+        [JsonProperty("code")]
         public string Code { get; set; }
     }
 
     public class Amount
     {
-        [JsonPropertyName("amount")]
+        [JsonProperty("amount")]
         public double Value { get; set; }
 
-        [JsonPropertyName("currency_id")]
+        [JsonProperty("currency_id")]
         public string CurrencyId { get; set; }
 
         public Receipt.Amount Get() => new Receipt.Amount
@@ -351,64 +351,64 @@ public class ReceiptResponse
 
     public class ReceiptCurrency
     {
-        [JsonPropertyName("_id")]
+        [JsonProperty("_id")]
         public string Id { get; set; }
 
-        [JsonPropertyName("name")]
+        [JsonProperty("name")]
         public string Name { get; set; }
 
-        [JsonPropertyName("value")]
+        [JsonProperty("value")]
         public float Value { get; set; }
 
-        [JsonPropertyName("side")]
+        [JsonProperty("side")]
         public string Side { get; set; }
 
-        [JsonPropertyName("symbol")]
+        [JsonProperty("symbol")]
         public string Symbol { get; set; }
     }
 
     public class ReceiptDevice
     {
-        [JsonPropertyName("device_id")]
+        [JsonProperty("device_id")]
         public string Id { get; set; }
 
-        [JsonPropertyName("name")]
+        [JsonProperty("name")]
         public string Name { get; set; }
     }
 
     public class ReceiptEarnedCashback
     {
-        [JsonPropertyName("_id")]
+        [JsonProperty("_id")]
         public string Id { get; set; }
 
-        [JsonPropertyName("currency")]
+        [JsonProperty("currency")]
         public ReceiptCurrency Currency { get; set; }
 
-        [JsonPropertyName("amount")]
+        [JsonProperty("amount")]
         public double Amount { get; set; }
     }
 
     public class Payment
     {
-        [JsonPropertyName("_id")]
+        [JsonProperty("_id")]
         public string Id { get; set; }
 
-        [JsonPropertyName("payment_method")]
+        [JsonProperty("payment_method")]
         public DataResponse PaymentMethod { get; set; }
 
-        [JsonPropertyName("currency")]
+        [JsonProperty("currency")]
         public ReceiptCurrency Currency { get; set; }
 
-        [JsonPropertyName("base_currency_value")]
+        [JsonProperty("base_currency_value")]
         public float BaseCurrencyValue { get; set; }
 
-        [JsonPropertyName("amount")]
+        [JsonProperty("amount")]
         public double Amount { get; set; }
 
-        [JsonPropertyName("paid")]
+        [JsonProperty("paid")]
         public double Paid { get; set; }
 
-        [JsonPropertyName("refunded")]
+        [JsonProperty("refunded")]
         public double Refunded { get; set; }
 
         public ReceiptPayment Get(string receiptUuid)
@@ -435,13 +435,13 @@ public class ReceiptResponse
 
     public class InstallmentPlan
     {
-        [JsonPropertyName("_id")]
+        [JsonProperty("_id")]
         public string Id { get; set; }
 
-        [JsonPropertyName("date")]
+        [JsonProperty("date")]
         public string Date { get; set; }
 
-        [JsonPropertyName("amount")]
+        [JsonProperty("amount")]
         public double Amount { get; set; }
 
         public ReceiptInstallment Get(string receiptUuid)
@@ -458,19 +458,19 @@ public class ReceiptResponse
 
     public class AppliedCashback
     {
-        [JsonPropertyName("_id")]
+        [JsonProperty("_id")]
         public string Id { get; set; }
 
-        [JsonPropertyName("currency")]
+        [JsonProperty("currency")]
         public ReceiptCurrency Currency { get; set; }
 
-        [JsonPropertyName("base_currency_value")]
+        [JsonProperty("base_currency_value")]
         public float BaseCurrencyValue { get; set; }
 
-        [JsonPropertyName("amount")]
+        [JsonProperty("amount")]
         public double Amount { get; set; }
 
-        [JsonPropertyName("paid")]
+        [JsonProperty("paid")]
         public double Paid { get; set; }
 
         public ReceiptCashback Get(string receiptUuid)
@@ -493,19 +493,19 @@ public class ReceiptResponse
 
     public class DiscountResponse
     {
-        [JsonPropertyName("_id")]
+        [JsonProperty("_id")]
         public string Id { get; set; }
 
-        [JsonPropertyName("name")]
+        [JsonProperty("name")]
         public string Name { get; set; }
 
-        [JsonPropertyName("apply_type")]
+        [JsonProperty("apply_type")]
         public string ApplyType { get; set; }
 
-        [JsonPropertyName("value")]
+        [JsonProperty("value")]
         public float Value { get; set; }
 
-        [JsonPropertyName("is_custom")]
+        [JsonProperty("is_custom")]
         public bool IsCustom { get; set; }
 
         public ReceiptDiscount Get(string receiptUuid, string currencyId)
@@ -525,22 +525,22 @@ public class ReceiptResponse
 
     public class Change
     {
-        [JsonPropertyName("_id")]
+        [JsonProperty("_id")]
         public string Id { get; set; }
 
-        [JsonPropertyName("payment_method")]
+        [JsonProperty("payment_method")]
         public DataResponse PaymentMethod { get; set; }
 
-        [JsonPropertyName("currency")]
+        [JsonProperty("currency")]
         public ReceiptCurrency Currency { get; set; }
 
-        [JsonPropertyName("base_currency_value")]
+        [JsonProperty("base_currency_value")]
         public float BaseCurrencyValue { get; set; }
 
-        [JsonPropertyName("amount")]
+        [JsonProperty("amount")]
         public double Amount { get; set; }
 
-        [JsonPropertyName("paid")]
+        [JsonProperty("paid")]
         public double Paid { get; set; }
 
         public ReceiptChange Get(string receiptUuid)
@@ -565,90 +565,90 @@ public class ReceiptResponse
 
     public class Product
     {
-        [JsonPropertyName("_id")]
+        [JsonProperty("_id")]
         public string Id { get; set; }
 
-        [JsonPropertyName("product_id")]
+        [JsonProperty("product_id")]
         public string ProductId { get; set; }
 
-        [JsonPropertyName("name")]
+        [JsonProperty("name")]
         public string Name { get; set; }
 
-        [JsonPropertyName("image")]
+        [JsonProperty("image")]
         public string Image { get; set; }
 
-        [JsonPropertyName("category")]
+        [JsonProperty("category")]
         public DataResponse Category { get; set; }
 
-        [JsonPropertyName("sku")]
+        [JsonProperty("sku")]
         public string Sku { get; set; }
 
-        [JsonPropertyName("barcode")]
+        [JsonProperty("barcode")]
         public string Barcode { get; set; }
 
-        [JsonPropertyName("measure_id")]
+        [JsonProperty("measure_id")]
         public string UnitMeasurementId { get; set; }
 
-        [JsonPropertyName("is_marked")]
+        [JsonProperty("is_marked")]
         public bool IsMarked { get; set; }
 
-        [JsonPropertyName("box_item")]
+        [JsonProperty("box_item")]
         public double? BoxItem { get; set; }
 
-        [JsonPropertyName("refunded_amount")]
+        [JsonProperty("refunded_amount")]
         public double RefundedAmount { get; set; }
 
-        [JsonPropertyName("amount")]
+        [JsonProperty("amount")]
         public double Amount { get; set; }
 
-        [JsonPropertyName("sold_amount")]
+        [JsonProperty("sold_amount")]
         public double SoldAmount { get; set; }
 
-        [JsonPropertyName("price")]
+        [JsonProperty("price")]
         public double Price { get; set; }
 
-        [JsonPropertyName("real_price")]
+        [JsonProperty("real_price")]
         public double RealPrice { get; set; }
 
-        [JsonPropertyName("product_discount")]
+        [JsonProperty("product_discount")]
         public double ProductDiscount { get; set; }
 
-        [JsonPropertyName("distributed_discount")]
+        [JsonProperty("distributed_discount")]
         public double DistributedDiscount { get; set; }
 
-        [JsonPropertyName("included_tax")]
+        [JsonProperty("included_tax")]
         public double IncludedTax { get; set; }
 
-        [JsonPropertyName("added_tax")]
+        [JsonProperty("added_tax")]
         public double AddedTax { get; set; }
 
-        [JsonPropertyName("discounts")]
+        [JsonProperty("discounts")]
         public List<DiscountResponse> Discounts { get; set; }
 
-        [JsonPropertyName("taxes")]
+        [JsonProperty("taxes")]
         public List<Tax> Taxes { get; set; }
 
-        [JsonPropertyName("marks")]
+        [JsonProperty("marks")]
         public List<string> Marks { get; set; }
 
         public class Tax
         {
-            [JsonPropertyName("_id")]
+            [JsonProperty("_id")]
             public string Id { get; set; }
 
-            [JsonPropertyName("name")]
+            [JsonProperty("name")]
             public string Name { get; set; }
 
-            [JsonPropertyName("rate")]
+            [JsonProperty("rate")]
             public float Rate { get; set; }
 
-            [JsonPropertyName("type")]
+            [JsonProperty("type")]
             public string Type { get; set; }
 
-            [JsonPropertyName("to_price")]
+            [JsonProperty("to_price")]
             public bool ToPrice { get; set; }
 
-            [JsonPropertyName("is_manual")]
+            [JsonProperty("is_manual")]
             public bool IsManual { get; set; }
 
             public ReceiptItem.Tax Get()

@@ -1,35 +1,35 @@
 ﻿using BitoDesktop.Domain.Entities.Settings;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace BitoDesktop.Service.DTOs.Settings
 {
     public class ScaleResponse
     {
-        [JsonPropertyName("_id")]
+        [JsonProperty("_id")]
         public string Id { get; set; }
 
-        [JsonPropertyName("organization_id")]
+        [JsonProperty("organization_id")]
         public string OrganizationId { get; set; }
 
-        [JsonPropertyName("type")]
+        [JsonProperty("type")]
         public int Type { get; set; }
 
-        [JsonPropertyName("sku_count")]
+        [JsonProperty("sku_count")]
         public int SkuCount { get; set; }
 
-        [JsonPropertyName("sum_check_index")]
+        [JsonProperty("sum_check_index")]
         public int SumCheckIndex { get; set; }
 
-        [JsonPropertyName("price_count")]
+        [JsonProperty("price_count")]
         public int PriceCount { get; set; }
 
-        [JsonPropertyName("weight_count")]
+        [JsonProperty("weight_count")]
         public int WeightCount { get; set; }
 
-        [JsonPropertyName("department_code")]
+        [JsonProperty("department_code")]
         public int DepartmentCode { get; set; }
 
-        [JsonPropertyName("count_after_dot")]
+        [JsonProperty("count_after_dot")]
         public int CountAfterDot { get; set; }
 
         public Scale Get()

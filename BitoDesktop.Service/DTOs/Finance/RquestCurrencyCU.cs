@@ -1,31 +1,31 @@
 ﻿using System.Collections.Generic;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace BitoDesktop.Service.DTOs.Finance;
 
 public class RequestCurrencyCU
 {
-    [JsonPropertyName("_id")]
+    [JsonProperty("_id")]
     public string Id { get; set; }
 
-    [JsonPropertyName("name")]
+    [JsonProperty("name")]
     public string Name { get; set; }
 
-    [JsonPropertyName("side")]
+    [JsonProperty("side")]
     public string Side { get; set; }
 
-    [JsonPropertyName("symbol")]
+    [JsonProperty("symbol")]
     public string Symbol { get; set; }
 
-    [JsonPropertyName("values")]
+    [JsonProperty("values")]
     public List<Value> Values { get; set; }
 
     public class Value
     {
-        [JsonPropertyName("to_currency_id")]
+        [JsonProperty("to_currency_id")]
         public string ToCurrencyId { get; set; }
 
-        [JsonPropertyName("value")]
+        [JsonProperty("value")]
         public float Amount { get; set; }
     }
 }

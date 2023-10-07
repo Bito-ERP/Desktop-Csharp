@@ -1,17 +1,17 @@
 ﻿using BitoDesktop.Domain.Entities.Settings;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace BitoDesktop.Service.DTOs.Settings;
 
 public class OrganizationResponse
 {
-    [JsonPropertyName("_id")]
+    [JsonProperty("_id")]
     public string Id { get; set; }
 
-    [JsonPropertyName("name")]
+    [JsonProperty("name")]
     public string Name { get; set; }
 
-    [JsonPropertyName("currency_id")]
+    [JsonProperty("currency_id")]
     public string CurrencyId { get; set; }
 
     public Organization Get()

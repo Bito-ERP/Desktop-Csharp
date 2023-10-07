@@ -1,55 +1,55 @@
-﻿using System.Text.Json.Serialization;
+﻿using Newtonsoft.Json;
 
 namespace BitoDesktop.Service.DTOs.Pos;
 
 public class RequestPageItemCreate
 {
-    [JsonPropertyName("pos_page_id")]
+    [JsonProperty("pos_page_id")]
     public string PosPageId { get; set; }
 
-    [JsonPropertyName("order")]
+    [JsonProperty("order")]
     public int Order { get; set; }
 
-    [JsonPropertyName("is_product")]
+    [JsonProperty("is_product")]
     public bool IsProduct { get; set; }
 
-    [JsonPropertyName("is_category")]
+    [JsonProperty("is_category")]
     public bool IsCategory { get; set; }
 
-    [JsonPropertyName("is_discount")]
+    [JsonProperty("is_discount")]
     public bool IsDiscount { get; set; }
 
-    [JsonPropertyName("item_id")]
+    [JsonProperty("item_id")]
     public string ItemId { get; set; }
 
-    [JsonPropertyName("category_id")]
+    [JsonProperty("category_id")]
     public string CategoryId { get; set; }
 
-    [JsonPropertyName("discount_id")]
+    [JsonProperty("discount_id")]
     public string DiscountId { get; set; }
 }
 
 public class RequestPageItemUpdate
 {
-    [JsonPropertyName("_id")]
+    [JsonProperty("_id")]
     public string Id { get; set; }
 
-    [JsonPropertyName("order")]
+    [JsonProperty("order")]
     public int Order { get; set; }
 
-    [JsonPropertyName("row")]
+    [JsonProperty("row")]
     public int? Row { get; set; }
 
-    [JsonPropertyName("column")]
+    [JsonProperty("column")]
     public int? Column { get; set; }
 }
 
 public class RequestPageUpdate
 {
-    [JsonPropertyName("_id")]
+    [JsonProperty("_id")]
     public string Id { get; set; }
 
-    [JsonPropertyName("name")]
+    [JsonProperty("name")]
     public string Name { get; set; }
 
 }

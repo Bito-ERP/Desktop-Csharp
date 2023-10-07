@@ -11,5 +11,11 @@ namespace BitoDesktop.WPF.Controllers.Login
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            var buttonContent = ((Button)sender).Content.ToString();
+            PinCodeTxt.Password += buttonContent;
+        }
     }
 }

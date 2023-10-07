@@ -3,91 +3,91 @@ using BitoDesktop.Service.DTOs.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace BitoDesktop.Service.DTOs.Hr;
 
 public class EmployeeResponse
 {
 
-    [JsonPropertyName("_id")]
+    [JsonProperty("_id")]
     public string Id { get; set; }
 
-    [JsonPropertyName("full_name")]
+    [JsonProperty("full_name")]
     public string FullName { get; set; }
 
-    [JsonPropertyName("person")]
+    [JsonProperty("person")]
     public DataResponse Person { get; set; }
 
-    [JsonPropertyName("acceptance_date")]
+    [JsonProperty("acceptance_date")]
     public string AcceptanceDate { get; set; }
 
-    [JsonPropertyName("birth_date")]
+    [JsonProperty("birth_date")]
     public string BirthDate { get; set; }
 
-    [JsonPropertyName("address")]
+    [JsonProperty("address")]
     public string Address { get; set; }
 
-    [JsonPropertyName("phone_number")]
+    [JsonProperty("phone_number")]
     public string PhoneNumber { get; set; }
 
-    [JsonPropertyName("pincode")]
+    [JsonProperty("pincode")]
     public string Pincode { get; set; }
 
-    [JsonPropertyName("comment")]
+    [JsonProperty("comment")]
     public string Comment { get; set; }
 
-    [JsonPropertyName("token")]
+    [JsonProperty("token")]
     public string Token { get; set; }
 
-    [JsonPropertyName("is_boss")]
+    [JsonProperty("is_boss")]
     public bool IsBoss { get; set; }
 
-    [JsonPropertyName("is_additional_boss")]
+    [JsonProperty("is_additional_boss")]
     public bool IsAdditionalBoss { get; set; } = false;
 
-    [JsonPropertyName("employment_type")]
+    [JsonProperty("employment_type")]
     public string EmploymentType { get; set; }
 
-    [JsonPropertyName("work_rate")]
+    [JsonProperty("work_rate")]
     public double WorkRate { get; set; }
 
-    [JsonPropertyName("holidays")]
+    [JsonProperty("holidays")]
     public int Holidays { get; set; }
 
-    [JsonPropertyName("salary")]
+    [JsonProperty("salary")]
     public double Salary { get; set; }
 
-    [JsonPropertyName("boss_id")]
+    [JsonProperty("boss_id")]
     public string BossId { get; set; } = "";
 
-    [JsonPropertyName("imageUrl")]
+    [JsonProperty("imageUrl")]
     public string Image { get; set; }
 
-    [JsonPropertyName("device_sign")]
+    [JsonProperty("device_sign")]
     public string DeviceSign { get; set; }
 
-    [JsonPropertyName("receipt_counter")]
+    [JsonProperty("receipt_counter")]
     public long? ReceiptCounter { get; set; }
 
-    [JsonPropertyName("call_record_counter")]
+    [JsonProperty("call_record_counter")]
     public long? CallRecordCounter { get; set; }
 
-    [JsonPropertyName("organizations")]
+    [JsonProperty("organizations")]
     public List<Organization> Organizations { get; set; }
 
     public class Organization
     {
-        [JsonPropertyName("organization_id")]
+        [JsonProperty("organization_id")]
         public string OrganizationId { get; set; }
 
-        [JsonPropertyName("role")]
+        [JsonProperty("role")]
         public DataResponse Role { get; set; }
 
-        [JsonPropertyName("section")]
+        [JsonProperty("section")]
         public DataResponse Section { get; set; }
 
-        [JsonPropertyName("position")]
+        [JsonProperty("position")]
         public DataResponse Position { get; set; }
     }
 

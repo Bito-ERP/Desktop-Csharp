@@ -1,16 +1,16 @@
 ﻿using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace BitoDesktop.Service.DTOs.Auth;
 public class RequestUseDevice
 {
-    [JsonPropertyName("_id"), Required]
+    [JsonProperty("_id"), Required]
     public string Id { get; set; }
 
-    [JsonPropertyName("device_name"), Required]
+    [JsonProperty("device_name"), Required]
     public string DeviceName { get; set; }
 
-    [JsonPropertyName("imei"), Required]
+    [JsonProperty("imei"), Required]
     public string Imei { get; set; }
 }

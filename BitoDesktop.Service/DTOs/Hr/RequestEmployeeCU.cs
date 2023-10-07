@@ -1,49 +1,49 @@
 ﻿using System.Collections.Generic;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace BitoDesktop.Service.DTOs.Hr;
 
 public class RequestEmployeeCU
 {
-    [JsonPropertyName("_id")]
+    [JsonProperty("_id")]
     public string Id { get; set; }
 
-    [JsonPropertyName("person_id")]
+    [JsonProperty("person_id")]
     public string PersonId { get; set; }
 
-    [JsonPropertyName("full_name")]
+    [JsonProperty("full_name")]
     public string FullName { get; set; }
 
-    [JsonPropertyName("birth_date")]
+    [JsonProperty("birth_date")]
     public string BirthDate { get; set; }
 
-    [JsonPropertyName("phone_number")]
+    [JsonProperty("phone_number")]
     public string PhoneNumber { get; set; }
 
-    [JsonPropertyName("address")]
+    [JsonProperty("address")]
     public string Address { get; set; }
 
-    [JsonPropertyName("acceptance_date")]
+    [JsonProperty("acceptance_date")]
     public string AcceptanceDate { get; set; }
 
-    [JsonPropertyName("comment")]
+    [JsonProperty("comment")]
     public string Comment { get; set; }
 
-    [JsonPropertyName("pincode")]
+    [JsonProperty("pincode")]
     public string Pincode { get; set; }
 
-    [JsonPropertyName("role_id")]
+    [JsonProperty("role_id")]
     public string RoleId { get; set; }
 
-    [JsonPropertyName("positions")]
+    [JsonProperty("positions")]
     public List<Position> Positions { get; set; }
 
     public class Position
     {
-        [JsonPropertyName("section_id")]
+        [JsonProperty("section_id")]
         public string SectionId { get; set; }
 
-        [JsonPropertyName("position_id")]
+        [JsonProperty("position_id")]
         public string PositionId { get; set; }
     }
 }

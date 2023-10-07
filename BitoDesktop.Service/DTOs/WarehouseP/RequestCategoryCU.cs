@@ -1,19 +1,19 @@
-﻿using System.Text.Json.Serialization;
+﻿using Newtonsoft.Json;
 
 namespace BitoDesktop.Service.DTOs.WarehouseP;
 
 public class RequestCategoryCU
 {
-    [JsonPropertyName("_id")]
+    [JsonProperty("_id")]
     public string Id { get; set; }
 
-    [JsonPropertyName("name")]
+    [JsonProperty("name")]
     public string Name { get; set; }
 
-    [JsonPropertyName("parent_id"), JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+    [JsonProperty("parent_id")]
     public string ParentId { get; set; }
 
-    [JsonPropertyName("image")]
+    [JsonProperty("image")]
     public string Image { get; set; }
 }
 

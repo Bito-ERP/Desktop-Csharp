@@ -1,25 +1,25 @@
 ﻿using BitoDesktop.Domain.Entities.Settings;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace BitoDesktop.Service.DTOs.Settings;
 public class UnitMeasurementResponse
 {
-    [JsonPropertyName("_id")]
+    [JsonProperty("_id")]
     public string Id { get; set; }
 
-    [JsonPropertyName("code")]
+    [JsonProperty("code")]
     public string Code { get; set; }
 
-    [JsonPropertyName("short_name")]
+    [JsonProperty("short_name")]
     public string ShortName { get; set; }
 
-    [JsonPropertyName("name")]
+    [JsonProperty("name")]
     public string Name { get; set; }
 
-    [JsonPropertyName("decimal_count")]
+    [JsonProperty("decimal_count")]
     public int DecimalCount { get; set; }
 
-    [JsonPropertyName("status")]
+    [JsonProperty("status")]
     public string Status { get; set; }
 
     public UnitMeasurement Get() =>

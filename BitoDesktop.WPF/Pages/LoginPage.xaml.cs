@@ -74,12 +74,15 @@ namespace BitoDesktop.WPF.Pages
         {
             LoginStageControl.Items.Clear();
             var res = await authService.GetDevices(loginController.PhoneNumberTxt.Text);
-            foreach (var device in res?.PageData)
+            if (res.PageData != null)
             {
-                DeviceController deviceController = new DeviceController();
-                deviceController.DeviceNameTxt.Text = device.Name;
-                deviceController.MouseDown += DeviceChoosen;
-                deviceChooserController.DeviceItemsControl.Items.Add(deviceController);
+                foreach (var device in res.PageData)
+                {
+                    DeviceController deviceController = new DeviceController();
+                    deviceController.DeviceNameTxt.Text = device.Name;
+                    deviceController.MouseDown += DeviceChoosen;
+                    deviceChooserController.DeviceItemsControl.Items.Add(deviceController);
+                }
             }
             LoginStageControl.Items.Add(deviceChooserController);
         }
@@ -103,9 +106,63 @@ namespace BitoDesktop.WPF.Pages
             await LoadDeviceChooser();
         }
 
-        private void DeviceChoosen(object sender, MouseButtonEventArgs e)
+        private async void DeviceChoosen(object sender, MouseButtonEventArgs e)
         {
-            MessageBox.Show("good");
+            await LoadOrganization();  
+        }
+
+
+        private async Task LoadOrganization()
+        {
+            var organizations = await authService.GetOrganizations();
+            var warhouses = await authService.GetWareHouses();
+            var prices = await authService.GetPrices();
+
+            LoginStageControl.Items.Clear();
+
+            foreach (var organization in organizations) 
+            {
+                organizationController.OrgCmb.Items.Add(organization.Name);
+            }
+
+            foreach (var warehouse in warhouses.PageData)
+            {
+                organizationController.WarehouseCmb.Items.Add(warehouse.Name);
+            }
+
+            foreach (var price in prices)
+            {
+                organizationController.PriceCmb.Items.Add(price.Name);
+            }
+            LoginStageControl.Items.Add(organizationController);
+
+            organizationController.OrgCmb.SelectionChanged += CheckIfAllSelected;
+            organizationController.PriceCmb.SelectionChanged += CheckIfAllSelected;
+            organizationController.WarehouseCmb.SelectionChanged += CheckIfAllSelected;
+
+        }
+
+        private void CheckIfAllSelected(object sender, SelectionChangedEventArgs e)
+        {
+            if (organizationController.OrgCmb.SelectedItem != null &&
+                organizationController.PriceCmb.SelectedItem != null &&
+                organizationController.WarehouseCmb.SelectedItem != null)
+            {
+                LoginStageControl.Items.Clear();
+                pinCodeController.OkBtn.Click += PincodeOkBtnClick;
+                LoginStageControl.Items.Add(pinCodeController);
+            }
+        }
+
+        private async void PincodeOkBtnClick(object sender, RoutedEventArgs e)
+        {
+            await authService.EnterByPinCode(pinCodeController.PinCodeTxt.Password);
+            
+            MainWindow mainWindow = Application.Current.MainWindow as MainWindow;
+            if (mainWindow != null)
+            {
+                mainWindow.NavigateToPosPage();
+            }
         }
 
         private async void Login(object sender, RoutedEventArgs e)
@@ -115,21 +172,11 @@ namespace BitoDesktop.WPF.Pages
                 PhoneNumber = loginController.PhoneNumberTxt.Text,
                 Password = loginController.PasswordTxt.Password,
             };
-            try
-            {
-                var res = await authService.LoginAsync(request);
+            var res = await authService.LoginAsync(request);
 
-                Client.Token = res;
+            Client.Token = res;
 
-                
-                await LoadServerChooser();
-            }
-            catch(MarketException ex) 
-            {
-                string message = JsonConvert.DeserializeObject<dynamic>(ex.Message).messages.uz;
-                ErrorDialog dialog = new ErrorDialog(message);
-                dialog.ShowDialog();   
-            }
+            await LoadServerChooser();
         }
     }
 }

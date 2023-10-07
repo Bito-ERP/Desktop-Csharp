@@ -2,87 +2,87 @@
 using BitoDesktop.Service.DTOs.Common;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace BitoDesktop.Service.DTOs.WarehouseP;
 
 public class ProductResponse
 {
-    [JsonPropertyName("_id")]
+    [JsonProperty("_id")]
     public string Id { get; set; }
 
-    [JsonPropertyName("name")]
+    [JsonProperty("name")]
     public string Name { get; set; }
 
-    [JsonPropertyName("category")]
+    [JsonProperty("category")]
     public DataResponse Category { get; set; }
 
-    [JsonPropertyName("box_type_id")]
+    [JsonProperty("box_type_id")]
     public string BoxTypeId { get; set; }
 
-    [JsonPropertyName("box_item")]
+    [JsonProperty("box_item")]
     public double BoxItem { get; set; } = 0.0;
 
-    [JsonPropertyName("box_item_barcode")]
+    [JsonProperty("box_item_barcode")]
     public string BoxItemBarcode { get; set; }
 
-    [JsonPropertyName("measure_id")]
+    [JsonProperty("measure_id")]
     public string UnitMeasurementId { get; set; }
 
-    [JsonPropertyName("sku")]
+    [JsonProperty("sku")]
     public string Sku { get; set; }
 
-    [JsonPropertyName("barcode")]
+    [JsonProperty("barcode")]
     public string Barcode { get; set; }
 
-    [JsonPropertyName("dimension")]
+    [JsonProperty("dimension")]
     public DimensionResponse Dimension { get; set; }
 
-    [JsonPropertyName("image")]
+    [JsonProperty("image")]
     public string Image { get; set; }
 
-    [JsonPropertyName("is_marked")]
+    [JsonProperty("is_marked")]
     public bool IsMarked { get; set; }
 
-    [JsonPropertyName("is_product")]
+    [JsonProperty("is_product")]
     public bool IsProduct { get; set; }
 
-    [JsonPropertyName("is_material")]
+    [JsonProperty("is_material")]
     public bool IsMaterial { get; set; }
 
-    [JsonPropertyName("is_semi_product")]
+    [JsonProperty("is_semi_product")]
     public bool IsSemiProduct { get; set; }
 
-    [JsonPropertyName("barcodes")]
+    [JsonProperty("barcodes")]
     public List<BarcodeResponse> Barcodes { get; set; } = new List<BarcodeResponse>();
 
-    [JsonPropertyName("suppliers")]
+    [JsonProperty("suppliers")]
     public List<DataResponse> Suppliers { get; set; } = new List<DataResponse>();
 
-    [JsonPropertyName("organizations")]
+    [JsonProperty("organizations")]
     public List<Organization> Organizations { get; set; } = new List<Organization>();
 
-    [JsonPropertyName("prices")]
+    [JsonProperty("prices")]
     public List<Price> Prices { get; set; } = new List<Price>();
 
-    [JsonPropertyName("warehouses")]
+    [JsonProperty("warehouses")]
     public List<Warehouse> Warehouses { get; set; } = new List<Warehouse>();
 
-    [JsonPropertyName("tax_ids")]
+    [JsonProperty("tax_ids")]
     public List<string> TaxIds { get; set; } = new List<string>();
 
     public class Part
     {
-        [JsonPropertyName("mark")]
+        [JsonProperty("mark")]
         public string Mark { get; set; }
     }
 
     public class BarcodeResponse
     {
-        [JsonPropertyName("barcode")]
+        [JsonProperty("barcode")]
         public string Barcode { get; set; }
 
-        [JsonPropertyName("is_active")]
+        [JsonProperty("is_active")]
         public bool IsActive { get; set; }
 
         public ProductTable.BarcodeItem Get() => new ProductTable.BarcodeItem
@@ -94,34 +94,34 @@ public class ProductResponse
 
     public class Organization
     {
-        [JsonPropertyName("organization_id")]
+        [JsonProperty("organization_id")]
         public string OrganizationId { get; set; }
 
-        [JsonPropertyName("amount")]
+        [JsonProperty("amount")]
         public float Amount { get; set; }
 
-        [JsonPropertyName("in_transit")]
+        [JsonProperty("in_transit")]
         public float InTransit { get; set; }
 
-        [JsonPropertyName("trash")]
+        [JsonProperty("trash")]
         public float Trash { get; set; }
 
-        [JsonPropertyName("booked")]
+        [JsonProperty("booked")]
         public float Booked { get; set; }
 
-        [JsonPropertyName("yellow_line")]
+        [JsonProperty("yellow_line")]
         public float? YellowLine { get; set; }
 
-        [JsonPropertyName("red_line")]
+        [JsonProperty("red_line")]
         public float? RedLine { get; set; }
 
-        [JsonPropertyName("max_stock")]
+        [JsonProperty("max_stock")]
         public float? MaxStock { get; set; }
 
-        [JsonPropertyName("is_available")]
+        [JsonProperty("is_available")]
         public bool IsAvailable { get; set; }
 
-        [JsonPropertyName("is_available_for_sale")]
+        [JsonProperty("is_available_for_sale")]
         public bool IsAvailableForSale { get; set; }
 
         public ProductOrganization Get(string ProductId) => new()
@@ -142,28 +142,28 @@ public class ProductResponse
 
     public class Price
     {
-        [JsonPropertyName("_id")]
+        [JsonProperty("_id")]
         public string Id { get; set; }
 
-        [JsonPropertyName("price_id")]
+        [JsonProperty("price_id")]
         public string PriceId { get; set; }
 
-        [JsonPropertyName("product_id")]
+        [JsonProperty("product_id")]
         public string ProductId { get; set; }
 
-        [JsonPropertyName("organization_id")]
+        [JsonProperty("organization_id")]
         public string OrganizationId { get; set; }
 
-        [JsonPropertyName("amount")]
+        [JsonProperty("amount")]
         public double Amount { get; set; }
 
-        [JsonPropertyName("min_price")]
+        [JsonProperty("min_price")]
         public double? MinPrice { get; set; }
 
-        [JsonPropertyName("max_price")]
+        [JsonProperty("max_price")]
         public double? MaxPrice { get; set; }
 
-        [JsonPropertyName("min_sale_amount")]
+        [JsonProperty("min_sale_amount")]
         public double? MinSaleAmount { get; set; }
 
         public ProductPrice Get() => new()
@@ -181,28 +181,28 @@ public class ProductResponse
 
     public class Warehouse
     {
-        [JsonPropertyName("_id")]
+        [JsonProperty("_id")]
         public string Id { get; set; }
 
-        [JsonPropertyName("warehouse_id")]
+        [JsonProperty("warehouse_id")]
         public string WarehouseId { get; set; }
 
-        [JsonPropertyName("organization_id")]
+        [JsonProperty("organization_id")]
         public string OrganizationId { get; set; }
 
-        [JsonPropertyName("product_id")]
+        [JsonProperty("product_id")]
         public string ProductId { get; set; }
 
-        [JsonPropertyName("booked")]
+        [JsonProperty("booked")]
         public float Booked { get; set; }
 
-        [JsonPropertyName("in_trash")]
+        [JsonProperty("in_trash")]
         public float InTrash { get; set; }
 
-        [JsonPropertyName("in_transit")]
+        [JsonProperty("in_transit")]
         public float InTransit { get; set; }
 
-        [JsonPropertyName("amount")]
+        [JsonProperty("amount")]
         public double Amount { get; set; }
 
 
@@ -221,28 +221,28 @@ public class ProductResponse
 
     public class DimensionResponse
     {
-        [JsonPropertyName("shape")]
+        [JsonProperty("shape")]
         public string Shape { get; set; }
 
-        [JsonPropertyName("netto_weight")]
+        [JsonProperty("netto_weight")]
         public double NetWeight { get; set; }
 
-        [JsonPropertyName("gross_weight")]
+        [JsonProperty("gross_weight")]
         public double GrossWeight { get; set; }
 
-        [JsonPropertyName("height")]
+        [JsonProperty("height")]
         public double Height { get; set; }
 
-        [JsonPropertyName("width")]
+        [JsonProperty("width")]
         public double Width { get; set; }
 
-        [JsonPropertyName("volume")]
+        [JsonProperty("volume")]
         public double Volume { get; set; }
 
-        [JsonPropertyName("diameter")]
+        [JsonProperty("diameter")]
         public double Diameter { get; set; }
 
-        [JsonPropertyName("length")]
+        [JsonProperty("length")]
         public double Length { get; set; }
     }
 

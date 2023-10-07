@@ -1,16 +1,16 @@
-﻿using System.Text.Json.Serialization;
+﻿using Newtonsoft.Json;
 
 namespace BitoDesktop.Service.DTOs.Auth;
 
 public class UsernameResponse
 {
-    [JsonPropertyName("username")]
+    [JsonProperty("username")]
     public string Username { get; set; }
-    [JsonPropertyName("is_active")]
+    [JsonProperty("is_active")]
     public string IsActive { get; set; }
-    [JsonPropertyName("has_access")]
+    [JsonProperty("has_access")]
     public string HasAccess { get; set; }
-    [JsonPropertyName("is_blocked")]
+    [JsonProperty("is_blocked")]
     public string IsBlocked { get; set; }
 }
 

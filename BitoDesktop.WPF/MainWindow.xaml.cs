@@ -1,5 +1,6 @@
 using BitoDesktop.WPF.Pages;
 using BitoDesktop.WPF.Pages.Catalogs;
+using System;
 using System.Windows;
 
 namespace BitoDesktop.WPF
@@ -14,6 +15,11 @@ namespace BitoDesktop.WPF
             InitializeComponent();
             LoginPage loginPage = new LoginPage();
             MainFrame.Content = loginPage;
+        }
+
+        public void NavigateToPosPage()
+        {
+            MainFrame.Content = new PosPage();
         }
     }
 }

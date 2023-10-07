@@ -4,7 +4,6 @@ using Newtonsoft.Json;
 using System.Diagnostics;
 using System.Net.Http;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace BitoDesktop.Service.Http;
@@ -26,31 +25,25 @@ public class Client
 
         Debug.WriteLine(route);
 
-        var jsonRequest = request == null ? null : new StringContent(
-            System.Text.Json.JsonSerializer.Serialize(request, new JsonSerializerOptions
-            {
-                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
-            }),
+        var jsonRequest = request == null ? null : new StringContent(JsonConvert.SerializeObject(request),
             System.Text.Encoding.UTF8,
             "application/json"
         );
 
-        Debug.WriteLine(System.Text.Json.JsonSerializer.Serialize(request, new JsonSerializerOptions
-        {
-            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
-        }));
+        Debug.WriteLine(System.Text.Json.JsonSerializer.Serialize(request));
 
         var responce = await httpClient.PostAsync(
             BASE_URL + route,
             jsonRequest
        );
 
-        Debug.WriteLine(await responce.Content.ReadAsStringAsync());
+        var stringResponce = await responce.Content.ReadAsStringAsync();
+        Debug.WriteLine(stringResponce);
 
         if (!responce.IsSuccessStatusCode)
-            throw new MarketException((int)responce.StatusCode, await responce.Content.ReadAsStringAsync());
+            throw new MarketException((int)responce.StatusCode, stringResponce);
 
-        return JsonConvert.DeserializeObject<BaseResponse<T>>(await responce.Content.ReadAsStringAsync());
+        return JsonConvert.DeserializeObject<BaseResponse<T>>(stringResponce);
     }
 
     public static async Task Post(string route, object request = null)
@@ -65,19 +58,10 @@ public class Client
 
         Debug.WriteLine(route);
 
-        var jsonRequest = request == null ? null : new StringContent(
-           System.Text.Json.JsonSerializer.Serialize(request, new JsonSerializerOptions
-           {
-               DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
-           }),
-           System.Text.Encoding.UTF8,
-           "application/json"
-         );
-
-        Debug.WriteLine(System.Text.Json.JsonSerializer.Serialize(request, new JsonSerializerOptions
-        {
-            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
-        }));
+        var jsonRequest = request == null ? null : new StringContent(JsonConvert.SerializeObject(request),
+            System.Text.Encoding.UTF8,
+            "application/json");
+        Debug.WriteLine(System.Text.Json.JsonSerializer.Serialize(request));
 
         var responce = await httpClient.PostAsync(
             BASE_URL + route,

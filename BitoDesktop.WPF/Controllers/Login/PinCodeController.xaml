@@ -29,13 +29,14 @@
                 FontSize="20"
                 FontWeight="DemiBold"
                 Text="PINkod" />
-            <TextBox
+            <PasswordBox
+                x:Name="PinCodeTxt"
                 Width="324"
                 Height="56"
                 Margin="10"
                 Background="#F5F5F5"
                 BorderThickness="0"
-                Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+                Style="{StaticResource MaterialDesignOutlinedPasswordBox}" />
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
@@ -50,55 +51,62 @@
                 </Grid.RowDefinitions>
                 <Button
                     HorizontalAlignment="Right"
-                    md:ElevationAssist.Elevation="Dp16"
+                    Click="Button_Click"
                     Content="1" />
                 <Button
                     Grid.Column="1"
-                    md:ElevationAssist.Elevation="Dp16"
+                    Click="Button_Click"
                     Content="2" />
                 <Button
                     Grid.Column="2"
                     HorizontalAlignment="Left"
-                    md:ElevationAssist.Elevation="Dp16"
                     md:ShadowAssist.ShadowEdges="All"
+                    Click="Button_Click"
                     Content="3" />
                 <Button
                     Grid.Row="1"
                     HorizontalAlignment="Right"
-                    md:ElevationAssist.Elevation="Dp16"
+                    Click="Button_Click"
                     Content="4" />
                 <Button
                     Grid.Row="1"
                     Grid.Column="1"
-                    md:ElevationAssist.Elevation="Dp16"
+                    Click="Button_Click"
                     Content="5" />
                 <Button
                     Grid.Row="1"
                     Grid.Column="2"
                     HorizontalAlignment="Left"
-                    md:ElevationAssist.Elevation="Dp16"
+                    Click="Button_Click"
                     Content="6" />
                 <Button
                     Grid.Row="2"
                     HorizontalAlignment="Right"
-                    md:ElevationAssist.Elevation="Dp16"
+                    Click="Button_Click"
                     Content="7" />
                 <Button
                     Grid.Row="2"
                     Grid.Column="1"
-                    md:ElevationAssist.Elevation="Dp16"
+                    Click="Button_Click"
                     Content="8" />
                 <Button
                     Grid.Row="2"
                     Grid.Column="2"
                     HorizontalAlignment="Left"
-                    md:ElevationAssist.Elevation="Dp16"
                     Content="9" />
                 <Button
                     Grid.Row="3"
                     Grid.Column="1"
-                    md:ElevationAssist.Elevation="Dp16"
+                    Click="Button_Click"
                     Content="0" />
+
+                <Button
+                    x:Name="OkBtn"
+                    Grid.Row="3"
+                    Grid.Column="2"
+                    HorizontalAlignment="Left"
+                    md:ShadowAssist.ShadowDepth="Depth0"
+                    Content="OK" />
             </Grid>
         </StackPanel>
     </Border>

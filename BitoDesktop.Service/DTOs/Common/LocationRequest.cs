@@ -1,29 +1,29 @@
-﻿using System.Text.Json.Serialization;
+﻿using Newtonsoft.Json;
 
 namespace BitoDesktop.Service.DTOs.Common;
 public class LocationRequest
 {
-    [JsonPropertyName("lat")]
+    [JsonProperty("lat")]
     public double Lat { get; set; }
 
-    [JsonPropertyName("long")]
+    [JsonProperty("long")]
     public double Long { get; set; }
 
-    [JsonPropertyName("human_address")]
+    [JsonProperty("human_address")]
     public AddressResponse Address { get; set; }
 
     public class AddressResponse
     {
-        [JsonPropertyName("address")]
+        [JsonProperty("address")]
         public string Name { get; set; }
 
-        [JsonPropertyName("city")]
+        [JsonProperty("city")]
         public string City { get; set; }
 
-        [JsonPropertyName("state")]
+        [JsonProperty("state")]
         public string State { get; set; }
 
-        [JsonPropertyName("zip")]
+        [JsonProperty("zip")]
         public string Zip { get; set; }
     }
 }

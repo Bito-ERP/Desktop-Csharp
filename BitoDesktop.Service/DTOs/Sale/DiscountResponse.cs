@@ -1,26 +1,26 @@
 ﻿using BitoDesktop.Domain.Entities.Sale;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace BitoDesktop.Service.DTOs.Sale;
 
 public class DiscountResponse
 {
-    [JsonPropertyName("_id")]
+    [JsonProperty("_id")]
     public string Id { get; set; }
 
-    [JsonPropertyName("name")]
+    [JsonProperty("name")]
     public string Name { get; set; }
 
-    [JsonPropertyName("apply_type")]
+    [JsonProperty("apply_type")]
     public string ApplyType { get; set; }
 
-    [JsonPropertyName("value")]
+    [JsonProperty("value")]
     public float Value { get; set; }
 
-    [JsonPropertyName("currency_id")]
+    [JsonProperty("currency_id")]
     public string CurrencyId { get; set; }
 
-    [JsonPropertyName("image")]
+    [JsonProperty("image")]
     public string Image { get; set; }
 
     public Discount Get() => new()

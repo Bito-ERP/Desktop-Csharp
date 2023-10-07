@@ -1,29 +1,29 @@
 ﻿using BitoDesktop.Domain.Entities.Settings;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace BitoDesktop.Service.DTOs.Settings
 {
     public class PrinterResponse
     {
-        [JsonPropertyName("_id")]
+        [JsonProperty("_id")]
         public string Id { get; set; }
 
-        [JsonPropertyName("name")]
+        [JsonProperty("name")]
         public string Name { get; set; }
 
-        [JsonPropertyName("type")]
+        [JsonProperty("type")]
         public string Type { get; set; }
 
-        [JsonPropertyName("address")]
+        [JsonProperty("address")]
         public string Address { get; set; }
 
-        [JsonPropertyName("paper_width")]
+        [JsonProperty("paper_width")]
         public int PaperWidth { get; set; }
 
-        [JsonPropertyName("print_receipts")]
+        [JsonProperty("print_receipts")]
         public bool PrintReceipts { get; set; }
 
-        [JsonPropertyName("automatically_print_receipts")]
+        [JsonProperty("automatically_print_receipts")]
         public bool AutomaticallyPrintReceipts { get; set; }
 
         public Printer Get()
