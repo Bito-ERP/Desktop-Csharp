@@ -96,12 +96,12 @@ public class EmployeeRepository
         if (organizationId == null)
             return await Get(employeeId);
         else
-            return {
-                 var employee = await Get(employeeId);
-                 if (employee != null)
-                    employee.Positions = await GetPositions(employeeId, organizationId);
-                 return employee
-            }
+        {
+            var employee = await Get(employeeId);
+            if (employee != null)
+                employee.Positions = await GetPositions(employeeId, organizationId);
+            return employee;
+        }
     }
 
     public async Task<IEnumerable<Employee>> GetEmployees(
