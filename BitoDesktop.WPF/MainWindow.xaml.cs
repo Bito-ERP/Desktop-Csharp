@@ -1,3 +1,4 @@
+using BitoDesktop.Service.Services;
 using BitoDesktop.WPF.Pages;
 using BitoDesktop.WPF.Pages.Catalogs;
 using System;
@@ -10,16 +11,26 @@ namespace BitoDesktop.WPF
     /// </summary>
     public partial class MainWindow : Window
     {
+        private PosPage posPage;
+        private LoginPage loginPage;
         public MainWindow()
         {
             InitializeComponent();
-            PosPage loginPage = new PosPage();
-            MainFrame.Content = loginPage;
+            loginPage = new LoginPage();
+            posPage = new PosPage();
+            NavigateToLoginPage();
         }
 
-        public void NavigateToPosPage()
+        public async void NavigateToPosPage()
         {
-            MainFrame.Content = new PosPage();
+            MainFrame.Content = posPage;
+            SynchroniseService synchroniseService = new SynchroniseService();
+            await synchroniseService.SynchroniseToMachineCustomers();
+        }
+
+        public void NavigateToLoginPage() 
+        {
+            MainFrame.Content = loginPage;
         }
     }
 }

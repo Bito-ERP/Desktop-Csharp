@@ -18,7 +18,7 @@ public class EmployeeRepository
     private const string EmployeePositionUpdate = "EmployeeId = @EmployeeId, OrganizationId = @OrganizationId, RoleId = @RoleId, RoleName = @RoleName, SectionId = @SectionId, SectionName = @SectionName, PositionId = @PositionId, PositionName = @PositionName";
 
 
-    public async void Insert(Employee employee)
+    public async Task Insert(Employee employee)
     {
         await DBExcutor.InTransaction(async connection =>
         {
@@ -31,7 +31,7 @@ public class EmployeeRepository
         });
     }
 
-    public async void Insert(IEnumerable<Employee> employees)
+    public async Task Insert(IEnumerable<Employee> employees)
     {
         await DBExcutor.InTransaction(async connection =>
         {

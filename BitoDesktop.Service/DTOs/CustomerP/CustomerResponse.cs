@@ -189,7 +189,6 @@ public class CustomerResponse
             };
         }
     }
-
 }
 
 public class CustomerResponseByInn

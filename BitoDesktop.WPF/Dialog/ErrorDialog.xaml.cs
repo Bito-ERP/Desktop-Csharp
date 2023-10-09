@@ -34,8 +34,8 @@ namespace BitoDesktop.WPF.Dialog
             if (parentWindow != null)
             {
                 // Calculate the position for the dialog to appear at the center bottom of the parent window
-                double x = (parentWindow.Width - ActualWidth) / 2.3;
-                double y = (parentWindow.Height - ActualHeight) / 1.2;
+                double x = (parentWindow.Width - ActualWidth) / 2.7;
+                double y = (parentWindow.Height - ActualHeight) / 20;
 
                 // Set the dialog's position
                 Left = x;

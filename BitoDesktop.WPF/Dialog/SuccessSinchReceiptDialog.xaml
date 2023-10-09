@@ -1,5 +1,5 @@
 ﻿<Window
-    x:Class="BitoDesktop.WPF.Dialog.ErrorDialog"
+    x:Class="BitoDesktop.WPF.Dialog.SuccessSinchReceiptDialog"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -13,25 +13,27 @@
     Background="Transparent"
     WindowStyle="None"
     mc:Ignorable="d">
-    <Border
-        md:ElevationAssist.Elevation="Dp24"
-        Background="White"
-        CornerRadius="10">
+    <Border Background="White" CornerRadius="10">
+        <Border.Effect>
+            <DropShadowEffect
+                BlurRadius="20"
+                Opacity="0.8"
+                ShadowDepth="0" />
+        </Border.Effect>
         <Grid>
             <md:PackIcon
                 Width="24"
                 Height="24"
                 Margin="5"
                 VerticalAlignment="Center"
-                Foreground="Red"
-                Kind="CloseCircle" />
+                Foreground="#1CBD5D"
+                Kind="CheckCircle" />
             <TextBlock
-                x:Name="ErrorMessage"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
                 FontSize="16"
                 FontWeight="DemiBold"
-                Text="Error Content" />
+                Text="Cheklar muvaffaqiyatli sinxron qilindi" />
         </Grid>
     </Border>
 </Window>

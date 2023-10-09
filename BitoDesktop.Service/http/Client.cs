@@ -1,8 +1,10 @@
 ﻿using BitoDesktop.Service.DTOs.Common;
 using BitoDesktop.Service.Exceptions;
 using Newtonsoft.Json;
+using System;
 using System.Diagnostics;
 using System.Net.Http;
+using System.Net.NetworkInformation;
 using System.Text.Json;
 using System.Threading.Tasks;
 
@@ -73,5 +75,21 @@ public class Client
         if (!responce.IsSuccessStatusCode)
             throw new MarketException((int)responce.StatusCode, await responce.Content.ReadAsStringAsync());
     }
-
+    public static bool CheckForInternetConnection()
+    {
+        try
+        {
+            Ping myPing = new Ping();
+            String host = "google.com";
+            byte[] buffer = new byte[32];
+            int timeout = 1000;
+            PingOptions pingOptions = new PingOptions();
+            PingReply reply = myPing.Send(host, timeout, buffer, pingOptions);
+            return (reply.Status == IPStatus.Success);
+        }
+        catch (Exception)
+        {
+            return false;
+        }
+    }
 }
