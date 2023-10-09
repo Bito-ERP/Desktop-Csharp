@@ -221,7 +221,7 @@ public class CustomerRepository
     {
         return await DBExcutor.QueryAsync<CustomerAddress>(
             "SELECT Id, Name, PhoneNumber, Latitude, Longitude, AddressName FROM customer " +
-            "WHERE Organizations LIKE @organizationId AND " +
+            "WHERE Organizations LIKE @AND " +
             "Latitude >= @bottomRightLatitude AND " +
             "Latitude <= @topLeftLatitude AND " +
             "Longitude >= @topLeftLongitude AND " +

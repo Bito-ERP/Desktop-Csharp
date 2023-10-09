@@ -198,6 +198,44 @@ namespace BitoDesktop.Service.Services
             return true;
         }
 
+        public async Task<bool> SynchroniseToMachineReceipt()
+        {
+            var receiptResponce = await ReceiptApi.GetPage(new RequestPage());
+            if (receiptResponce.Message != "Success")
+                throw new MarketException(receiptResponce.Code, receiptResponce.Message);
+
+            var receipts = receiptResponce.Data;
+
+            foreach (var receipt in receipts.PageData)
+            {
+                await receiptRepository.Insert(receipt.Get());
+            }
+
+            return true;
+        }
+
+        public async Task<bool> SynchroniseToMachineCashbackSettings()
+        {
+            var organizationResponce = await OrganizationApi.GetAll();
+            if (organizationResponce.Message != "Success")
+                throw new MarketException(organizationResponce.Code, organizationResponce.Message);
+
+            var organizations = organizationResponce.Data;
+
+            foreach (var organization in organizations)
+            {
+                await receiptRepository.Insert(organization.Get());
+            }
+
+            return true;
+        }
+        
+        public async Task<bool> SynchroniseToMachineOrganization()
+        {
+
+            return true;
+        }
+
         public Task<bool> SynchroniseToServer()
         {
             return Task.FromResult(true);
