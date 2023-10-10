@@ -27,7 +27,6 @@ public class ReceiptResponse
 
     [JsonProperty("discount")]
     public double Discount { get; set; } = 0.0;
-
     [JsonProperty("total_discount")]
     public double TotalDiscount { get; set; } = 0.0;
 

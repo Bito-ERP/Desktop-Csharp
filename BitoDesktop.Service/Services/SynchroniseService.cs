@@ -11,6 +11,7 @@ using BitoDesktop.Domain.Entities.Settings;
 using BitoDesktop.Service.DTOs.Common;
 using BitoDesktop.Service.Exceptions;
 using BitoDesktop.Service.Http;
+using BitoDesktop.Service.Http.Warehouse;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -176,7 +177,7 @@ namespace BitoDesktop.Service.Services
 
             foreach (var pos in poses)
             {
-                await posRepository.Insert(pos.Get());
+                await ticketRepository.Insert(pos.Get());
             }
 
             return true;
@@ -216,6 +217,11 @@ namespace BitoDesktop.Service.Services
 
         public async Task<bool> SynchroniseToMachineCashbackSettings()
         {
+            return true;
+        }
+
+        public async Task<bool> SynchroniseToMachineOrganization()
+        {
             var organizationResponce = await OrganizationApi.GetAll();
             if (organizationResponce.Message != "Success")
                 throw new MarketException(organizationResponce.Code, organizationResponce.Message);
@@ -224,14 +230,93 @@ namespace BitoDesktop.Service.Services
 
             foreach (var organization in organizations)
             {
-                await receiptRepository.Insert(organization.Get());
+                await organizationRepository.Insert(organization.Get());
             }
 
             return true;
         }
         
-        public async Task<bool> SynchroniseToMachineOrganization()
+        public async Task<bool> SynchroniseToMachinePaymentMethod()
         {
+            var paymentMethodResponce = await PaymentMethodApi.GetAll();
+            if (paymentMethodResponce.Message != "Success")
+                throw new MarketException(paymentMethodResponce.Code, paymentMethodResponce.Message);
+
+            var paymentMethods = paymentMethodResponce.Data;
+
+            foreach (var method in paymentMethods.PageData)
+            {
+                await PaymentMethodRepository.Insert(method.Get());
+            }
+
+            return true;
+        }
+
+        public async Task<bool> SynchroniseToMachinePrice()
+        {
+            var priceResponce = await PriceApi.GetAll();
+            if (priceResponce.Message != "Success")
+                throw new MarketException(priceResponce.Code, priceResponce.Message);
+
+            var prices = priceResponce.Data;
+
+            foreach (var price in prices)
+            {
+                await priceRepository.Insert(price.Get());
+            }
+
+            return true;
+        }
+
+        public async Task<bool> SynchroniseToMachinePrinter()
+        {
+            var printerResponce = await PrinterApi.GetAll();
+            if (printerResponce.Message != "Success")
+                throw new MarketException(printerResponce.Code, printerResponce.Message);
+
+            var printers = printerResponce.Data;
+
+            foreach (var printer in printers.PageData)
+            {
+                await printerRepostiory.Insert(printer.Get());
+            }
+
+            return true;
+        }
+
+        public async Task<bool> SynchroniseToMachineReason()
+        {
+            var reasonResponse = await ReasonApi.GetPage(new RequestPage());
+            if (reasonResponse.Message != "Success")
+                throw new MarketException(reasonResponse.Code, reasonResponse.Message);
+
+            var reasons = reasonResponse.Data;
+
+            foreach (var reason in reasons.PageData)
+            {
+                await reasonRepostiory.Insert(reason.Get());
+            }
+
+            return true;
+        }
+
+        public async Task<bool> SynchroniseToMachineScale()
+        {
+            return true;
+        }
+
+        public async Task<bool> SynchroniseToMachineCategory()
+        {
+            var categoryResponse = await CategoryApi.GetPage(new RequestPage());
+            if (categoryResponse.Message != "Success")
+                throw new MarketException(categoryResponse.Code, categoryResponse.Message);
+
+            var categories = categoryResponse.Data;
+
+            foreach (var category in categories.PageData)
+            {
+                await categoryRepository.Insert(category.Get());
+            }
 
             return true;
         }
@@ -239,6 +324,38 @@ namespace BitoDesktop.Service.Services
         public Task<bool> SynchroniseToServer()
         {
             return Task.FromResult(true);
+        }
+
+        public async Task<bool> SynchroniseToMachineProduct()
+        {
+            var productResponce = await ProductApi.GetPage(new RequestPage());
+            if (productResponce.Message != "Success")
+                throw new MarketException(productResponce.Code, productResponce.Message);
+
+            var products = productResponce.Data;
+
+            foreach (var product in products.PageData)
+            {
+                await productRepository.Insert(product.Get());
+            }
+
+            return true;
+        }
+
+        public async Task<bool> SynchroniseToMachineWarehouse()
+        {
+            var warehouseResponce = await WarehouseApi.GetPage(new RequestPage());
+            if (warehouseResponce.Message != "Success")
+                throw new MarketException(warehouseResponce.Code, warehouseResponce.Message);
+
+            var warehouses = warehouseResponce.Data;
+
+            foreach (var warehouse in warehouses.PageData)
+            {
+                await warehouseRepository.Insert(warehouse.Get());
+            }
+
+            return true;
         }
     }
 }
