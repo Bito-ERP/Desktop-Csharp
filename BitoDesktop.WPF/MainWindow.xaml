@@ -10,6 +10,7 @@
     MinWidth="1024"
     MinHeight="800"
     Background="#EAEEF1"
+    Loaded="Window_Loaded"
     ResizeMode="CanMinimize"
     WindowState="Maximized"
     mc:Ignorable="d">
@@ -19,11 +20,11 @@
                 <ColumnDefinition Width="64" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <Frame x:Name="SideBarFrame" NavigationUIVisibility="Hidden" />
             <Frame
                 x:Name="MainFrame"
                 Grid.ColumnSpan="2"
                 NavigationUIVisibility="Hidden" />
+            <Frame x:Name="SideBarFrame" NavigationUIVisibility="Hidden" />
         </Grid>
     </Grid>
 </Window>

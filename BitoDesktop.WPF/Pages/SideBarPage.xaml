@@ -16,9 +16,7 @@
             <Setter Property="Padding" Value="0" />
             <Setter Property="BorderThickness" Value="0" />
             <Setter Property="Background" Value="#F5F5F5" />
-            <Setter Property="md:ShadowAssist.ShadowDepth" Value="Depth1" />
             <Setter Property="md:ButtonAssist.CornerRadius" Value="10" />
-            <Setter Property="md:ShadowAssist.ShadowDepth" Value="Depth1" />
         </Style>
         <Style TargetType="md:PackIcon">
             <Setter Property="Height" Value="24" />
@@ -29,13 +27,13 @@
     <Border Background="White">
         <Grid>
             <WrapPanel Margin="0,10" HorizontalAlignment="Center">
-                <Button Background="#006AFF">
+                <Button x:Name="HomeBtn" Background="#006AFF">
                     <Image
                         Width="24"
                         Height="24"
                         Source="/Icons/homeactive.png" />
                 </Button>
-                <Button>
+                <Button x:Name="SettingsBtn">
                     <Image
                         Width="24"
                         Height="24"
@@ -43,7 +41,11 @@
                 </Button>
             </WrapPanel>
 
-            <Button Margin="0,30" VerticalAlignment="Bottom">
+            <Button
+                x:Name="SynchroniseBtn"
+                Margin="0,30"
+                VerticalAlignment="Bottom"
+                IsEnabled="True">
                 <Image
                     Width="24"
                     Height="24"

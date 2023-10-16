@@ -11,7 +11,7 @@ public delegate void TransactionExcutor(NpgsqlConnection con);
 
 public class DBExcutor
 {
-    private static readonly string _connectionString = "Host=localhost;Port=5432;Database=maindb;Username=postgres;Password=password;";
+    private static readonly string _connectionString = "Host=localhost;Port=5432;Database=BitoDb;Username=postgres;Password=muham1812;";
 
     public static async Task<T> InTransaction<T>(Func<NpgsqlConnection, Task<T>> func)
     {

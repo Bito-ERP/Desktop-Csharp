@@ -9,14 +9,14 @@ namespace BitoDesktop.Service.Http;
 
 public class TaxApi
 {
-    public static async Task<BaseResponse<DiscountResponse>> Create(RequestTaxCU request) =>
-    await Client.Post<DiscountResponse>("employee/finance/tax/create", request);
+    public static async Task<BaseResponse<TaxResponse>> Create(RequestTaxCU request) =>
+    await Client.Post<TaxResponse>("employee/finance/tax/create", request);
 
-    public static async Task<BaseResponse<DiscountResponse>> Update(RequestTaxCU request) =>
-       await Client.Post<DiscountResponse>("employee/finance/tax/update", request);
+    public static async Task<BaseResponse<TaxResponse>> Update(RequestTaxCU request) =>
+       await Client.Post<TaxResponse>("employee/finance/tax/update", request);
 
-    public static async Task<BaseResponse<List<DiscountResponse>>> GetAll() =>
-      await Client.Post<List<DiscountResponse>>("employee/finance/tax/get-all");
+    public static async Task<BaseResponse<List<TaxResponse>>> GetAll() =>
+      await Client.Post<List<TaxResponse>>("employee/finance/tax/get-all");
 
     public static async Task Delete(RequestBy request) =>
       await Client.Post("employee/finance/tax/delete", request);

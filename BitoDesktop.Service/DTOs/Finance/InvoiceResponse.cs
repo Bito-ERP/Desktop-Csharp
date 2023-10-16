@@ -1,5 +1,7 @@
-﻿using BitoDesktop.Service.DTOs.Common;
+﻿using BitoDesktop.Domain.Entities.Finance;
+using BitoDesktop.Service.DTOs.Common;
 using Newtonsoft.Json;
+using System;
 
 namespace BitoDesktop.Service.DTOs.Finance;
 public class InvoiceResponse
@@ -63,4 +65,37 @@ public class InvoiceResponse
 
     [JsonProperty("trade_id")]
     public string TradeId { get; set; }
+
+    public Invoice Get(string organizationId)
+    {
+        return new Invoice
+        {
+            Id = Id,
+            OrganizationId = organizationId,
+            Type = Type,
+            Number = Number,
+            PaymentTypeId = PaymentType.Id,
+            PaymentTypeName = PaymentType.Name,
+            UserType = UserType,
+            PaymentFor = PaymentFor,
+            IsRefund = IsRefund,
+            Date = DateTimeOffset.Parse(Date),
+            CustomerId = Customer.Id,
+            CustomerName = Customer.Name,
+            EmployeeId = Employee.Id,
+            EmployeeName = Employee.Name,
+            SupplierId = Supplier.Id,
+            SupplierName = Supplier.Name,
+            PersonId = Person.Id,
+            PersonName = Person.Name,
+            ToBePaid = ToBePaid,
+            Paid = Paid,
+            ToBeRefunded = ToBeRefunded,
+            Refunded = Refunded,
+            PaidByBalance = PaidByBalance,
+            PaidByCashback = PaidByCashback,
+            CurrencyId = CurrencyId,
+            TradeId = TradeId
+        };
+    }
 }

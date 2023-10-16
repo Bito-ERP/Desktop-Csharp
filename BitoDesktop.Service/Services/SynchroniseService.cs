@@ -7,8 +7,10 @@ using BitoDesktop.Data.Repositories.Settings;
 using BitoDesktop.Data.Repositories.WarehouseP;
 using BitoDesktop.Domain.Entities.CustomerP;
 using BitoDesktop.Domain.Entities.Finance;
+using BitoDesktop.Domain.Entities.Sale;
 using BitoDesktop.Domain.Entities.Settings;
 using BitoDesktop.Service.DTOs.Common;
+using BitoDesktop.Service.DTOs.Sale;
 using BitoDesktop.Service.Exceptions;
 using BitoDesktop.Service.Http;
 using BitoDesktop.Service.Http.Warehouse;
@@ -22,6 +24,7 @@ namespace BitoDesktop.Service.Services
 {
     public class SynchroniseService
     {
+        #region fields
         private readonly CustomerRepository customerRepository;
         private readonly CurrencyRepository currencyRepository;
         private readonly InvoiceRepository invoiceRepository;
@@ -42,8 +45,10 @@ namespace BitoDesktop.Service.Services
         private readonly CategoryRepository categoryRepository;
         private readonly ProductRepository productRepository;
         private readonly WarehouseRepository warehouseRepository;
+        #endregion
 
-        public SynchroniseService()
+        public string OrganizationId { get; set; }
+        public SynchroniseService(string organizationId)
         {
             customerRepository = new CustomerRepository();
             currencyRepository = new CurrencyRepository();
@@ -65,6 +70,7 @@ namespace BitoDesktop.Service.Services
             categoryRepository = new CategoryRepository();
             productRepository = new ProductRepository();
             warehouseRepository = new WarehouseRepository();
+            OrganizationId = organizationId;
         }
 
 
@@ -102,18 +108,18 @@ namespace BitoDesktop.Service.Services
 
             return true;
         }
-        
+
         public async Task<bool> SynchroniseToMachineInvoise()
         {
-            var invoiseResponce = await InvoiseApi.GetAll();
+            var invoiseResponce = await InvoiceApi.GetPage(new RequestPage());
             if (invoiseResponce.Message != "Success")
                 throw new MarketException(invoiseResponce.Code, invoiseResponce.Message);
 
-            var currencies = invoiseResponce.Data;
+            var invoices = invoiseResponce.Data;
 
-            foreach (var currency in currencies.PageData)
+            foreach (var invoice in invoices.PageData)
             {
-                await currencyRepository.Insert(currency.Get());
+                await invoiceRepository.Insert(invoice.Get(OrganizationId));
             }
 
             return true;
@@ -129,12 +135,12 @@ namespace BitoDesktop.Service.Services
 
             foreach (var tax in taxes)
             {
-                await taxRepository.Insert(tax.Get());
+                await taxRepository.Insert(tax.GetEntityTax());
             }
 
             return true;
         }
-        
+
         public async Task<bool> SynchroniseToMachineEmployee()
         {
             var employeeResponce = await EmployeeApi.GetPage(new RequestPage());
@@ -167,21 +173,21 @@ namespace BitoDesktop.Service.Services
             return true;
         }
 
-        public async Task<bool> SynchroniceToMachineTicket()
-        {
-            var ticketResponce = await TicketApi.GetTables();
-            if (ticketResponce.Message != "Success")
-                throw new MarketException(ticketResponce.Code, ticketResponce.Message);
+        //public async Task<bool> SynchroniceToMachineTicket()
+        //{
+        //    var ticketResponce = await TicketApi.GetTables();
+        //    if (ticketResponce.Message != "Success")
+        //        throw new MarketException(ticketResponce.Code, ticketResponce.Message);
 
-            var poses = ticketResponce.Data;
+        //    var poses = ticketResponce.Data;
 
-            foreach (var pos in poses)
-            {
-                await ticketRepository.Insert(pos.Get());
-            }
+        //    foreach (var pos in poses)
+        //    {
+        //        await ticketRepository.Insert(pos.Get());
+        //    }
 
-            return true;
-        }
+        //    return true;
+        //}
 
         public async Task<bool> SynchroniseToMachineDicsount()
         {
@@ -205,18 +211,29 @@ namespace BitoDesktop.Service.Services
             if (receiptResponce.Message != "Success")
                 throw new MarketException(receiptResponce.Code, receiptResponce.Message);
 
-            var receipts = receiptResponce.Data;
+            PagingResponse<ReceiptResponse> receiptResponces = receiptResponce.Data;
 
-            foreach (var receipt in receipts.PageData)
-            {
-                await receiptRepository.Insert(receipt.Get());
-            }
+            var receipts = receiptResponces.PageData.Select(receipt => receipt.Get(OrganizationId));
+            var payments = receiptResponces.PageData.SelectMany(receipt => receipt.Payments);
+            var installemtns = receiptResponces.PageData.SelectMany(receipt => receipt.InstallmentPlans);
+            await receiptRepository.Insert(receipts,null,null,null,null,null);
 
             return true;
         }
 
         public async Task<bool> SynchroniseToMachineCashbackSettings()
         {
+            var cashbackResponce = await SettingApi.GetCashbackSettings();
+            if (cashbackResponce.Message != "Success")
+                throw new MarketException(cashbackResponce.Code, cashbackResponce.Message);
+
+            var cashback = cashbackResponce.Data;
+
+            foreach (var receipt in cashback)
+            {
+                await cashbackSettingRepostiory.Insert(receipt.Get());
+            }
+
             return true;
         }
 
@@ -246,7 +263,7 @@ namespace BitoDesktop.Service.Services
 
             foreach (var method in paymentMethods.PageData)
             {
-                await PaymentMethodRepository.Insert(method.Get());
+                await paymentMethodRepository.Insert(method.Get());
             }
 
             return true;
@@ -302,6 +319,17 @@ namespace BitoDesktop.Service.Services
 
         public async Task<bool> SynchroniseToMachineScale()
         {
+            var scaleResponse = await SettingApi.GetScales();
+            if (scaleResponse.Message != "Success")
+                throw new MarketException(scaleResponse.Code, scaleResponse.Message);
+
+            var scales = scaleResponse.Data;
+
+            foreach (var scale in scales)
+            {
+                await scaleRepostiory.Insert(scale.Get());
+            }
+
             return true;
         }
 
@@ -319,11 +347,6 @@ namespace BitoDesktop.Service.Services
             }
 
             return true;
-        }
-
-        public Task<bool> SynchroniseToServer()
-        {
-            return Task.FromResult(true);
         }
 
         public async Task<bool> SynchroniseToMachineProduct()

@@ -4,14 +4,15 @@ using BitoDesktop.Service.Http;
 using BitoDesktop.Service.Interfaces;
 using BitoDesktop.Service.Services;
 using BitoDesktop.WPF.Controllers.Login;
-using BitoDesktop.WPF.Dialog;
 using Newtonsoft.Json;
 using System;
+using System.Drawing;
 using System.Globalization;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Threading;
 
 namespace BitoDesktop.WPF.Pages
@@ -28,18 +29,19 @@ namespace BitoDesktop.WPF.Pages
         private readonly IAuthService authService;
 
         private LoginController loginController;
-        private DeviceChooserController deviceChooserController ;
-        private ServerChooserController serverChooserController ;
+        private DeviceChooserController deviceChooserController;
+        private ServerChooserController serverChooserController;
         private OrganizatinController organizationController;
-        PinCodeController pinCodeController;
+        private PinCodeController pinCodeController;
+        public string OrganizationId { get; set; }
 
         public LoginPage()
         {
             InitializeComponent();
             ci = new CultureInfo("uz-UZ");
-            
+
             authService = new AuthService();
-            
+
             loginController = new LoginController();
             deviceChooserController = new DeviceChooserController();
             serverChooserController = new ServerChooserController();
@@ -90,7 +92,7 @@ namespace BitoDesktop.WPF.Pages
         private async Task LoadServerChooser()
         {
             LoginStageControl.Items.Clear();
-            var res = await authService.GetUsernames(loginController.PhoneNumberTxt.Text,loginController.PasswordTxt.Password);
+            var res = await authService.GetUsernames(loginController.PhoneNumberTxt.Text, loginController.PasswordTxt.Password);
             foreach (var server in res)
             {
                 ServerController serverController = new ServerController();
@@ -108,7 +110,7 @@ namespace BitoDesktop.WPF.Pages
 
         private async void DeviceChoosen(object sender, MouseButtonEventArgs e)
         {
-            await LoadOrganization();  
+            await LoadOrganization();
         }
 
 
@@ -120,9 +122,22 @@ namespace BitoDesktop.WPF.Pages
 
             LoginStageControl.Items.Clear();
 
-            foreach (var organization in organizations) 
+            foreach (var organization in organizations)
             {
-                organizationController.OrgCmb.Items.Add(organization.Name);
+                Grid grid = new Grid();
+                
+                TextBlock idTxt = new TextBlock();
+                idTxt.Text = organization.Id;
+                idTxt.Foreground = new SolidColorBrush(Colors.White);
+
+                TextBlock nameTxt = new TextBlock();
+                nameTxt.Text = organization.Name;
+                nameTxt.Foreground = new SolidColorBrush(Colors.Black);
+
+                grid.Children.Add(idTxt);
+                grid.Children.Add(nameTxt);
+
+                organizationController.OrgCmb.Items.Add(grid);
             }
 
             foreach (var warehouse in warhouses.PageData)
@@ -148,6 +163,7 @@ namespace BitoDesktop.WPF.Pages
                 organizationController.PriceCmb.SelectedItem != null &&
                 organizationController.WarehouseCmb.SelectedItem != null)
             {
+                OrganizationId = ((organizationController.OrgCmb.SelectedItem as Grid).Children[0] as TextBlock).Text;
                 LoginStageControl.Items.Clear();
                 pinCodeController.OkBtn.Click += PincodeOkBtnClick;
                 LoginStageControl.Items.Add(pinCodeController);
@@ -157,7 +173,7 @@ namespace BitoDesktop.WPF.Pages
         private async void PincodeOkBtnClick(object sender, RoutedEventArgs e)
         {
             await authService.EnterByPinCode(pinCodeController.PinCodeTxt.Password);
-            
+
             MainWindow mainWindow = Application.Current.MainWindow as MainWindow;
             if (mainWindow != null)
             {
