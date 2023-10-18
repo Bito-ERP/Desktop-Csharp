@@ -9,7 +9,7 @@ public class TaxRepository
 {
     private const string TaxColumns = "Id, Name, Rate, Type, ToPrice, IsManual, IsAll, IsAllCategories, IsAllSuppliers, ItemCount, CategoryIds, SupplierIds, AddedItemIds, RemovedItemIds, OrganizationIds";
     private const string TaxValues = "@Id, @Name, @Rate, @Type, @ToPrice, @IsManual, @IsAll, @IsAllCategories, @IsAllSuppliers, @ItemCount, @CategoryIds, @SupplierIds, @AddedItemIds, @RemovedItemIds, @OrganizationIds";
-    private const string TaxUpdate = "@Id = Id, @Name = Name, @Rate = Rate, @Type = Type, @ToPrice = ToPrice, @IsManual = IsManual, @IsAll = IsAll, @IsAllCategories = IsAllCategories, @IsAllSuppliers = IsAllSuppliers, @ItemCount = ItemCount, @CategoryIds = CategoryIds, @SupplierIds = SupplierIds, @AddedItemIds = AddedItemIds, @RemovedItemIds = RemovedItemIds, @OrganizationIds = OrganizationIds";
+    private const string TaxUpdate = "@Name = Name, @Rate = Rate, @Type = Type, @ToPrice = ToPrice, @IsManual = IsManual, @IsAll = IsAll, @IsAllCategories = IsAllCategories, @IsAllSuppliers = IsAllSuppliers, @ItemCount = ItemCount, @CategoryIds = CategoryIds, @SupplierIds = SupplierIds, @AddedItemIds = AddedItemIds, @RemovedItemIds = RemovedItemIds, @OrganizationIds = OrganizationIds";
 
     public async Task<int> Insert(Tax tax)
     {
@@ -23,11 +23,11 @@ public class TaxRepository
     {
         return await DBExcutor.InTransaction(async connection =>
         {
-            await DBExcutor.ExecuteAsync("DELETE FROM finance_tax");
+            await DBExcutor.ExecuteAsync("DELETE FROM finance_tax", connection);
             return await DBExcutor.ExecuteAsync(
                "INSERT INTO finance_tax(" + TaxColumns + ") VALUES(" + TaxValues + ") " +
                "ON CONFLICT (Id) " +
-               "DO UPDATE SET " + TaxUpdate, items);
+               "DO UPDATE SET " + TaxUpdate, items, connection);
         });
     }
 
