@@ -81,6 +81,7 @@ namespace BitoDesktop.WPF.Pages
                 foreach (var device in res.PageData)
                 {
                     DeviceController deviceController = new DeviceController();
+                    deviceController.DeviceId = device.Id;
                     deviceController.DeviceNameTxt.Text = device.Name;
                     deviceController.MouseDown += DeviceChoosen;
                     deviceChooserController.DeviceItemsControl.Items.Add(deviceController);
@@ -110,6 +111,8 @@ namespace BitoDesktop.WPF.Pages
 
         private async void DeviceChoosen(object sender, MouseButtonEventArgs e)
         {
+            var deviceId = (sender as DeviceController).DeviceId;
+            Client.DeviceId = deviceId;
             await LoadOrganization();
         }
 

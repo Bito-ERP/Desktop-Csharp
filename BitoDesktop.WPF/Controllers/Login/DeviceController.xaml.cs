@@ -7,6 +7,7 @@ namespace BitoDesktop.WPF.Controllers.Login
     /// </summary>
     public partial class DeviceController : UserControl
     {
+        public string DeviceId { get; set; }
         public DeviceController()
         {
             InitializeComponent();

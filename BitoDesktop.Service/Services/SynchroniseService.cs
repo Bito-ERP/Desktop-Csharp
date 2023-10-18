@@ -133,10 +133,8 @@ namespace BitoDesktop.Service.Services
 
             var taxes = taxResponce.Data;
 
-            foreach (var tax in taxes)
-            {
-                await taxRepository.Insert(tax.GetEntityTax());
-            }
+            await taxRepository.Insert(taxes.Select(t => t.GetEntityTax()));
+
 
             return true;
         }
