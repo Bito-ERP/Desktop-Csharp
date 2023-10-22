@@ -11,11 +11,11 @@ using System.Threading.Tasks;
 
 namespace BitoDesktop.Service.Services
 {
-    public class EmployeeService
+    public class CustomerService
     {
         private readonly CustomerRepository customerRepository;
 
-        public EmployeeService()
+        public CustomerService()
         {
             customerRepository = new CustomerRepository();
         }
@@ -31,12 +31,14 @@ namespace BitoDesktop.Service.Services
             return customer;
         }
 
-        public async Task<IEnumerable<CustomerAddress>> GetCustomers(string organizationId)
+        public async Task<IEnumerable<CustomerAddress>> GetCustomers(string organizationId,
+            string customerName,
+            string customerPhoneNumber)
         {
-            var customers = await customerRepository.GetCustomers(100,100,100,100,organizationId);
-
-            if (customers == null)
-                throw new MarketException(404, "Customer not found");
+            var customers = (await customerRepository.GetCustomers(
+                100, 100, 100, 100, organizationId))
+                .Where(c => c.Name.Contains(customerName) 
+                || c.PhoneNumber.Contains(customerPhoneNumber));
 
             return customers;
         }
