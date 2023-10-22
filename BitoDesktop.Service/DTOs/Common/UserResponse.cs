@@ -1,5 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
+using System.ComponentModel.DataAnnotations;
 
 namespace BitoDesktop.Service.DTOs.Common;
 public class UserResponse

@@ -1,12 +1,9 @@
 ﻿using BitoDesktop.Service.DTOs.Auth;
-using BitoDesktop.Service.Exceptions;
 using BitoDesktop.Service.Http;
 using BitoDesktop.Service.Interfaces;
 using BitoDesktop.Service.Services;
 using BitoDesktop.WPF.Controllers.Login;
-using Newtonsoft.Json;
 using System;
-using System.Drawing;
 using System.Globalization;
 using System.Threading.Tasks;
 using System.Windows;
@@ -128,7 +125,7 @@ namespace BitoDesktop.WPF.Pages
             foreach (var organization in organizations)
             {
                 Grid grid = new Grid();
-                
+
                 TextBlock idTxt = new TextBlock();
                 idTxt.Text = organization.Id;
                 idTxt.Foreground = new SolidColorBrush(Colors.White);

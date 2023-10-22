@@ -1,7 +1,7 @@
 ﻿using BitoDesktop.Domain.Entities.WarehouseP;
 using BitoDesktop.Service.DTOs.Common;
-using System.Collections.Generic;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace BitoDesktop.Service.DTOs.WarehouseP;
 

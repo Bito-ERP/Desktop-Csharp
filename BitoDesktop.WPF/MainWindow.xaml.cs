@@ -1,14 +1,7 @@
 using BitoDesktop.Service.Services;
 using BitoDesktop.WPF.Pages;
-using BitoDesktop.WPF.Pages.Baskets;
-using BitoDesktop.WPF.Pages.Catalogs;
-using BitoDesktop.WPF.Pages.Pos;
-using BitoDesktop.WPF.Pages.Products;
-using BitoDesktop.WPF.Pages.Settings;
-using System;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Documents;
 
 namespace BitoDesktop.WPF
 {
@@ -27,13 +20,13 @@ namespace BitoDesktop.WPF
             InitializeComponent();
 
             loginPage = new LoginPage();
-            
+
             NavigateToLoginPage();
 
             sidebarPage = new SideBarPage();
             posPage = new PosPage();
         }
-         
+
         private void SynchroniseBtnClick(object sender, RoutedEventArgs e)
         {
             Task task = new Task(async () =>

@@ -6,11 +6,7 @@ using BitoDesktop.Service.DTOs.WarehouseP;
 using BitoDesktop.Service.Exceptions;
 using BitoDesktop.Service.Http;
 using BitoDesktop.Service.Interfaces;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Metadata.Ecma335;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace BitoDesktop.Service.Services
@@ -22,7 +18,7 @@ namespace BitoDesktop.Service.Services
             var responce = await AuthApi.Login(request);
             if (responce.Message != "Success")
                 throw new MarketException(responce.Code, responce.Message);
-            
+
             return responce.Data;
         }
 
@@ -57,7 +53,7 @@ namespace BitoDesktop.Service.Services
             var responce = await OrganizationApi.GetAll();
 
             if (responce.Message != "Success")
-                throw new MarketException(responce.Code,responce.Message);
+                throw new MarketException(responce.Code, responce.Message);
 
             return responce.Data;
         }
@@ -68,7 +64,7 @@ namespace BitoDesktop.Service.Services
 
             if (responce.Message != "Success")
                 throw new MarketException(responce.Code, responce.Message);
-            
+
             return responce.Data;
         }
 
@@ -76,8 +72,8 @@ namespace BitoDesktop.Service.Services
         {
             var responce = await PriceApi.GetAll();
 
-            if(responce.Message != "Success")
-                throw new MarketException(responce.Code,responce.Message);
+            if (responce.Message != "Success")
+                throw new MarketException(responce.Code, responce.Message);
 
             return responce.Data;
         }
@@ -85,9 +81,9 @@ namespace BitoDesktop.Service.Services
         public async Task<EmployeeResponse> EnterByPinCode(string pincode)
         {
             var responce = await EmployeeApi.GetByPincode(new RequestLogin() { Pincode = pincode });
-            
+
             if (responce.Message != "Success")
-                throw new MarketException(responce.Code,responce.Message);
+                throw new MarketException(responce.Code, responce.Message);
 
             return responce.Data;
         }

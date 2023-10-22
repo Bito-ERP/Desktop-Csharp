@@ -5,19 +5,12 @@ using BitoDesktop.Data.Repositories.Pos;
 using BitoDesktop.Data.Repositories.Sale;
 using BitoDesktop.Data.Repositories.Settings;
 using BitoDesktop.Data.Repositories.WarehouseP;
-using BitoDesktop.Domain.Entities.CustomerP;
-using BitoDesktop.Domain.Entities.Finance;
-using BitoDesktop.Domain.Entities.Sale;
-using BitoDesktop.Domain.Entities.Settings;
 using BitoDesktop.Service.DTOs.Common;
 using BitoDesktop.Service.DTOs.Sale;
 using BitoDesktop.Service.Exceptions;
 using BitoDesktop.Service.Http;
 using BitoDesktop.Service.Http.Warehouse;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace BitoDesktop.Service.Services
@@ -214,7 +207,7 @@ namespace BitoDesktop.Service.Services
             var receipts = receiptResponces.PageData.Select(receipt => receipt.Get(OrganizationId));
             var payments = receiptResponces.PageData.SelectMany(receipt => receipt.Payments);
             var installemtns = receiptResponces.PageData.SelectMany(receipt => receipt.InstallmentPlans);
-            await receiptRepository.Insert(receipts,null,null,null,null,null);
+            await receiptRepository.Insert(receipts, null, null, null, null, null);
 
             return true;
         }
@@ -250,7 +243,7 @@ namespace BitoDesktop.Service.Services
 
             return true;
         }
-        
+
         public async Task<bool> SynchroniseToMachinePaymentMethod()
         {
             var paymentMethodResponce = await PaymentMethodApi.GetAll();

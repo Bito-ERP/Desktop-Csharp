@@ -1,6 +1,6 @@
 ﻿using BitoDesktop.Domain.Entities.Finance;
-using System.Collections.Generic;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace BitoDesktop.Service.DTOs.Finance;
 

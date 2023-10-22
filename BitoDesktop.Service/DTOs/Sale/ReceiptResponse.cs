@@ -1,11 +1,11 @@
 ﻿using BitoDesktop.Domain.Entities.Finance;
 using BitoDesktop.Domain.Entities.Sale;
 using BitoDesktop.Service.DTOs.Common;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using Newtonsoft.Json;
 
 namespace BitoDesktop.Service.DTOs.Sale;
 public class ReceiptResponse

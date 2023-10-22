@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using Newtonsoft.Json;
 
 namespace BitoDesktop.Service.DTOs.CustomerP;
 public class CustomerResponse

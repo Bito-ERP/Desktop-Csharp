@@ -1,8 +1,5 @@
 ﻿using Npgsql;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace BitoDesktop.Data.Repositories.Settings
@@ -16,8 +13,9 @@ namespace BitoDesktop.Data.Repositories.Settings
 
         public class Editor
         {
-            private readonly NpgsqlConnection connection; 
-            public Editor(NpgsqlConnection connection) { 
+            private readonly NpgsqlConnection connection;
+            public Editor(NpgsqlConnection connection)
+            {
                 this.connection = connection;
             }
 
@@ -26,7 +24,7 @@ namespace BitoDesktop.Data.Repositories.Settings
                 return await DBExcutor.ExecuteAsync(
                     "INSERT INTO configuration(" + ConfigurationColumns + ") VALUES(" + ConfigurationValues + ") " +
                     "ON CONFLICT (Key) " +
-                    "DO UPDATE SET " + ConfigurationUpdate, new { Key = key, Value = value }, connection 
+                    "DO UPDATE SET " + ConfigurationUpdate, new { Key = key, Value = value }, connection
                   );
             }
 
@@ -74,11 +72,11 @@ namespace BitoDesktop.Data.Repositories.Settings
             {
                 return editor(new Editor(connection));
             });
-        } 
+        }
 
         public async Task<Boolean> Contains(string key)
         {
-            return await DBExcutor.QuerySingleOrDefaultAsync<Boolean>("SELECT EXISTS(SELECT Key FROM configuration WHERE Key = @key)", new {key}); 
+            return await DBExcutor.QuerySingleOrDefaultAsync<Boolean>("SELECT EXISTS(SELECT Key FROM configuration WHERE Key = @key)", new { key });
         }
 
 
@@ -133,7 +131,7 @@ namespace BitoDesktop.Data.Repositories.Settings
 
         public async Task<int> PutBoolean(string key, Boolean? value)
         {
-            return await PutValue(key, value?.ToString());   
+            return await PutValue(key, value?.ToString());
         }
 
         public async Task<int> PutFloat(string key, float? value)

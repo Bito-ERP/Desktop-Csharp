@@ -1,12 +1,8 @@
 ﻿using BitoDesktop.Data.Repositories.CustomerP;
-using BitoDesktop.Data.Repositories.Hr;
-using BitoDesktop.Data.Repositories.WarehouseP;
 using BitoDesktop.Domain.Entities.CustomerP;
 using BitoDesktop.Service.Exceptions;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace BitoDesktop.Service.Services
@@ -37,7 +33,7 @@ namespace BitoDesktop.Service.Services
         {
             var customers = (await customerRepository.GetCustomers(
                 100, 100, 100, 100, organizationId))
-                .Where(c => c.Name.Contains(customerName) 
+                .Where(c => c.Name.Contains(customerName)
                 || c.PhoneNumber.Contains(customerPhoneNumber));
 
             return customers;

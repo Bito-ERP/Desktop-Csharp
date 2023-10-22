@@ -5,7 +5,6 @@ using BitoDesktop.Domain.Entities.Products;
 using BitoDesktop.Domain.Entities.Sale;
 using BitoDesktop.Domain.Entities.Settings;
 using Dapper;
-using System;
 using System.Collections.Generic;
 
 namespace BitoDesktop.Data.Utils;

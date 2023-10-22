@@ -9,6 +9,6 @@ public class MapperProfile : Profile
     public MapperProfile()
     {
         CreateMap<ProductForCreationDto, Product>().ReverseMap();
-        
+
     }
 }

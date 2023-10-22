@@ -1,5 +1,4 @@
 ﻿using BitoDesktop.Data.Utils;
-using BitoDesktop.Service.Exceptions;
 using BitoDesktop.WPF.Dialog;
 using Newtonsoft.Json;
 using System;

@@ -5,7 +5,6 @@ using System;
 using System.Diagnostics;
 using System.Net.Http;
 using System.Net.NetworkInformation;
-using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace BitoDesktop.Service.Http;

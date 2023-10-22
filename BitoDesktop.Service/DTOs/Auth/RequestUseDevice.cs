@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations;
-using Newtonsoft.Json;
 
 namespace BitoDesktop.Service.DTOs.Auth;
 public class RequestUseDevice

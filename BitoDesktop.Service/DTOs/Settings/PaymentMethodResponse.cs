@@ -1,6 +1,6 @@
 ﻿using BitoDesktop.Domain.Entities.Settings;
-using System.ComponentModel.DataAnnotations;
 using Newtonsoft.Json;
+using System.ComponentModel.DataAnnotations;
 
 namespace BitoDesktop.Service.DTOs.Settings;
 

@@ -1,7 +1,5 @@
 ﻿using BitoDesktop.Service.DTOs.Common;
 using BitoDesktop.Service.DTOs.Finance;
-using BitoDesktop.Service.DTOs.Sale;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
