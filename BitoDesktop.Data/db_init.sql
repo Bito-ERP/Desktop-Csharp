@@ -73,6 +73,7 @@ CREATE TABLE IF NOT EXISTS finance_tax(
 	rate REAL NOT NULL,
 	type TEXT NOT NULL,
 	toPrice BOOLEAN NOT NULL,
+    isManual BOOLEAN NOT NULL,
 	isAll BOOLEAN NOT NULL,
 	isAllCategories BOOLEAN NOT NULL,
 	isAllSuppliers BOOLEAN NOT NULL,
@@ -427,7 +428,7 @@ CREATE TABLE IF NOT EXISTS pos_table(
     id TEXT NOT NULL PRIMARY KEY,
 	organizationId TEXT NOT NULL,
 	name TEXT NOT NULL,
-	"order" INTEGER NOT NULL
+	"Order" INTEGER NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS ticket (
@@ -476,21 +477,21 @@ CREATE TABLE IF NOT EXISTS pos_page(
     id TEXT NOT NULL PRIMARY KEY,
 	organizationId TEXT NOT NULL,
 	name TEXT NOT NULL,
-	"order" INTEGER NOT NULL
+	"Order" INTEGER NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS pos_page(
     id TEXT NOT NULL PRIMARY KEY,
 	organizationId TEXT NOT NULL,
 	name TEXT NOT NULL,
-	"order" INTEGER NOT NULL
+	"Order" INTEGER NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS pos_page_item
 (
     id TEXT PRIMARY KEY NOT NULL,
     type INT NOT NULL,
-    "order" INT NOT NULL,
+    "Order" INT NOT NULL,
     pageId TEXT NOT NULL,
     itemId TEXT,
     itemName TEXT,
