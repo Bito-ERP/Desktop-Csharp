@@ -84,6 +84,7 @@
                                     VerticalAlignment="Center"
                                     Kind="Search" />
                                 <TextBox
+                                    x:Name="SearchProduct"
                                     Grid.Column="1"
                                     Height="48"
                                     Padding="5"
@@ -92,7 +93,8 @@
                                     BorderThickness="0"
                                     FontSize="12"
                                     FontWeight="DemiBold"
-                                    Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+                                    Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                                    TextChanged="SearchProduct_TextChanged" />
                                 <Button
                                     Grid.Column="2"
                                     Width="29"
@@ -241,6 +243,7 @@
                                 VerticalAlignment="Center"
                                 Kind="Search" />
                             <TextBox
+                                x:Name="SearchCustomer"
                                 Grid.Column="1"
                                 Height="48"
                                 Padding="5"
@@ -249,7 +252,9 @@
                                 BorderThickness="0"
                                 FontSize="12"
                                 FontWeight="DemiBold"
-                                Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+                                PreviewMouseLeftButtonDown="SearchCustomer_Click"
+                                Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                                TextChanged="SearchCustomer_TextChanged" />
                             <Button
                                 Grid.Column="2"
                                 Width="29"
@@ -265,6 +270,7 @@
                                 FontWeight="DemiBold"
                                 Foreground="Black"
                                 Style="{StaticResource MaterialDesignRaisedButton}" />
+
                         </Grid>
                     </Border>
                     <Grid Margin="0,10">
@@ -402,6 +408,16 @@
                         </Border>
                     </Grid>
                 </Border>
+                <ScrollViewer
+                    x:Name="SearchResults"
+                    Grid.RowSpan="2"
+                    Height="200"
+                    Margin="10,60"
+                    VerticalAlignment="Top"
+                    Style="{StaticResource MaterialDesignScrollViewer}"
+                    VerticalScrollBarVisibility="Auto">
+                    <ItemsControl x:Name="SearchItems" />
+                </ScrollViewer>
             </Grid>
         </Border>
         <!--<Frame

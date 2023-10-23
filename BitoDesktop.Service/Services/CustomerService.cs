@@ -27,14 +27,11 @@ namespace BitoDesktop.Service.Services
             return customer;
         }
 
-        public async Task<IEnumerable<CustomerAddress>> GetCustomers(string organizationId,
-            string customerName,
-            string customerPhoneNumber)
+        public async Task<IEnumerable<Customer>> GetCustomers(string organizationId,
+            string search)
         {
-            var customers = (await customerRepository.GetCustomers(
-                100, 100, 100, 100, organizationId))
-                .Where(c => c.Name.Contains(customerName)
-                || c.PhoneNumber.Contains(customerPhoneNumber));
+            var customers = (await customerRepository
+                .GetCustomers(search, organizationId, false, false, false));
 
             return customers;
         }

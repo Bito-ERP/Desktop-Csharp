@@ -14,9 +14,6 @@ using System.Windows.Threading;
 
 namespace BitoDesktop.WPF.Pages
 {
-    /// <summary>
-    /// Логика взаимодействия для LoginPage.xaml
-    /// </summary>
     public partial class LoginPage : Page
     {
         private readonly DispatcherTimer _timer;
@@ -103,6 +100,9 @@ namespace BitoDesktop.WPF.Pages
 
         private async void ServerChoosen(object sender, MouseButtonEventArgs e)
         {
+            var serverName = (sender as ServerController).ServerNameTxt.Text;
+            Client.Username = serverName;
+
             await LoadDeviceChooser();
         }
 

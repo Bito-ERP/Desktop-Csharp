@@ -1,0 +1,42 @@
+﻿<UserControl
+    x:Class="BitoDesktop.WPF.Controllers.Pos.CustomerSearchItemController"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:BitoDesktop.WPF.Controllers.Pos"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+    Height="48"
+    mc:Ignorable="d">
+    <Border Background="White">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="45" />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Margin="5" VerticalAlignment="Center">
+                <TextBlock
+                    x:Name="CustomerNaeTxt"
+                    FontSize="16"
+                    Text="Customer name" />
+                <TextBlock
+                    x:Name="CustomerPhoneNumber"
+                    Foreground="Gray"
+                    Text="Customer Phone Number" />
+            </StackPanel>
+            <Button
+                Grid.Column="1"
+                Width="32"
+                Height="32"
+                Margin="5"
+                Padding="0"
+                md:ButtonAssist.CornerRadius="10"
+                md:ElevationAssist.Elevation="Dp0"
+                Background="#F5F5F5"
+                BorderThickness="0">
+                <md:PackIcon Foreground="#006AFF" Kind="Pencil" />
+            </Button>
+        </Grid>
+    </Border>
+</UserControl>

@@ -232,14 +232,13 @@ public class CustomerRepository
 
     #region Buni ishlatamiz
     public async Task<IEnumerable<Customer>> GetCustomers(
-        [Required] int offset,
-        [Required] int limit,
         string searchQuery,
         string organizationId,            // if provided, returns customers that are available only in that organization
-        [Required] bool withTotalSpent,   // true, TotalBalance is added to the returning customer model 
-        [Required] bool withBalance,      // true, BalanceList is added to the returning customer model 
-        [Required] bool forMap            // true, returns ones only with location info.
-    )
+        bool withTotalSpent,   // true, TotalBalance is added to the returning customer model 
+        bool withBalance,      // true, BalanceList is added to the returning customer model 
+        bool forMap,            // true, returns ones only with location info.
+        int? offset = null,
+        int? limit = null)
     {
         var filtered = false;
 
@@ -308,15 +307,18 @@ public class CustomerRepository
                 6
             );
 
-        query.Append("ORDER BY Name ")
-          .Append(
-            "LIMIT @limit "
-           ).Append(
-            "OFFSET @offset "
-           );
+        if (limit != null)
+        {
+            query.Append("ORDER BY Name ")
+                .Append("LIMIT @limit ");
+            args.Add("@limit", limit);
+        }
 
-        args.Add("@limit", limit);
-        args.Add("@offset", offset);
+        if (offset != null)
+        {
+            query.Append("OFFSET @offset "); 
+            args.Add("@offset", offset);
+        }
 
         return await DBExcutor.QueryAsync<Customer>(
             query.ToString(),
