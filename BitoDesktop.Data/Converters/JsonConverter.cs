@@ -1,6 +1,6 @@
 ﻿using Dapper;
-using Newtonsoft.Json;
 using System.Data;
+using System.Text.Json;
 
 namespace BitoDesktop.Data.Converters;
 
@@ -9,11 +9,11 @@ public class JsonConverter<T> : SqlMapper.TypeHandler<T>
 {
     public override T Parse(object value)
     {
-        return JsonConvert.DeserializeObject<T>(value.ToString());
+        return value is null ? default : JsonSerializer.Deserialize<T>(value.ToString());
     }
 
     public override void SetValue(IDbDataParameter parameter, T value)
     {
-        parameter.Value = JsonConvert.SerializeObject(value);
+        parameter.Value = value is null ? null : JsonSerializer.Serialize(value);
     }
 }

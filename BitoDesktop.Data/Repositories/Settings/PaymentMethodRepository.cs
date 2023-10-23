@@ -32,7 +32,7 @@ public class PaymentMethodRepository
     {
         return await DBExcutor.InTransaction(async connection =>
         {
-            await DBExcutor.ExecuteAsync("DELETE FROM payment_method");
+            await DBExcutor.ExecuteAsync("DELETE FROM payment_method", null, connection);
             return await Insert(items, connection);
         });
     }

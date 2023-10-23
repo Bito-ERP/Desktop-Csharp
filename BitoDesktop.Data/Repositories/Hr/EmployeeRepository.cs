@@ -22,7 +22,7 @@ public class EmployeeRepository
     {
         await DBExcutor.InTransaction(async connection =>
         {
-            var result = Insert(employee, connection);
+            var result = await Insert(employee, connection);
             if (employee.Positions != null)
             {
                 await Insert(employee.Positions, connection);
@@ -176,7 +176,7 @@ public class EmployeeRepository
     private async Task<int> Insert(IEnumerable<EmployeePosition> positions, NpgsqlConnection connection = null)
     {
         return await DBExcutor.ExecuteAsync(
-            "INSERT INTO employee_positon(" + EmployeePositionColumns + ") VALUES(" + EmployeePositionValues + ") " +
+            "INSERT INTO employee_position(" + EmployeePositionColumns + ") VALUES(" + EmployeePositionValues + ") " +
             "ON CONFLICT (EmployeeId, OrganizationId, SectionId, PositionId) " +
             "DO UPDATE SET " + EmployeePositionUpdate, positions, connection);
     }
@@ -193,7 +193,7 @@ public class EmployeeRepository
     private async Task<IEnumerable<EmployeePosition>> GetPositions(string employeeId, string organizationId)
     {
         return await DBExcutor.QueryAsync<EmployeePosition>(
-            "SELECT * FROM employee_positon WHERE EmployeeId = @employeeId AND OrganizationId = @organizationId",
+            "SELECT * FROM employee_position WHERE EmployeeId = @employeeId AND OrganizationId = @organizationId",
             new { employeeId, organizationId }
             );
     }

@@ -8,13 +8,13 @@ namespace BitoDesktop.Data.Repositories.Pos;
 
 public class PosRepository
 {
-    private const string PageColumns = "Id, OrganizationId, Order, Name";
+    private const string PageColumns = "Id, OrganizationId, \"Order\", Name";
     private const string PageValues = "@Id, @OrganizationId, @Order, @Name";
-    private const string PageUpdate = "OrganizationId = @OrganizationId, Order = @Order, Name = @Name";
+    private const string PageUpdate = "OrganizationId = @OrganizationId, \"Order\" = @Order, Name = @Name";
 
-    private const string PageItemColumns = "Id, Type, Order, PageId, ItemId, ItemName, ItemImage, ProductUnitMeasurementId, ProductSku, ProductBarcode, IsMarked, AmountInBox, ProductCategoryId, ProductCategoryName, CategoryChildCount, DiscountValue, DiscountCurrencyId";
+    private const string PageItemColumns = "Id, Type, \"Order\", PageId, ItemId, ItemName, ItemImage, ProductUnitMeasurementId, ProductSku, ProductBarcode, IsMarked, AmountInBox, ProductCategoryId, ProductCategoryName, CategoryChildCount, DiscountValue, DiscountCurrencyId";
     private const string PageItemValues = "@Id, @Type, @Order, @PageId, @ItemId, @ItemName, @ItemImage, @ProductUnitMeasurementId, @ProductSku, @ProductBarcode, @IsMarked, @AmountInBox, @ProductCategoryId, @ProductCategoryName, @CategoryChildCount, @DiscountValue, @DiscountCurrencyId";
-    private const string PageItemUpdate = "Type = @Type, Order = @Order, PageId = @PageId, ItemId = @ItemId, ItemName = @ItemName, ItemImage = @ItemImage, ProductUnitMeasurementId = @ProductUnitMeasurementId, ProductSku = @ProductSku, ProductBarcode = @ProductBarcode, IsMarked = @IsMarked, AmountInBox = @AmountInBox, ProductCategoryId = @ProductCategoryId, ProductCategoryName = @ProductCategoryName, CategoryChildCount = @CategoryChildCount, DiscountValue = @DiscountValue, DiscountCurrencyId = @DiscountCurrencyId";
+    private const string PageItemUpdate = "Type = @Type, \"Order\" = @Order, PageId = @PageId, ItemId = @ItemId, ItemName = @ItemName, ItemImage = @ItemImage, ProductUnitMeasurementId = @ProductUnitMeasurementId, ProductSku = @ProductSku, ProductBarcode = @ProductBarcode, IsMarked = @IsMarked, AmountInBox = @AmountInBox, ProductCategoryId = @ProductCategoryId, ProductCategoryName = @ProductCategoryName, CategoryChildCount = @CategoryChildCount, DiscountValue = @DiscountValue, DiscountCurrencyId = @DiscountCurrencyId";
 
 
     public async Task<int> Insert(Page item)
@@ -65,7 +65,7 @@ public class PosRepository
     public async Task<int> UpdatePageOrder(string pageId, int order)
     {
         return await DBExcutor.ExecuteAsync(
-           "UPDATE pos_page SET Order = @order WHERE Id = @pageId",
+           "UPDATE pos_page SET \"Order\" = @order WHERE Id = @pageId",
            new { pageId, order }
            );
     }
@@ -73,7 +73,7 @@ public class PosRepository
     public async Task<int> UpdatePageItemOrder(string pageItemId, int order)
     {
         return await DBExcutor.ExecuteAsync(
-           "UPDATE pos_page_item SET Order = @order WHERE Id = @pageItemId",
+           "UPDATE pos_page_item SET \"Order\" = @order WHERE Id = @pageItemId",
            new { pageItemId, order }
            );
     }
@@ -125,7 +125,7 @@ public class PosRepository
         query.Append("WHERE PageId = @pageId ");
         args.Add("pageId", pageId);
 
-        query.Append("ORDER BY Order ASC");
+        query.Append("ORDER BY \"Order\" ASC");
 
         return await DBExcutor.QueryAsync<PageItem>(
             query.ToString(),

@@ -11,19 +11,19 @@ public class InvoiceRepository
 
     private const string InvoiceColumns = "Id, OrganizationId, Type, Number, PaymentTypeId, PaymentTypeName, UserType, PaymentFor, IsRefund, Date, CustomerId, CustomerName, EmployeeId, EmployeeName, SupplierId, SupplierName, PersonId, PersonName, ToBePaid, Paid, ToBeRefunded, Refunded, PaidByBalance, PaidByCashback, CurrencyId, TradeId";
     private const string InvoiceValues = "@Id, @OrganizationId, @Type, @Number, @PaymentTypeId, @PaymentTypeName, @UserType, @PaymentFor, @IsRefund, @Date, @CustomerId, @CustomerName, @EmployeeId, @EmployeeName, @SupplierId, @SupplierName, @PersonId, @PersonName, @ToBePaid, @Paid, @ToBeRefunded, @Refunded, @PaidByBalance, @PaidByCashback, @CurrencyId, @TradeId";
-    private const string InvoiceUpdate = "Id = @Id, OrganizationId = @OrganizationId, Type = @Type, Number = @Number, PaymentTypeId = @PaymentTypeId, PaymentTypeName = @PaymentTypeName, UserType = @UserType, PaymentFor = @PaymentFor, IsRefund = @IsRefund, Date = @Date, CustomerId = @CustomerId, CustomerName = @CustomerName, EmployeeId = @EmployeeId, EmployeeName = @EmployeeName, SupplierId = @SupplierId, SupplierName = @SupplierName, PersonId = @PersonId, PersonName = @PersonName, ToBePaid = @ToBePaid, Paid = @Paid, ToBeRefunded = @ToBeRefunded, Refunded = @Refunded, PaidByBalance = @PaidByBalance, PaidByCashback = @PaidByCashback, CurrencyId = @CurrencyId, TradeId = @TradeId";
+    private const string InvoiceUpdate = "OrganizationId = @OrganizationId, Type = @Type, Number = @Number, PaymentTypeId = @PaymentTypeId, PaymentTypeName = @PaymentTypeName, UserType = @UserType, PaymentFor = @PaymentFor, IsRefund = @IsRefund, Date = @Date, CustomerId = @CustomerId, CustomerName = @CustomerName, EmployeeId = @EmployeeId, EmployeeName = @EmployeeName, SupplierId = @SupplierId, SupplierName = @SupplierName, PersonId = @PersonId, PersonName = @PersonName, ToBePaid = @ToBePaid, Paid = @Paid, ToBeRefunded = @ToBeRefunded, Refunded = @Refunded, PaidByBalance = @PaidByBalance, PaidByCashback = @PaidByCashback, CurrencyId = @CurrencyId, TradeId = @TradeId";
 
 
     public async Task<int> Insert(Invoice item)
     {
-        return await DBExcutor.ExecuteAsync("INSERT INTO receipt(" + InvoiceColumns + ") VALUES(" + InvoiceValues + ") " +
+        return await DBExcutor.ExecuteAsync("INSERT INTO invoice(" + InvoiceColumns + ") VALUES(" + InvoiceValues + ") " +
           "ON CONFLICT (Id) " +
           "DO UPDATE SET " + InvoiceUpdate, item);
     }
 
     public async Task<int> Insert(IEnumerable<Invoice> items)
     {
-        return await DBExcutor.ExecuteAsync("INSERT INTO receipt(" + InvoiceColumns + ") VALUES(" + InvoiceValues + ") " +
+        return await DBExcutor.ExecuteAsync("INSERT INTO invoice(" + InvoiceColumns + ") VALUES(" + InvoiceValues + ") " +
          "ON CONFLICT (Id) " +
          "DO UPDATE SET " + InvoiceUpdate, items);
     }
