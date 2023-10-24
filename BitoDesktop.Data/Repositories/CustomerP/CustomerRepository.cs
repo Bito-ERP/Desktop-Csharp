@@ -259,7 +259,7 @@ public class CustomerRepository
             if (organizationId != null)
             {
                 query.Append("AND totalSpent.OrganizationId = @organizationId ");
-                args.Add("organizationId", organizationId);
+                args["organizationId"] = organizationId;
             }
         }
         if (withBalance)
@@ -268,15 +268,15 @@ public class CustomerRepository
             if (organizationId != null)
             {
                 query.Append("AND balanceList.organizationId = @organizationId ");
-                args.Add("organizationId", organizationId);
+                args["organizationId"] = organizationId;
             }
         }
         query.Append("WHERE ");
         if (organizationId != null)
         {
             filtered = true;
-            query.Append("organizations LIKE @organizationId AND ");
-            args.Add("organizationId", $"%{organizationId}%");
+            query.Append("organizations LIKE @organizationId2 AND ");
+            args["organizationId2"] = $"%{organizationId}%";
         }
 
         if (forMap)
