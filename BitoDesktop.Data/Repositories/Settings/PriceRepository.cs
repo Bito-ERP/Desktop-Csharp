@@ -83,32 +83,32 @@ public class PriceRepository
         {
             filtered = true;
             query.Append("Type = @type AND ");
-            args.Add("type", type);
+            args["@type"] = type;
         }
 
         if (currencyId != null)
         {
             filtered = true;
             query.Append("CurrencyId = @currencyId AND ");
-            args.Add("currencyId", currencyId);
+            args["@currencyId"] = currencyId;
         }
 
         if (status != null)
         {
             filtered = true;
             query.Append("Status = @status AND ");
-            args.Add("status", status);
+            args["@status"] = status;
         }
 
         filtered = true;
         query.Append("(Employees IS NULL OR Employees LIKE @employeeId) AND ");
-        args.Add("employeeId", employeeId = $"%{employeeId ?? ""}%");
+        args["@employeeId"] = $"%{employeeId ?? ""}%";
 
         if (searchQuery != null && searchQuery.Length != 0)
         {
             var search = $"%{searchQuery}%";
             query.Append("(Name LIKE @search OR ShortName LIKE @search)");
-            args.Add("search", search);
+            args["@search"] = search;
         }
         else if (filtered)
             query.Remove(
@@ -128,8 +128,8 @@ public class PriceRepository
             "OFFSET @offset "
               );
 
-        args.Add("@limit", limit);
-        args.Add("@offset", offset);
+        args["@limit"] = limit;
+        args["@offset"] = offset;
 
         return await DBExcutor.QueryAsync<Price>(query.ToString(), args);
     }

@@ -60,7 +60,7 @@ public class WarehouseRepository
         {
             filtered = true;
             query.Append("OrganizationId = @organizationId AND ");
-            args.Add("organizationId", organizationId);
+            args["@organizationId"] = organizationId;
         }
 
         if (filtered)
@@ -91,19 +91,19 @@ public class WarehouseRepository
         var args = new Dictionary<string, object>();
 
         query.Append("OrganizationId = @organisationId AND ");
-        args.Add("organisationId", organisationId);
+        args["@organisationId"] = organisationId;
 
         if (status != null)
         {
             query.Append("Status = @status AND ");
-            args.Add("status", status);
+            args["@status"] = status;
         }
 
         if (searchQuery != null && searchQuery.Length != 0)
         {
             var search = $"%{searchQuery}%";
             query.Append("(Name LIKE @search OR Code LIKE @search)");
-            args.Add("search", search);
+            args["@search"] = search;
         }
         else
             query.Remove(
@@ -118,8 +118,8 @@ public class WarehouseRepository
            "OFFSET @offset "
              );
 
-        args.Add("@limit", limit);
-        args.Add("@offset", offset);
+        args["@limit"] = limit;
+        args["@offset"] = offset;
 
         return await DBExcutor.QueryAsync<Warehouse>(
             query.ToString(),

@@ -43,7 +43,7 @@ public class InvoiceRepository
         {
             query.Append("e.tradeId = @value ");
         }
-        args.Add("value", value);
+        args["@value"] = value;
 
         return await DBExcutor.QuerySingleOrDefaultAsync<Invoice>(query.ToString(), args);
     }
@@ -66,14 +66,14 @@ public class InvoiceRepository
         {
             filtered = true;
             query.Append("organizationId = @organizationId AND ");
-            args.Add("organizationId", organizationId);
+            args["@organizationId"] = organizationId;
         }
 
         if (type != null)
         {
             filtered = true;
             query.Append("type = @type AND ");
-            args.Add("type", type);
+            args["@type"] = type;
         }
 
         if (fullyPaid != null)
@@ -92,7 +92,7 @@ public class InvoiceRepository
         if (searchQuery != null && searchQuery.Length != 0)
         {
             query.Append("(number LIKE @searchQuery)");
-            args.Add("searchQuery", $"%{searchQuery}%");
+            args["@searchQuery"] = $"%{searchQuery}%";
         }
         else if (filtered)
             query.Remove(
@@ -112,8 +112,8 @@ public class InvoiceRepository
             "OFFSET @offset "
         );
 
-        args.Add("@limit", limit);
-        args.Add("@offset", offset);
+        args["@limit"] = limit;
+        args["@offset"] = offset;
 
         return await DBExcutor.QueryAsync<Invoice>(query.ToString(), args);
 
