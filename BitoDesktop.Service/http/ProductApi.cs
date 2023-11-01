@@ -7,7 +7,6 @@ namespace BitoDesktop.Service.Http;
 
 public class ProductApi
 {
-
     public static async Task<BaseResponse<PagingResponse<ProductResponse>>> GetPage(RequestPage request) =>
        await Client.Post<PagingResponse<ProductResponse>>("employee/good/get-paging", request);
 
@@ -48,6 +47,5 @@ public class ProductApi
       await Client.Post<ProductResponse>("employee/product/get-by-sku", request);
     public static async Task<BaseResponse<ProductResponse>> GetByMark(RequestBy request) =>
       await Client.Post<ProductResponse>("employee/good/stock/get-by-mark", request);
-
 }
 

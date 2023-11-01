@@ -5,6 +5,7 @@ using BitoDesktop.Data.Repositories.Pos;
 using BitoDesktop.Data.Repositories.Sale;
 using BitoDesktop.Data.Repositories.Settings;
 using BitoDesktop.Data.Repositories.WarehouseP;
+using BitoDesktop.Domain.Entities.Products;
 using BitoDesktop.Service.DTOs.Common;
 using BitoDesktop.Service.DTOs.Sale;
 using BitoDesktop.Service.Exceptions;
@@ -85,6 +86,8 @@ namespace BitoDesktop.Service.Services
 
             return true;
         }
+
+       
 
         public async Task<bool> SynchroniseToMachineCurrency()
         {
@@ -351,6 +354,12 @@ namespace BitoDesktop.Service.Services
             foreach (var product in products.PageData)
             {
                 await productRepository.Insert(product.Get());
+
+                await productRepository.InsertOrganizations(product.Organizations.Select(s => s.Get(product.Id)));
+                
+                await productRepository.InsertWarehouses(product.Warehouses.Select(s => s.Get()));
+
+                await productRepository.InsertPrices(product.Prices.Select(s => s.Get()));
             }
 
             return true;

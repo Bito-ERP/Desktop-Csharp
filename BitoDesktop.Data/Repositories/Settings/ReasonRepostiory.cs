@@ -52,19 +52,19 @@ public class ReasonRepostiory
 
         filtered = true;
         query.Append("Type = @type AND ");
-        args.Add("type", type);
+        args["@type"] = type;
 
         if (isActive != null)
         {
             filtered = true;
             query.Append("IsActive = @isActive AND ");
-            args.Add("isActive", isActive);
+            args["@isActive"] = isActive;
         }
 
         if (searchQuery != null && searchQuery.Length != 0)
         {
             query.Append("name LIKE @searchQuery");
-            args.Add(searchQuery, $"%{searchQuery}%");
+            args["@searchQuery"] = $"%{searchQuery}%";
         }
         else if (filtered)
             query.Remove(
@@ -84,8 +84,8 @@ public class ReasonRepostiory
             "OFFSET @offset "
           );
 
-        args.Add("@limit", limit);
-        args.Add("@offset", offset);
+        args["@limit"] = limit;
+        args["@offset"] = offset;
 
         return await DBExcutor.QueryAsync<Reason>(query.ToString(), args);
     }

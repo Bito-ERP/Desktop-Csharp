@@ -118,12 +118,12 @@ public class PosRepository
            .Append("LEFT JOIN product_price price ON item.Type == 1 AND price.PriceId = @priceId AND price.OrganizationId = @organizationId AND price.ProductId = item.ItemId ")
            .Append("LEFT JOIN product_warehouse warehouse ON item.Type == 1 AND warehouse.WarehouseId = @warehouseId AND warehouse.ProductId = item.ItemId ");
         var args = new Dictionary<string, object>();
-        args.Add("organizationId", organizationId);
-        args.Add("priceId", priceId);
-        args.Add("warehouseId", warehouseId);
+        args["@organizationId"] = organizationId;
+        args["@priceId"] = priceId;
+        args["@warehouseId"] = warehouseId;
 
         query.Append("WHERE PageId = @pageId ");
-        args.Add("pageId", pageId);
+        args["@pageId"] = pageId;
 
         query.Append("ORDER BY \"Order\" ASC");
 

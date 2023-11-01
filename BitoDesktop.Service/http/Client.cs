@@ -14,17 +14,17 @@ public class Client
 
     const string BASE_URL = "https://api.systematicdev.uz/pos-api/";
     public static string Token { get; set; }
-    public static string DeviceId { get; set; } = "64a26a4369ad0c5dbfb1b0d4";
-    public static string OrganizationId { get; set; } = "63d23495f1cf6851fcaf832b";
+    public static string DeviceId { get; set; } = null;
+    public static string OrganizationId { get; set; }
     public static string Username { get; set; } = "dev";
-
+    public static string UserId { get; set; }
     public static async Task<BaseResponse<T>> Post<T>(string route, object request = null)
     {
         using HttpClient httpClient = new();
         httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer " + Token);
         httpClient.DefaultRequestHeaders.Add("username", Username);
         httpClient.DefaultRequestHeaders.Add("pos_id", DeviceId);
-        httpClient.DefaultRequestHeaders.Add("user_id", "63d23484f1cf6851fcaf8140");
+        httpClient.DefaultRequestHeaders.Add("user_id", UserId);
         httpClient.DefaultRequestHeaders.Add("organization_id", OrganizationId);
         httpClient.DefaultRequestHeaders.Add("time", "2023-09-26T12:42:39.287Z");
 

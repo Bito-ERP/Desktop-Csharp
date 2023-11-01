@@ -225,7 +225,7 @@ public class ReceiptRepository
             .Append("LEFT JOIN invoice i ON i.TradeId = r.Id ");
 
         query.Append("WHERE r.Uuid = @uuid");
-        args.Add("uuid", uuid);
+        args["@uuid"] = uuid;
 
         var receipt = await DBExcutor.QuerySingleOrDefaultAsync<Receipt>(
             query.ToString(),
@@ -280,14 +280,14 @@ public class ReceiptRepository
         {
             filtered = true;
             query.Append("r.Synced = @synced AND ");
-            args.Add("synced", synced);
+            args["@synced"] = synced;
         }
 
         if (minFailedAttempts != null)
         {
             filtered = true;
             query.Append("r.Failed < @minFailedAttempts AND ");
-            args.Add("minFailedAttempts", minFailedAttempts);
+            args["@minFailedAttempts"] = minFailedAttempts;
         }
 
         if (filtered)
@@ -306,7 +306,7 @@ public class ReceiptRepository
         if (limit != null)
         {
             query.Append("LIMIT @limit");
-            args.Add("limit", limit);
+            args["@limit"] = limit;
         }
 
         var receipts = await DBExcutor.QueryAsync<Receipt>(
@@ -348,62 +348,62 @@ public class ReceiptRepository
             new StringBuilder("SELECT r.* FROM receipt r WHERE r.OrganizationId = @organizationId AND ");
         var args = new Dictionary<string, object>();
 
-        args.Add("organizationId", organizationId);
+        args["@organizationId"] = organizationId;
 
         if (fromDate != null)
         {
             filtered = true;
             query.Append("SoldAt >= @fromDate AND ");
-            args.Add("fromDate", fromDate);
+            args["@fromDate"] = fromDate;
         }
 
         if (toDate != null)
         {
             filtered = true;
             query.Append("SoldAt <= @toDate AND ");
-            args.Add("toDate", toDate);
+            args["@toDate"] = toDate;
         }
 
         if (customerId != null)
         {
             filtered = true;
             query.Append("CustomerId = @customerId AND ");
-            args.Add("customerId", customerId);
+            args["@customerId"] = customerId;
         }
 
         if (productId != null)
         {
             filtered = true;
             query.Append("EXISTS(SELECT Id FROM receipt_item i WHERE i.ReceiptUUID = r.Uuid AND i.ProductId = @productId) AND ");
-            args.Add("productId", productId);
+            args["@productId"] = productId;
         }
 
         if (currencyId != null)
         {
             filtered = true;
             query.Append("CurrencyId = @currencyId AND ");
-            args.Add("currencyId", currencyId);
+            args["@currencyId"] = currencyId;
         }
 
         if (fromSum != null)
         {
             filtered = true;
             query.Append("TotalToPay >= @fromSum AND ");
-            args.Add("fromSum", fromSum);
+            args["@fromSum"] = fromSum;
         }
 
         if (toSum != null)
         {
             filtered = true;
             query.Append("TotalToPay <= @toSum AND ");
-            args.Add("toSum", toSum);
+            args["@toSum"] = toSum;
         }
 
         if (isRefund != null)
         {
             filtered = true;
-            query.Append("IsRefund = ? AND ");
-            args.Add("isRefund", isRefund);
+            query.Append("IsRefund = @isRefund AND ");
+            args["@isRefund"] = isRefund;
         }
 
         if (notCompletelyRefunded == true)
@@ -415,8 +415,8 @@ public class ReceiptRepository
         if (state != null)
         {
             filtered = true;
-            query.Append("State = ? AND ");
-            args.Add("state", state);
+            query.Append("State = @state AND ");
+            args["@state"] = state;
         }
 
         if (searchQuery != null && searchQuery.Length != 0)
@@ -435,7 +435,7 @@ public class ReceiptRepository
             query.Append(
                 "(r.Uuid LIKE @native) "
             );
-            args.Add("native", native);
+            args["@native"] = native;
         }
         else if (filtered)
             query.Remove(
@@ -456,8 +456,8 @@ public class ReceiptRepository
             "OFFSET @offset "
         );
 
-        args.Add("@limit", limit);
-        args.Add("@offset", offset);
+        args["@limit"] = limit;
+        args["@offset"] = offset;
 
         return await DBExcutor.QueryAsync<Receipt>(query.ToString(), args);
     }

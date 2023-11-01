@@ -20,7 +20,7 @@ namespace BitoDesktop.WPF
             InitializeComponent();
 
             loginPage = new LoginPage();
-
+             
             NavigateToLoginPage();
 
             sidebarPage = new SideBarPage();

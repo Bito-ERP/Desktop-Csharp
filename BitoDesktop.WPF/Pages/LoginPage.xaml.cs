@@ -1,4 +1,5 @@
 ﻿using BitoDesktop.Service.DTOs.Auth;
+using BitoDesktop.Service.DTOs.Hr;
 using BitoDesktop.Service.Http;
 using BitoDesktop.Service.Interfaces;
 using BitoDesktop.Service.Services;
@@ -21,6 +22,7 @@ namespace BitoDesktop.WPF.Pages
         private readonly CultureInfo ci;
 
         private readonly IAuthService authService;
+        private readonly ConfigurationService configurationService;
 
         private LoginController loginController;
         private DeviceChooserController deviceChooserController;
@@ -36,6 +38,7 @@ namespace BitoDesktop.WPF.Pages
 
             authService = new AuthService();
 
+            configurationService = new ConfigurationService();
             loginController = new LoginController();
             deviceChooserController = new DeviceChooserController();
             serverChooserController = new ServerChooserController();
@@ -110,7 +113,7 @@ namespace BitoDesktop.WPF.Pages
         {
             var deviceId = (sender as DeviceController).DeviceId;
             Client.DeviceId = deviceId;
-            await LoadOrganization();
+            await LoadOrganization(); 
         }
 
 
@@ -142,12 +145,38 @@ namespace BitoDesktop.WPF.Pages
 
             foreach (var warehouse in warhouses.PageData)
             {
-                organizationController.WarehouseCmb.Items.Add(warehouse.Name);
+                Grid grid = new Grid();
+
+                TextBlock idTxt = new TextBlock();
+                idTxt.Text = warehouse.Id;
+                idTxt.Foreground = new SolidColorBrush(Colors.White);
+
+                TextBlock nameTxt = new TextBlock();
+                nameTxt.Text = warehouse.Name;
+                nameTxt.Foreground = new SolidColorBrush(Colors.Black);
+
+                grid.Children.Add(idTxt);
+                grid.Children.Add(nameTxt);
+
+                organizationController.WarehouseCmb.Items.Add(grid);
             }
 
             foreach (var price in prices)
             {
-                organizationController.PriceCmb.Items.Add(price.Name);
+                Grid grid = new Grid();
+
+                TextBlock idTxt = new TextBlock();
+                idTxt.Text = price.Id;
+                idTxt.Foreground = new SolidColorBrush(Colors.White);
+
+                TextBlock nameTxt = new TextBlock();
+                nameTxt.Text = price.Name;
+                nameTxt.Foreground = new SolidColorBrush(Colors.Black);
+
+                grid.Children.Add(idTxt);
+                grid.Children.Add(nameTxt);
+
+                organizationController.PriceCmb.Items.Add(grid);
             }
             LoginStageControl.Items.Add(organizationController);
 
@@ -164,6 +193,13 @@ namespace BitoDesktop.WPF.Pages
                 organizationController.WarehouseCmb.SelectedItem != null)
             {
                 OrganizationId = ((organizationController.OrgCmb.SelectedItem as Grid).Children[0] as TextBlock).Text;
+                var warehouseId = ((organizationController.WarehouseCmb.SelectedItem as Grid).Children[0] as TextBlock).Text;
+                var priceId = ((organizationController.PriceCmb.SelectedItem as Grid).Children[0] as TextBlock).Text;
+
+                Client.OrganizationId = OrganizationId;
+
+                var res = configurationService.SaveConfigs(priceId, warehouseId,OrganizationId);
+
                 LoginStageControl.Items.Clear();
                 pinCodeController.OkBtn.Click += PincodeOkBtnClick;
                 LoginStageControl.Items.Add(pinCodeController);
@@ -172,13 +208,12 @@ namespace BitoDesktop.WPF.Pages
 
         private async void PincodeOkBtnClick(object sender, RoutedEventArgs e)
         {
-            await authService.EnterByPinCode(pinCodeController.PinCodeTxt.Password);
+            var res = await authService.EnterByPinCode(pinCodeController.PinCodeTxt.Password);
 
-            MainWindow mainWindow = Application.Current.MainWindow as MainWindow;
+            Client.UserId = res.Id;
+            var mainWindow = Application.Current.MainWindow as MainWindow;
             if (mainWindow != null)
-            {
                 mainWindow.NavigateToPosPage();
-            }
         }
 
         private async void Login(object sender, RoutedEventArgs e)

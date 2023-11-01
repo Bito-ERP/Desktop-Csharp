@@ -115,7 +115,7 @@ public class EmployeeRepository
         if (organizationId != null)
         {
             query.Append("JOIN employee_position pos ON pos.EmployeeId = Id AND pos.OrganizationId = @organizationId ");
-            args.Add("@organizationId", organizationId);
+            args["@organizationId"] = organizationId;
         }
 
         query.Append("WHERE ");
@@ -124,7 +124,7 @@ public class EmployeeRepository
         {
             var search = "%" + searchQuery + "%";
             query.Append("(fullName LIKE @search or phoneNumber LIKE @search)");
-            args.Add("@search", search);
+            args["@search"] = search;
         }
         else if (filtered)
             query.Remove(
@@ -147,8 +147,8 @@ public class EmployeeRepository
              "OFFSET @offset "
          );
 
-        args.Add("@limit", limit);
-        args.Add("@offset", offset);
+        args["@limit"] = limit;
+        args["@offset"] = offset;
 
         return await DBExcutor.QueryAsync<Employee>(
             query.ToString(),

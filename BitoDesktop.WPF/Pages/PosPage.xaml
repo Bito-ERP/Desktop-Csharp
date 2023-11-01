@@ -143,6 +143,16 @@
                                 Source="/Icons/frame.png" />
                         </Button>
                     </Grid>
+
+                    <ScrollViewer
+                        x:Name="SearchResultsProduct"
+                        Grid.RowSpan="2"
+                        Height="200"
+                        VerticalAlignment="Top"
+                        Style="{StaticResource MaterialDesignScrollViewer}"
+                        VerticalScrollBarVisibility="Auto">
+                        <ItemsControl x:Name="ProductSearchItems" />
+                    </ScrollViewer>
                     <ScrollViewer
                         x:Name="TabsViewer"
                         Height="42"

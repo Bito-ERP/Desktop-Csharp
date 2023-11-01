@@ -72,7 +72,7 @@ public class CategoryRepository
         {
             filtered = true;
             query.Append("parentId = @parentCategoryId AND ");
-            args.Add("parentCategoryId", parentCategoryId);
+            args["@parentCategoryId"] = parentCategoryId;
         }
         else if (onlyTops == true)
         {
@@ -84,7 +84,7 @@ public class CategoryRepository
         {
             filtered = true;
             query.Append("organizationIds LIKE @organizationId AND ");
-            args.Add("organizationId", $"%organizationId%");
+            args["@organizationId"] = $"%organizationId%";
         }
 
         if (searchQuery != null && searchQuery.Length != 0)
@@ -97,8 +97,8 @@ public class CategoryRepository
                 "(name LIKE @search1 OR " +
                         "name LIKE @search2) "
             );
-            args.Add("search1", native);
-            args.Add("search2", transliterated);
+            args["@search1"] = native;
+            args["@search2"] = transliterated;
         }
         else if (filtered)
             query.Remove(
@@ -118,8 +118,8 @@ public class CategoryRepository
              "OFFSET @offset "
            );
 
-        args.Add("@limit", limit);
-        args.Add("@offset", offset);
+        args["@limit"] = limit;
+        args["@offset"] = offset;
 
         return await DBExcutor.QueryAsync<Category>(
             query.ToString(),

@@ -160,19 +160,19 @@ public class CustomerRepository
             if (organizationId != null)
             {
                 query.Append("AND balanceList.OrganizationId = @organizationId ");
-                args.Add("organizationId", organizationId);
+                args["@organizationId"] = organizationId;
             }
         }
 
         filtered = true;
         query.Append("WHERE Id = @customerId AND ");
-        args.Add("customerId", customerId);
+        args["@customerId"] = customerId;
 
         if (organizationId != null)
         {
             filtered = true;
-            query.Append("organizations LIKE @organizationId AND ");
-            args.Add("organizationId", $"%{organizationId}%");
+            query.Append("organizations LIKE @organizationId2 AND ");
+            args["@organizationId2"] = $"%{organizationId}%";
         }
 
         if (filtered)
@@ -258,7 +258,7 @@ public class CustomerRepository
             if (organizationId != null)
             {
                 query.Append("AND totalSpent.OrganizationId = @organizationId ");
-                args["organizationId"] = organizationId;
+                args["@organizationId"] = organizationId;
             }
         }
         if (withBalance)
@@ -267,7 +267,7 @@ public class CustomerRepository
             if (organizationId != null)
             {
                 query.Append("AND balanceList.organizationId = @organizationId ");
-                args["organizationId"] = organizationId;
+                args["@organizationId"] = organizationId;
             }
         }
         query.Append("WHERE ");
@@ -275,7 +275,7 @@ public class CustomerRepository
         {
             filtered = true;
             query.Append("organizations LIKE @organizationId2 AND ");
-            args["organizationId2"] = $"%{organizationId}%";
+            args["@organizationId2"] = $"%{organizationId}%";
         }
 
         if (forMap)
@@ -294,7 +294,7 @@ public class CustomerRepository
             }
             else
                 query.Append(")");
-            args.Add("search", search);
+            args["@search"] = search;
         }
         else if (filtered)
             query.Remove(
@@ -311,15 +311,15 @@ public class CustomerRepository
         {
             query.Append("ORDER BY Name ")
                 .Append("LIMIT @limit ");
-            args.Add("@limit", limit);
+            args["@limit"] = limit;
+
         }
 
         if (offset != null)
         {
-            query.Append("OFFSET @offset "); 
-            args.Add("@offset", offset);
+            query.Append("OFFSET @offset ");
+            args["@offset"] = offset;
         }
-
         return await DBExcutor.QueryAsync<Customer>(
             query.ToString(),
             args

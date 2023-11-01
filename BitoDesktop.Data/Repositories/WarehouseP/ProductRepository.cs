@@ -352,8 +352,8 @@ public class ProductRepository : IProductRepository
             "OFFSET @offset "
         );
 
-        args.Add("@limit", limit);
-        args.Add("@offset", offset);
+        args["@limit"] = limit;
+        args["@offset"] = offset;
 
         return await DBExcutor.QueryAsync<Product>(query.ToString(), args);
     }
@@ -376,11 +376,11 @@ public class ProductRepository : IProductRepository
         query.Append("FROM product as p ");
 
         query.Append("LEFT JOIN product_price price ON price.PriceId = @priceId AND price.OrganizationId = @organizationId AND price.ProductId = p.Id ");
-        args.Add("@priceId", priceId);
-        args.Add("@organizationId", organizationId);
+        args["@priceId"] = priceId;
+        args["@organizationId"] = organizationId;
 
         query.Append("WHERE p.Id IN @products");
-        args.Add("@products", products);
+        args["@products"] = products;
 
         return await DBExcutor.QueryAsync<double>(query.ToString(), args);
     }
@@ -409,8 +409,8 @@ public class ProductRepository : IProductRepository
         )
     {
         args.Clear();
-        args.Add("@organizationId", organizationId);
-        args.Add("@productId", productId);
+        args["@organizationId"] = organizationId;
+        args["@productId"] = productId;
 
         return await DBExcutor.QueryAsync<ProductTable.Price>(
             "SELECT PriceId as PriceId, PriceAmount as SelectedPriceAmount FROM product_price WHERE OrganizationId = @organizationId AND ProductId = @productId",
@@ -445,10 +445,10 @@ public class ProductRepository : IProductRepository
              "p.Barcode = @byValue OR " +
                     "p.Barcodes LIKE @byValue2 "
         );
-        args.Add("@byValue", byValue);
+        args["@byValue"] = byValue;
 
         if (type == 2)
-            args.Add("@byValue2", "%" + byValue + "%");
+            args["@byValue2"] = "%" + byValue + "%";
 
         var entity = await DBExcutor.QuerySingleOrDefaultAsync<Product>(
             query.ToString(),
@@ -483,9 +483,8 @@ public class ProductRepository : IProductRepository
         if (type == 0)
         {
             query.Append("(p.Sku = @byValue OR p.Barcode = @byValue OR p.Barcodes LIKE @byValue2 ) ");
-            args.Add("@byValue", byValue);
-            args.Add("@byValue", byValue);
-            args.Add("@byValue2", " % " + byValue + "%");
+            args["@byValue"] = byValue;
+            args["@byValue2"] = " % " + byValue + "%";
         }
         else if (type == 1)
         {
@@ -498,7 +497,7 @@ public class ProductRepository : IProductRepository
                     query.Append("p.CategoryId NOT IN @itemIds");
                 else
                     query.Append("p.CategoryId IN @itemIds");
-                args.Add("@itemIds", itemIds);
+                args["@itemIds"] = itemIds;
             }
         }
 
@@ -560,14 +559,14 @@ public class ProductRepository : IProductRepository
         query.Append("FROM product as p ");
 
         query.Append("JOIN product_organization org ON org.IsAvailable = TRUE AND org.OrganizationId = @organizationId AND org.ProductId = p.Id ");
-        args.Add("@organizationId", organizationId);
+        args["@organizationId"] = organizationId;
 
         if (warehouseId != null)
         {
             query.Append(filterByWarehouse == true ? "JOIN " : "LEFT JOIN ");
 
             query.Append("product_warehouse warehouse ON warehouse.WarehouseId = @warehouseId AND warehouse.ProductId = p.Id ");
-            args.Add("@warehouseId", warehouseId);
+            args["@warehouseId"] = warehouseId;
         }
 
         if (priceId != null)
@@ -575,7 +574,7 @@ public class ProductRepository : IProductRepository
             query.Append(filterByPrice == true ? "JOIN " : "LEFT JOIN ");
 
             query.Append("product_price price ON price.PriceId = @priceId AND price.OrganizationId = @organizationId AND price.ProductId = p.Id ");
-            args.Add("@priceId", priceId);
+            args["@priceId"] = priceId;
         }
 
         query.Append("WHERE ");
@@ -584,25 +583,25 @@ public class ProductRepository : IProductRepository
         {
             filtered = true;
             query.Append("p.IsProduct = @isProduct AND ");
-            args.Add("@isProduct", isProduct);
+            args["@isProduct"] = isProduct;
         }
         if (isMaterial != null)
         {
             filtered = true;
             query.Append("p.IsMaterial = @isMaterial AND ");
-            args.Add("@isMaterial", isMaterial);
+            args["@isMaterial"] = isMaterial;
         }
         if (isSemiProduct != null)
         {
             filtered = true;
             query.Append("p.IsSemiProduct = @isSemiProduct AND ");
-            args.Add("@isSemiProduct", isSemiProduct);
+            args["@isSemiProduct"] = isSemiProduct;
         }
         if (isAvailableForSale != null)
         {
             filtered = true;
             query.Append("org.IsAvailableForSale = @isAvailableForSale AND ");
-            args.Add("@isAvailableForSale", isAvailableForSale);
+            args["@isAvailableForSale"] = isAvailableForSale;
         }
 
 
@@ -610,7 +609,7 @@ public class ProductRepository : IProductRepository
         {
             filtered = true;
             query.Append("p.CategoryId = @categoryId AND ");
-            args.Add("@categoryId", categoryId);
+            args["@categoryId"] = categoryId;
         }
 
         if (inStockState != null)
@@ -648,8 +647,8 @@ public class ProductRepository : IProductRepository
                         "p.Sku LIKE @native OR " +
                         "p.Barcodes LIKE @native) "
             );
-            args.Add("@native", native);
-            args.Add("@transliterated", transliterated);
+            args["@native"] = native;
+            args["@transliterated"] = transliterated;
         }
         else if (filtered)
             query.Remove(
@@ -705,27 +704,27 @@ public class ProductRepository : IProductRepository
         if (withAmount)
         {
             query.Append("JOIN product_organization AS org ON org.IsAvailable = TRUE AND org.OrganizationId = @organizationId AND org.ProductId = p.Id ");
-            args.Add("@organizationId", organizationId);
+            args["@organizationId"] = organizationId;
             filterByOrganization = true;
         }
 
         if (warehouseId != null)
         {
             query.Append("LEFT JOIN product_warehouse AS warehouse ON warehouse.WarehouseId = @warehouseId AND warehouse.ProductId = p.Id ");
-            args.Add("@warehouseId", warehouseId);
+            args["@warehouseId"] = warehouseId;
         }
 
         if (priceId != null)
         {
             query.Append("LEFT JOIN product_price AS price ON price.PriceId = @priceId AND price.OrganizationId = @organizationId AND price.ProductId = p.Id ");
-            args.Add("@priceId", priceId);
-            args.Add("@organizationId", organizationId);
+            args["@priceId"] = priceId;
+            args["@organizationId"] = organizationId;
         }
 
         if (!filterByOrganization)
         {
             query.Append("JOIN product_organization AS org ON org.IsAvailable = TRUE AND org.OrganizationId = @organizationId AND org.ProductId = p.Id ");
-            args.Add("@organizationId", organizationId);
+            args["@organizationId"] = organizationId;
         }
 
         query.Append("WHERE ");

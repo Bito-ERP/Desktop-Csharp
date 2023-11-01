@@ -58,38 +58,38 @@ public class TicketRepository
 
         if (overallSum != null)
         {
-            query.Append("overallSum = @, ");
-            args.Add("overallSum", overallSum);
+            query.Append("overallSum = @overallSum, ");
+            args["@overallSum"] = overallSum;
         }
 
         if (name != null)
         {
             query.Append("name = @name, ");
-            args.Add("name", name);
+            args["@name"] = name;
         }
 
         if (customerId != null)
         {
             query.Append("customerId = @customerId, ");
-            args.Add("customerId", customerId);
+            args["@customerId"] = customerId;
         }
 
         if (discounts != null)
         {
             query.Append("discounts = @discounts, ");
-            args.Add("discounts", discounts);
+            args["@discounts"] = discounts;
         }
 
         if (comment != null)
         {
             query.Append("comment = @comment, ");
-            args.Add("comment", comment);
+            args["@comment"] = comment;
         }
 
         query.Remove(query.Length - 2, 2);
 
         query.Append(" WHERE Id = @ticketId");
-        args.Add("ticketId", ticketId);
+        args["@ticketId"] = ticketId;
 
 
         return await DBExcutor.ExecuteAsync(query.ToString(), args);
@@ -152,13 +152,13 @@ public class TicketRepository
         query.Append("LEFT JOIN product_price price ON price.PriceId = @priceId AND price.OrganizationId = @organizationId AND price.ProductId = i.ProductId ");
         query.Append("LEFT JOIN product_warehouse warehouse ON warehouse.WarehouseId = @warehouseId AND warehouse.ProductId = i.ProductId ");
 
-        args.Add("organizationId", organizationId);
-        args.Add("priceId", priceId);
-        args.Add("warehouseId", warehouseId);
+        args["@organizationId"] = organizationId;
+        args["@priceId"] = priceId;
+        args["@warehouseId"] = warehouseId;
 
 
         query.Append("WHERE i.TicketId = @ticketId");
-        args.Add("ticketId", ticketId);
+        args["@ticketId"] = ticketId;
 
         return await DBExcutor.QueryAsync<TicketItem>(query.ToString(), args);
 

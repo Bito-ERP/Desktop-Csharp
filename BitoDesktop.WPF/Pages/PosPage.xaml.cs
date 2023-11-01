@@ -1,6 +1,8 @@
-﻿using BitoDesktop.Service.Http;
+﻿using BitoDesktop.Domain.Entities.CustomerP;
+using BitoDesktop.Service.Http;
 using BitoDesktop.Service.Services;
 using BitoDesktop.WPF.Controllers.Pos;
+using System.Linq;
 using System.Windows.Controls;
 
 namespace BitoDesktop.WPF.Pages
@@ -12,16 +14,31 @@ namespace BitoDesktop.WPF.Pages
     {
         private readonly ProductService productService;
         private readonly CustomerService customerService;
+        private readonly ConfigurationService configurationService;
         public PosPage()
         {
             InitializeComponent();
             productService = new ProductService();
+            configurationService = new ConfigurationService();
             customerService = new CustomerService();
         }
 
         private async void SearchProduct_TextChanged(object sender, TextChangedEventArgs e)
         {
-            //var products = await productService.GetProducts(SearchProduct.Text,Client.DeviceId,);
+            ProductSearchItems.Items.Clear();
+            var warehouseId = await configurationService.GetWarehouse();
+            var priceId = await configurationService.GetPrice();
+            var organizationId = await configurationService.GetOrganization();
+            var products = await productService.GetProducts(SearchProduct.Text, organizationId, warehouseId, priceId);
+
+            foreach (var product in products)
+            {
+                ProductSearchController productSearchController = new ProductSearchController();
+                productSearchController.NameTxt.Text = product.Name;
+                productSearchController.BarcodeTxt.Text = product.Barcode;
+                productSearchController.CapacityTxt.Text = product.WarehouseAmount.ToString();
+                ProductSearchItems.Items.Add(productSearchController);
+            }
         }
 
         private async void SearchCustomer_TextChanged(object sender, TextChangedEventArgs e)
