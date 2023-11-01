@@ -484,7 +484,7 @@ public class ProductRepository : IProductRepository
         {
             query.Append("(p.Sku = @byValue OR p.Barcode = @byValue OR p.Barcodes LIKE @byValue2 ) ");
             args["@byValue"] = byValue;
-            args["@byValue2"] = " % " + byValue + "%";
+            args["@byValue2"] = "%" + byValue + "%";
         }
         else if (type == 1)
         {
