@@ -38,7 +38,7 @@ namespace BitoDesktop.Service.Services
         public async Task<IEnumerable<Product>> GetProducts(string value, string organizationId, string warehouseId, string priceId)
         {
             var product = await productRepository
-                .GetMultiple(value, organizationId, warehouseId, priceId, true, true, false);
+                .GetProducts(organizationId, warehouseId, true, true, true, true,value, priceId,null,null,false,true,true,false);
 
             if (product == null)
                 throw new MarketException(404, "Product not found");

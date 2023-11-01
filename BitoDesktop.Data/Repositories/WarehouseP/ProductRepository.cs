@@ -304,8 +304,6 @@ public class ProductRepository : IProductRepository
     }
 
     public async Task<IEnumerable<Product>> GetProducts(
-        int offset,
-        int limit,
         string organizationId,
         string warehouseId,
         bool? isProduct, // pass null to exclude this param from the filter
@@ -319,15 +317,15 @@ public class ProductRepository : IProductRepository
         bool withOrganizationAmount,  //  true, infos of product related to given organization will be added
         bool filterByWarehouse, // true, return products that exist only in the specified warehouse
         bool filterByPrice,     // true, return products that have the specified price
-        bool excludeOutOfStockProducts // true, exclude products that are oud of stock
+        bool excludeOutOfStockProducts, // true, exclude products that are oud of stock
+        int? offset = null,
+        int? limit = null
         )
     {
         var args = new Dictionary<string, object>();
 
         var query = getProductQuery(
             args,
-            offset,
-            limit,
             organizationId,
             warehouseId,
             isProduct,
@@ -341,7 +339,9 @@ public class ProductRepository : IProductRepository
             withOrganizationAmount,
             filterByWarehouse,
             filterByPrice,
-            excludeOutOfStockProducts
+            excludeOutOfStockProducts,
+            offset,
+            limit
             );
 
         query.Append(
@@ -519,8 +519,6 @@ public class ProductRepository : IProductRepository
 
     private StringBuilder getProductQuery(
         Dictionary<string, object> args,
-        int offset,
-        int limit,
         string organizationId,
         string warehouseId,
         bool? isProduct, // pass null to exclude this param from the filter
@@ -534,7 +532,9 @@ public class ProductRepository : IProductRepository
         bool withOrganizationAmount, //  true, infos of product related to given organization will be added
         bool filterByWarehouse, // true, return products that exist only in the specified warehouse
         bool filterByPrice,     // true, return products that have the specified price
-        bool excludeOutOfStockProducts // true, exclude products that are oud of stock
+        bool excludeOutOfStockProducts, // true, exclude products that are oud of stock
+        int? offset = null,
+        int? limit = null
         )
     {
 
