@@ -7,8 +7,8 @@ namespace BitoDesktop.Data.Repositories;
 public class Transliterator
 {
 
-    public static Dictionary<Int32, Int32> lToC;
-    public static Dictionary<Int32, Int32> cToL;
+    public static Dictionary<Int32, Int32> lToC = new Dictionary<Int32, Int32>();
+    public static Dictionary<Int32, Int32> cToL = new Dictionary<Int32, Int32>();
 
     private string str;
     private bool? isLatin = null;
