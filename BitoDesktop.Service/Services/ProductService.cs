@@ -24,21 +24,11 @@ namespace BitoDesktop.Service.Services
 
             return product;
         }
-        public async Task<Product> GetByBarcode(string barcode, string organizationId, string warehouseId, string priceId)
-        {
-            var product = await productRepository
-                .GetById(barcode, organizationId, warehouseId, priceId, true, true, false);
-
-            if (product == null)
-                throw new MarketException(404, "Product not found");
-
-            return product;
-        }
 
         public async Task<IEnumerable<Product>> GetProducts(string value, string organizationId, string warehouseId, string priceId)
         {
             var product = await productRepository
-                .GetProducts(organizationId, warehouseId, true, true, true, true,value, priceId,null,null,false,true,true,false);
+                .GetProducts(organizationId, warehouseId, null, null, null, true,value, priceId,null,null,false,false,false,false);
 
             if (product == null)
                 throw new MarketException(404, "Product not found");
