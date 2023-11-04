@@ -287,10 +287,10 @@ public class CustomerRepository
         if (searchQuery != null && searchQuery.Length != 0)
         {
             var search = $"%{searchQuery}%";
-            query.Append("(name LIKE @search OR phoneNumber LIKE @search");
+            query.Append("(LOWER(name) LIKE @search OR phoneNumber LIKE @search");
             if (forMap)
             {
-                query.Append(" OR addressName LIKE @search)");
+                query.Append(" OR LOWER(addressName) LIKE @search)");
             }
             else
                 query.Append(")");

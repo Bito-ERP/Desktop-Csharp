@@ -314,7 +314,7 @@ public class ProductRepository : IProductRepository
         string priceId,        // provide price id to get price of product, it is returndes as SelectedPriceAmount
         string inStockState, // null, 'yellow_line', 'red_line' or 'negative'
         string categoryId, // filter by category
-        bool withOrganizationAmount,  //  true, infos of product related to given organization will be added
+        bool withOrganizationAmount,  //  true, info of product related to given organization will be added
         bool filterByWarehouse, // true, return products that exist only in the specified warehouse
         bool filterByPrice,     // true, return products that have the specified price
         bool excludeOutOfStockProducts, // true, exclude products that are oud of stock
@@ -641,8 +641,8 @@ public class ProductRepository : IProductRepository
             var transliterated = "%" + transliterator.Transliterated() + "%";
 
             query.Append(
-                "(p.Name LIKE @native OR " +
-                        "p.Name LIKE @transliterated OR " +
+                "(LOWER(p.Name) LIKE @native OR " +
+                        "LOWER(p.Name) LIKE @transliterated OR " +
                         "p.Barcode LIKE @native OR " +
                         "p.Sku LIKE @native OR " +
                         "p.Barcodes LIKE @native) "

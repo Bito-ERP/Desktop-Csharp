@@ -1,4 +1,5 @@
 using Dapper;
+using Newtonsoft.Json;
 using Npgsql;
 using System;
 using System.Collections.Generic;
@@ -72,7 +73,7 @@ public class DBExcutor
         using var connection = new NpgsqlConnection(_connectionString);
         connection.Open();
         Debug.WriteLine(sql);
-        Debug.WriteLine(parameters);
+        Debug.WriteLine(JsonConvert.SerializeObject(parameters));
         return await connection.QueryAsync<T>(sql, parameters);
     }
 
