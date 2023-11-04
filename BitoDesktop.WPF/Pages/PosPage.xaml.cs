@@ -16,7 +16,7 @@ namespace BitoDesktop.WPF.Pages
         private readonly CustomerService customerService;
         private readonly ConfigurationService configurationService;
         public PosPage()
-        {
+        {   
             InitializeComponent();
             productService = new ProductService();
             configurationService = new ConfigurationService();
@@ -25,19 +25,27 @@ namespace BitoDesktop.WPF.Pages
 
         private async void SearchProduct_TextChanged(object sender, TextChangedEventArgs e)
         {
-            ProductSearchItems.Items.Clear();
-            var warehouseId = await configurationService.GetWarehouse();
-            var priceId = await configurationService.GetPrice();
-            var organizationId = await configurationService.GetOrganization();
-            var products = await productService.GetProducts(SearchProduct.Text, organizationId, warehouseId, priceId);
-
-            foreach (var product in products)
+            if (!string.IsNullOrEmpty(SearchProduct.Text))
             {
-                ProductSearchController productSearchController = new ProductSearchController();
-                productSearchController.NameTxt.Text = product.Name;
-                productSearchController.BarcodeTxt.Text = product.Barcode;
-                productSearchController.CapacityTxt.Text = product.WarehouseAmount.ToString();
-                ProductSearchItems.Items.Add(productSearchController);
+                ProductSearchItems.Items.Clear();
+                var warehouseId = await configurationService.GetWarehouse();
+                var priceId = await configurationService.GetPrice();
+                var organizationId = await configurationService.GetOrganization();
+
+                var products = await productService.GetProducts(SearchProduct.Text, organizationId, warehouseId, priceId);
+
+                foreach (var product in products)
+                {
+                    ProductSearchController productSearchController = new ProductSearchController();
+                    productSearchController.NameTxt.Text = product.Name;
+                    productSearchController.BarcodeTxt.Text = product.Barcode;
+                    productSearchController.CapacityTxt.Text = product.WarehouseAmount.ToString();
+                    ProductSearchItems.Items.Add(productSearchController);
+                }
+            }
+            else 
+            {
+                ProductSearchItems.Items.Clear();
             }
         }
 
