@@ -7,11 +7,11 @@ namespace BitoDesktop.Data.Repositories;
 public class Transliterator
 {
 
-    public static Dictionary<Int32, Int32> lToC = new Dictionary<Int32, Int32>();
-    public static Dictionary<Int32, Int32> cToL = new Dictionary<Int32, Int32>();
+    public static Dictionary<Int32, Int32> lToC = new();
+    public static Dictionary<Int32, Int32> cToL = new();
 
-    private string str;
-    private bool? isLatin = null;
+    private readonly string str;
+    private readonly bool? isLatin = null;
 
     public Transliterator(string str)
     {
