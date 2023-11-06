@@ -182,7 +182,7 @@ public class EmployeeRepository
     }
 
 
-    private async Task<Employee> Get(string employeeId)
+    public async Task<Employee> Get(string employeeId)
     {
         return await DBExcutor.QuerySingleOrDefaultAsync<Employee>(
             "SELECT * FROM employee WHERE Id = @employeeId",
@@ -197,6 +197,4 @@ public class EmployeeRepository
             new { employeeId, organizationId }
             );
     }
-
 }
-

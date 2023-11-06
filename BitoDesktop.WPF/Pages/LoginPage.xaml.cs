@@ -30,6 +30,7 @@ namespace BitoDesktop.WPF.Pages
         private OrganizatinController organizationController;
         private PinCodeController pinCodeController;
         public string OrganizationId { get; set; }
+        public string ServerId { get; set; }
 
         public LoginPage()
         {
@@ -66,12 +67,24 @@ namespace BitoDesktop.WPF.Pages
         private void LoadLogin()
         {
             loginController.LoginBtn.Click += Login;
-            LoginStageControl.Items.Add(loginController);
+            LoginStageControl.Content = loginController;
+        }
+        private async void Login(object sender, RoutedEventArgs e)
+        {
+            RequestLogin request = new RequestLogin()
+            {
+                PhoneNumber = loginController.PhoneNumberTxt.Text,
+                Password = loginController.PasswordTxt.Password,
+            };
+            var res = await authService.LoginAsync(request);
+
+            Client.Token = res;
+
+            await LoadServerChooser();
         }
 
         private async Task LoadDeviceChooser()
         {
-            LoginStageControl.Items.Clear();
             var res = await authService.GetDevices(loginController.PhoneNumberTxt.Text);
             if (res.PageData != null)
             {
@@ -84,12 +97,17 @@ namespace BitoDesktop.WPF.Pages
                     deviceChooserController.DeviceItemsControl.Items.Add(deviceController);
                 }
             }
-            LoginStageControl.Items.Add(deviceChooserController);
+            LoginStageControl.Content = deviceChooserController;
+        }
+        private async void DeviceChoosen(object sender, MouseButtonEventArgs e)
+        {
+            var deviceId = (sender as DeviceController).DeviceId;
+            Client.DeviceId = deviceId;
+            await LoadOrganization(); 
         }
 
         private async Task LoadServerChooser()
         {
-            LoginStageControl.Items.Clear();
             var res = await authService.GetUsernames(loginController.PhoneNumberTxt.Text, loginController.PasswordTxt.Password);
             foreach (var server in res)
             {
@@ -98,24 +116,15 @@ namespace BitoDesktop.WPF.Pages
                 serverController.MouseDown += ServerChoosen;
                 serverChooserController.ServerItemsControl.Items.Add(serverController);
             }
-            LoginStageControl.Items.Add(serverChooserController);
+            LoginStageControl.Content = serverChooserController;
         }
-
         private async void ServerChoosen(object sender, MouseButtonEventArgs e)
         {
-            var serverName = (sender as ServerController).ServerNameTxt.Text;
-            Client.Username = serverName;
+            ServerId = (sender as ServerController).ServerNameTxt.Text;
+            Client.Username = ServerId;
 
             await LoadDeviceChooser();
         }
-
-        private async void DeviceChoosen(object sender, MouseButtonEventArgs e)
-        {
-            var deviceId = (sender as DeviceController).DeviceId;
-            Client.DeviceId = deviceId;
-            await LoadOrganization(); 
-        }
-
 
         private async Task LoadOrganization()
         {
@@ -123,15 +132,13 @@ namespace BitoDesktop.WPF.Pages
             var warhouses = await authService.GetWareHouses();
             var prices = await authService.GetPrices();
 
-            LoginStageControl.Items.Clear();
-
             foreach (var organization in organizations)
             {
                 Grid grid = new Grid();
 
                 TextBlock idTxt = new TextBlock();
                 idTxt.Text = organization.Id;
-                idTxt.Foreground = new SolidColorBrush(Colors.White);
+                idTxt.Opacity = 0;
 
                 TextBlock nameTxt = new TextBlock();
                 nameTxt.Text = organization.Name;
@@ -148,8 +155,8 @@ namespace BitoDesktop.WPF.Pages
                 Grid grid = new Grid();
 
                 TextBlock idTxt = new TextBlock();
-                idTxt.Text = warehouse.Id;
-                idTxt.Foreground = new SolidColorBrush(Colors.White);
+                idTxt.Text = warehouse.Id; 
+                idTxt.Opacity = 0;
 
                 TextBlock nameTxt = new TextBlock();
                 nameTxt.Text = warehouse.Name;
@@ -166,8 +173,8 @@ namespace BitoDesktop.WPF.Pages
                 Grid grid = new Grid();
 
                 TextBlock idTxt = new TextBlock();
-                idTxt.Text = price.Id;
-                idTxt.Foreground = new SolidColorBrush(Colors.White);
+                idTxt.Text = price.Id; 
+                idTxt.Opacity = 0;
 
                 TextBlock nameTxt = new TextBlock();
                 nameTxt.Text = price.Name;
@@ -178,14 +185,13 @@ namespace BitoDesktop.WPF.Pages
 
                 organizationController.PriceCmb.Items.Add(grid);
             }
-            LoginStageControl.Items.Add(organizationController);
+            LoginStageControl.Content = organizationController;
 
             organizationController.OrgCmb.SelectionChanged += CheckIfAllSelected;
             organizationController.PriceCmb.SelectionChanged += CheckIfAllSelected;
             organizationController.WarehouseCmb.SelectionChanged += CheckIfAllSelected;
 
         }
-
         private void CheckIfAllSelected(object sender, SelectionChangedEventArgs e)
         {
             if (organizationController.OrgCmb.SelectedItem != null &&
@@ -198,11 +204,10 @@ namespace BitoDesktop.WPF.Pages
 
                 Client.OrganizationId = OrganizationId;
 
-                var res = configurationService.SaveConfigs(priceId, warehouseId,OrganizationId);
+                var res = configurationService.SaveConfigs(priceId, warehouseId,OrganizationId, Client.DeviceId,ServerId,Client.Token);
 
-                LoginStageControl.Items.Clear();
                 pinCodeController.OkBtn.Click += PincodeOkBtnClick;
-                LoginStageControl.Items.Add(pinCodeController);
+                LoginStageControl.Content = pinCodeController;
             }
         }
 
@@ -211,23 +216,12 @@ namespace BitoDesktop.WPF.Pages
             var res = await authService.EnterByPinCode(pinCodeController.PinCodeTxt.Password);
 
             Client.UserId = res.Id;
+            await configurationService.SaveCustomConfig("employee", res.Id);
+
             var mainWindow = Application.Current.MainWindow as MainWindow;
-            if (mainWindow != null)
-                mainWindow.NavigateToPosPage();
+            
+            mainWindow?.NavigateToPosPage();
         }
 
-        private async void Login(object sender, RoutedEventArgs e)
-        {
-            RequestLogin request = new RequestLogin()
-            {
-                PhoneNumber = loginController.PhoneNumberTxt.Text,
-                Password = loginController.PasswordTxt.Password,
-            };
-            var res = await authService.LoginAsync(request);
-
-            Client.Token = res;
-
-            await LoadServerChooser();
-        }
     }
 }

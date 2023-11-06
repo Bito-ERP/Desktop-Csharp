@@ -5,13 +5,25 @@
     <Compile Update="Controllers\Pos\CustomerSearchItemController.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Controllers\Pos\PaymentMethodAmount.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Controllers\Pos\ProductSearchController.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controllers\Pos\PaymentMethodController.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Dialog\SuccessSinchReceiptDialog.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Dialog\SuccessSynch.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Pages\PosPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\Pos\SynchroniseProgress.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Pages\SideBarPage.xaml.cs">
@@ -22,16 +34,28 @@
     <Page Update="Controllers\Pos\CustomerSearchItemController.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Controllers\Pos\PaymentMethodAmount.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Controllers\Pos\ProductSearchController.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Controllers\Pos\PaymentMethodController.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Dialog\SuccessSinchReceiptDialog.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Dialog\SuccessSynch.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\LoginPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\PosPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\Pos\SynchroniseProgress.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\SideBarPage.xaml">

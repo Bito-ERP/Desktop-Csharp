@@ -23,30 +23,41 @@
                     Width="70"
                     Height="32"
                     Margin="3"
+                    Padding="0"
                     HorizontalAlignment="Left"
                     Background="#F5F5F5"
                     CornerRadius="10">
                     <Grid>
-                        <TextBlock
+                        <TextBox
                             x:Name="NumberTxt"
-                            Margin="10"
+                            Width="30"
+                            Height="24"
+                            Margin="10,0,10,0"
+                            HorizontalAlignment="Left"
                             VerticalAlignment="Center"
+                            BorderThickness="0"
                             FontWeight="DemiBold"
                             Foreground="Black"
-                            Text="1" />
+                            Style="{StaticResource MaterialDesignTextBox}"
+                            Text="1"
+                            TextChanged="NumberTxt_TextChanged" />
                         <Image
+                            x:Name="PlusBtn"
                             Width="24"
                             Height="12"
                             Margin="5,4"
                             HorizontalAlignment="Right"
                             VerticalAlignment="Top"
+                            MouseDown="PlusBtn_MouseDown"
                             Source="/Icons/Pos/plus.png" />
                         <Image
+                            x:Name="MinusBtn"
                             Width="24"
                             Height="12"
                             Margin="5,4"
                             HorizontalAlignment="Right"
                             VerticalAlignment="Bottom"
+                            MouseDown="MinusBtn_MouseDown"
                             Source="/Icons/Pos/minus.png" />
                     </Grid>
                 </Border>
@@ -69,6 +80,7 @@
                     Text="Total Price"
                     TextWrapping="Wrap" />
                 <Button
+                    x:Name="DeleteBtn"
                     Grid.Column="4"
                     Width="32"
                     Height="32"
@@ -78,6 +90,7 @@
                     md:ElevationAssist.Elevation="Dp0"
                     Background="#F5F5F5"
                     BorderThickness="0"
+                    Click="DeleteBtn_Click"
                     Style="{StaticResource MaterialDesignRaisedButton}">
                     <md:PackIcon Foreground="#EC5B56" Kind="Delete" />
                 </Button>

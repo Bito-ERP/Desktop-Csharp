@@ -16,17 +16,22 @@ public class Client
     public static string Token { get; set; }
     public static string DeviceId { get; set; } = null;
     public static string OrganizationId { get; set; }
-    public static string Username { get; set; } = "dev";
+    public static string Username { get; set; }
     public static string UserId { get; set; }
+    public static string PriceId { get; set; }
+    public static string WarehouseId { get; set; }
+    public static string ServerId { get { return Username; } set { Username = value; } }
+    
     public static async Task<BaseResponse<T>> Post<T>(string route, object request = null)
     {
+        string time = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss.fffZ");
         using HttpClient httpClient = new();
         httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer " + Token);
         httpClient.DefaultRequestHeaders.Add("username", Username);
         httpClient.DefaultRequestHeaders.Add("pos_id", DeviceId);
         httpClient.DefaultRequestHeaders.Add("user_id", UserId);
         httpClient.DefaultRequestHeaders.Add("organization_id", OrganizationId);
-        httpClient.DefaultRequestHeaders.Add("time", "2023-09-26T12:42:39.287Z");
+        httpClient.DefaultRequestHeaders.Add("time", time);
 
         Debug.WriteLine(route);
 
@@ -92,7 +97,7 @@ public class Client
         }
         catch (Exception)
         {
-            return false;
+            throw new MarketException(400, "No internet available");
         }
     }
 }

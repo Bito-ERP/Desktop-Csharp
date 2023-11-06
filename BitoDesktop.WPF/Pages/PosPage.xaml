@@ -10,6 +10,7 @@
     Title="PosPage"
     MinWidth="540"
     MinHeight="450"
+    Loaded="Page_Loaded"
     mc:Ignorable="d">
     <Page.Resources>
         <Style x:Key="CustomBorder" TargetType="Border">
@@ -85,11 +86,6 @@
                                     Kind="Search" />
 
 
-                                <ComboBox
-                                    x:Name="SearchProductcb"
-                                    Grid.Column="1"
-                                    BorderThickness="0"
-                                    Style="{StaticResource MaterialDesignOutlinedComboBox}" />
                                 <TextBox
                                     x:Name="SearchProduct"
                                     Grid.Column="1"
@@ -201,6 +197,7 @@
                                 md:ElevationAssist.Elevation="Dp0"
                                 Background="#F5F5F5"
                                 BorderThickness="0"
+                                Click="ClearBasketBtn_Click"
                                 Style="{StaticResource MaterialDesignRaisedButton}">
                                 <md:PackIcon Foreground="#EC5B56" Kind="Delete" />
                             </Button>
@@ -220,18 +217,31 @@
                         FontWeight="DemiBold"
                         Text="Savat b'osh" />
                 </StackPanel>
-                <ScrollViewer
-                    Grid.Row="1"
-                    Margin="10,0"
-                    VerticalScrollBarVisibility="Disabled">
+                <ScrollViewer Grid.Row="1" Margin="10,0">
                     <ItemsControl x:Name="BasketControl" />
                 </ScrollViewer>
+
+                <Grid Grid.RowSpan="2" Margin="10,115">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="72" />
+                        <ColumnDefinition Width="72" />
+                    </Grid.ColumnDefinitions>
+                    <ScrollViewer
+                        x:Name="SearchResultsProduct"
+                        VerticalAlignment="Top"
+                        Style="{StaticResource MaterialDesignScrollViewer}"
+                        VerticalScrollBarVisibility="Auto">
+                        <ItemsControl x:Name="ProductSearchItems" />
+                    </ScrollViewer>
+                </Grid>
+
             </Grid>
         </Border>
         <Border Grid.Column="2" Style="{StaticResource CustomBorder}">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="205" />
+                    <RowDefinition Height="250" />
                     <RowDefinition />
                 </Grid.RowDefinitions>
                 <StackPanel Margin="10" VerticalAlignment="Top">
@@ -299,7 +309,7 @@
                                     Opacity="0.5"
                                     Text="Umumiy" />
                                 <TextBlock
-                                    x:Name="TotalPrice"
+                                    x:Name="TotalPriceToPayTxt"
                                     FontSize="25"
                                     FontWeight="DemiBold" />
                             </StackPanel>
@@ -316,7 +326,7 @@
                                     Opacity="0.5"
                                     Text="To'lovga" />
                                 <TextBlock
-                                    x:Name="PriceToPay"
+                                    x:Name="ActualPriceToPayTxt"
                                     FontSize="20"
                                     FontWeight="DemiBold" />
                             </StackPanel>
@@ -324,100 +334,118 @@
                     </Grid>
                     <ScrollViewer
                         x:Name="PaymentMethodsViewer"
-                        Height="42"
+                        Height="75"
                         Margin="5,0"
-                        HorizontalScrollBarVisibility="Disabled"
-                        VerticalScrollBarVisibility="Disabled" />
+                        HorizontalScrollBarVisibility="Auto"
+                        PanningMode="Both"
+                        VerticalScrollBarVisibility="Disabled">
+                        <StackPanel x:Name="PaymentMethodPanel" Orientation="Horizontal" />
+                    </ScrollViewer>
                 </StackPanel>
 
-                <Border
-                    Grid.Row="1"
-                    Height="112"
-                    Margin="10"
-                    VerticalAlignment="Bottom"
-                    Background="#F5F5F5"
-                    CornerRadius="30">
-                    <Grid>
-                        <StackPanel
-                            Margin="10,15"
-                            VerticalAlignment="Top"
-                            Orientation="Horizontal">
-                            <TextBlock
-                                Margin="5"
-                                VerticalAlignment="Center"
-                                FontWeight="DemiBold"
-                                Text="Jami chegirma" />
-                            <Button
-                                Width="29"
-                                Height="22"
-                                Padding="0"
-                                VerticalAlignment="Center"
-                                md:ButtonAssist.CornerRadius="10"
-                                Background="White"
-                                BorderBrush="#E9E9E9"
-                                Content="D"
-                                FontSize="10"
-                                FontWeight="DemiBold"
-                                Foreground="Black"
-                                Style="{StaticResource MaterialDesignRaisedButton}" />
-                        </StackPanel>
-                        <Button
-                            Width="30"
-                            Height="30"
-                            Margin="10,15"
-                            Padding="0"
-                            HorizontalAlignment="Right"
-                            VerticalAlignment="Top"
-                            VerticalContentAlignment="Center"
-                            md:ButtonAssist.CornerRadius="15"
-                            Background="White"
-                            BorderThickness="0"
-                            FontSize="20"
-                            Foreground="Black"
-                            Style="{StaticResource MaterialDesignRaisedButton}">
-                            <md:PackIcon Kind="Plus" />
-                        </Button>
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <ScrollViewer
+                        x:Name="ChoosenPaymentMethods"
+                        Height="Auto"
+                        Margin="15,0"
+                        HorizontalScrollBarVisibility="Disabled"
+                        VerticalScrollBarVisibility="Auto">
+                        <ItemsControl x:Name="ChoosenPaymentMethodsControl" />
+                    </ScrollViewer>
 
-                        <Border
-                            Height="56"
-                            VerticalAlignment="Bottom"
-                            Background="#D9D9D9"
-                            CornerRadius="30">
-                            <Grid>
-
-                                <StackPanel
-                                    Margin="10"
-                                    VerticalAlignment="Center"
-                                    Orientation="Horizontal">
-                                    <TextBlock
-                                        Margin="5"
-                                        VerticalAlignment="Center"
-                                        FontWeight="DemiBold"
-                                        Text="To'lash" />
-                                    <Button
-                                        Width="29"
-                                        Height="22"
-                                        Padding="0"
-                                        VerticalAlignment="Center"
-                                        md:ButtonAssist.CornerRadius="10"
-                                        Background="White"
-                                        BorderBrush="#E9E9E9"
-                                        Content="P"
-                                        FontSize="10"
-                                        FontWeight="DemiBold"
-                                        Foreground="Black"
-                                        Style="{StaticResource MaterialDesignRaisedButton}" />
-                                </StackPanel>
+                    <Border
+                        Grid.Row="1"
+                        Height="112"
+                        Margin="10"
+                        VerticalAlignment="Bottom"
+                        Background="#F5F5F5"
+                        CornerRadius="30">
+                        <Grid>
+                            <StackPanel
+                                Margin="10,15"
+                                VerticalAlignment="Top"
+                                Orientation="Horizontal">
                                 <TextBlock
-                                    Margin="20,0"
-                                    HorizontalAlignment="Right"
+                                    Margin="5"
                                     VerticalAlignment="Center"
                                     FontWeight="DemiBold"
-                                    Text="0 UZS" />
-                            </Grid>
-                        </Border>
-                    </Grid>
-                </Border>
+                                    Text="Jami chegirma" />
+                                <Button
+                                    Width="29"
+                                    Height="22"
+                                    Padding="0"
+                                    VerticalAlignment="Center"
+                                    md:ButtonAssist.CornerRadius="10"
+                                    Background="White"
+                                    BorderBrush="#E9E9E9"
+                                    Content="D"
+                                    FontSize="10"
+                                    FontWeight="DemiBold"
+                                    Foreground="Black"
+                                    Style="{StaticResource MaterialDesignRaisedButton}" />
+                            </StackPanel>
+                            <Button
+                                Width="30"
+                                Height="30"
+                                Margin="10,15"
+                                Padding="0"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Top"
+                                VerticalContentAlignment="Center"
+                                md:ButtonAssist.CornerRadius="15"
+                                Background="White"
+                                BorderThickness="0"
+                                FontSize="20"
+                                Foreground="Black"
+                                Style="{StaticResource MaterialDesignRaisedButton}">
+                                <md:PackIcon Kind="Plus" />
+                            </Button>
+
+                            <Border
+                                Height="56"
+                                VerticalAlignment="Bottom"
+                                Background="#D9D9D9"
+                                CornerRadius="30">
+                                <Grid>
+                                    <StackPanel
+                                        Margin="10"
+                                        VerticalAlignment="Center"
+                                        Orientation="Horizontal">
+                                        <TextBlock
+                                            Margin="5"
+                                            VerticalAlignment="Center"
+                                            FontWeight="DemiBold"
+                                            Text="To'lash" />
+                                        <Button
+                                            Width="29"
+                                            Height="22"
+                                            Padding="0"
+                                            VerticalAlignment="Center"
+                                            md:ButtonAssist.CornerRadius="10"
+                                            Background="White"
+                                            BorderBrush="#E9E9E9"
+                                            Content="P"
+                                            FontSize="10"
+                                            FontWeight="DemiBold"
+                                            Foreground="Black"
+                                            Style="{StaticResource MaterialDesignRaisedButton}" />
+                                    </StackPanel>
+                                    <TextBlock
+                                        Margin="20,0"
+                                        HorizontalAlignment="Right"
+                                        VerticalAlignment="Center"
+                                        FontWeight="DemiBold"
+                                        Text="0 UZS" />
+                                </Grid>
+                            </Border>
+                        </Grid>
+                    </Border>
+
+                </Grid>
 
                 <ScrollViewer
                     x:Name="SearchResults"

@@ -20,13 +20,18 @@ namespace BitoDesktop.WPF
             {
                 Exception ex = args.Exception;
 
-                string message = JsonConvert.DeserializeObject<dynamic>(ex.Message).messages.uz;
+                string message = ex.Message.Contains("message") && ex.Message.Contains("en") 
+                    ? JsonConvert.DeserializeObject<dynamic>(ex.Message).message.en 
+                    : ex.Message;
+
                 ErrorDialog dialog = new ErrorDialog(message);
                 dialog.ShowDialog();
 
                 // Handle the UI-related exception and possibly show a user-friendly message
                 args.Handled = true; // Mark the exception as handled to prevent application termination
             };
+
+
         }
 
     }

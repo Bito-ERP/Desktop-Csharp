@@ -12,7 +12,7 @@
     Loaded="Page_Loaded"
     mc:Ignorable="d">
     <Grid>
-        <ItemsControl
+        <Frame
             x:Name="LoginStageControl"
             HorizontalAlignment="Center"
             VerticalAlignment="Center" />
