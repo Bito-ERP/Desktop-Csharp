@@ -29,7 +29,7 @@
         <Border Grid.Column="1" Style="{StaticResource CustomBorder}">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="210" />
+                    <RowDefinition Height="250" />
                     <RowDefinition />
                 </Grid.RowDefinitions>
                 <StackPanel>
@@ -151,10 +151,12 @@
 
                     <ScrollViewer
                         x:Name="TabsViewer"
-                        Height="42"
+                        Height="72"
                         Margin="10,0"
                         HorizontalScrollBarVisibility="Disabled"
-                        VerticalScrollBarVisibility="Disabled" />
+                        VerticalScrollBarVisibility="Disabled">
+                        <StackPanel x:Name="TabsViewerPanel" Orientation="Horizontal" />
+                    </ScrollViewer>
                     <Border Height="45" Margin="10,0">
                         <Grid>
                             <Grid.ColumnDefinitions>
@@ -345,8 +347,8 @@
 
                 <Grid Grid.Row="1">
                     <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
+                        <RowDefinition />
+                        <RowDefinition />
                     </Grid.RowDefinitions>
                     <ScrollViewer
                         x:Name="ChoosenPaymentMethods"

@@ -23,6 +23,7 @@ namespace BitoDesktop.WPF.Pages
         private readonly CustomerService customerService;
         private readonly PaymentMethodService paymentMethodService;
         private readonly ConfigurationService configurationService;
+        private readonly PosService posService;
 
         public PosPage()
         {   
@@ -31,6 +32,7 @@ namespace BitoDesktop.WPF.Pages
             configurationService = new ConfigurationService();
             customerService = new CustomerService();
             paymentMethodService = new PaymentMethodService();
+            posService = new PosService();
         }
 
         private async void SearchProduct_TextChanged(object sender, TextChangedEventArgs e)
@@ -147,6 +149,14 @@ namespace BitoDesktop.WPF.Pages
                     PaymentMethodPanel.Children.Add(paymentMethodController);
                 }
             }
+
+            var pages = await posService.GetPages();
+            foreach (var page in pages)
+            {
+                PosPagesController posPagesController = new PosPagesController();
+                posPagesController.PageNameTxt.Text = page.Name;
+                TabsViewerPanel.Children.Add(posPagesController);
+            }
         }
 
         private void ChoosenPaymentMethod_Click(object sender, RoutedEventArgs e)
@@ -158,8 +168,21 @@ namespace BitoDesktop.WPF.Pages
                 PaymentMethodAmount paymentMethodAmount = new PaymentMethodAmount();
                 paymentMethodAmount.PaymentTypeTxt.Text = type;
                 paymentMethodAmount.PriceTxt.Text = TotalPriceToPayTxt.Text;
+                paymentMethodAmount.EditBtn.Click += PMAEdit_Click;
+                paymentMethodAmount.DeleteRequested += PMADelete_Click;
                 ChoosenPaymentMethodsControl.Items.Add(paymentMethodAmount);
             }
+        }
+
+        private void PMADelete_Click(object sender, EventArgs e)
+        {
+            var payment = sender as PaymentMethodAmount;
+            ChoosenPaymentMethodsControl.Items.Remove(payment);
+        }
+
+        private void PMAEdit_Click(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -32,6 +32,7 @@
                     Text="Price"
                     TextAlignment="Right" />
                 <Button
+                    x:Name="EditBtn"
                     Width="32"
                     Height="32"
                     Margin="5"
@@ -42,13 +43,15 @@
                     <md:PackIcon Foreground="#006AFF" Kind="Pencil" />
                 </Button>
                 <Button
+                    x:Name="DeleteBtn"
                     Width="32"
                     Height="32"
                     Margin="5"
                     Padding="0"
                     md:ButtonAssist.CornerRadius="10"
                     Background="#F5F5F5"
-                    BorderThickness="0">
+                    BorderThickness="0"
+                    Click="DeleteBtn_Click">
                     <md:PackIcon Foreground="#EC5B56" Kind="Delete" />
                 </Button>
             </StackPanel>

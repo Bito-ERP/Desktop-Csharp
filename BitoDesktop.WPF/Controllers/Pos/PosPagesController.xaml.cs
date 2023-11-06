@@ -16,19 +16,13 @@ using System.Windows.Shapes;
 namespace BitoDesktop.WPF.Controllers.Pos
 {
     /// <summary>
-    /// Логика взаимодействия для PaymnetMethodAmount.xaml
+    /// Логика взаимодействия для PosPagesController.xaml
     /// </summary>
-    public partial class PaymentMethodAmount : UserControl
+    public partial class PosPagesController : UserControl
     {
-        public event EventHandler DeleteRequested;
-        public PaymentMethodAmount()
+        public PosPagesController()
         {
             InitializeComponent();
-        }
-
-        private void DeleteBtn_Click(object sender, RoutedEventArgs e)
-        {
-            DeleteRequested?.Invoke(this, EventArgs.Empty);
         }
     }
 }
