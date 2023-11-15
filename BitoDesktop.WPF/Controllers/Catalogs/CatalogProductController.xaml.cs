@@ -5,9 +5,9 @@ namespace BitoDesktop.WPF.Controllers.Catalogs
     /// <summary>
     /// Логика взаимодействия для ProductController.xaml
     /// </summary>
-    public partial class ProductController : UserControl
+    public partial class CatalogProductController : UserControl
     {
-        public ProductController()
+        public CatalogProductController()
         {
             InitializeComponent();
         }

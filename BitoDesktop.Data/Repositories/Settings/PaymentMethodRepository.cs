@@ -40,7 +40,7 @@ public class PaymentMethodRepository
 
     public async Task<PaymentMethod> GetById(string paymentMethodId)
     {
-        return await DBExcutor.QuerySingleOrDefaultAsync<PaymentMethod>(
+        return await DBExcutor.QueryFirstOrDefaultAsync<PaymentMethod>(
            "SELECT * FROM payment_method WHERE Id = @paymentMethodId",
            new { paymentMethodId }
            );

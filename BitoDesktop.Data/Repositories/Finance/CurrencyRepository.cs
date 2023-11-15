@@ -33,7 +33,7 @@ public class CurrencyRepository
 
     public async Task<Currency> GetById(string currencyId)
     {
-        return await DBExcutor.QuerySingleOrDefaultAsync<Currency>(
+        return await DBExcutor.QueryFirstOrDefaultAsync<Currency>(
            "SELECT * FROM currency WHERE Id = @currencyId",
            new { currencyId }
            );

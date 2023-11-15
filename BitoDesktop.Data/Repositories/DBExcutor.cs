@@ -12,7 +12,7 @@ public delegate void TransactionExcutor(NpgsqlConnection con);
 
 public class DBExcutor
 {
-    private static readonly string _connectionString = "Host=localhost;Port=5432;Database=BitoDb;Username=postgres;Password=muham1812;";
+    public static readonly string _connectionString = "Host=localhost;Port=5432;Database=BitoDb;Username=postgres;Password=muham1812;";
 
     public static async Task<T> UseConnection<T>(Func<NpgsqlConnection, Task<T>> func)
     {
@@ -78,12 +78,12 @@ public class DBExcutor
     }
 
 
-    public static async Task<T> QuerySingleOrDefaultAsync<T>(string sql, object parameters = null)
+    public static async Task<T> QueryFirstOrDefaultAsync<T>(string sql, object parameters = null)
     {
         using (var connection = new NpgsqlConnection(_connectionString))
         {
             connection.Open();
-            return await connection.QuerySingleOrDefaultAsync<T>(sql, parameters);
+            return await connection.QueryFirstOrDefaultAsync<T>(sql, parameters);
         }
     }
 

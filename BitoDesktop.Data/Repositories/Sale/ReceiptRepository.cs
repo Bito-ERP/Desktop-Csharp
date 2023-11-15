@@ -42,7 +42,7 @@ public class ReceiptRepository
 
     public async Task<bool> IsExists(string uuid)
     {
-        return await DBExcutor.QuerySingleOrDefaultAsync<bool>(
+        return await DBExcutor.QueryFirstOrDefaultAsync<bool>(
             "SELECT EXISTS(SELECT Uuid FROM receipt WHERE Uuid = @uuid)",
             new { uuid }
            );
@@ -52,7 +52,7 @@ public class ReceiptRepository
     // returns the count of unsynchronized receipts
     public async Task<int> GetCountOfUnsynceds()
     {
-        return await DBExcutor.QuerySingleOrDefaultAsync<int>(
+        return await DBExcutor.QueryFirstOrDefaultAsync<int>(
            "SELECT COUNT(Uuid) FROM receipt WHERE Number = 0"
           );
     }
@@ -227,7 +227,7 @@ public class ReceiptRepository
         query.Append("WHERE r.Uuid = @uuid");
         args["@uuid"] = uuid;
 
-        var receipt = await DBExcutor.QuerySingleOrDefaultAsync<Receipt>(
+        var receipt = await DBExcutor.QueryFirstOrDefaultAsync<Receipt>(
             query.ToString(),
             args
             );

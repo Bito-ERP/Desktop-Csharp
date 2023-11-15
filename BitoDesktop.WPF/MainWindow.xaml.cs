@@ -1,4 +1,3 @@
-using BitoDesktop.Data.IRepositories;
 using BitoDesktop.Service.Http;
 using BitoDesktop.Service.Services;
 using BitoDesktop.WPF.Controllers.Login;
@@ -30,6 +29,7 @@ namespace BitoDesktop.WPF
         public MainWindow()
         {
             InitializeComponent();
+            loginPage = new LoginPage();
 
             employeeService = new EmployeeService();
             configurationService = new ConfigurationService();
@@ -39,7 +39,6 @@ namespace BitoDesktop.WPF
 
         private async void SynchroniseBtnClick(object sender, RoutedEventArgs e)
         {
-
             var methods = new Func<Task>[]
             {
                 synchroniseService.SynchroniseToMachineCashbackSettings,
@@ -64,8 +63,6 @@ namespace BitoDesktop.WPF
             Client.CheckForInternetConnection();
             SynchroniseProgress synchroniseProgress = new SynchroniseProgress();
             OtherPagesFrame.Content = synchroniseProgress;
-            
-            
 
             foreach (var method in methods)
             {
@@ -96,6 +93,8 @@ namespace BitoDesktop.WPF
 
         public void NavigateToLoginPage()
         {
+            OtherPagesFrame.Content = null;
+
             MainFrame.Content = loginPage;
         }
 
@@ -109,13 +108,11 @@ namespace BitoDesktop.WPF
 
                 MainFrame.Content = pinCodeController;
             }
-            
+
             else
             {
                 if (Client.CheckForInternetConnection())
                 {
-                    loginPage = new LoginPage();
-
                     NavigateToLoginPage();
                 }
                 else

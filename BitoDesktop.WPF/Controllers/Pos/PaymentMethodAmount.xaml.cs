@@ -1,17 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace BitoDesktop.WPF.Controllers.Pos
 {
@@ -21,6 +10,7 @@ namespace BitoDesktop.WPF.Controllers.Pos
     public partial class PaymentMethodAmount : UserControl
     {
         public event EventHandler DeleteRequested;
+        public event EventHandler EditRequested;
         public PaymentMethodAmount()
         {
             InitializeComponent();
@@ -29,6 +19,11 @@ namespace BitoDesktop.WPF.Controllers.Pos
         private void DeleteBtn_Click(object sender, RoutedEventArgs e)
         {
             DeleteRequested?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void EditBtn_Click(object sender, RoutedEventArgs e)
+        {
+            EditRequested?.Invoke(this, EventArgs.Empty);
         }
     }
 }

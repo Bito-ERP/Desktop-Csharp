@@ -32,7 +32,7 @@ public class UnitMeasurementRepository
 
     public async Task<UnitMeasurement> GetById(string unitMeasurementId)
     {
-        return await DBExcutor.QuerySingleOrDefaultAsync<UnitMeasurement>(
+        return await DBExcutor.QueryFirstOrDefaultAsync<UnitMeasurement>(
            "SELECT * FROM unit_measurement WHERE Id = @unitMeasurementId",
            new { unitMeasurementId }
            );

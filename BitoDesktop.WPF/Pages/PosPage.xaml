@@ -45,13 +45,13 @@
                             HorizontalAlignment="Right"
                             DockPanel.Dock="Right">
                             <ListBox>
-                                <ListBoxItem>
+                                <ListBoxItem x:Name="WarehouseLb" Selected="WarehouseLb_Selected">
                                     <TextBlock
                                         FontSize="14"
                                         FontWeight="DemiBold"
                                         Text="Ombor" />
                                 </ListBoxItem>
-                                <ListBoxItem>
+                                <ListBoxItem x:Name="PriceLb" Selected="PriceLb_Selected">
                                     <TextBlock
                                         FontSize="14"
                                         FontWeight="DemiBold"
@@ -153,7 +153,7 @@
                         x:Name="TabsViewer"
                         Height="72"
                         Margin="10,0"
-                        HorizontalScrollBarVisibility="Disabled"
+                        HorizontalScrollBarVisibility="Auto"
                         VerticalScrollBarVisibility="Disabled">
                         <StackPanel x:Name="TabsViewerPanel" Orientation="Horizontal" />
                     </ScrollViewer>
@@ -460,9 +460,8 @@
                 </ScrollViewer>
             </Grid>
         </Border>
-        <!--<Frame
+        <Frame
             x:Name="MainFrame"
-            Grid.ColumnSpan="3"
-            Navigated="MainFrame_Navigated" />-->
+            Grid.ColumnSpan="3"/>
     </Grid>
 </Page>

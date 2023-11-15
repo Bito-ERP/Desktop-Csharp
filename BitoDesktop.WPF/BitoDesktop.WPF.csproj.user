@@ -2,6 +2,9 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup />
   <ItemGroup>
+    <Compile Update="Controllers\Pos\AddTicketController.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Controllers\Pos\CustomerSearchItemController.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -15,6 +18,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Controllers\Pos\PaymentMethodController.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controllers\Pos\WarehouseController.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Dialog\SuccessSinchReceiptDialog.xaml.cs">
@@ -34,6 +40,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="Controllers\Pos\AddTicketController.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Controllers\Pos\CustomerSearchItemController.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -47,6 +56,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Controllers\Pos\PaymentMethodController.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controllers\Pos\WarehouseController.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Dialog\SuccessSinchReceiptDialog.xaml">

@@ -48,7 +48,7 @@ public class CategoryRepository
     }
     private async Task<Category> Get(string categoryId)
     {
-        return await DBExcutor.QuerySingleOrDefaultAsync<Category>(
+        return await DBExcutor.QueryFirstOrDefaultAsync<Category>(
             "SELECT * FROM product_category WHERE Id = @categoryId",
             new { categoryId }
             );

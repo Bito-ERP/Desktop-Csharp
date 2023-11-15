@@ -169,7 +169,7 @@ public class ProductRepository : IProductRepository
     public async Task<List<string>> GetTaxes(string productId)
     {
         Contract.Requires(productId != null);
-        return await DBExcutor.QuerySingleOrDefaultAsync<List<string>>(
+        return await DBExcutor.QueryFirstOrDefaultAsync<List<string>>(
             "SELECT taxIds FROM product WHERE Id = @productId",
             new { productId }
             );
@@ -179,7 +179,7 @@ public class ProductRepository : IProductRepository
     public async Task<bool> isExistByBarcode(string barcode)
     {
         Contract.Requires(barcode != null);
-        return await DBExcutor.QuerySingleOrDefaultAsync<bool>(
+        return await DBExcutor.QueryFirstOrDefaultAsync<bool>(
             "SELECT EXISTS(SELECT Id FROM product WHERE B Barcode = @barcode)",
             new { barcode }
             );
@@ -396,7 +396,7 @@ public class ProductRepository : IProductRepository
         Contract.Requires(organizationId != null);
         Contract.Requires(productId != null);
 
-        return await DBExcutor.QuerySingleOrDefaultAsync<ProductPrice>(
+        return await DBExcutor.QueryFirstOrDefaultAsync<ProductPrice>(
             "SELECT * FROM product_price WHERE PriceId = @priceId AND OrganizationId = @organizationId AND ProductId = @productId",
             new { priceId, organizationId, productId }
             );
@@ -450,7 +450,7 @@ public class ProductRepository : IProductRepository
         if (type == 2)
             args["@byValue2"] = "%" + byValue + "%";
 
-        var entity = await DBExcutor.QuerySingleOrDefaultAsync<Product>(
+        var entity = await DBExcutor.QueryFirstOrDefaultAsync<Product>(
             query.ToString(),
             args
             );

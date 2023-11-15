@@ -9,6 +9,8 @@
     Title="PriceSelectPage"
     MinWidth="800"
     MinHeight="450"
+    Background="{StaticResource AttentionToActionBrush}"
+    Loaded="Page_Loaded"
     mc:Ignorable="d">
 
     <Page.Resources>
@@ -24,6 +26,7 @@
         Style="{StaticResource CustomBorder}">
         <StackPanel>
             <ComboBox
+                x:Name="PriceCb"
                 Width="312"
                 Height="56"
                 Margin="0,20,0,10"
@@ -32,15 +35,14 @@
                 Background="#F5F5F5"
                 BorderThickness="0"
                 FontWeight="DemiBold"
-                Style="{StaticResource MaterialDesignOutlinedComboBox}">
-                <ComboBoxItem Content="Bo'lim kodi" />
-            </ComboBox>
+                Style="{StaticResource MaterialDesignOutlinedComboBox}" />
             <Button
                 Width="312"
                 Height="48"
                 Margin="10"
                 md:ButtonAssist.CornerRadius="10"
                 Background="#006AFF"
+                Click="Button_Click"
                 Content="Saqlash"
                 FontWeight="DemiBold"
                 Foreground="White" />

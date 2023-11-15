@@ -74,7 +74,7 @@ public class EmployeeRepository
 
     public async Task<bool> IsBoss(string employeeId)
     {
-        return await DBExcutor.QuerySingleOrDefaultAsync<bool>(
+        return await DBExcutor.QueryFirstOrDefaultAsync<bool>(
        "SELECT IsBoss FROM employee WHERE Id = @employeeId",
        new { employeeId }
        );
@@ -184,7 +184,7 @@ public class EmployeeRepository
 
     public async Task<Employee> Get(string employeeId)
     {
-        return await DBExcutor.QuerySingleOrDefaultAsync<Employee>(
+        return await DBExcutor.QueryFirstOrDefaultAsync<Employee>(
             "SELECT * FROM employee WHERE Id = @employeeId",
             new { employeeId }
             );

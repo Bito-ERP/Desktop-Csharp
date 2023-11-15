@@ -28,13 +28,13 @@ public class TaxRepository
              "INSERT INTO finance_tax(" + TaxColumns + ") VALUES(" + TaxValues + ") " +
               "ON CONFLICT (Id) " +
              "DO UPDATE SET " + TaxUpdate, items, connection);
-        }); 
+        });
     }
 
 
     public async Task<Tax> GetById(string taxId)
     {
-        return await DBExcutor.QuerySingleOrDefaultAsync<Tax>(
+        return await DBExcutor.QueryFirstOrDefaultAsync<Tax>(
            "SELECT * FROM finance_tax WHERE Id = @taxId",
            new { taxId }
            );

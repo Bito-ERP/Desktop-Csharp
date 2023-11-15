@@ -76,13 +76,13 @@ namespace BitoDesktop.Data.Repositories.Settings
 
         public async Task<Boolean> Contains(string key)
         {
-            return await DBExcutor.QuerySingleOrDefaultAsync<Boolean>("SELECT EXISTS(SELECT Key FROM configuration WHERE Key = @key)", new { key });
+            return await DBExcutor.QueryFirstOrDefaultAsync<Boolean>("SELECT EXISTS(SELECT Key FROM configuration WHERE Key = @key)", new { key });
         }
 
 
         private async Task<string> GetValue(string key)
         {
-            return await DBExcutor.QuerySingleOrDefaultAsync<string>("SELECT Value FROM configuration WHERE Key = @key", new { key });
+            return await DBExcutor.QueryFirstOrDefaultAsync<string>("SELECT Value FROM configuration WHERE Key = @key", new { key });
         }
 
         public async Task<Boolean?> GetBoolean(string key, Boolean? defValue = null)

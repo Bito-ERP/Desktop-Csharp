@@ -1,5 +1,4 @@
 ﻿using BitoDesktop.Service.DTOs.Auth;
-using BitoDesktop.Service.DTOs.Hr;
 using BitoDesktop.Service.Http;
 using BitoDesktop.Service.Interfaces;
 using BitoDesktop.Service.Services;
@@ -103,7 +102,7 @@ namespace BitoDesktop.WPF.Pages
         {
             var deviceId = (sender as DeviceController).DeviceId;
             Client.DeviceId = deviceId;
-            await LoadOrganization(); 
+            await LoadOrganization();
         }
 
         private async Task LoadServerChooser()
@@ -155,7 +154,7 @@ namespace BitoDesktop.WPF.Pages
                 Grid grid = new Grid();
 
                 TextBlock idTxt = new TextBlock();
-                idTxt.Text = warehouse.Id; 
+                idTxt.Text = warehouse.Id;
                 idTxt.Opacity = 0;
 
                 TextBlock nameTxt = new TextBlock();
@@ -173,7 +172,7 @@ namespace BitoDesktop.WPF.Pages
                 Grid grid = new Grid();
 
                 TextBlock idTxt = new TextBlock();
-                idTxt.Text = price.Id; 
+                idTxt.Text = price.Id;
                 idTxt.Opacity = 0;
 
                 TextBlock nameTxt = new TextBlock();
@@ -204,7 +203,7 @@ namespace BitoDesktop.WPF.Pages
 
                 Client.OrganizationId = OrganizationId;
 
-                var res = configurationService.SaveConfigs(priceId, warehouseId,OrganizationId, Client.DeviceId,ServerId,Client.Token);
+                var res = configurationService.SaveConfigs(priceId, warehouseId, OrganizationId, Client.DeviceId, ServerId, Client.Token);
 
                 pinCodeController.OkBtn.Click += PincodeOkBtnClick;
                 LoginStageControl.Content = pinCodeController;
@@ -219,7 +218,7 @@ namespace BitoDesktop.WPF.Pages
             await configurationService.SaveCustomConfig("employee", res.Id);
 
             var mainWindow = Application.Current.MainWindow as MainWindow;
-            
+
             mainWindow?.NavigateToPosPage();
         }
 

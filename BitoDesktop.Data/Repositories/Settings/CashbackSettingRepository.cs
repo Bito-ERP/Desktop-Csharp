@@ -29,7 +29,7 @@ public class CashbackSettingRepostiory
 
     public async Task<CashbackSetting> Get(string organizationId)
     {
-        return await DBExcutor.QuerySingleOrDefaultAsync<CashbackSetting>(
+        return await DBExcutor.QueryFirstOrDefaultAsync<CashbackSetting>(
            "SELECT * FROM cashback_setting WHERE OrganizationId = @organizationId",
            new { organizationId }
            );

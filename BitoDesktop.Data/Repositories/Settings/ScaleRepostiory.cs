@@ -29,7 +29,7 @@ public class ScaleRepostiory
 
     public async Task<Scale> GetById(string organizationId)
     {
-        return await DBExcutor.QuerySingleOrDefaultAsync<Scale>(
+        return await DBExcutor.QueryFirstOrDefaultAsync<Scale>(
            "SELECT * FROM scale WHERE OrganizationId = @organizationId",
            new { organizationId }
            );

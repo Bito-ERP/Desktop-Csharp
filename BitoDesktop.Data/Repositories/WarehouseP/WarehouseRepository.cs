@@ -33,7 +33,7 @@ public class WarehouseRepository
 
     public async Task<Warehouse> GetById(string warehouseId)
     {
-        return await DBExcutor.QuerySingleOrDefaultAsync<Warehouse>(
+        return await DBExcutor.QueryFirstOrDefaultAsync<Warehouse>(
            "SELECT * FROM warehouse WHERE Id = @warehouseId",
            new { warehouseId }
            );
@@ -43,7 +43,7 @@ public class WarehouseRepository
     // get main warehouse of organization
     public async Task<Warehouse> GetMain(string organizationId)
     {
-        return await DBExcutor.QuerySingleOrDefaultAsync<Warehouse>(
+        return await DBExcutor.QueryFirstOrDefaultAsync<Warehouse>(
            "SELECT * FROM warehouse WHERE IsMain = TRUE AND Status = 'active' AND OrganizationId = @organizationId",
            new { organizationId }
            );
@@ -75,7 +75,7 @@ public class WarehouseRepository
             );
         query.Append(')');
 
-        return await DBExcutor.QuerySingleOrDefaultAsync<bool>(query.ToString(), args);
+        return await DBExcutor.QueryFirstOrDefaultAsync<bool>(query.ToString(), args);
     }
 
     public async Task<IEnumerable<Warehouse>> GetWarehouses(
@@ -110,16 +110,16 @@ public class WarehouseRepository
                 query.Length - 4,
                 4
             );
+        if (offset != 0 && limit != 0)
+        {
+            query.Append("ORDER BY Name ")
+                 .Append("LIMIT @limit ")
+                 .Append("OFFSET @offset ");
 
-        query.Append("ORDER BY Name ")
-        .Append(
-           "LIMIT @limit "
-       ).Append(
-           "OFFSET @offset "
-             );
+            args["@limit"] = limit;
+            args["@offset"] = offset;
+        }
 
-        args["@limit"] = limit;
-        args["@offset"] = offset;
 
         return await DBExcutor.QueryAsync<Warehouse>(
             query.ToString(),

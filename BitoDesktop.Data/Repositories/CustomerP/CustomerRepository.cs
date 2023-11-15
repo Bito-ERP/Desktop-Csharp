@@ -186,7 +186,7 @@ public class CustomerRepository
                 6
             );
 
-        return await DBExcutor.QuerySingleOrDefaultAsync<Customer>(
+        return await DBExcutor.QueryFirstOrDefaultAsync<Customer>(
          query.ToString(),
          args
         );
@@ -202,7 +202,7 @@ public class CustomerRepository
 
     public async Task<CustomerBalanceList> GetBalance(string customerId, string organizationId)
     {
-        return await DBExcutor.QuerySingleOrDefaultAsync<CustomerBalanceList>(
+        return await DBExcutor.QueryFirstOrDefaultAsync<CustomerBalanceList>(
             "SELECT * FROM customer_balance_list WHERE CustomerId = @customerId AND OrganizationId = @organizationId",
             new { customerId, organizationId }
             );

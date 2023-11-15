@@ -9,22 +9,30 @@
     Width="147"
     Height="42"
     mc:Ignorable="d">
-    <Border Background="#006AFF" CornerRadius="20">
+    <Border
+        x:Name="TicketChooseBtn"
+        Background="#006AFF"
+        CornerRadius="20"
+        Cursor="Hand"
+        MouseDown="TicketChooseBtn_MouseDown">
         <Grid>
             <TextBlock
                 x:Name="PageNameTxt"
                 Margin="15,0"
                 VerticalAlignment="Center"
                 Foreground="White"
-                Text="Page name" />
+                Text="Sotuv" />
             <md:PackIcon
+                x:Name="ClosePageBtn"
                 Width="20"
                 Height="20"
                 Margin="15,0"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Center"
+                Cursor="Hand"
                 Foreground="White"
-                Kind="CloseCircle" />
+                Kind="CloseCircle"
+                MouseDown="ClosePageBtn_MouseDown" />
 
         </Grid>
     </Border>

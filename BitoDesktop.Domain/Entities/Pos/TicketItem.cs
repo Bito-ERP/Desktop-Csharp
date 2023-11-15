@@ -16,7 +16,7 @@ public class TicketItem
     public double Amount { get; set; }
 
     [Required]
-    public int BoxAmount { get; set; }
+    public int BoxAmount { get; set; } // keremas
 
     [Required]
     public int TicketId { get; set; }
@@ -30,17 +30,18 @@ public class TicketItem
     public string Taxes { get; set; }
 
     [Required]
-    public double TotalDiscountCash { get; set; }
+    public double TotalDiscountCash { get; set; } 
 
     [Required]
-    public double TotalDiscountPercent { get; set; }
+    public double TotalDiscountPercent { get; set; } 
 
-    public double? AmountInBox { get; set; }
+    public double? AmountInBox { get; set; } // keremas
 
     public string Discounts { get; set; }
 
     public string Marks { get; set; }
 
+    // autofill
     public string ProductName { get; set; }
     public string ProductImage { get; set; }
     public string ProductCategoryName { get; set; }

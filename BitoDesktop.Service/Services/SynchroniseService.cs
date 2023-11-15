@@ -5,7 +5,6 @@ using BitoDesktop.Data.Repositories.Pos;
 using BitoDesktop.Data.Repositories.Sale;
 using BitoDesktop.Data.Repositories.Settings;
 using BitoDesktop.Data.Repositories.WarehouseP;
-using BitoDesktop.Domain.Entities.Products;
 using BitoDesktop.Service.DTOs.Common;
 using BitoDesktop.Service.DTOs.Sale;
 using BitoDesktop.Service.Exceptions;
@@ -84,7 +83,7 @@ namespace BitoDesktop.Service.Services
                     customer.CashbackList.Select(c => c.Get()));
             }
 
-            
+
 
             return true;
         }
@@ -102,8 +101,8 @@ namespace BitoDesktop.Service.Services
             {
                 await currencyRepository.Insert(currency.Get());
             }
-            
-            
+
+
 
             return true;
         }
@@ -120,8 +119,8 @@ namespace BitoDesktop.Service.Services
             {
                 await invoiceRepository.Insert(invoice.Get(OrganizationId));
             }
-            
-            
+
+
 
             return true;
         }
@@ -136,7 +135,7 @@ namespace BitoDesktop.Service.Services
 
             await taxRepository.Insert(taxes.Select(t => t.GetEntityTax()));
 
-            
+
 
             return true;
         }
@@ -154,7 +153,7 @@ namespace BitoDesktop.Service.Services
                 await employeeRepository.Insert(employee.Get());
             }
 
-            
+
 
             return true;
         }
@@ -172,7 +171,7 @@ namespace BitoDesktop.Service.Services
                 await posRepository.Insert(pos.Get());
             }
 
-            
+
 
             return true;
         }
@@ -206,7 +205,7 @@ namespace BitoDesktop.Service.Services
                 await discountRepostiory.Insert(discount.Get());
             }
 
-            
+
 
             return true;
         }
@@ -224,7 +223,7 @@ namespace BitoDesktop.Service.Services
             var installemtns = receiptResponces.PageData.SelectMany(receipt => receipt.InstallmentPlans);
             await receiptRepository.Insert(receipts, null, null, null, null, null);
 
-            
+
 
             return true;
         }
@@ -241,8 +240,8 @@ namespace BitoDesktop.Service.Services
             {
                 await cashbackSettingRepostiory.Insert(receipt.Get());
             }
-            
-            
+
+
 
             return true;
         }
@@ -260,7 +259,7 @@ namespace BitoDesktop.Service.Services
                 await organizationRepository.Insert(organization.Get());
             }
 
-            
+
 
             return true;
         }
@@ -278,7 +277,7 @@ namespace BitoDesktop.Service.Services
                 await paymentMethodRepository.Insert(method.Get());
             }
 
-            
+
 
             return true;
         }
@@ -296,7 +295,7 @@ namespace BitoDesktop.Service.Services
                 await priceRepository.Insert(price.Get());
             }
 
-            
+
 
             return true;
         }
@@ -314,7 +313,7 @@ namespace BitoDesktop.Service.Services
                 await printerRepostiory.Insert(printer.Get());
             }
 
-            
+
 
             return true;
         }
@@ -332,7 +331,7 @@ namespace BitoDesktop.Service.Services
                 await reasonRepostiory.Insert(reason.Get());
             }
 
-            
+
 
             return true;
         }
@@ -350,7 +349,7 @@ namespace BitoDesktop.Service.Services
                 await scaleRepostiory.Insert(scale.Get());
             }
 
-            
+
 
             return true;
         }
@@ -368,7 +367,7 @@ namespace BitoDesktop.Service.Services
                 await categoryRepository.Insert(category.Get());
             }
 
-            
+
 
             return true;
         }
@@ -386,12 +385,12 @@ namespace BitoDesktop.Service.Services
                 await productRepository.Insert(product.Get());
 
                 await productRepository.InsertOrganizations(product.Organizations.Select(s => s.Get(product.Id)));
-                
+
                 await productRepository.InsertWarehouses(product.Warehouses.Select(s => s.Get()));
 
                 await productRepository.InsertPrices(product.Prices.Select(s => s.Get()));
             }
-            
+
 
             return true;
         }
@@ -409,7 +408,7 @@ namespace BitoDesktop.Service.Services
                 await warehouseRepository.Insert(warehouse.Get());
             }
 
-            
+
 
             return true;
         }

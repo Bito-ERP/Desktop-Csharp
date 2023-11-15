@@ -11,7 +11,6 @@ namespace BitoDesktop.Service.Http;
 
 public class Client
 {
-
     const string BASE_URL = "https://api.systematicdev.uz/pos-api/";
     public static string Token { get; set; }
     public static string DeviceId { get; set; } = null;
@@ -21,7 +20,7 @@ public class Client
     public static string PriceId { get; set; }
     public static string WarehouseId { get; set; }
     public static string ServerId { get { return Username; } set { Username = value; } }
-    
+
     public static async Task<BaseResponse<T>> Post<T>(string route, object request = null)
     {
         string time = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss.fffZ");
@@ -58,7 +57,7 @@ public class Client
 
     public static async Task Post(string route, object request = null)
     {
-        using HttpClient httpClient = new(); 
+        using HttpClient httpClient = new();
         httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer " + Token);
         httpClient.DefaultRequestHeaders.Add("username", Username);
         httpClient.DefaultRequestHeaders.Add("pos_id", DeviceId);
@@ -83,6 +82,7 @@ public class Client
         if (!responce.IsSuccessStatusCode)
             throw new MarketException((int)responce.StatusCode, await responce.Content.ReadAsStringAsync());
     }
+
     public static bool CheckForInternetConnection()
     {
         try

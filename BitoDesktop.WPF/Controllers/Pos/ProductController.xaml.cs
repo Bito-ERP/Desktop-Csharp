@@ -11,7 +11,9 @@ namespace BitoDesktop.WPF.Controllers.PosControllers
     {
         public event EventHandler DeleteRequested;
         public event EventHandler PriceToPayHandler;
-
+        public event EventHandler AmountChangeRequest;
+        public int TicketItemId {  get; set; }
+        public string Id { get; set; }
         public ProductController()
         {
             InitializeComponent();
@@ -23,6 +25,7 @@ namespace BitoDesktop.WPF.Controllers.PosControllers
             {
                 NumberTxt.Text = (int.Parse(NumberTxt.Text) - 1).ToString();
                 PriceToPayHandler?.Invoke(this, EventArgs.Empty);
+                AmountChangeRequest?.Invoke(this, EventArgs.Empty);
             }
         }
 
@@ -30,6 +33,7 @@ namespace BitoDesktop.WPF.Controllers.PosControllers
         {
             NumberTxt.Text = (int.Parse(NumberTxt.Text) + 1).ToString();
             PriceToPayHandler?.Invoke(this, EventArgs.Empty);
+            AmountChangeRequest?.Invoke(this, EventArgs.Empty);
         }
 
         private void NumberTxt_TextChanged(object sender, TextChangedEventArgs e)
@@ -43,7 +47,7 @@ namespace BitoDesktop.WPF.Controllers.PosControllers
 
         private void DeleteBtn_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            DeleteRequested?.Invoke(this,EventArgs.Empty);
+            DeleteRequested?.Invoke(this, EventArgs.Empty);
             PriceToPayHandler?.Invoke(this, EventArgs.Empty);
         }
     }

@@ -31,7 +31,7 @@ public class ReasonRepostiory
 
     public async Task<Reason> GetById(string reasonId)
     {
-        return await DBExcutor.QuerySingleOrDefaultAsync<Reason>(
+        return await DBExcutor.QueryFirstOrDefaultAsync<Reason>(
            "SELECT * FROM reason WHERE Id = @reasonId",
            new { reasonId }
            );

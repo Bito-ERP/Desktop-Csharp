@@ -19,11 +19,13 @@
                 <ColumnDefinition Width="64" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
+
             <Frame
                 x:Name="MainFrame"
                 Grid.ColumnSpan="2"
                 NavigationUIVisibility="Hidden" />
             <Frame x:Name="SideBarFrame" NavigationUIVisibility="Hidden" />
+
             <Frame
                 x:Name="OtherPagesFrame"
                 Grid.ColumnSpan="2"

@@ -45,7 +45,7 @@ public class InvoiceRepository
         }
         args["@value"] = value;
 
-        return await DBExcutor.QuerySingleOrDefaultAsync<Invoice>(query.ToString(), args);
+        return await DBExcutor.QueryFirstOrDefaultAsync<Invoice>(query.ToString(), args);
     }
 
     public async Task<IEnumerable<Invoice>> GetPage(

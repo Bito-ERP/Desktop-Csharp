@@ -41,7 +41,7 @@ public class PrinterRepostiory
 
     public async Task<Printer> GetById(string printerId)
     {
-        return await DBExcutor.QuerySingleOrDefaultAsync<Printer>(
+        return await DBExcutor.QueryFirstOrDefaultAsync<Printer>(
            "SELECT * FROM printer WHERE Id = @printerId",
            new { printerId }
            );

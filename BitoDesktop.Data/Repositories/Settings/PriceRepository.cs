@@ -40,7 +40,7 @@ public class PriceRepository
 
     public async Task<Price> GetById(string priceId)
     {
-        return await DBExcutor.QuerySingleOrDefaultAsync<Price>(
+        return await DBExcutor.QueryFirstOrDefaultAsync<Price>(
            "SELECT * FROM price WHERE Id = @priceId",
            new { priceId }
            );
@@ -51,7 +51,7 @@ public class PriceRepository
     // provide null to employeeId if he/she is a boss
     public async Task<Price> GetMain(string type, string employeeId)
     {
-        return await DBExcutor.QuerySingleOrDefaultAsync<Price>(
+        return await DBExcutor.QueryFirstOrDefaultAsync<Price>(
            "SELECT * FROM price WHERE IsMain = TRUE AND Type = @type AND Status = 'active' AND (Employees IS NULL OR Employees LIKE @employeeId)",
            new { type, employeeId = $"%{employeeId ?? ""}%" }
            );

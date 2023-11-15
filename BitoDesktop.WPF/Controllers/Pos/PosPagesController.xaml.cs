@@ -1,17 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace BitoDesktop.WPF.Controllers.Pos
 {
@@ -20,9 +9,22 @@ namespace BitoDesktop.WPF.Controllers.Pos
     /// </summary>
     public partial class PosPagesController : UserControl
     {
+        public event EventHandler ClosePageRequested;
+        public event EventHandler ChoosePageRequested;
+        public int Id { get; set; }
         public PosPagesController()
         {
             InitializeComponent();
+        }
+
+        private void ClosePageBtn_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            ClosePageRequested?.Invoke(this, e);
+        }
+
+        private void TicketChooseBtn_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            ChoosePageRequested?.Invoke(this, e);
         }
     }
 }

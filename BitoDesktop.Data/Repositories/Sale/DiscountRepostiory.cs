@@ -41,7 +41,7 @@ public class DiscountRepostiory
 
     public async Task<Discount> GetById(string discountId)
     {
-        return await DBExcutor.QuerySingleOrDefaultAsync<Discount>(
+        return await DBExcutor.QueryFirstOrDefaultAsync<Discount>(
            "SELECT * FROM discount WHERE Id = @discountId",
            new { discountId }
            );

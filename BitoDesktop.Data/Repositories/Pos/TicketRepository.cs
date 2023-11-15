@@ -1,8 +1,11 @@
 ﻿using BitoDesktop.Domain.Entities.Pos;
 using BitoDesktop.Domain.Entities.Sale;
+using Dapper;
+using Npgsql;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,39 +16,44 @@ public class TicketRepository
 {
 
     private const string TicketColumns = "Id, OrganizationId, Name, OverallSum, PriceId, WarehouseId, CreatedAt, TableId, Comment, CustomerId, Discounts";
+    private const string TicketColumnsInsert = "OrganizationId, Name, OverallSum, PriceId, WarehouseId, CreatedAt, TableId, Comment, CustomerId, Discounts";
     private const string TicketValues = "@Id, @OrganizationId, @Name, @OverallSum, @PriceId, @WarehouseId, @CreatedAt, @TableId, @Comment, @CustomerId, @Discounts";
+    private const string TicketValuesInsert = "@OrganizationId, @Name, @OverallSum, @PriceId, @WarehouseId, @CreatedAt, @TableId, @Comment, @CustomerId, @Discounts";
     private const string TicketUpdate = "OrganizationId = @OrganizationId, Name = @Name, OverallSum = @OverallSum, PriceId = @PriceId, WarehouseId = @WarehouseId, CreatedAt = @CreatedAt, TableId = @TableId, Comment = @Comment, CustomerId = @CustomerId, Discounts = @Discounts";
 
     private const string TicketItemColumns = "Id, ProductId, Price, Amount, BoxAmount, TicketId, TotalAddedTax, TotalIncludedTax, Taxes, TotalDiscountCash, TotalDiscountPercent, AmountInBox, Discounts, Marks";
-    private const string TicketItemValues = "@Id, @ProductId, @Price, @Amount, @BoxAmount, @TicketId, @TotalAddedTax, @TotalIncludedTax, @Taxes, @TotalDiscountCash, @TotalDiscountPercent, @AmountInBox, @Discounts, @Marks";
+    private const string TicketItemColumnsInsert = "ProductId, Price, Amount, BoxAmount, TicketId, TotalAddedTax, TotalIncludedTax, Taxes, TotalDiscountCash, TotalDiscountPercent, AmountInBox, Discounts, Marks";
+    const string TicketItemValues = "@Id, @ProductId, @Price, @Amount, @BoxAmount, @TicketId, @TotalAddedTax, @TotalIncludedTax, @Taxes, @TotalDiscountCash, @TotalDiscountPercent, @AmountInBox, @Discounts, @Marks";
+    const string TicketItemValuesInsert = "@ProductId, @Price, @Amount, @BoxAmount, @TicketId, @TotalAddedTax, @TotalIncludedTax, @Taxes, @TotalDiscountCash, @TotalDiscountPercent, @AmountInBox, @Discounts, @Marks";
     private const string TicketItemUpdate = "ProductId = @ProductId, Price = @Price, Amount = @Amount, BoxAmount = @BoxAmount, TicketId = @TicketId, TotalAddedTax = @TotalAddedTax, TotalIncludedTax = @TotalIncludedTax, Taxes = @Taxes, TotalDiscountCash = @TotalDiscountCash, TotalDiscountPercent = @TotalDiscountPercent, AmountInBox = @AmountInBox, Discounts = @Discounts, Marks = @Marks";
 
 
-    public async Task<long> Insert(Ticket item)
+    public async Task<int> Insert(Ticket item)
     {
         return await DBExcutor.ExecuteAsync(
-            "INSERT INTO ticket(" + TicketColumns + ") VALUES(" + TicketValues + ") " +
+            "INSERT INTO ticket(" + TicketColumnsInsert + ") VALUES(" + TicketValuesInsert + ") " +
             "ON CONFLICT (Id) " +
             "DO UPDATE SET " + TicketUpdate, item
             );
     }
 
-    public async Task Insert([Required] string organizationId, IEnumerable<Table> items)
+    public async Task<int> Insert([Required] string organizationId, IEnumerable<Table> items)
     {
         await DBExcutor.InTransaction(async connection =>
         {
             await DBExcutor.ExecuteAsync("DELETE FROM ticket WHERE OrgnizationId = @organizationId", connection);
-            await DBExcutor.ExecuteAsync(
-               "INSERT INTO ticket(" + TicketColumns + ") VALUES(" + TicketValues + ") " +
+            return await DBExcutor.ExecuteAsync(
+               "INSERT INTO ticket(" + TicketColumnsInsert + ") VALUES(" + TicketValuesInsert + ") " +
                "ON CONFLICT (Id) " +
-               "DO UPDATE SET " + TicketUpdate, items, connection
+               "DO UPDATE SET " + TicketUpdate + "RETURNING id;", items, connection
             );
         });
+        return 0;
     }
 
     // provide one of these fields, and only the given one wil be updated
     public async Task<int> UpdateTicket(
-        [Required] long ticketId,
+        [Required] int ticketId,
         double? overallSum,
         string name,
         string customerId,
@@ -96,31 +104,56 @@ public class TicketRepository
     }
 
     // delete all items of this ticket then insert new items
-    public async Task ReplaceItems(
-        long ticketId,
+    public async Task<IEnumerable<int>> ReplaceItems(
         IEnumerable<TicketItem> ticketItems
         )
     {
         await DBExcutor.InTransaction(async connection =>
         {
-            await DBExcutor.ExecuteAsync("DELETE FROM ticket_item WHERE TicketId = @ticketId", new { ticketId }, connection);
-            await DBExcutor.ExecuteAsync(
-               "INSERT INTO ticket_item(" + TicketItemColumns + ") VALUES(" + TicketItemValues + ") " +
+            return await DBExcutor.ExecuteAsync(
+               "INSERT INTO ticket_item(" + TicketItemColumnsInsert + ") VALUES(" + TicketItemValuesInsert + ") " +
                "ON CONFLICT (Id) " +
-               "DO UPDATE SET " + TicketItemUpdate, ticketItems, connection
+               "DO UPDATE SET " + TicketItemUpdate + "RETURNING id", ticketItems, connection
             );
+        });
+        return new List<int>();
+    }
+
+    public async Task<int> InsertAndReturnId(TicketItem entity)
+    {
+        using IDbConnection dbConnection = new NpgsqlConnection(DBExcutor._connectionString);
+        dbConnection.Open();
+
+        string sql = $"INSERT INTO ticket_item ({TicketItemColumnsInsert}) VALUES ({TicketItemValuesInsert}) RETURNING id";
+
+        // Execute query and retrieve the generated ID
+        int generatedId = await dbConnection.QueryFirstOrDefaultAsync<int>(sql, entity);
+
+        return generatedId;
+    }
+
+    public async Task Update(
+        int id,
+        int ticketId,
+        TicketItem ticketItems)
+    {
+        await DBExcutor.InTransaction(async connection =>
+        {
+            return await DBExcutor.ExecuteAsync(
+                $"UPDATE ticket_item SET {TicketItemUpdate} WHERE id = {id} AND ticketid = {ticketId};", ticketItems, connection);
         });
     }
 
-    public async Task<Ticket> Get(long ticketId)
+
+    public async Task<Ticket> Get(int ticketId)
     {
-        return await DBExcutor.QuerySingleOrDefaultAsync<Ticket>(
+        return await DBExcutor.QueryFirstOrDefaultAsync<Ticket>(
             "SELECT * FROM ticket WHERE Id = @ticketId",
             new { ticketId }
             );
     }
 
-    public async Task<IEnumerable<Ticket>> getTickets([Required] string organizationId)
+    public async Task<IEnumerable<Ticket>> GetTickets([Required] string organizationId)
     {
         return await DBExcutor.QueryAsync<Ticket>(
             "SELECT * FROM ticket WHERE OrganizationId = @organizationId ORDER BY Name ASC",
@@ -128,8 +161,8 @@ public class TicketRepository
             );
     }
 
-    public async Task<IEnumerable<TicketItem>> getItems(
-        [Required] string ticketId,
+    public async Task<IEnumerable<TicketItem>> GetItems(
+        [Required] int ticketId,
         [Required] string priceId,
         [Required] string organizationId,
         [Required] string warehouseId
@@ -164,7 +197,7 @@ public class TicketRepository
 
     }
 
-    public async Task Delete(long ticketId)
+    public async Task Delete(int ticketId)
     {
         await DBExcutor.InTransaction(async connection =>
         {
@@ -181,7 +214,19 @@ public class TicketRepository
         });
     }
 
-    public async Task Delete(IEnumerable<long> ticketIds)
+    public async Task DeleteItem(int ticketItemId)
+    {
+        await DBExcutor.InTransaction(async connection =>
+        {
+            await DBExcutor.ExecuteAsync(
+            "DELETE FROM ticket_item WHERE TicketId = @ticketId",
+            new { ticketItemId },
+            connection
+          );
+        });
+    }
+
+    public async Task Delete(IEnumerable<int> ticketIds)
     {
         await DBExcutor.InTransaction(async connection =>
         {
@@ -199,8 +244,8 @@ public class TicketRepository
     }
 
     public async Task Merge(
-        IEnumerable<long> ticketIds,
-        long toTicketId
+        IEnumerable<int> ticketIds,
+        int toTicketId
         )
     {
         await DBExcutor.InTransaction(async connection =>
@@ -253,7 +298,7 @@ public class TicketRepository
                 new { toTicketId }
              );
 
-            await ReplaceItems(toTicketId, items);
+            await ReplaceItems(items);
 
             if (discounts.Count > 0)
             {

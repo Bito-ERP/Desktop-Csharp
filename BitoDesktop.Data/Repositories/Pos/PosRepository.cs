@@ -133,7 +133,8 @@ public class PosRepository
             );
     }
 
-    public async Task<IEnumerable<Page>> GetPages([Required] string organizationId){
+    public async Task<IEnumerable<Page>> GetPages([Required] string organizationId)
+    {
         return await DBExcutor.QueryAsync<Page>(
             "SELECT * FROM pos_page WHERE OrganizationId = @organizationId ORDER BY \"Order\" ASC",
             new { organizationId }

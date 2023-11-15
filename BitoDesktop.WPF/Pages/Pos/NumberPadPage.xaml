@@ -10,6 +10,7 @@
     MinWidth="540"
     MinHeight="450"
     Background="#80000000"
+    Loaded="Page_Loaded"
     mc:Ignorable="d">
     <Page.Resources>
         <Style BasedOn="{StaticResource MaterialDesignRaisedButton}" TargetType="Button">
@@ -46,6 +47,7 @@
             </Grid.ColumnDefinitions>
 
             <TextBox
+                x:Name="PriceTxt"
                 Grid.Row="0"
                 Grid.ColumnSpan="2"
                 Width="212"
@@ -58,98 +60,109 @@
                 FontWeight="DemiBold"
                 Style="{StaticResource MaterialDesignOutlinedTextBox}" />
             <ComboBox
+                x:Name="CurrenciesCb"
                 Grid.Column="2"
                 Width="100"
                 Height="56"
                 HorizontalAlignment="Left"
                 Background="#F5F5F5"
                 BorderThickness="0"
-                Style="{StaticResource MaterialDesignOutlinedComboBox}">
-                <ComboBoxItem
-                    Content="UZS"
-                    FontSize="15"
-                    FontWeight="DemiBold" />
-                <ComboBoxItem
-                    Content="USD"
-                    FontSize="15"
-                    FontWeight="DemiBold" />
-            </ComboBox>
+                Style="{StaticResource MaterialDesignOutlinedComboBox}" />
             <Button
                 Grid.Row="1"
                 HorizontalAlignment="Right"
+                Click="Button_Click"
                 Content="1" />
             <Button
                 Grid.Row="1"
                 Grid.Column="1"
+                Click="Button_Click"
                 Content="2" />
             <Button
                 Grid.Row="1"
                 Grid.Column="2"
                 HorizontalAlignment="Left"
+                Click="Button_Click"
                 Content="3" />
             <Button
                 Grid.Row="2"
                 Grid.Column="0"
                 HorizontalAlignment="Right"
+                Click="Button_Click"
                 Content="4" />
             <Button
                 Grid.Row="2"
                 Grid.Column="1"
+                Click="Button_Click"
                 Content="5" />
             <Button
                 Grid.Row="2"
                 Grid.Column="2"
                 HorizontalAlignment="Left"
+                Click="Button_Click"
                 Content="6" />
             <Button
                 Grid.Row="3"
                 Grid.Column="0"
                 HorizontalAlignment="Right"
+                Click="Button_Click"
                 Content="7" />
             <Button
                 Grid.Row="3"
                 Grid.Column="1"
+                Click="Button_Click"
                 Content="8" />
             <Button
                 Grid.Row="3"
                 Grid.Column="2"
                 HorizontalAlignment="Left"
+                Click="Button_Click"
                 Content="9" />
             <Button
                 Grid.Row="4"
                 Grid.Column="0"
                 HorizontalAlignment="Right"
+                Click="Button_Click"
                 Content="." />
             <Button
                 Grid.Row="4"
                 Grid.Column="1"
+                Click="Button_Click"
                 Content="0" />
             <Button
+                x:Name="BackspaseBtn"
                 Grid.Row="4"
                 Grid.Column="2"
-                HorizontalAlignment="Left">
+                HorizontalAlignment="Left"
+                Click="BackspaseBtn_Click">
                 <md:PackIcon Kind="Backspace" />
             </Button>
             <Button
                 Grid.Row="5"
                 Grid.Column="0"
                 HorizontalAlignment="Right"
+                Click="Button_Click"
                 Content="000" />
             <Button
                 Grid.Row="5"
                 Grid.Column="1"
+                Click="Button_Click"
                 Content="00" />
             <Button
+                x:Name="ClearBtn"
                 Grid.Row="5"
                 Grid.Column="2"
                 HorizontalAlignment="Left"
+                Click="ClearBtn_Click"
                 Content="C" />
 
             <Button
+                x:Name="SaveAndCloseBtn"
                 Grid.Row="6"
                 Grid.ColumnSpan="3"
                 Width="324"
                 Background="#006AFF"
+                Click="SaveAndCloseBtn_Click"
                 Content="Saqlash va yopish"
                 Foreground="White" />
         </Grid>

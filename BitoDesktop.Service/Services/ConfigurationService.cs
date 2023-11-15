@@ -1,11 +1,5 @@
 ﻿using BitoDesktop.Data.Repositories.Settings;
 using BitoDesktop.Service.Exceptions;
-using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.AccessControl;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace BitoDesktop.Service.Services
@@ -18,22 +12,22 @@ namespace BitoDesktop.Service.Services
             repository = new ConfigurationRepository();
         }
 
-        public async Task<bool> SaveConfigs(string priceId, string warehouseId, string organizationId,string deviceId,string serverId,string token)
+        public async Task<bool> SaveConfigs(string priceId, string warehouseId, string organizationId, string deviceId, string serverId, string token)
         {
             await repository.PutString("price", priceId);
             await repository.PutString("warehouse", warehouseId);
-            await repository.PutString("organization",organizationId);
-            await repository.PutString("device",deviceId);
-            await repository.PutString("server",serverId);
-            await repository.PutString("token",token);
+            await repository.PutString("organization", organizationId);
+            await repository.PutString("device", deviceId);
+            await repository.PutString("server", serverId);
+            await repository.PutString("token", token);
 
-            return true;   
+            return true;
         }
-        public async Task<bool> SaveCustomConfig(string key,string value)
+        public async Task<bool> SaveCustomConfig(string key, string value)
         {
             await repository.PutString(key, value);
 
-            return true;   
+            return true;
         }
 
         public async Task<string> Get(string key)

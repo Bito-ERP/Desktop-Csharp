@@ -40,7 +40,7 @@ public class OrganizationRepository
 
     public async Task<Organization> GetById(string organizationId)
     {
-        return await DBExcutor.QuerySingleOrDefaultAsync<Organization>(
+        return await DBExcutor.QueryFirstOrDefaultAsync<Organization>(
            "SELECT * FROM organization WHERE Id = @organizationId",
            new { organizationId }
            );
